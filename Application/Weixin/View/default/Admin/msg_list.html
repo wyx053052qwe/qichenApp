@@ -1,0 +1,112 @@
+<include file="Admin@default/public/header" />
+
+<form id="form1" name="form1" method="post" action="{:U('msg_del')}">
+    <div class="list_th">
+        <div class="td" style=" width:25%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>用户名
+            </label>
+        </div>
+        <div class="td" style=" width:8%;">会员类型</div>
+        <div class="td" style=" width:23%;">OpenId</div>
+        <div class="td" style=" width:22%;">消息内容</div>
+        <div class="td" style=" width:10%;">发送时间</div>
+        <div class="td" style=" width:12%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:25%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>{$vo.username}
+                    <span style="color:#999999">(uid:{$vo.uid})</span>
+                </div>
+            </div>
+            <div class="td" style=" width:8%;">
+                <if condition="$vo['utype'] eq 1">企业<else />个人</if>会员&nbsp;</div>
+            <div class="td" style=" width: 23%;">{$vo.weixin_openid|default='-'}</div>
+            <div class="td vtip" style=" width:22%;" title="{$vo.content}">{$vo.content|default='-'}</div>
+            <div class="td" style=" width:10%;">{:admin_date($vo['sendtime'])}</div>
+            <div class="td edit" style=" width:12%;">
+                <a href="javascript:void(0);" class="ajax_send_msg" parameter="uid={$vo['uid']}">发送消息</a>
+                <a href="{:U('msg_del',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除此消息记录吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAddQueue" value="批量发送"/>
+        <input type="submit" class="admin_submit" id="ButDel" value="删除"/>
+    </div>
+
+    <div class="footso"></div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //发送消息
+        $(".ajax_send_msg").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '发送消息',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('msg_send')}&" + param;
+            $.getJSON(url, function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        });
+        //批量发送消息
+        $("#ButAddQueue").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '批量发送消息',
+                loading: true,
+                footer : false
+            });
+            var url = "{:U('msg_queue_send')}";
+            $.getJSON(url, function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        });
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择消息记录！');
+            } else {
+                if(confirm('确定要删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

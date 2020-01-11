@@ -1,0 +1,185 @@
+[ 2019-08-11T00:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 00:01:00 Use 0.086586 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 00:01:00 Use -0.000069 s 
+
+[ 2019-08-11T00:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 00:10:00 Use 0.103362 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 00:10:00 Use -0.000069 s 
+
+[ 2019-08-11T01:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 01:01:00 Use 0.078928 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 01:01:00 Use -0.000088 s 
+Cron:ClearOrder Runat 2019-08-11 01:01:00 Use -0.022023 s 
+
+[ 2019-08-11T01:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 01:10:00 Use 0.042006 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 01:10:00 Use -0.000068 s 
+
+[ 2019-08-11T02:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 02:01:00 Use 0.097775 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 02:01:00 Use -0.000069 s 
+
+[ 2019-08-11T02:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 02:10:00 Use 0.045287 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 02:10:00 Use -0.000068 s 
+
+[ 2019-08-11T03:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 03:01:00 Use 0.088873 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 03:01:00 Use -0.000160 s 
+
+[ 2019-08-11T03:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 03:10:00 Use 0.043404 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 03:10:00 Use -0.000068 s 
+
+[ 2019-08-11T04:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 04:01:00 Use 0.145568 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 04:01:00 Use -0.000070 s 
+
+[ 2019-08-11T04:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 04:10:00 Use 0.101964 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 04:10:00 Use -0.000067 s 
+
+[ 2019-08-11T05:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 05:01:00 Use 0.090742 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 05:01:00 Use -0.000088 s 
+
+[ 2019-08-11T05:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 05:10:00 Use 0.043435 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 05:10:00 Use -0.000068 s 
+
+[ 2019-08-11T06:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 06:01:00 Use 0.091803 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 06:01:00 Use -0.000069 s 
+
+[ 2019-08-11T06:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 06:10:00 Use 0.044234 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 06:10:00 Use -0.000067 s 
+
+[ 2019-08-11T07:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 07:01:00 Use 0.164132 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 07:01:00 Use -0.000076 s 
+
+[ 2019-08-11T07:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 07:10:00 Use 0.043724 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 07:10:00 Use -0.000069 s 
+
+[ 2019-08-11T08:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 08:01:00 Use 0.100894 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 08:01:00 Use -0.000117 s 
+
+[ 2019-08-11T08:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 08:10:00 Use 0.042797 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 08:10:00 Use -0.000070 s 
+
+[ 2019-08-11T09:01:01+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 09:01:00 Use 0.184752 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 09:01:01 Use -0.000136 s 
+
+[ 2019-08-11T09:10:06+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 09:10:06 Use 0.041630 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 09:10:06 Use -0.000091 s 
+
+[ 2019-08-11T10:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 10:01:00 Use 0.088601 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 10:01:00 Use -0.000070 s 
+
+[ 2019-08-11T10:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 10:10:00 Use 0.046357 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 10:10:00 Use -0.000068 s 
+
+[ 2019-08-11T11:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 11:01:00 Use 0.093143 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 11:01:00 Use -0.000070 s 
+
+[ 2019-08-11T11:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 11:10:00 Use 0.043935 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 11:10:00 Use -0.000069 s 
+
+[ 2019-08-11T12:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 12:01:00 Use 0.093132 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 12:01:00 Use -0.000071 s 
+
+[ 2019-08-11T12:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 12:10:00 Use 0.085876 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 12:10:00 Use -0.000069 s 
+
+[ 2019-08-11T13:01:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:ClearPromotion Runat 2019-08-11 13:01:00 Use 0.089170 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 13:01:00 Use -0.000114 s 
+
+[ 2019-08-11T13:10:00+08:00 ] ::1 /index.php?m=Mobile&c=callback&a=check_h5pay_status&order_id=9
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 13:10:00 Use 0.044791 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 13:10:00 Use -0.000073 s 
+
+[ 2019-08-11T14:02:50+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 14:02:50 Use 0.234873 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 14:02:50 Use -0.000093 s 
+
+[ 2019-08-11T14:15:07+08:00 ] ::1 /index.php?m=Mobile&c=members&a=login&type=login_pwd
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 14:15:07 Use 0.058951 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 14:15:07 Use -0.000073 s 
+
+[ 2019-08-11T15:01:04+08:00 ] ::1 /index.php?m=Mobile&c=Admin&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 15:01:03 Use 0.137934 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 15:01:04 Use -0.000105 s 
+
+[ 2019-08-11T15:15:36+08:00 ] ::1 /index.php?m=Mobile&c=Index&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 15:15:36 Use 0.063154 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 15:15:36 Use -0.000126 s 
+
+[ 2019-08-11T16:02:32+08:00 ] ::1 /index.php?m=Mobile&c=index&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 16:02:32 Use 0.121534 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 16:02:32 Use -0.000119 s 
+
+[ 2019-08-11T16:10:17+08:00 ] ::1 /index.php?m=Mobile&c=index&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 16:10:17 Use 0.054359 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 16:10:17 Use -0.000075 s 
+
+[ 2019-08-11T17:02:31+08:00 ] ::1 /index.php?m=Mobile&c=Jobs&a=show&id=3
+INFO: Cron:ClearPromotion Runat 2019-08-11 17:02:31 Use 0.130878 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 17:02:31 Use -0.000089 s 
+
+[ 2019-08-11T17:13:56+08:00 ] ::1 /index.php?m=Mobile&c=Jobs&a=show&id=3
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 17:13:56 Use 0.072600 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 17:13:56 Use -0.000071 s 
+
+[ 2019-08-11T18:01:14+08:00 ] ::1 /index.php?m=Mobile&c=Jobs&a=show&id=4
+INFO: Cron:ClearPromotion Runat 2019-08-11 18:01:14 Use 0.082328 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 18:01:14 Use -0.000069 s 
+
+[ 2019-08-11T18:12:27+08:00 ] ::1 /index.php?m=Mobile&c=Jobs&a=show&id=2
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 18:12:27 Use 0.093840 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 18:12:27 Use -0.000083 s 
+
+[ 2019-08-11T19:02:20+08:00 ] ::1 /index.php?m=Admin&c=Company&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 19:02:20 Use 0.093403 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 19:02:20 Use -0.000071 s 
+
+[ 2019-08-11T19:10:39+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 19:10:39 Use 0.109255 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 19:10:39 Use -0.000069 s 
+
+[ 2019-08-11T20:01:00+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=get_com
+INFO: Cron:ClearPromotion Runat 2019-08-11 20:01:00 Use 0.094743 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 20:01:00 Use -0.000072 s 
+
+[ 2019-08-11T21:02:57+08:00 ] ::1 /index.php?m=Mobile&c=MembersBind&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 21:02:57 Use 0.181644 s 
+Cron:AutoRefreshResume Runat 2019-08-11 21:02:57 Use -0.000182 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 21:02:57 Use -0.044756 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 21:02:57 Use -0.045912 s 
+
+[ 2019-08-11T22:10:23+08:00 ] ::1 /index.php?m=Mobile&c=MembersBind&a=huodong_list
+INFO: Cron:ClearPromotion Runat 2019-08-11 22:10:23 Use 0.088725 s 
+Cron:AutoRefreshResume Runat 2019-08-11 22:10:23 Use -0.000115 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 22:10:23 Use -0.023863 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 22:10:23 Use -0.024947 s 
+
+[ 2019-08-11T23:02:08+08:00 ] ::1 /index.php?m=Mobile&c=Personal&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-11 23:02:08 Use 0.093668 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-11 23:02:08 Use -0.000107 s 
+
+[ 2019-08-11T23:14:17+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-08-11 23:14:17 Use 0.039221 s 
+Cron:AutoRefreshJobs Runat 2019-08-11 23:14:17 Use -0.000075 s 
+

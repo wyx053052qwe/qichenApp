@@ -1,0 +1,128 @@
+<include file="Admin@default/public/header" />
+
+<div class="seltpye_y">
+    <div class="tit">商品分类</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.category'>select</notempty>">{$Think.get.category_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('category'=>'','category_cn'=>'不限'))}">不限</li>
+        <volist name="category" id="vo">
+            <li url="{:P(array('category'=>$key,'category_cn'=>$vo))}">{$vo}</li>
+        </volist>
+    </div>
+</div>
+<div class="seltpye_y">
+    <div class="tit">添加时间</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.settr'>select</notempty>">{$Think.get.settr_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('settr'=>'','settr_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('settr'=>'3','settr_cn'=>'三天内'))}">三天内</li>
+        <li url="{:P(array('settr'=>'7','settr_cn'=>'一周内'))}">一周内</li>
+        <li url="{:P(array('settr'=>'30','settr_cn'=>'一月内'))}">一月内</li>
+    </div>
+</div>
+<div class="clear"></div>
+
+<form id="form1" name="form1" method="post" action="{:U('goods_delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:18%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>商品编号
+            </label>
+        </div>
+        <div class="td" style=" width:18%;">商品名称</div>
+        <div class="td" style=" width:10%;">品牌</div>
+        <div class="td center" style=" width:10%;">所属分类</div>
+        <div class="td center" style=" width:8%;">库存</div>
+        <div class="td center" style=" width:8%;">每人限购</div>
+        <div class="td center" style=" width:8%;">所需{:C('qscms_points_byname')}</div>
+        <div class="td center" style=" width:10%;">添加时间</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:18%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <if condition="$vo['goods_img'] neq ''">
+                        <span class="vtip" title="<img src='{:attach($vo['goods_img'],'mall')}' border=0 align=absmiddle width=120 height=120>">
+                            <img class="avatar" src="{:attach($vo['goods_img'],'mall')}" align="absmiddle">&nbsp;&nbsp;
+                        </span>
+                        <!--<span class="pictip vtip" title="<img src='{:attach($vo['goods_img'],'mall')}' border=0 align=absmiddle width=120 height=120>">&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                    </if>
+                    {$vo['goods_number']}
+                </div>
+            </div>
+            <div class="td vtip" style=" width:18%;" title="{$vo['goods_title']}">{$vo['goods_title']|default='-'}</div>
+            <div class="td" style=" width: 10%;">{$vo['goods_brand']|default='-'}</div>
+            <div class="td center" style=" width:10%;">{$vo['category_cn']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['goods_stock']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['goods_customer']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['goods_points']|default='-'}</div>
+            <div class="td center" style=" width:10%;">{:admin_date($vo['addtime'])}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('goods_edit',array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('goods_delete',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('确定删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="添加产品" onclick="window.location.href='{:U('goods_add')}'"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除"/>
+    </div>
+
+    <div class="footso">
+        <form action="?" method="get">
+            <div class="sobox">
+                <input type="hidden" name="m" value="{:MODULE_NAME}">
+                <input type="hidden" name="c" value="{:CONTROLLER_NAME}">
+                <input type="hidden" name="a" value="{:ACTION_NAME}">
+                <input name="key" type="text" class="sinput" value="{$Think.get.key}"/>
+                <input name="key_type" id="J_key_type_id" type="hidden" value="{$Think.get.key_type|default='1'}" />
+                <input name="key_type_cn" id="J_key_type_cn" type="hidden" value="{$Think.get.key_type_cn|default='名称'}"/>
+                <input name="" type="submit" value="" class="sobtn"/>
+                <div class="sotype" id="J_key_click">{$Think.get.key_type_cn|default='名称'}</div>
+                <div class="mlist" id="J_mlist">
+                    <ul>
+                        <li id="1" title="名称">名称</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择商品！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,210 @@
+<include file="Admin@default/public/header" />
+
+<div class="seltpye_y">
+    <div class="tit">预定状态</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.audit'>select</notempty>">{$Think.get.audit_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('audit'=>'','audit_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('audit'=>'1','audit_cn'=>'预定成功'))}">预定成功</li>
+        <li url="{:P(array('audit'=>'2','audit_cn'=>'等待审核'))}">等待审核<if condition="$count"><span style="color:#FF0000">({$count})</span></if></li>
+        <li url="{:P(array('audit'=>'3','audit_cn'=>'审核未通过'))}">审核未通过</li>
+    </div>
+</div>
+<div class="seltpye_y">
+    <div class="tit">推荐名企</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.recommend'>select</notempty>">{$Think.get.recommend_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('recommend'=>'','recommend_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('recommend'=>'2','recommend_cn'=>'已推荐'))}">已推荐</li>
+        <li url="{:P(array('recommend'=>'1','recommend_cn'=>'未推荐'))}">未推荐</li>
+    </div>
+</div>
+<div class="seltpye_y">
+    <div class="tit">招聘会</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.jobfair_id'>select</notempty>">{$Think.get.jobfair_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('jobfair_id'=>'','jobfair_cn'=>'不限'))}">不限</li>
+        <volist name="jobfair_list" id="vo">
+            <li url="{:P(array('jobfair_id'=>$vo['id'],'jobfair_cn'=>$vo['title']))}" title="{$vo['title']}">{$vo['title']}</li>
+        </volist>
+    </div>
+</div>
+<div class="seltpye_y">
+    <div class="tit">添加时间</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.settr'>select</notempty>">{$Think.get.settr_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('settr'=>'','settr_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('settr'=>'3','settr_cn'=>'三天内'))}">三天内</li>
+        <li url="{:P(array('settr'=>'7','settr_cn'=>'一周内'))}">一周内</li>
+        <li url="{:P(array('settr'=>'30','settr_cn'=>'一月内'))}">一月内</li>
+        <li url="{:P(array('settr'=>'180','settr_cn'=>'半年内'))}">半年内</li>
+        <li url="{:P(array('settr'=>'360','settr_cn'=>'一年内'))}">一年内</li>
+    </div>
+</div>
+<div class="clear"></div>
+
+<form id="form1" name="form1" method="post" action="{:U('exhibitors_delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:20%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>参会企业
+            </label>
+        </div>
+        <div class="td" style=" width:20%;">招聘会标题</div>
+        <div class="td center" style=" width:8%;">预定展位</div>
+        <div class="td center" style=" width:7%;">预定状态</div>
+        <div class="td center" style=" width:10%;">联系人</div>
+        <div class="td center" style=" width:10%;">联系电话</div>
+        <div class="td center" style=" width:5%;">推荐名企</div>
+        <div class="td center" style=" width:10%;">添加日期</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_blue">
+            <div class="td" style=" width:20%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <a href="{:url_rewrite('QS_companyshow',array('id'=>$vo['company_id']))}" target="_blank">{$vo['companyname']}</a>
+                </div>
+            </div>
+            <div class="td" style=" width:20%;">
+                <a href="{:url_rewrite('QS_jobfairshow',array('id'=>$vo['jobfair_id']))}" target="_blank">{$vo['jobfair_title']}</a>
+            </div>
+            <div class="td center" style=" width:8%;">{$vo.position|default='-'}</div>
+            <div class="td center" style=" width:7%;">
+                <if condition="$vo['audit'] eq 1">
+                    <span style="color: #009900">预定成功</span>
+                    <elseif condition="$vo['audit'] eq 2" />
+                    <span style="color: #FF3300">等待审核</span>
+                    <else />
+                    <span>审核未通过</span>
+                </if>
+            </div>
+            <div class="td center" style=" width:10%;">{$vo.contact|default='-'}</div>
+            <div class="td center" style=" width:10%;">{$vo.mobile|default='-'}</div>
+            <div class="td center" style=" width:5%;">
+                <if condition="$vo['recommend'] eq 1">
+                    <span style="color: #009900">已推荐</span>
+                    <else />
+                    未推荐
+                </if>
+            </div>
+            <div class="td center" style=" width:10%;">{:admin_date($vo['eaddtime'])}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('exhibitors_edit',array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('exhibitors_delete',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="新增" onclick="window.location='{:U('exhibitors_add')}'"/>
+        <input type="button" class="admin_submit" id="ButAudit" value="参会状态"/>
+        <input type="button" class="admin_submit" id="ButRecommend" value="名企推荐"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除所选"/>
+    </div>
+
+    <div class="footso">
+        <form action="?" method="get">
+            <div class="sobox">
+                <input type="hidden" name="m" value="{:MODULE_NAME}">
+                <input type="hidden" name="c" value="{:CONTROLLER_NAME}">
+                <input type="hidden" name="a" value="{:ACTION_NAME}">
+                <input name="key" type="text" class="sinput" value="{$Think.get.key}"/>
+                <input name="key_type" id="J_key_type_id" type="hidden" value="{$Think.get.key_type|default='1'}" />
+                <input name="key_type_cn" id="J_key_type_cn" type="hidden" value="{$Think.get.key_type_cn|default='公司'}"/>
+                <input name="" type="submit" value="" class="sobtn"/>
+                <div class="sotype" id="J_key_click">{$Think.get.key_type_cn|default='公司'}</div>
+                <div class="mlist" id="J_mlist">
+                    <ul>
+                        <li id="1" title="公司">公司</li>
+                        <li id="2" title="招聘会">招聘会</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //参会状态
+        $("#ButAudit").click(function () {
+            var data = $("form[name=form1]").serialize();
+            if(data.length == 0){
+                disapperTooltip('remind','请选择参会企业！');
+            } else {
+                var qsDialog = $(this).dialog({
+                    title: '设置参会状态',
+                    loading: true,
+                    footer : false
+                });
+                var url = "{:U('exhibitors_audit')}";
+                $.post(url, data, function (result) {
+                    if(result.status == 1){
+                        qsDialog.setContent(result.data);
+                    } else {
+                        qsDialog.hide();
+                        disapperTooltip('remind',result.msg);
+                    }
+                });
+            }
+        });
+        //名企推荐
+        $("#ButRecommend").click(function () {
+            var data = $("form[name=form1]").serialize();
+            if(data.length == 0){
+                disapperTooltip('remind','请选择参会企业！');
+            } else {
+                var qsDialog = $(this).dialog({
+                    title: '名企推荐',
+                    loading: true,
+                    footer : false
+                });
+                var url = "{:U('exhibitors_recommend')}";
+                $.post(url, data, function (result) {
+                    if(result.status == 1){
+                        qsDialog.setContent(result.data);
+                    } else {
+                        qsDialog.hide();
+                        disapperTooltip('remind',result.msg);
+                    }
+                });
+            }
+        });
+        //点击批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择参会企业！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("form[name=form1]").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

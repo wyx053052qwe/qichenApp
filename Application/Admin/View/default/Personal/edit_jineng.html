@@ -1,0 +1,176 @@
+<include file="public:header"/>
+
+<div class="toptit">编辑技能</div>
+<form id="form1" action="{:U('add')}" method="post" name="FormData">
+    <div class="form_main width150">
+        <div class="fl">标题:</div>
+        <div class="fr">
+            <div style="float: left"><input name="name" type="text" class="input_text_default middle" maxlength="45" value="{$data['name']}"/></div>
+            <input type="hidden" name="id" value="{$data['id']}">
+        </div>
+        <div class="clear"></div>
+        <div class="fl">所属分类:</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="cate_id" type="hidden" value="{$data['cate_id']}">
+                <volist name="category" id="vo">
+                    <div class="radio <eq name='i' value='1'>select</eq>" data="{$vo['id']}" title="{$vo['id']}">{$vo['name']}</div>
+                </volist>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="fl">缩略图:</div>
+        <div class="fr J-file-input-box link_blue">
+            <if condition="$data['small_img']">
+                <div class="file-input-src">
+                    <div class="img"><img src="{:attach($data['small_img'],'images')}?_t={:time()}" align=absmiddle></div>
+                    <div class="del file-input-del" id="J_upload_article_img" name="small_img">点击更换</div>
+                </div>
+            <else/>
+                <div class="file-input-src hid">
+                    <div class="img"></div>
+                    <div class="del file-input-del" id="" name="small_img">点击更换</div>
+                </div>
+                <div class="file-input-block" id="J_upload_article_img" name="small_img"><span class="o-txt">上传</span>缩略图</div>
+            </if>
+            <input type="hidden" class="file-input-save-name" name="small_img" value="{$data.small_img}">
+        </div>
+
+        <div class="fl">咨询电话:</div>
+        <div class="fr">
+            <div style="float: left"><input name="mobile" type="text" class="input_text_default middle" maxlength="45" placeholder="填写正确得手机号" value="{$data['mobile']}"/></div>
+            
+        </div>
+        <div class="clear"></div>
+
+        <div class="fl">点击量:</div>
+        <div class="fr">
+            <div style="float: left"><input name="click" type="text" class="input_text_default middle" maxlength="45" placeholder="不填写代表0" value="{$data['click']}"/></div>
+            
+        </div>
+<div class="clear"></div>
+        <div class="fl">培训类型:</div>
+        <div class="fr">
+            <div style="float: left"><input name="type" type="text" class="input_text_default middle" maxlength="45" value="{$data['type']}"/></div>
+            
+        </div>
+
+        <div class="fl">费用:</div>
+        <div class="fr">
+            <div style="float: left"><input name="money" type="text" class="input_text_default middle" maxlength="45" placeholder="不填写代表免费" value="{$data['money']}"/></div>
+            
+        </div>
+
+        <div class="fl">培训机构:</div>
+        <div class="fr">
+            <div style="float: left"><input name="jigou" type="text" class="input_text_default middle" maxlength="45" value="{$data['jigou']}"/></div>
+            
+        </div>
+        <div class="fl">是否可报名:</div>
+            <div class="fr">
+                <div data-code="0,1" class="imgchecked_small <eq name='data.is_display' value='1'>select</eq>"><input name="is_display" type="hidden" value="{$data['is_display']}" /></div>
+                <div class="clear"></div>
+        </div>
+        <div class="fl">是否推荐:</div>
+            <div class="fr">
+                <div data-code="0,1" class="imgchecked_small <eq name='data.is_show' value='1'>select</eq>"><input name="is_show" type="hidden" value="{$data['is_show']}" /></div>
+                <div class="clear"></div>
+        </div>
+        <div class="fl">培训对象:</div>
+        <div class="fr">
+            <textarea name="duixiang" class="input_text_default" style=" width:682px;height:200px; line-height:180%">{$data['duixiang']}</textarea>
+        </div>
+        =
+        <div class="fl">培训费用:</div>
+        <div class="fr">
+            <textarea name="feiyong" class="input_text_default" style=" width:682px;height:200px; line-height:180%">{$data['feiyong']}</textarea>
+        </div>
+
+        <div class="fl">培训内容:</div>
+        <div class="fr">
+            <textarea name="content" class="input_text_default" style=" width:682px;height:400px; line-height:180%">{$data['content']}</textarea>
+        </div>
+        <div class="fl"></div>
+        
+        
+        
+        <div class="fr">
+            <input type="button" class="admin_submit" value="提交"/ id="J_submit">
+            <input type="button" class="admin_submit" value="返回" onClick="window.location='{:U('jineng')}'"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+
+<include file="public:footer"/>
+</body>
+<link rel="stylesheet" href="__ADMINPUBLIC__/js/kindeditor/themes/default/default.css"/>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+  var uploadUrl = "{:U('Upload/form_upload')}";
+</script>
+<script src="__ADMINPUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__ADMINPUBLIC__/js/fileupload.js"></script>
+<script type="text/javascript" src="__ADMINPUBLIC__/js/jquery.listitem.js"></script>
+<script type="text/javascript" src="__ADMINPUBLIC__/js/jquery.dropdown.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="content"]', {
+                uploadJson : "?m={:C('admin_alias')}&c=upload&a=index",
+                afterBlur: function () { this.sync(); },
+                allowFileManager : true});
+        });
+        $('#J_submit').click(function(){
+            editor.sync();
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('edit_jineng')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("jineng")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+    $.upload('#J_upload_article_img',{name:'small_img',dir:'images'},function(result){
+        if(result.error == 1){
+          var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+          $('#J_upload_article_img').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+          $('#J_upload_article_img').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+          if ($('#J_upload_article_img').hasClass('file-input-block')) {
+            $('#J_upload_article_img').closest('.J-file-input-box').find('.file-input-src').removeClass('hid');
+            var $delObj = $('#J_upload_article_img').closest('.J-file-input-box').find('.file-input-del');
+            $('#J_upload_article_img').remove();
+            $delObj.attr('id', "J_upload_article_img_change_btn");
+            $.upload('#J_upload_article_img_change_btn',{name:'small_img',dir:'images'},function(result){
+              if(result.error == 1){
+                var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                $('#J_upload_article_img_change_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                $('#J_upload_article_img_change_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+              } else {
+                disapperTooltip("remind", "上传失败："+result.message);
+              }
+            })
+          }
+        } else {
+          disapperTooltip("remind", "上传失败："+result.message);
+        }
+      });
+</script>
+</html>

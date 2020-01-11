@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/enterprise.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<qscms:load type="category" search="1"/>
+	</head>
+	<style>
+		body,
+		html {
+			height: auto;
+			background-color: #efeff4;
+		}
+		
+		.tj-title {
+			border-bottom: 1px solid #f5f5f5;
+		}
+		.enterprise-list {
+		    
+		    margin-top: 54px !important;
+		    
+		}
+	</style>
+
+	<body>
+
+		<div class="job training">
+			<header class="zy_search_top_box">
+				<div class="search_top fix">
+					<a href="javascript:" onclick="location.href='/';"><span>首页</span></a>
+					<div>
+						<form>
+							<input type="text" name="key" id="key" placeholder="搜索本机构人才">
+							<button type="button" id="search"><img src="../public_qichen/img/icon_search.png"></button>
+						</form>
+					</div>
+				</div>
+
+			</header>
+			<!--筛选  -->
+			
+
+		</div>
+
+		
+		<!--列表-->
+		<div class="job-list enterprise-list">
+			<qscms:classify 列表名="experience_list" 类型="QS_experience" 显示数目="100"/>
+			<qscms:classify 列表名="education_list" 类型="QS_education" 显示数目="100"/>
+			<qscms:classify 列表名="age_list" 类型="QS_age"/>
+			<qscms:classify 列表名="wage_list" 类型="QS_wage" 显示数目="100"/>
+			<qscms:classify 列表名="tag_list" 类型="QS_resumetag" 显示数目="100"/>
+			<qscms:resume_list 列表名="resumelist" 显示数目="5" />
+			<notempty name="resumelist['list']">
+			
+			<volist name="resumelist['list']" id="resume" >
+			<div class="tj-worklist">
+				<a href="enterprise-xq.html">
+
+					<div class="work1"><b>{$resume.fullname}</b><b>{$resume.sex_cn}</b><b>{$resume.age}</b><b>求职</b><b>{$resume.intention_jobs}</b><span>{$resume.refreshtime_cn}</span></div>
+					<div class="work2"><b>{$resume.education_cn}</b><b>{$resume.experience_cn}</b><b class="xw-money">5000-8000元</b></div>
+					<div class="work3">
+						<b>期望工作地点：{$resume.district_cn}</b><span>已认证</span>
+					</div>
+				</a>
+			</div>
+			</volist>
+			</notempty>
+			
+			
+
+		</div>
+		<!--公告 -->
+		<div class="index-gg">
+			<div class="index-ad-photo">
+				<img src="../public_qichen/img/gg.png">
+			</div>
+			<div class="index_photo_news" id="scrolltop">
+				<div>
+					<qscms:notice_list 列表名="notice_list" 显示数目="10" 分类="3" 排序="addtime:desc"/>
+					<volist name="notice_list['list']" id="notice">
+					<p>{$notice.title}</p>
+					
+					</volist>
+
+				</div>
+				
+			</div>
+			<div class="more-news">
+				<a href="{:U('news/index')}">更多</a>
+			</div>
+
+		</div>
+		<!--公告 -->
+		<!--招聘会-->
+		<div class="tuij_box">
+
+			<div class="tj-title">
+				<h2><img src="../public_qichen/img/zph.png"><span>招聘会</span></h2>
+				<a href="{:U('Jobfair/index')}">查看更多&gt;</a>
+			</div>
+			<!--1 -->
+			<qscms:jobfair_list 列表名="list"/>
+			<php>
+				//dump($list['list']);die;
+			</php>
+			<volist name="list['list']" id="vo" offset="0" length="3">
+			<div class="job-fair">
+				<a href="{$vo['url']}">
+					<div class="fair-title">{$vo['title']}，行业类型：{$vo['participants_object']}</div>
+					<div class="fair-photo">
+						<img src="{$vo['thumb']}">
+					</div>
+					<div class="fair-look">启辰人力资源
+						<c>{$vo['click']}人阅读</c>
+						<c>{:date('Y年m月d日',$vo['addtime'])}</c>
+					</div>
+				</a>
+			</div>
+			</volist>
+			<!--1 -->
+			
+		</div>
+		<!--回到顶部 -->
+		<div class="goTop" id="goTop">
+			<a href="javascript:;" title="返回顶部"></a>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen:footer_shouye_1"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/job.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>
+<script>
+	$("#search").click(function(){
+		var key = $("#key").val();
+		if(key == ''){
+			alert('请输入关键词');
+			return false;
+		}
+		window.location.href="/index.php?m=Mobile&c=Resume&a=index&key="+key;
+	});
+</script>

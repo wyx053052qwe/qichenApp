@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <qscms:career_show 列表名="info" 招考id="$_GET['id']" />
+        <include file="Mobile@public/meta"/>
+        <link rel="stylesheet" href="{$tpl_public_dir}/css/career.css">
+    </head>
+    <body>
+        <assign name="page_seo['header_title']" value="$info['title']"/>
+        <include file="Mobile@public/header"/>
+        <script>showAndroidTopBack();</script>
+        <div class="cop_show">
+            <div class="cop_tit font16">{$info.title}</div>
+            <div class="cop_time font12">发布时间：{:date('Y-m-d',$info['addtime'])}</div>
+            <div class="cop_con font13">{$info.content}</div>
+        </div>
+        <include file="Mobile@public/footer_min" />
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/company.css">
+	</head>
+	<body>
+		<include file="public:header" />
+        <notempty name="userList">
+            <volist name="userList" id="user">
+                <div class="imlist-img" onClick="javascript:location.href='{:U('Im/message',array('uid'=>$user['touid']))}'" uid="{$user['touid']}">
+                    <div class="pic">
+                        <img src="{$user['avatars']}">
+                        <div class="arrow font12 <if condition="$user['unread'] elt 0">qs-hidden</if>">{$user.unread}</div>
+                    </div>
+                    <div class="describe font12">
+                        <div class="tit font14 substring">{$user['username']}<span class="sendtime font12">{:date('m-d H:i',$user['sendtime'])}</span></div>
+                        <div class="txt substring">{$user['message']}</div>
+                        <div class="del_dialog" uid="{$user.touid}"></div>
+                    </div>
+                   <div class="clear"></div>
+                </div>
+            </volist>
+        <else />
+            <div class="no-im">
+                <div class="ni-icon"></div>
+                <div class="ni-text">亲 暂时没有消息哟~</div>
+            </div>
+        </notempty>
+		<script type="text/javascript">
+			rongConfig['messageList'] = !0;
+		</script>
+        <include file="public:footer_min" />
+		<script src="../public/js/qscrollTo.js"></script>
+		<script type="text/javascript">
+			$('.del_dialog').unbind('click').click(function(){
+				if ((qscms.is_login > 0)) {
+					var f = $(this),
+						uid = f.attr('uid');
+					$(document).dialog({
+                        type : 'confirm',
+                        content: '你确定要删除与该会员的会话吗？',
+                        onClickConfirmBtn: function(){
+							$.getJSON(rongConfig.delDialog,{uid:uid},function(r){
+								if(r.status == 1){
+									f.closest('.imlist-img').remove();
+								} else if (r.dialog) {
+			                        // 登录
+			                        $cuLoad.close();
+			                        logDialog();
+			                    } else {
+									qsToast(r.msg);
+								}
+							});
+                        },  // “确定”按钮的回调函数
+        				onClickCancelBtn : function(){}
+                    });
+					return !1;
+				} else {
+	                logDialog();
+	            }
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<qscms:news_show 列表名="info" 资讯id="$_GET['id']"/>
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+
+	</head>
+	<style>
+		body,
+		html {
+			height: auto;
+			background: #fff;
+		}
+		
+		.news-ann .zy_news_xqbox .tit h2 {
+			font-size: 16px;
+			
+		}
+	</style>
+	
+	<body>
+		<div class="salary-xqall">
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<qscms:news_property 列表名="property" 分类id="$info['focos']"/>
+					
+					<h1>{$property['categoryname']}</h1>
+
+				</div>
+			</header>
+		</div>
+		<!--内容 -->
+		<div class="zy_module-content zy_vip_conbox job-list  user-mysc news-ann">
+			<div class="zy_module-content">
+				<div class="zy_news_xqbox bgwh p_2">
+					<div class="tit">
+						<h2>{$info['title']}</h2>
+						<span><a>时间：<em>{:date('Y-m-d',$info['addtime'])}</em></a><a>作者：{$info['author']}<em></em></a></span>
+					</div>
+					<div class="txt">
+						{$info['content']}
+					</div>
+					<h3>
+			
+		</h3>
+				</div>
+
+			</div>
+			<!--返回顶部 -->
+			<div class="goTop" id="goTop">
+				<a href="javascript:;" title="返回顶部"></a>
+			</div>
+			<!--公共底部 -->
+			<div style="height: 60px;"></div>
+			<include file="public_qichen:footer_shouye_2"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function () {
+        var linkUrl = "{:build_mobile_url(array('c'=>'News','a'=>'show','params'=>'id='.$info['id']))}";//放链接
+        var title = "{$info['seo_keywords']} - {:C('qscms_site_name')}";
+        var desc = "{$info['seo_description']}";
+        var imgUrl = "{$info['img']}";//图片链接
+
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+</script>

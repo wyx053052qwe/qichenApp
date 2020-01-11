@@ -1,0 +1,354 @@
+[ 2020-01-10T03:10:44+08:00 ] 139.196.29.226 /
+INFO: Cron:ClearPromotion Runat 2020-01-10 03:10:44 Use 0.015014 s 
+Cron:AutoRefreshResume Runat 2020-01-10 03:10:44 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 03:10:44 Use -0.001479 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 03:10:44 Use -0.001948 s 
+Cron:ClearOrder Runat 2020-01-10 03:10:44 Use -0.003992 s 
+
+[ 2020-01-10T03:10:45+08:00 ] 139.196.29.226 /index.php
+INFO: Cron:ClearPromotion Runat 2020-01-10 03:10:45 Use 0.014077 s 
+Cron:AutoRefreshResume Runat 2020-01-10 03:10:45 Use -0.000063 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 03:10:45 Use -0.001515 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 03:10:45 Use -0.001910 s 
+Cron:ClearOrder Runat 2020-01-10 03:10:45 Use -0.003947 s 
+
+[ 2020-01-10T03:10:47+08:00 ] 139.196.29.226 /index.php/explicit_not_exist_path
+INFO: Cron:ClearPromotion Runat 2020-01-10 03:10:47 Use 0.013794 s 
+Cron:AutoRefreshResume Runat 2020-01-10 03:10:47 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 03:10:47 Use -0.001489 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 03:10:47 Use -0.001896 s 
+Cron:ClearOrder Runat 2020-01-10 03:10:47 Use -0.003974 s 
+
+[ 2020-01-10T03:10:48+08:00 ] 139.196.29.226 /?c=4e5e5d7364f443e28fbf0d3ae744a59a
+INFO: Cron:ClearPromotion Runat 2020-01-10 03:10:48 Use 0.014643 s 
+Cron:AutoRefreshResume Runat 2020-01-10 03:10:48 Use -0.000059 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 03:10:48 Use -0.001484 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 03:10:48 Use -0.001890 s 
+Cron:ClearOrder Runat 2020-01-10 03:10:48 Use -0.003934 s 
+
+[ 2020-01-10T10:22:42+08:00 ] 144.0.157.108 /
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:42 Use 0.013897 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:42 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:42 Use -0.001510 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:42 Use -0.001930 s 
+
+[ 2020-01-10T10:22:43+08:00 ] 144.0.157.108 /index.php?m=Home&c=Qrcode&a=index&url=%2F%3Fm%3DMobile
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:43 Use 0.014512 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:43 Use -0.000078 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:43 Use -0.001511 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:43 Use -0.001914 s 
+
+[ 2020-01-10T10:22:43+08:00 ] 144.0.157.108 /index.php?m=&c=Index&a=ajax_scroll
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:43 Use 0.011500 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:43 Use -0.000079 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:43 Use -0.001755 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:43 Use -0.002206 s 
+
+[ 2020-01-10T10:22:43+08:00 ] 144.0.157.108 /index.php?m=Recommend&c=index&a=get_recommend
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:43 Use 0.013952 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:43 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:43 Use -0.001531 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:43 Use -0.001929 s 
+
+[ 2020-01-10T10:22:43+08:00 ] 144.0.157.108 /index.php?m=Qqfloat&c=Index&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:43 Use 0.013765 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:43 Use -0.000065 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:43 Use -0.001463 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:43 Use -0.001919 s 
+
+[ 2020-01-10T10:22:44+08:00 ] 144.0.157.108 /index.php?m=Home&c=AjaxCommon&a=get_header_min
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:22:44 Use 0.014139 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:22:44 Use -0.000066 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:22:44 Use -0.001529 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:22:44 Use -0.001933 s 
+
+[ 2020-01-10T10:23:07+08:00 ] 144.0.157.108 /index.php?m=admin
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:07 Use 0.014079 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:07 Use -0.000059 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:07 Use -0.001480 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:07 Use -0.001922 s 
+
+[ 2020-01-10T10:23:07+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=login
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:07 Use 0.013908 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:07 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:07 Use -0.001497 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:07 Use -0.001909 s 
+
+[ 2020-01-10T10:23:10+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=login
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:10 Use 0.013606 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:10 Use -0.000066 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:10 Use -0.001540 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:10 Use -0.001965 s 
+
+[ 2020-01-10T10:23:10+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:10 Use 0.013658 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:10 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:10 Use -0.001488 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:10 Use -0.001925 s 
+
+[ 2020-01-10T10:23:11+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=top_menu
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:11 Use 0.013624 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:11 Use -0.000059 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:11 Use -0.001446 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:11 Use -0.001886 s 
+
+[ 2020-01-10T10:23:11+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=left_menu
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:11 Use 0.013762 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:11 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:11 Use -0.001482 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:11 Use -0.001900 s 
+
+[ 2020-01-10T10:23:11+08:00 ] 144.0.157.108 /index.php?m=Admin&c=index&a=panel
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:11 Use 0.013536 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:11 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:11 Use -0.001521 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:11 Use -0.001918 s 
+
+[ 2020-01-10T10:23:11+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=affair
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:11 Use 0.014094 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:11 Use -0.000066 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:11 Use -0.001449 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:11 Use -0.001900 s 
+
+[ 2020-01-10T10:23:11+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=affair_stat
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:11 Use 0.014910 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:11 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:11 Use -0.001496 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:11 Use -0.001983 s 
+
+[ 2020-01-10T10:23:14+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Index&a=left_menu&menuid=171
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:14 Use 0.013544 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:14 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:14 Use -0.001480 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:14 Use -0.001931 s 
+
+[ 2020-01-10T10:23:14+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=index&menuid=171&child=1
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:14 Use 0.014024 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:14 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:14 Use -0.001568 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:14 Use -0.001967 s 
+
+[ 2020-01-10T10:23:14+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=affair_stat
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:14 Use 0.013996 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:14 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:14 Use -0.001546 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:14 Use -0.002039 s 
+
+[ 2020-01-10T10:23:14+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=index&menu_id=171&sub_menu_id=172
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:14 Use 0.013634 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:14 Use -0.000052 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:14 Use -0.001485 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:14 Use -0.001938 s 
+
+[ 2020-01-10T10:23:16+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:16 Use 0.011791 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:16 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:16 Use -0.001496 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:16 Use -0.001904 s 
+
+[ 2020-01-10T10:23:23+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=gongzi&zaizhi_id=21
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:23 Use 0.013781 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:23 Use -0.000065 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:23 Use -0.001464 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:23 Use -0.001907 s 
+
+[ 2020-01-10T10:23:23+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=gongzi_log&com_id=6&zaizhi_id=21
+INFO: Cron:ClearPromotion Runat 2020-01-10 10:23:23 Use 0.013809 s 
+Cron:AutoRefreshResume Runat 2020-01-10 10:23:23 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 10:23:23 Use -0.001500 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 10:23:23 Use -0.001915 s 
+
+[ 2020-01-10T11:28:53+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_import
+INFO: Cron:ClearPromotion Runat 2020-01-10 11:28:53 Use 0.014048 s 
+Cron:AutoRefreshResume Runat 2020-01-10 11:28:53 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 11:28:53 Use -0.001500 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 11:28:53 Use -0.001958 s 
+
+[ 2020-01-10T11:28:59+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=import
+INFO: Cron:ClearPromotion Runat 2020-01-10 11:28:59 Use 0.013565 s 
+Cron:AutoRefreshResume Runat 2020-01-10 11:28:59 Use -0.000057 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 11:28:59 Use -0.001482 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 11:28:59 Use -0.001917 s 
+
+[ 2020-01-10T11:29:37+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 11:29:37 Use 0.013490 s 
+Cron:AutoRefreshResume Runat 2020-01-10 11:29:37 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 11:29:37 Use -0.001516 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 11:29:37 Use -0.001980 s 
+
+[ 2020-01-10T11:29:41+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_import
+INFO: Cron:ClearPromotion Runat 2020-01-10 11:29:41 Use 0.013713 s 
+Cron:AutoRefreshResume Runat 2020-01-10 11:29:41 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 11:29:41 Use -0.001437 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 11:29:41 Use -0.001960 s 
+
+[ 2020-01-10T11:29:48+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=import
+INFO: Cron:ClearPromotion Runat 2020-01-10 11:29:48 Use 0.013742 s 
+Cron:AutoRefreshResume Runat 2020-01-10 11:29:48 Use -0.000083 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 11:29:48 Use -0.001505 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 11:29:48 Use -0.001900 s 
+
+[ 2020-01-10T13:42:18+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:18 Use 0.013348 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:18 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:18 Use -0.001477 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:18 Use -0.001931 s 
+
+[ 2020-01-10T13:42:21+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:21 Use 0.013818 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:21 Use -0.000057 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:21 Use -0.001457 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:21 Use -0.001994 s 
+
+[ 2020-01-10T13:42:25+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:25 Use 0.013836 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:25 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:25 Use -0.001511 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:25 Use -0.001907 s 
+
+[ 2020-01-10T13:42:27+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:27 Use 0.013290 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:27 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:27 Use -0.001503 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:27 Use -0.001919 s 
+
+[ 2020-01-10T13:42:29+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:29 Use 0.013468 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:29 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:29 Use -0.001531 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:29 Use -0.001943 s 
+
+[ 2020-01-10T13:42:34+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:34 Use 0.013596 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:34 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:34 Use -0.001477 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:34 Use -0.001948 s 
+
+[ 2020-01-10T13:42:36+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:36 Use 0.014190 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:36 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:36 Use -0.001493 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:36 Use -0.001947 s 
+
+[ 2020-01-10T13:42:38+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:38 Use 0.013887 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:38 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:38 Use -0.001681 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:38 Use -0.002128 s 
+
+[ 2020-01-10T13:42:43+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:42:43 Use 0.013560 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:42:43 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:42:43 Use -0.001454 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:42:43 Use -0.001899 s 
+
+[ 2020-01-10T13:43:05+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:43:05 Use 0.013823 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:43:05 Use -0.000068 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:43:05 Use -0.001474 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:43:05 Use -0.001915 s 
+
+[ 2020-01-10T13:43:07+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:43:07 Use 0.014130 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:43:07 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:43:07 Use -0.001477 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:43:07 Use -0.001913 s 
+
+[ 2020-01-10T13:43:15+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 13:43:15 Use 0.013794 s 
+Cron:AutoRefreshResume Runat 2020-01-10 13:43:15 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 13:43:15 Use -0.001447 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 13:43:15 Use -0.001883 s 
+
+[ 2020-01-10T14:04:37+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:04:37 Use 0.013971 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:04:37 Use -0.000053 s 
+
+[ 2020-01-10T14:04:40+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:04:40 Use 0.013554 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:04:40 Use -0.000052 s 
+
+[ 2020-01-10T14:04:44+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:04:44 Use 0.013354 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:04:44 Use -0.000054 s 
+
+[ 2020-01-10T14:05:07+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:05:07 Use 0.013884 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:05:07 Use -0.000057 s 
+
+[ 2020-01-10T14:05:08+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:05:08 Use 0.013541 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:05:08 Use -0.000055 s 
+
+[ 2020-01-10T14:05:15+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:05:15 Use 0.013853 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:05:15 Use -0.000058 s 
+
+[ 2020-01-10T14:05:32+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:05:32 Use 0.013776 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:05:32 Use -0.000086 s 
+
+[ 2020-01-10T14:05:33+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 14:05:33 Use 0.013811 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 14:05:33 Use -0.000060 s 
+
+[ 2020-01-10T14:15:06+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 14:15:06 Use 0.005511 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 14:15:06 Use -0.000056 s 
+
+[ 2020-01-10T14:15:07+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 14:15:07 Use 0.005249 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 14:15:07 Use -0.000051 s 
+
+[ 2020-01-10T14:15:12+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 14:15:12 Use 0.005404 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 14:15:12 Use -0.000051 s 
+
+[ 2020-01-10T15:05:25+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 15:05:25 Use 0.013799 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 15:05:25 Use -0.000056 s 
+
+[ 2020-01-10T15:05:27+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 15:05:27 Use 0.013773 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 15:05:27 Use -0.000053 s 
+
+[ 2020-01-10T15:05:33+08:00 ] 144.0.157.108 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:ClearPromotion Runat 2020-01-10 15:05:33 Use 0.013808 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 15:05:33 Use -0.000053 s 
+
+[ 2020-01-10T15:06:24+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 15:06:24 Use 0.013928 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 15:06:24 Use -0.000076 s 
+
+[ 2020-01-10T15:12:44+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 15:12:44 Use 0.005600 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 15:12:44 Use -0.000087 s 
+
+[ 2020-01-10T15:13:26+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Ajax&a=resume_imports
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 15:13:26 Use 0.005366 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 15:13:26 Use -0.000050 s 
+
+[ 2020-01-10T15:13:35+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=gongzi_add&id=20
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 15:13:35 Use 0.005602 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 15:13:35 Use -0.000054 s 
+
+[ 2020-01-10T15:13:37+08:00 ] 144.0.157.108 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 15:13:37 Use 0.005522 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 15:13:37 Use -0.000056 s 
+
+[ 2020-01-10T16:01:20+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi_edit&id=18
+INFO: Cron:ClearPromotion Runat 2020-01-10 16:01:20 Use 0.017069 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 16:01:20 Use -0.000079 s 
+
+[ 2020-01-10T16:10:04+08:00 ] 127.0.0.1 /index.php?m=Resumeimport&c=Admin&a=imports
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 16:10:04 Use 0.021181 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 16:10:04 Use -0.000079 s 
+
+[ 2020-01-10T17:01:12+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-10 17:01:12 Use 0.017220 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-10 17:01:12 Use -0.000083 s 
+
+[ 2020-01-10T17:10:00+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=affair
+INFO: Cron:AutoRefreshResume Runat 2020-01-10 17:10:00 Use 0.009455 s 
+Cron:AutoRefreshJobs Runat 2020-01-10 17:10:00 Use -0.000079 s 
+

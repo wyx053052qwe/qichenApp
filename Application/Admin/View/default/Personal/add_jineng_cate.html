@@ -1,0 +1,131 @@
+<!-- public:header 以下内容 -->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>网站后台管理中心- Powered by 74cms.com</title>
+    <link rel="shortcut icon" href="{:C('qscms_site_dir')}favicon.ico"/>
+    <meta name="author" content="骑士CMS" />
+    <meta name="copyright" content="74cms.com" />
+    <link href="__ADMINPUBLIC__/css/common.css" rel="stylesheet" type="text/css">
+    <script src="__ADMINPUBLIC__/js/jquery.min.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.highlight-3.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.vtip-min.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.modal.dialog.js"></script>
+    <script type="text/javascript" src="__ADMINPUBLIC__/js/laydate/laydate.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__ADMINPUBLIC__/js/PIE.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.pie = function (name, v) {
+                // 如果没有加载 PIE 则直接终止
+                if (!PIE) return false;
+                // 是否 jQuery 对象或者选择器名称
+                var obj = typeof name == 'object' ? name : $(name);
+                // 指定运行插件的 IE 浏览器版本
+                var version = 9;
+                // 未指定则默认使用 ie10 以下全兼容模式
+                if (typeof v != 'number' && v < 9) {
+                    version = v;
+                }
+                // 可对指定的多个 jQuery 对象进行样式兼容
+                if ($.browser.msie && obj.size() > 0) {
+                    if ($.browser.version * 1 <= version * 1) {
+                        obj.each(function () {
+                            PIE.attach(this);
+                        });
+                    }
+                }
+            }
+        })(jQuery);
+        if ($.browser.msie) {
+            $.pie('.pie_about');
+        };
+    </script>
+    <![endif]-->
+    <script src="__ADMINPUBLIC__/js/jquery.disappear.tooltip.js"></script>
+    <script src="__ADMINPUBLIC__/js/common.js"></script>
+    <script>
+        var URL = '__URL__',
+            SELF = '__SELF__',
+            ROOT_PATH = '__MODULE__',
+            APP  =   '__APP__';
+
+        var qscms = {
+            district_level : "{:C('qscms_category_district_level')}",
+            default_district : "{:C('qscms_default_district')}"
+        };
+    </script>
+    {$synsitegroupunbindmobile}
+    {$synsitegroupregister}
+    {$synsitegroupedit}
+    {$synsitegroup}
+</head>
+<body>
+
+<!-- public:header 以上内容 -->
+<empty name="menu_title">
+    <div class="allpagetop">后台管理中心<strong>/</strong>首页</div>
+    <else/>
+    <div class="allpagetop">{$menu_title}<strong>/</strong>{$sub_menu_title}</div>
+</empty>
+<div class="mains">
+    <div class="h1tit">
+        <div class="h1">
+            分类管理
+        </div>
+        <div class="topnav">
+            <a href="{:U('Personal/jineng')}" class="">技能列表</a>
+        </div>
+        <div class="topnav">
+            <a href="{:U('Personal/jineng_cate')}" class="select">分类管理</a>
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+    
+
+<div class="toptit">新增技能分类</div>
+<form action="{:U('add_category')}" method="post" name="FormData" id="FormData">
+    <div class="form_main width120">
+        <div class="fl">分类名称:</div>
+        <div class="fr">
+            <input name="name" type="text" class="input_text_default middle" maxlength="25" value=""/>
+        </div>
+        
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+            <input type="button" class="admin_submit" value="返回" onClick="window.location='{:U('jineng_cate')}'"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="public:footer"/>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('add_jineng_cate')}",$('#FormData').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("jineng_cate")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>
+</html>

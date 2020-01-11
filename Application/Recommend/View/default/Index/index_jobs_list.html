@@ -1,0 +1,20 @@
+<volist name="jobs_list" id="jobs">
+	<div class="job-list-item for-event">
+		<div class="info">
+			<div class="line-one">
+				<a class="job-name line_substring font16" href="{$jobs.jobs_url}" target="_blank">{$jobs.jobs_name}</a>
+			</div>
+			<div class="line-two font14">
+				<div class="salary">{$jobs.wage_cn}</div>
+				<div class="category substring">{$jobs.category_cn}</div>
+				<div class="clear"></div>
+			</div>
+			<div class="line-four font13">
+				{$jobs.education_cn} / {$jobs.experience_cn} / 年龄{$jobs['age_cn']}
+			</div>
+		</div>
+		<div class="company font13">
+			<a class="line_substring" href="{$jobs.company_url}" target="_blank">{$jobs.companyname}</a>
+		</div>
+	</div>
+</volist>

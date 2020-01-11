@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/swiper.min.css">
+		<link rel="stylesheet" href="../public/css/index.css">
+	</head>
+	<body>
+		<!-- 头部 -->
+		<include file="public:header_logo" />
+		<!-- 头部 end -->
+		<!-- 轮播 -->
+		<div class="swiper">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                	<notempty name="index_focus">
+					<volist name="index_focus" id="vo">
+                    <div class="swiper-slide" <if condition="$vo['url'] neq ''">onclick="javascript:location.href='{$vo['url']}'"</if>>
+                        <img class="swiper-item" src="{:attach($vo['content'],'attach_img')}" alt="{$vo['explain']}">
+                    </div>
+                    </volist>
+                    <else />
+					<div class="swiper-slide">
+                        <img class="swiper-item" src="https://www.74cms.com/plus/m_ad.png">
+                    </div>
+					</notempty>
+                </div>
+				<div class="swiper-pagination"></div>
+            </div>
+        </div>
+		<!-- 轮播 end -->
+		<!-- 统计 -->
+		<div class="info_count font12 txt-3">
+			入驻企业：<span class="ic_nu">{$index_total['company']}</span>&nbsp;&nbsp;&nbsp;职位：<span class="ic_nu">{$index_total['job']}</span>&nbsp;&nbsp;&nbsp;简历：<span class="ic_nu">{$index_total['resume']}</span>
+		</div>
+		<!-- 统计 end -->
+		<!-- 应用 -->
+		<div class="app_group">
+			<a href="{:url_rewrite('QS_jobslist')}" class="app_cell job font13">找工作</a>
+			<a href="{:url_rewrite('QS_resumelist')}" class="app_cell resume font13">招人才</a>
+			<a href="{:url_rewrite('QS_newslist')}" class="app_cell news font13">职场资讯</a>
+			<a href="javascript:;" class="app_cell near font13" id="J_nearby">附近工作</a>
+			<a href="javascript:;" class="app_cell add_job font13" id="J_add_resume" data-url="{:U('Personal/resume_add')}">发布简历</a>
+			<a href="javascript:;" class="app_cell add_resume font13" id="J_add_jobs" data-url="{:U('Company/jobs_add')}">发布职位</a>
+			<a href="{:U('Parttime/index')}" class="app_cell lz font13">兼职招聘</a>
+			<a href="{:url_rewrite('QS_subject_list')}" class="app_cell jobfair font13">网络招聘会</a>
+			<div class="clear"></div>
+		</div>
+	
+		<!-- 应用 end -->
+		<!-- 公告 -->
+		<div class="index_notice">
+			<ul class="ul-upscroll">
+				<qscms:notice_list 列表名="notice_list" 显示数目="10" 分类="1" 排序="addtime:desc"/>
+				<volist name="notice_list['list']" id="notice">
+				<li><a class="font12" href="{$notice.url}">{$notice.title}</a></li>
+				</volist>
+			</ul>
+		</div>
+		<!-- 公告 end -->
+		<!-- 名企 -->
+		<div class="pub_t font18">名企专区</div>
+		<div class="famous_group">
+			<div class="famous_container">
+				<qscms:company_jobs_list 列表名="company_list" 名企="1" 显示数目="6" 职位数量="100" 企业名长度="12" />
+                <volist name="company_list['list']" id="company">
+                
+				<a href="{$company.company_url}" class="fam_cell">
+					<img src="<empty name="company['logo']">{:attach('no_logo.png','resource')}<else/>{$company.logo}</empty>" alt="{$company.short_name}">
+					<div class="fam_name font13 substring">{$company.short_name}</div>
+					<div class="fam_num font12">在招职位 <span>{:count($company.jobs)}</span> 个</div>
+				</a>
+				</volist>
+			</div>
+		</div>
+		<!-- 名企 end -->
+		<!-- 最新职位 -->
+		<div id="recommend_jobs_box"></div>
+		<!-- 最新职位 end -->
+		<include file="public:footer_min" />
+		<div class="left_float_bar font12">
+			<if condition="C('qscms_weixin_img')">
+				<span class="img-dialog J_sub_us"> 订阅 <i></i> 我们 </span>
+			</if>
+			<if condition="C('qscms_weixin_service_img')">
+				<span class="img-dialog J_con_us"> 联系 <i></i> 客服 </span>
+			</if>
+		</div>
+	</body>
+	<script src="../public/js/zepto.textSlider.js"></script>
+	<script src="../public/js/swiper.min.js"></script>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak={:C('qscms_map_ak')}"></script>
+	<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		wx.config({
+		    // debug: true,
+		    appId: '{$signPackage.appId}',
+		    
+		    timestamp: '{$signPackage.timestamp}',
+		    nonceStr: '{$signPackage.nonceStr}',
+		    signature: '{$signPackage.signature}',
+		    jsApiList: [
+		      // 所有要调用的 API 都要加到这个列表中
+		      "onMenuShareTimeline",
+		      "onMenuShareAppMessage",
+		      "onMenuShareQQ",
+		      "onMenuShareWeibo"
+		    ]
+		  });
+		  wx.ready(function () 
+		  {
+		      var linkUrl = "{$url}";//放链接
+		      var title = "招聘、求职就到{:C('qscms_site_name')}";
+		      var desc = "更多好工作请看这里"; 
+		      var imgUrl="<if condition="C('qscms_logo_home')">{:attach(C('qscms_logo_home'),'resource')}<else/>{:C('TPL_HOME_PUBLIC_DIR')}/images/logo.gif</if>";//图片链接
+		      
+		      wx.onMenuShareTimeline({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		          success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareAppMessage({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		          type: '', // 分享类型,music、video或link，不填默认为link
+		          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareQQ({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareWeibo({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		  });
+		<if condition="C('qscms_weixin_img')">
+			// 订阅我们
+			$('.J_sub_us').on('click', function () {
+				var $subPop = new QSpopout();
+				$subPop.setContent('<img class="left_float_img" src="{:attach(C('qscms_weixin_img'),'resource')}"><p>长按二维码识别关注</p><p></p>');
+				$subPop.setBtn(1, ['确定']);
+				$subPop.show();
+			});
+		</if>
+		<if condition="C('qscms_weixin_service_img')">
+			// 联系客服
+			$('.J_con_us').on('click', function () {
+				var $subPop = new QSpopout();
+				$subPop.setContent('<img class="left_float_img" src="{:attach(C('qscms_weixin_service_img'),'resource')}"><p>长按二维码添加客服微信</p><p></p>');
+				$subPop.setBtn(1, ['确定']);
+				$subPop.show();
+			});
+		</if>
+
+		window.onload = function() {
+			var mySwiper = new Swiper('.swiper-container', {
+				autoplay: true,
+				loop: true,
+				pagination: {
+					el: '.swiper-pagination',
+					clickable: true,
+				}
+			})
+		};
+		// 公告滚动
+		$(".ul-upscroll").textSlider({line:1,speed:500,timer:3000});
+		// 显示更多应用
+		$(".J_more_app").off().on('click',function(e){
+			lock_touchmove();
+			var htm='<div class="sliding_nav_bg"></div>';
+			$('body').append(htm);
+			$('.sliding_nav_bg').addClass('in');
+			$('.J_sliding_app').removeClass('slideOutRight animated').addClass('slideInRight animated');
+			function closeSliNavBg() {
+				$('.J_sliding_app').removeClass('slideInRight animated').addClass('slideOutRight animated');
+				un_lock_touchmove();
+				$('.sliding_nav_bg').removeClass('in').addClass('out');
+				setTimeout(function(){$(".sliding_nav_bg").remove();}, 200);
+			}
+			//关闭
+			$(".sliding_nav_bg").off().on('click',function(e){
+				closeSliNavBg();
+			});
+			$('.hList').off().on('click', function() {
+				closeSliNavBg();
+				var cuHref = $(this).data('href');
+				setTimeout(function(){window.location.href = cuHref;}, 200);
+			})
+		});
+		function show_recommend_box(type,lng,lat){
+        	$.getJSON("{:U('Mobile/Index/recommend_jobs_index')}",{type:type,lng:lng,lat:lat},function(result){
+                if(result.status==1){
+                    $('#recommend_jobs_box').html(result.data.html);
+                }
+            });
+        }
+        function showError(error)
+		{
+			switch(error.code)
+		    {
+		    case error.PERMISSION_DENIED:
+		    case error.POSITION_UNAVAILABLE:
+		    case error.TIMEOUT:
+		    case error.UNKNOWN_ERROR:
+		    	baiduapi_geolocation();
+		      	break;
+		    }
+		}
+        function getLocation()
+        {
+          	//navigator.geolocation
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition, showError,{
+			        // 指示浏览器获取高精度的位置，默认为false
+			        enableHighAccuracy: true,
+			        // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+			        timeout: 5000,
+			        // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+			        maximumAge: 3000
+			    });
+            }
+            else
+            {
+                baiduapi_geolocation();
+            }
+        }
+        function showPosition(position)
+        {
+          	
+        	var latitude = position.coords.latitude;
+        	var longitude = position.coords.longitude;
+        	var convertor = new BMap.Convertor();
+	        var pointArr = [];
+          	
+		    console.log(longitude);
+	        pointArr.push(ggPoint);
+	        convertor.translate(pointArr, 1, 5, function (data){
+		      if(data.status === 0) {
+		        var marker = new BMap.Marker(data.points[0]);
+		        latitude = data.points[0].lat;
+		        longitude = data.points[0].lng;
+		      }
+		    });
+          	
+	        set_geolocation_cookie(latitude,longitude,30);
+        }
+        //设置定位cookie
+        function set_geolocation_cookie(lat,lng,min){
+        	var expiresDate= new Date();
+	        expiresDate.setTime(expiresDate.getTime() + (min * 60 * 1000));
+	        $.fn.cookie('cookie_lat', lat,{path : '{:C("qscms_site_dir")}',expires:expiresDate});
+	        $.fn.cookie('cookie_lng', lng,{path : '{:C("qscms_site_dir")}',expires:expiresDate});
+        }
+        //百度地图定位
+        function baiduapi_geolocation(){
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r){
+              	
+				if(this.getStatus() == BMAP_STATUS_SUCCESS)
+				{
+					set_geolocation_cookie(r.point.lat,r.point.lng,30);
+				}
+				else 
+				{
+					set_geolocation_cookie("{:C('qscms_map_center_y')}","{:C('qscms_map_center_x')}",5);
+				}        
+			},{enableHighAccuracy: true})
+        }
+        $(document).ready(function(){
+        	var utype = eval("{:C('visitor.utype')}");
+        	var isVisitor = eval("{:C('visitor.uid')}");
+        	$('#J_add_resume').click(function(){
+        		var url = $(this).data('url');
+				if (!isVisitor) {
+					logDialog(0,'',2);
+					return false;
+				}
+        		if(utype==1){
+        			$(document).dialog({
+	                    titleText: '提示',
+	                    type : 'confirm',
+	                    buttonTextConfirm:'切换',
+	                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+	                    onClickConfirmBtn: function() {
+	                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+	                            if(result.status==1){
+	                                qsToast(result.msg, 1, '');
+	                                setTimeout(function(){
+	                                    location.href=url;
+	                                },2000);
+	                            } else {
+	                                qsToast(result.msg, 0, '');
+	                                return false;
+	                            }
+	                        });
+	                    }
+	                });
+	                return false;
+        		}else{
+        			location.href=url;
+        		}
+        	});
+        	$('#J_add_jobs').click(function(){
+        		var url = $(this).data('url');
+				if (!isVisitor) {
+					logDialog(0,'',1);
+					return false;
+				}
+        		if(utype==2){
+        			$(document).dialog({
+	                    titleText: '提示',
+	                    type : 'confirm',
+	                    buttonTextConfirm:'切换',
+	                    content: '您当前为“个人帐号”，本次操作需为“企业帐号”，是否切换为“企业帐号”？',
+	                    onClickConfirmBtn: function() {
+	                        $.getJSON("{:U('Members/switch_utype')}",{utype:1},function(result){
+	                            if(result.status==1){
+	                                qsToast(result.msg, 1, '');
+	                                setTimeout(function(){
+	                                    location.href=url;
+	                                },2000);
+	                            } else {
+	                                qsToast(result.msg, 0, '');
+	                                return false;
+	                            }
+	                        });
+	                    }
+	                });
+	                return false;
+        		}else{
+        			location.href=url;
+        		}
+        	});
+        	var cookie_lat = $.fn.cookie('cookie_lat');
+		    var cookie_lng = $.fn.cookie('cookie_lng');
+		    if(!cookie_lat && !cookie_lng){
+		    	getLocation();
+		    }
+	        $('#J_nearby').click(function(){
+	        	var url = "{:url_rewrite('QS_jobslist',array('range'=>20))}";
+        		var cookie_lat = $.fn.cookie('cookie_lat');
+	        	var cookie_lng = $.fn.cookie('cookie_lng');
+             
+	        	if(cookie_lat && cookie_lng){
+	        		$.getJSON("{:U('Index/ajax_jump_nearby')}",{url:url,lat:cookie_lat,lng:cookie_lng},function(result){
+		        		if(result.status==1){
+		        			location.href=result.data;
+		        		}
+		        	});
+	        	}else{
+	        		alert("没有获取到当前位置，请稍等或刷新页面再试");
+	        	}
+	        });
+	        if(eval("{$recommend_jobs_nearby}")==0){
+	            var type = "{$recommend_jobs_type}";
+	        	show_recommend_box(type);
+	        }else{
+	            var cookie_lat = $.fn.cookie('cookie_lat');
+		        var cookie_lng = $.fn.cookie('cookie_lng');
+	            var type = "{$recommend_jobs_type}";
+		        if(cookie_lat && cookie_lng){
+		            show_recommend_box(type,cookie_lng,cookie_lat);
+		        }
+	        }
+        });
+    </script>
+</html>

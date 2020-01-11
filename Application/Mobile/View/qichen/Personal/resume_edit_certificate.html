@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/personal.css">
+	</head>
+	<body>
+		<include file="public:header"/>
+		<div class="list_height plist-txt notarrow">
+	        <div class="pic"></div>
+	        <div class="tit font14">证书名称<span class="font_red_light">*</span></div>
+	        <div class="describe font13">
+	            <input type="text" id="name" id="name" placeholder="请输入证书名称" value="{$info['name']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+	    </div>
+	    <div class="list_height plist-txt qs-relative js-actionParent">
+            <div class="abAct js-showActionSheet"></div>
+	        <div class="pic"></div>
+	        <div class="tit font14">获得时间<span class="font_red_light">*</span></div>
+	        <div class="describe font13 qs-temp-date" data-type="get">
+		        <span class="f-date-txt-get">
+	        	<if condition="$Think.get.id eq ''">
+	        		请选择
+	        	<else/>
+					{$info.year}年-{$info.month}月
+	        	</if>
+		        </span>
+	        	<input type="hidden" class="f-year-code-get" id="year"  value="{$info['year']}">
+				<input type="hidden" class="f-month-code-get" id="month"  value="{$info['month']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+		    <!--BEGIN actionSheet-->
+		    <div>
+			    <div class="qs-mask" style="display:none"></div>
+			    <div class="qs-actionsheet js-actionsheet">
+				    <div class="qs-actionsheet-menu">
+					    <div class="con-filter">
+						    <div class="f-selected-group">
+							    <div class="s-bar">
+								    <div class="s-bar-title qs-left">获得时间</div>
+								    <div class="clear"></div>
+							    </div>
+							    <div class="s-list"></div>
+						    </div>
+						    <div class="f-box f-box-date-get"></div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="split-block"></div>
+        <div class="btn-spacing">
+        	<input type="hidden" id="id" value="{$info['id']}">
+            <div id="J_saveresume" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+        <div class="split-block"></div>
+	    <include file="public_qichen:footer_geren_2" />
+	     <script src="../public/js/fastclick.js"></script>
+<script>
+    window.addEventListener( "load", function() {
+        FastClick.attach(document.body);
+    }, false );
+</script>
+<script src="../public/js/QSpopout.js"></script>
+<script src="../public/js/QSfilter.js"></script>
+<script src="../public/js/zepto.hwSlider.js"></script>
+<script src="../public/js/scrollTo.js"></script>
+<script src="../public/js/RongIMLib-2.2.8.min.js"></script>
+<script src="../public/js/qs.action.js"></script>
+<script src="../public/js/qs.select.js"></script>
+<script src="../public/js/dialog.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<if condition="$rong_state eq 1">
+<script src="../public/js/rong_main.js"></script>
+</if>
+<script>
+    if (!$('.foot_pub_box_list li').length) {
+        $('#JFootPub').remove();
+        $('.fix-footNav').addClass('n4');
+    }
+    // 锁定屏幕
+    function lockTouchMove(){
+        //document.body.addEventListener('touchmove', handler, { passive: false })
+        $("body").bind("touchmove",function(event){event.preventDefault()});
+    }
+
+    // 解锁屏幕
+    function unLockTouchMove(){
+        //document.body.removeEventListener('touchmove', handler, { passive: false })
+        $("body").unbind("touchmove");
+    }
+    // 服务
+    function closeFootPub() {
+        $('.JFootPubNav').removeClass('slideInUp animated').addClass('slideOutDown animated'); unLockTouchMove();
+    }
+    $('#JFootPub').off().on('click', function() {
+        lockTouchMove();
+        $('.JFootPubNav').removeClass('slideOutDown animated').addClass('slideInUp animated');
+        // 关闭
+        $('#JFootPubClose').off().on('click', function() { closeFootPub(); });
+    });
+    $('a[href]').click(function() {
+        var f = $(this).attr('href');
+        var reg = /\#(\w+)/;
+        if (reg.test(f)) {
+            if (!$(this).data('nm')) {
+                return !1;
+            }
+        }
+    });
+    $(".js-back").on('click',function(){
+        /*if (history.length == 1){
+            window.location.href = '{:U("index/index")}';
+        } else {
+            history.back();
+        }*/
+        history.back();
+    });
+    /**
+     * 监听鼠标
+     */
+    if ('ontouchstart' in window) {
+        $.EVENT_START = 'touchstart';
+        $.EVENT_END = 'touchend';
+    } else {
+        $.EVENT_START = 'mousedown';
+        $.EVENT_END = 'mouseup';
+    }
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_START, function() {
+        $(this).addClass('eventactive');
+        /*if($(this).find('input[type="text"]').length) {
+            $(this).find('input[type="text"]').focus();
+        }*/
+    });
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_END, function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.plist-txt, .qs-btn, .for-event').on('touchcancel', function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.logout').on('click', function() {
+        forCloseNav();
+        $(document).dialog({
+            type: 'confirm',
+            content: '确定退出吗？',
+            onClickConfirmBtn: function() {
+                window.location.href = "{:U('Members/logout')}";
+            }
+        });
+    });
+    /**
+     * 返回顶部
+     */
+    var global = {
+        h: $(window).height(),
+        st: $(window).scrollTop(),
+        backTop: function() {
+            global.st > (global.h * 0.5) ? $("#backtop").show() : $("#backtop").hide();
+        }
+    };
+    /**
+     * Notice 提醒公用方法
+     * @param infoText 提示文字
+     */
+    function qsNotice(infoText) {
+        $(document).dialog({
+            type : 'notice',
+            infoText: infoText,
+            autoClose: 1500,
+            position: 'center',
+            dialogClass: 'dialog_toast'
+        });
+    }
+    // 定义Toast图片路径
+    var loadingImg = '../public/images/dialog/loading.gif',
+        successImg = '../public/images/dialog/success.png',
+        failImg = '../public/images/dialog/fail.png',
+        warningImg = '../public/images/dialog/warning.png';
+    /**
+     * 正在加载中
+     * @param infoText 内容
+     */
+    function qsToasting() {
+        var infoContent = arguments[0] ? arguments[0] : '';
+        var closeTime = arguments[1] === 0 ? arguments[1] : 1500;
+        var $cuToasting = $(document).dialog({
+            type : 'toast',
+            infoIcon: loadingImg,
+            infoText: infoContent,
+            autoClose: closeTime
+        });
+        return $cuToasting;
+    }
+    /**
+     * Toast 类型通知 用于需要反馈结果
+     * @param msg 反馈内容
+     * @param type 反馈类型 可以不传参数有默认值 0->失败 1->成功
+     * @param obj 正在加载对象 用于更新Toast
+     */
+    function qsToast(msg, type, obj) {
+        type = arguments[1] ? arguments[1] : 2;
+        var icons = [failImg, successImg, warningImg];
+        var setting = {
+            type : 'toast',
+            infoText: msg,
+            infoIcon: icons[type],
+            autoClose: 1500,
+            dialogClass: 'dialog_toast'
+        };
+        if (obj){
+            obj.update(setting);
+        } else {
+            return $(document).dialog(setting);
+        }
+    }
+    // 锁定屏幕
+    function lock_touchmove(){
+        $("body").bind("touchmove",function(event){event.preventDefault();});
+    }
+    // 解锁屏幕
+    function un_lock_touchmove(){
+        $("body").unbind("touchmove");
+    }
+    // 弹出框登录
+    function logDialog() {
+        // 是否需要刷新页面
+        var isRefresh = arguments[0] === 0 ? arguments[0] : 1;
+        // 页面跳转链接
+        var urlValue = arguments[1] ? arguments[1] : '';
+        if(qscms.is_login > 0 && urlValue){
+            window.location.href = urlValue;
+            return !1;
+        }
+        var utype = arguments[2] ? arguments[2] : 0;
+        // 正在加载
+        var $logLoad = qsToasting('', 0);
+        var loginUrl = "{:U('AjaxCommon/ajax_login')}";
+        $.getJSON(loginUrl, {refresh: isRefresh, url: urlValue, utype:utype}, function(result){
+            $logLoad.close();
+            if(result.status==1){
+                var $logPop = new QSpopout('亲，验证一下手机吧');
+                $logPop.setContent(result.data);
+                $('.qs-popout-ft').remove();
+                $('.qs-popout-bd').addClass('no-pd');
+                $logPop.show();
+                // 关闭
+                $('.closePopout').on('click', function() {
+                    $('#popout').fadeOut(200);
+                    $('#popout').remove();
+                });
+            } else {
+                qsToast(result.msg, '', '');
+            }
+        });
+    }
+    // 如果文档高度不大于窗口高度，数据较少，删除页面中的无数据提醒
+    function removeDropLoadDown() {
+        var doc = document;
+        var $doc = $(doc);
+        var $dropDownEle = $('.dropload-down');
+        var scrollContentHeight = $doc.height();
+        var scrollWindowHeight = doc.documentElement.clientHeight;
+        var threshold = Math.floor($dropDownEle.height()*1/3);
+        if((scrollContentHeight - threshold) <= scrollWindowHeight){
+            $dropDownEle.remove();
+        }
+    }
+    //判断是不是iPhoneX，适配iPhoneX底部遮挡问题
+    if (funJudgeX()) {
+        $('.fix-footNav').addClass('iPhoneX');
+        $('body').addClass('iPhoneX');
+    }
+</script>
+<div class="qs-hidden">{:htmlspecialchars_decode(C('qscms_statistics'))}</div>
+        <script src="../public/js/qs.date.js"></script>
+	    <script type="text/javascript">
+		    // 验证
+	    	$('#J_saveresume').die().live('click', function() {
+                // 有禁用class不执行，阻止多次点击
+                if ($('#J_saveresume').hasClass('qs-btn-border-disabled')) {
+                    return false;
+                }
+				var credentValue = $.trim($('#name').val());
+				var yearCredentValue = $.trim($('#year').val());
+				var monthCredentValue = $.trim($('#month').val());
+				var id = $.trim($('#id').val());
+				var pid = "{$resume.id}";
+				var news = "{$Think.get.news}";
+				if (credentValue == "") {
+					qsToast('请填写证书名称');
+					return false;
+				}
+				if (yearCredentValue == "") {
+					qsToast('请选择获得证书年份');
+					return false;
+				}
+				if (monthCredentValue == "") {
+					qsToast('请选择获得证书月份');
+					return false;
+				}
+                var cuToast = qsToasting('正在保存中');
+				$('#J_saveresume').text('保存中...');
+                $(this).addClass('qs-btn-border-disabled');
+	            // 提交表单
+	            $.ajax({
+	                url: "{:U('Personal/resume_edit_certificate')}",
+	                type: 'POST',
+	                dataType: 'json',
+	                data: {id: id, pid: pid, name: credentValue, year: yearCredentValue, month: monthCredentValue,news:news},
+	                success:function(data){
+	                    if (data.status == 1) {
+                            qsToast(data.msg, 1, cuToast);
+                            setTimeout(function () {
+                                window.location.href = data.data.url;
+                            }, 2000);
+	                    } else {
+                            qsToast(data.msg, 0, cuToast);
+	                        $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                    }
+	                },
+	                error:function(result){
+                        qsToast(result.msg, '', cuToast);
+	                    $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                }
+	            });
+	        });
+	    </script>
+	</body>
+</html>

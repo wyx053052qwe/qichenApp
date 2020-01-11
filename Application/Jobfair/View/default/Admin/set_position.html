@@ -1,0 +1,253 @@
+<include file="Admin@default/public/header" />
+<link href="../public/css/admin_jobfair.css" rel="stylesheet" type="text/css" />
+<div class="toptit">批量添加展位</div>
+<div class="form_main width120">
+    <form action="{:U('area_add')}" method="post">
+        <div class="area_tpl">
+            <div class="fl">展区编号:</div>
+            <div class="fr txt">
+                <select name="area[]" style="width: 100px;">
+                    <volist name="pre" id="vo">
+                        <option value="{$vo}">&nbsp;{$vo}&nbsp;</option>
+                    </volist>
+                </select>
+            </div>
+            <div class="fl">展位号:</div>
+            <div class="fr">
+                <input name="position_start[]" type="text" class="input_text_default small" value="" style="width: 50px;">&nbsp;&nbsp;至&nbsp;&nbsp;
+                <input name="position_end[]" type="text" class="input_text_default small" value="" style="width: 50px;">
+                <label class="no-fl-note">(如填写“1-10”,系统将自动生成10个展位,并且编号由1开始、由10结束)</label>
+            </div>
+            <div style="width: 660px; height: 20px; border-top: 1px #DFDFDF dashed; margin-left: 60px; float: left; margin-top: 10px">&nbsp;</div>
+        </div>
+        <div class="continue_add"></div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+            <input type="submit" class="admin_submit" value="保存"/>
+            <input type="button" class="admin_submit" id="add_more" value="继续添加"/>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+
+<div class="toptit">批量删除展位</div>
+<div class="form_main width120">
+    <form action="{:U('position_delete_batch')}" method="post">
+        <div class="fl">展区编号:</div>
+        <div class="fr txt">
+            <select name="area" style="width: 100px;">
+                <volist name="area" id="vo">
+                    <option value="{$vo['area']}">&nbsp;{$vo['area']}&nbsp;</option>
+                </volist>
+            </select>
+        </div>
+        <div class="fl">展位号:</div>
+        <div class="fr">
+            <input name="position_start" type="text" class="input_text_default small" value="" style="width: 50px;">&nbsp;&nbsp;至&nbsp;&nbsp;
+            <input name="position_end" type="text" class="input_text_default small" value="" style="width: 50px;">
+            <label class="no-fl-note">(如填写“1-10”,系统将删除编号由1开始、由10结束的10个展位)</label>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+            <input type="submit" class="admin_submit" value="删除" onclick="javascript:return confirm('确定要删除吗？');"/>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+
+<if condition="$area">
+<div class="toptit">删除展区</div>
+<div class="form_main width120">
+    <form action="{:U('area_delete')}" method="post">
+        <div class="fl">展区编号:</div>
+        <div class="fr txt">
+            <select name="area" style="width: 100px;">
+                <volist name="area" id="vo">
+                    <option value="{$vo['id']}">&nbsp;{$vo['area']}&nbsp;</option>
+                </volist>
+            </select>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+            <input type="submit" class="admin_submit" value="删除" onclick="javascript:return confirm('删除展区将同时删除该展区的展位及预订数据，确定删除吗？');"/>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+</if>
+
+<div class="toptit">展位图</div>
+<div class="form_main">
+    <form id="img_form" action="{:U('upload_position_img')}" method="post" enctype="multipart/form-data">
+        <notempty name="position_img">
+            <volist name="position_img" id="vo">
+                <div style="float:left; text-align:center; padding:15px; line-height:180%;margin-left: 30px; margin-bottom: 20px; background-color:#E4F4FC"  class="link_blue img_list">
+                    <a href="{:attach($vo['img'],'jobfair')}" target="_blank">
+                        <img src="{:attach($vo['img'],'jobfair')}" width="180" height="130" border="1" style="border: #CCCCCC;"/>
+                    </a>
+                    <br />
+                    <a href="javascript:;" class="delete_img" img_id="{$vo['id']}">删除</a>
+                </div>
+            </volist>
+            <div class="clear"></div>
+        </notempty>
+        <div class="fl" style=" width: 45px;">&nbsp;</div>
+        <div class="fr">
+            <input type="button" value="添加展位图" class="admin_submit img_add"/>
+            <input type="file" class="hidden_file" id="hidden_file" name="img" style="display:none;">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+
+<div class="toptit">展位情况一览</div>
+<div class="form_main jobfair_position">
+    <div class="txt">展会预订状态说明：<span class="state s1">可预订</span>可预订  <span class="state s2">已预订</span>已预订  <span class="state s3">审核中</span>审核中<span class="state s4">暂停预订</span>暂停预订</div>
+    <div class="area">
+        <ul>
+            <volist name="area" id="vo">
+                <li <if condition="$key eq 0">class="select"</if> area_id="{$vo['id']}">{$vo['area']}区</li>
+            </volist>
+            <div class="clear"></div>
+        </ul>
+    </div>
+    <volist name="area" id="vo">
+        <div class="booth" id="area_wrap_{$vo['id']}" <if condition="$key neq 0">style="display:none;"</if>>
+        <volist name="position[$vo['id']]" id="v">
+            <if condition="$v['status'] eq 0">
+                <div class="li">
+                    <div class="tip" style="display:none;">
+                        <div class="arrow"></div>
+                        <div class="box">
+                            <div class="t">状态：可预订</div>
+                            <div class="restxt link_blue"><span class="btn pause" position_id="{$v['id']}">暂停预定</span> <span class="btn delete" position_id="{$v['id']}">删除展位</span></div>
+                        </div>
+                    </div>
+                    {$v['position']}
+                </div>
+                <elseif condition="$v['status'] eq 1"/>
+                <div class="li succeed">
+                    <div class="tip succeed" style="display:none;">
+                        <div class="arrow"></div>
+                        <div class="box">
+                            <div class="t">状态：已预订</div>
+                            <div class="restxt link_blue"><a href="{:url_rewrite('QS_companyshow',array('id'=>$v['company_id']))}" target="_blank">{$v['company_name']}</a></div>
+                        </div>
+                    </div>
+                    {$v['position']}
+                </div>
+                <elseif condition="$v['status'] eq 2"/>
+                <div class="li audit">
+                    <div class="tip audit" style="display:none;">
+                        <div class="arrow"></div>
+                        <div class="box">
+                            <div class="t">状态：审核中</div>
+                            <div class="restxt link_blue"><a href="{:url_rewrite('QS_companyshow',array('id'=>$v['company_id']))}" target="_blank">{$v['company_name']}</a></div>
+                        </div>
+                    </div>
+                    {$v['position']}
+                </div>
+                <else />
+                <div class="li invalid">
+                    <div class="tip" style="display:none;">
+                        <div class="arrow"></div>
+                        <div class="box">
+                            <div class="t">状态：暂停预定</div>
+                            <div class="restxt link_blue"><span class="btn open" position_id="{$v['id']}">开启预定</span> <span class="btn delete" position_id="{$v['id']}">删除展位</span></div>
+                        </div>
+                    </div>
+                    {$v['position']}
+                </div>
+            </if>
+        </volist>
+        <div class="clear"></div>
+        </div>
+    </volist>
+</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#add_more").click(function()
+        {
+            $(".continue_add").append($(".area_tpl").html());
+        });
+        // 上传图片
+        $('.img_add').click(function(){
+            $("#hidden_file").click();
+        });
+        $("#hidden_file").change(function(){
+            $("#img_form").submit();
+        });
+        // 删除图片
+        $(".delete_img").click(function(){
+            if(confirm('确定删除该展位图吗？')){
+                var id = $(this).attr('img_id');
+                location.href="{:U('Jobfair/AdminPosition/position_img_delete')}&id="+id;
+            }
+        });
+        // 鼠标效果
+        $(".img_list").hover(
+            function () {
+                $(this).css("background-color","#E4F4FC");
+            },
+            function () {
+                $(this).css("background-color","#E4F4FC");
+            }
+        );
+
+        $(".booth .li").hover(function(){
+            $(this).children('.tip').toggle();
+        });
+        $(".area li").click(function(){
+            $(this).addClass('select').siblings().removeClass('select');
+            var area_id = $(this).attr('area_id');
+            $(".booth").hide();
+            $("#area_wrap_"+area_id).show();
+        });
+        $(".pause").live('click',function(){
+            _open_pause($(this),1);
+        });
+        $(".open").live('click',function(){
+            _open_pause($(this),0);
+        });
+        function _open_pause(thisObj,pause){
+            var position_id = thisObj.attr('position_id');
+            $.getJSON("{:U('position_pause')}",{id:position_id,pause:pause},function(result){
+                if(result.status==1){
+                    if(result.data==3){
+                        thisObj.closest('.li').addClass('invalid');
+                        var html = '<div class="arrow"></div><div class="box"><div class="t">状态：暂停预定</div><div class="restxt link_gray6"><span class="btn open" position_id="'+position_id+'">开启预定</span> <span class="btn delete" position_id="'+position_id+'">删除展位</span></div></div>';
+                        thisObj.closest('.tip').hide();
+                        thisObj.closest('.tip').html(html);
+                    }else{
+                        thisObj.closest('.li').removeClass('invalid');
+                        var html = '<div class="arrow"></div><div class="box"><div class="t">状态：可预定</div><div class="restxt link_gray6"><span class="btn pause" position_id="'+position_id+'">暂停预定</span> <span class="btn delete" position_id="'+position_id+'">删除展位</span></div></div>';
+                        thisObj.closest('.tip').hide();
+                        thisObj.closest('.tip').html(html);
+                    }
+                }
+                alert(result.msg);
+            });
+        }
+        $(".delete").live('click',function(){
+            if(confirm('确定删除该展位吗？')){
+                var position_id = $(this).attr('position_id');
+                var thisObj = $(this);
+                $.getJSON("{:U('position_delete')}",{id:position_id},function(result){
+                    if(result.status==1){
+                        thisObj.closest('.li').remove();
+                    }
+                    alert(result.msg);
+                });
+            }
+        });
+    });
+</script>
+</html>

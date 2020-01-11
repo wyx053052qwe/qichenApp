@@ -1,0 +1,87 @@
+[ 2019-07-31T11:09:18+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2019-07-31 11:09:18 Use 0.247871 s 
+Cron:AutoRefreshResume Runat 2019-07-31 11:09:18 Use -0.000096 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 11:09:18 Use -0.030533 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 11:09:18 Use -0.037159 s 
+Cron:ClearOrder Runat 2019-07-31 11:09:18 Use -0.075529 s 
+
+[ 2019-07-31T12:02:32+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi_zhengming
+INFO: Cron:ClearPromotion Runat 2019-07-31 12:02:32 Use 0.086019 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 12:02:32 Use -0.000115 s 
+
+[ 2019-07-31T12:10:09+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi_zhengming
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 12:10:09 Use 0.074707 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 12:10:09 Use -0.000100 s 
+
+[ 2019-07-31T13:24:29+08:00 ] ::1 /index.php?m=Mobile&c=News&a=show&id=1
+INFO: Cron:ClearPromotion Runat 2019-07-31 13:24:29 Use 0.179257 s 
+Cron:AutoRefreshResume Runat 2019-07-31 13:24:29 Use -0.000110 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 13:24:29 Use -0.045564 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 13:24:29 Use -0.052610 s 
+
+[ 2019-07-31T14:05:03+08:00 ] ::1 /index.php?m=jobfair&c=index&a=jobfair_show&id=2
+INFO: Cron:ClearPromotion Runat 2019-07-31 14:05:03 Use 0.074344 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 14:05:03 Use -0.000101 s 
+
+[ 2019-07-31T14:15:42+08:00 ] ::1 /index.php?m=Jobfair&c=Admin&a=index&menuid=880&child=1
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 14:15:42 Use 0.037993 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 14:15:42 Use -0.000110 s 
+
+[ 2019-07-31T15:04:15+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=huodong_edit&id=0
+INFO: Cron:ClearPromotion Runat 2019-07-31 15:04:15 Use 0.067483 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 15:04:15 Use -0.000103 s 
+
+[ 2019-07-31T15:43:35+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=huodong
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 15:43:35 Use 0.043245 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 15:43:35 Use -0.000100 s 
+
+[ 2019-07-31T16:09:21+08:00 ] ::1 /index.php?m=Mobile&c=membersBind&a=huodong_list
+INFO: Cron:ClearPromotion Runat 2019-07-31 16:09:21 Use 0.074448 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 16:09:21 Use -0.000103 s 
+
+[ 2019-07-31T16:11:35+08:00 ] ::1 /index.php?m=Mobile&c=membersBind&a=huodong_list
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 16:11:35 Use 0.047985 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 16:11:35 Use -0.000098 s 
+
+[ 2019-07-31T17:01:01+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=huodong_edit
+INFO: Cron:ClearPromotion Runat 2019-07-31 17:01:01 Use 0.096042 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 17:01:01 Use -0.000098 s 
+
+[ 2019-07-31T17:19:50+08:00 ] ::1 /index.php?m=Mobile&c=MembersBind&a=huodong_show&id=3
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 17:19:50 Use 0.038164 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 17:19:50 Use -0.000105 s 
+
+[ 2019-07-31T18:08:40+08:00 ] ::1 /index.php?m=Mobile&c=Mall&a=index
+INFO: Cron:ClearPromotion Runat 2019-07-31 18:08:40 Use 0.122303 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 18:08:40 Use -0.000102 s 
+
+[ 2019-07-31T18:14:58+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 18:14:58 Use 0.044768 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 18:14:58 Use -0.000099 s 
+
+[ 2019-07-31T20:11:34+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=member_list
+INFO: Cron:ClearPromotion Runat 2019-07-31 20:11:34 Use 0.105887 s 
+Cron:AutoRefreshResume Runat 2019-07-31 20:11:34 Use -0.000150 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 20:11:34 Use -0.030969 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 20:11:34 Use -0.032044 s 
+
+[ 2019-07-31T21:05:51+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2019-07-31 21:05:51 Use 0.093634 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 21:05:51 Use -0.000101 s 
+
+[ 2019-07-31T21:10:31+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 21:10:31 Use 0.037875 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 21:10:31 Use -0.000089 s 
+
+[ 2019-07-31T22:01:03+08:00 ] ::1 /index.php?
+INFO: Cron:ClearPromotion Runat 2019-07-31 22:01:03 Use 0.088845 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 22:01:03 Use -0.000104 s 
+
+[ 2019-07-31T22:10:03+08:00 ] ::1 /index.php?m=Mobile&c=MembersBind&a=hetong
+INFO: Cron:AutoRefreshResume Runat 2019-07-31 22:10:03 Use 0.048250 s 
+Cron:AutoRefreshJobs Runat 2019-07-31 22:10:03 Use -0.000104 s 
+
+[ 2019-07-31T23:01:53+08:00 ] ::1 /index.php?m=Admin&c=Clearcache&a=index
+INFO: Cron:ClearPromotion Runat 2019-07-31 23:01:53 Use 0.080006 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-31 23:01:53 Use -0.000091 s 
+

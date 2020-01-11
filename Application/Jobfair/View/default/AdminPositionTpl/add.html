@@ -1,0 +1,49 @@
+<include file="Admin@default/public/header" />
+
+<div class="toptit">添加展位模板</div>
+<div class="form_main width120">
+    <form action="{:U('add_tpl')}" method="post">
+        <div class="fl">模板名称:</div>
+        <div class="fr">
+            <input class="input_text_default middle" name="title"/>
+        </div>
+        <div class="area_tpl">
+            <div class="fl">展区编号:</div>
+            <div class="fr txt">
+                <select name="area[]" style="width: 100px;">
+                    <volist name="pre" id="vo">
+                        <option value="{$vo}">&nbsp;{$vo}&nbsp;</option>
+                    </volist>
+                </select>
+            </div>
+            <div class="fl">展位号:</div>
+            <div class="fr">
+                <input name="position_start[]" type="text" class="input_text_default small" value="" style="width: 50px;">&nbsp;&nbsp;至&nbsp;&nbsp;
+                <input name="position_end[]" type="text" class="input_text_default small" value="" style="width: 50px;">
+                <label class="no-fl-note">(如填写“1-10”,系统将自动生成10个展位,并且编号由1开始、由10结束)</label>
+            </div>
+            <div style="width: 660px; height: 20px; border-top: 1px #DFDFDF dashed; margin-left: 60px; float: left; margin-top: 10px">&nbsp;</div>
+        </div>
+        <div class="continue_add"></div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+            <input type="submit" class="admin_submit" value="保存"/>
+            <input type="button" class="admin_submit" id="add_more" value="继续添加"/>
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#add_more").click(function()
+        {
+            $(".continue_add").append($(".area_tpl").html());
+        });
+    });
+</script>
+</html>

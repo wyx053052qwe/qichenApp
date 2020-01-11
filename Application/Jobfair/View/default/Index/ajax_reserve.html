@@ -1,0 +1,60 @@
+<div class="dialog_reserve">
+    <div class="section_head"><div class="head_txt">展位信息</div></div>
+    <div class="info_line">展位号： {$position}</div>
+    <div class="section_head last"><div class="head_txt">联系人信息</div></div>
+    <div class="errbox"></div>
+    <div class="info_line_input">
+        <div class="info_line_input_left">联系人</div>
+        <div class="info_line_input_right"><input type="text" name="contact" class="info_input" value="{$contact['contact']}"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="info_line_input">
+        <div class="info_line_input_left">联系电话</div>
+        <div class="info_line_input_right"><input type="text" name="mobile" class="info_input" value="{$contact['mobile']}"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="btn_group">
+        <input type="button" id="doReserve" class="btn_block" value="立即预定">
+    </div>
+    <script type="text/javascript">
+        // 验证
+        //var regularMobile = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}|17[0-9]{9}$/; // 验证手机号正则
+        $('#doReserve').click(function() {
+            var contactValue = $.trim($('input[name="contact"]').val());
+            var mobileValue = $.trim($('input[name="mobile"]').val());
+            $('.info_input').removeClass('focus');
+            $('.info_area').removeClass('focus');
+            if (contactValue == "") {
+                $('.errbox').text('请填写联系人').show();
+                $('input[name="contact"]').focus().addClass('focus');
+                return false;
+            }
+            if (mobileValue == "") {
+                $('.errbox').text('请填写联系电话').show();
+                $('input[name="mobile"]').focus().addClass('focus');
+                return false;
+            }
+            /*if (mobileValue != "" && !regularMobile.test(mobileValue)) {
+                $('.errbox').text('手机号码格式不正确').show();
+                $('input[name="mobile"]').focus().addClass('focus');
+                return false;
+            }*/
+            $('.errbox').text('').hide();
+            var jobfair_id = "{$jobfair_id}";
+            var position_id = "{$position_id}";
+            var url = "{:U('ajax_reserve')}";
+            $.post(url,{position_id: position_id, jobfair_id: jobfair_id,contact:contactValue,mobile:mobileValue},function(result){
+                $('.modal').remove();
+                $('.modal_backdrop').remove();
+                if(result.status==1){
+                    disapperTooltip('success',result.msg);
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 2000);
+                }else{
+                    disapperTooltip('remind',result.msg);
+                }
+            },'json');
+        });
+    </script>
+</div>

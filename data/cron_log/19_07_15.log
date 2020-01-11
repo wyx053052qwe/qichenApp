@@ -1,0 +1,59 @@
+[ 2019-07-15T02:01:51+08:00 ] 162.243.150.140 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 02:01:51 Use 0.010926 s 
+Cron:AutoRefreshResume Runat 2019-07-15 02:01:51 Use -0.000059 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 02:01:51 Use -0.001233 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 02:01:51 Use -0.001726 s 
+Cron:ClearOrder Runat 2019-07-15 02:01:51 Use -0.003287 s 
+
+[ 2019-07-15T05:36:45+08:00 ] 77.247.110.203 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 05:36:45 Use 0.010483 s 
+Cron:AutoRefreshResume Runat 2019-07-15 05:36:45 Use -0.000052 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 05:36:45 Use -0.001177 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 05:36:45 Use -0.001656 s 
+
+[ 2019-07-15T06:16:04+08:00 ] 101.132.156.172 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 06:16:04 Use 0.010905 s 
+Cron:AutoRefreshResume Runat 2019-07-15 06:16:04 Use -0.000086 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 06:16:04 Use -0.001186 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 06:16:04 Use -0.001673 s 
+
+[ 2019-07-15T08:50:12+08:00 ] 216.218.206.68 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 08:50:12 Use 0.010670 s 
+Cron:AutoRefreshResume Runat 2019-07-15 08:50:12 Use -0.000059 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 08:50:12 Use -0.001256 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 08:50:12 Use -0.001717 s 
+
+[ 2019-07-15T11:49:51+08:00 ] 47.97.23.199 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 11:49:51 Use 0.009948 s 
+Cron:AutoRefreshResume Runat 2019-07-15 11:49:51 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 11:49:51 Use -0.001129 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 11:49:51 Use -0.001570 s 
+
+[ 2019-07-15T13:07:33+08:00 ] 103.233.10.203 /
+INFO: Cron:ClearPromotion Runat 2019-07-15 13:07:33 Use 0.010027 s 
+Cron:AutoRefreshResume Runat 2019-07-15 13:07:33 Use -0.000076 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 13:07:33 Use -0.001147 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 13:07:33 Use -0.001565 s 
+
+[ 2019-07-15T15:09:04+08:00 ] 24.153.209.187 /plus/ajax_officebuilding.php?act=key&key=s%E9%8C%A6%27%20or%201=1%20union%20select%201,2,3,concat(0x776F6F79756E),5,6,7,8,9%23
+INFO: Cron:ClearPromotion Runat 2019-07-15 15:09:04 Use 0.009542 s 
+Cron:AutoRefreshResume Runat 2019-07-15 15:09:04 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 15:09:04 Use -0.001090 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 15:09:04 Use -0.001526 s 
+
+[ 2019-07-15T16:06:17+08:00 ] 223.96.240.176 /index.php?m=Admin&c=weixin&a=index
+INFO: Cron:ClearPromotion Runat 2019-07-15 16:06:17 Use 0.009657 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 16:06:17 Use -0.000051 s 
+
+[ 2019-07-15T16:14:34+08:00 ] 223.96.240.176 /index.php?m=Weixin&c=Admin&a=menu
+INFO: Cron:AutoRefreshResume Runat 2019-07-15 16:14:34 Use 0.006716 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 16:14:34 Use -0.000072 s 
+
+[ 2019-07-15T17:01:02+08:00 ] 223.96.240.176 /index.php?m=Admin&c=Company&a=add
+INFO: Cron:ClearPromotion Runat 2019-07-15 17:01:02 Use 0.010178 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-15 17:01:02 Use -0.000059 s 
+
+[ 2019-07-15T17:10:08+08:00 ] 223.96.240.176 /index.php?m=Mobile&c=Company&a=jobs_add
+INFO: Cron:AutoRefreshResume Runat 2019-07-15 17:10:08 Use 0.006361 s 
+Cron:AutoRefreshJobs Runat 2019-07-15 17:10:08 Use -0.000055 s 
+

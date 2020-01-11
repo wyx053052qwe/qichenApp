@@ -1,0 +1,69 @@
+<volist name="jobslist" id="jobs">
+    <div class="job-item">
+        <a href="{$jobs.jobs_url}" class="ji-top">
+            <div class="job-info">
+                <div class="info-img"><img src="{$jobs.logo}"></div>
+                <div class="info-txt">
+                    <div class="it-o">
+                        <div class="io-jn substring font16 txt-3">{$jobs.jobs_name} <span class="font12 txt-6">({$jobs.city})</span></div>
+                        <div class="io-jd font13 txt-o">
+                            <if condition="$jobs['stick']">
+                                置顶
+                            <else/>
+                                {$jobs['refreshtime_cn']}
+                            </if>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="it-t">
+                        <div class="it-cn font13 substring">{$jobs.companyname}</div>
+                        <div class="it-jw font13">{$jobs.wage_cn}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="job-tag">
+                <volist name="jobs['tag_cn']" id="tag" offset="0" length="4">
+                    <div class="tag-item">{$tag}</div>
+                </volist>
+                <div class="clear"></div>
+            </div>
+            <div class="job-des font13">{$jobs.briefly_}</div>
+        </a>
+        <div class="ji-bot" data-jid="{$jobs.id}">
+            <a href="javascript:;" class="bot-item applyJob"><div class="bot-cell dli">投简历</div></a>
+            <if condition="C('qscms_rongyun_open') eq 1">
+            <a onclick="logDialog(0,'{:U('Im/message',array('uid'=>$jobs['uid']))}',2)" href="javascript:;" class="bot-item"><div class="bot-cell chat">聊聊</div></a>
+            <else />
+            <eq name="jobs['is_collect']" value="1">
+            <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect has">已收藏</div></a>
+            <else />
+            <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect">收藏</div></a>
+            </eq>
+            </if>
+            <eq name="jobs['is_like']" value="1">
+            <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click has"><if condition="$jobs['like_num']">{$jobs.like_num}<else/>点赞</if></div></a>
+            <else />
+            <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click"><if condition="$jobs['like_num']">{$jobs.like_num}<else/>点赞</if></div></a>
+            </eq>
+        </div>
+
+    </div>
+</volist>
+<script>
+    // 职位亮点随机背景色
+    function randomsort(a, b) {
+        return Math.random() > .5 ? -1 : 1;
+    }
+    var bgArrBefore = [1, 2, 3, 4];
+    $('.job-item').each(function() {
+        var $jobTagDom = $(this).find('.tag-item');
+        if ($jobTagDom.length) {
+            var bgArray = bgArrBefore.sort(randomsort);
+            $($jobTagDom).each(function(index, value) {
+                $(this).addClass('ti' + bgArray[index]);
+            })
+        }
+    });
+</script>

@@ -1,0 +1,63 @@
+[ 2019-07-28T13:57:55+08:00 ] ::1 /
+INFO: Cron:ClearPromotion Runat 2019-07-28 13:57:54 Use 0.401422 s 
+Cron:AutoRefreshResume Runat 2019-07-28 13:57:55 Use -0.049901 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 13:57:55 Use -0.239455 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 13:57:55 Use -0.266086 s 
+Cron:ClearOrder Runat 2019-07-28 13:57:55 Use -0.333112 s 
+
+[ 2019-07-28T14:01:22+08:00 ] ::1 /index.php?m=Admin&c=index&a=login
+INFO: Cron:ClearPromotion Runat 2019-07-28 14:01:22 Use 0.085480 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 14:01:22 Use -0.000076 s 
+
+[ 2019-07-28T14:13:56+08:00 ] ::1 /
+INFO: Cron:AutoRefreshResume Runat 2019-07-28 14:13:56 Use 0.116552 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 14:13:56 Use -0.000102 s 
+
+[ 2019-07-28T15:47:34+08:00 ] ::1 /index.php?m=Admin&c=index&a=index
+INFO: Cron:ClearPromotion Runat 2019-07-28 15:47:34 Use 0.088232 s 
+Cron:AutoRefreshResume Runat 2019-07-28 15:47:34 Use -0.000198 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 15:47:34 Use -0.018849 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 15:47:34 Use -0.019917 s 
+
+[ 2019-07-28T16:01:08+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=member_list
+INFO: Cron:ClearPromotion Runat 2019-07-28 16:01:08 Use 0.096492 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 16:01:08 Use -0.000100 s 
+
+[ 2019-07-28T17:12:32+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2019-07-28 17:12:32 Use 0.189241 s 
+Cron:AutoRefreshResume Runat 2019-07-28 17:12:32 Use -0.000146 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 17:12:32 Use -0.040959 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 17:12:32 Use -0.048151 s 
+
+[ 2019-07-28T18:01:05+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2019-07-28 18:01:05 Use 0.095653 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 18:01:05 Use -0.000106 s 
+
+[ 2019-07-28T18:10:10+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:AutoRefreshResume Runat 2019-07-28 18:10:10 Use 0.051987 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 18:10:10 Use -0.000104 s 
+
+[ 2019-07-28T19:01:25+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=index
+INFO: Cron:ClearPromotion Runat 2019-07-28 19:01:25 Use 0.082988 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 19:01:25 Use -0.000098 s 
+
+[ 2019-07-28T19:15:48+08:00 ] ::1 /index.php?m=Admin&c=Index&a=left_menu&menuid=171
+INFO: Cron:AutoRefreshResume Runat 2019-07-28 19:15:48 Use 0.062124 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 19:15:48 Use -0.000132 s 
+
+[ 2019-07-28T20:01:48+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=get_com
+INFO: Cron:ClearPromotion Runat 2019-07-28 20:01:48 Use 0.081984 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 20:01:48 Use -0.000126 s 
+
+[ 2019-07-28T20:36:40+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi_edit&id=1
+INFO: Cron:AutoRefreshResume Runat 2019-07-28 20:36:40 Use 0.052163 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 20:36:40 Use -0.000102 s 
+
+[ 2019-07-28T21:01:36+08:00 ] ::1 /index.php?m=Admin&c=Index&a=left_menu&menuid=1
+INFO: Cron:ClearPromotion Runat 2019-07-28 21:01:36 Use 0.107015 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-28 21:01:36 Use -0.000098 s 
+
+[ 2019-07-28T21:27:15+08:00 ] ::1 /index.php?m=Admin&c=Company&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-07-28 21:27:15 Use 0.064348 s 
+Cron:AutoRefreshJobs Runat 2019-07-28 21:27:15 Use -0.000100 s 
+

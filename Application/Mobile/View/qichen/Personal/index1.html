@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+
+	</head>
+	<style>
+		.service-list>.service-one a {
+			width: inherit;
+			float: none;
+		}
+	</style>
+
+	<body style="background: #fff;">
+		<!--头部-->
+		<div class="person-header">
+			<div class="person-top">
+				<c><if condition="$resume_info['fullname']">{$resume_info.fullname}<else/>{$visitor['username']}</if></c><span><a href="{:U('Personal/resume_edit1',array('pid'=>$resume_info['id']))}"><img src="../public_qichen/img/sz.png"></a></span></div>
+			<div class="person-photo">
+				<a href="{:U('Personal/resume_edit1',array('pid'=>$resume_info['id']))}"><img src="{$visitor['avatars']}?{:time()}"></a>
+			</div>
+			<!--描述 -->
+			<div class="header-list">
+
+				<div class="list-one">
+					<a href="{:U('PersonalService/gold_log1')}">
+						{$points}积分
+						<p>签到积分</p>
+					</a>
+				</div>
+				<div class="list-one">
+					<a href="{:U('PersonalService/gold_task1')}">
+						2/2
+						<p>任务中心</p>
+					</a>
+				</div>
+				<div class="list-one">
+					<a href="{:U('personal/pms_list1')}">
+						{$msg_count}
+						<p>通知中心</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--列表 -->
+		<div class="person-list">
+			<li>
+				<a href="{:U('Personal/jobs_apply1',array('resume_id'=>$resume_info['id']))}">
+					<img src="../public_qichen/img/icon-head-001.png">
+					<p>我的申请</p>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Personal/jobs_favorites1')}">
+					<img src="../public_qichen/img/icon-head-002.png">
+					<p>我的收藏</p>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Personal/peixun')}">
+					<img src="../public_qichen/img/icon-head-003.png">
+					<p>我的培训</p>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('Personal/resume_edit1',array('pid'=>$resume_info['id']))}">
+					<img src="../public_qichen/img/icon-head-004.png">
+					<p>我的简历</p>
+				</a>
+			</li>
+		</div>
+		<!--ad  -->
+		<div class="ad">
+			<a href="{:U('PersonalService/tuijian')}"><img src="../public_qichen/img/icon-ad-002.png"></a>
+		</div>
+		<!-- -->
+		<div class="person-service">
+			个人服务
+		</div>
+		<div class="service-list">
+			<div class="service-one">
+				<a href="{:U('Personal/jobs_apply1',array('resume_id'=>$resume_info['id']))}"><img src="../public_qichen/img/001.png"><span>我的求职</span></a>
+			</div>
+			<div class="service-one">
+				<a href="{:U('Personal/jobs_interview1',array('resume_id'=>$resume_info['id']))}"><img src="../public_qichen/img/002.png"><span>面试邀请</span></a>
+			</div>
+			<div class="service-one">
+				<a href="{:U('Mall/index')}"><img src="../public_qichen/img/003.png"><span>积分兑换</span></a>
+			</div>
+			<div class="service-one">
+				<a href="tel:{$config['qscms_top_tel']}"><img src="../public_qichen/img/004.png"><span>在线客服</span></a>
+			</div>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen:footer_geren_2"/>
+	</body>
+
+</html>

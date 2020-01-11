@@ -1,0 +1,132 @@
+
+<meta charset="utf-8">
+<title>{$page_seo.title}</title>
+<meta name="keywords" content="{$page_seo.keywords}"/>
+<meta name="description" content="{$page_seo.description}"/>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,minimal-ui" name="viewport"/>
+<meta name ="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<if condition="C('qscms_page_full_screen') eq 1">
+    <!-- UC默认竖屏` UC强制全屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes"/>
+    <meta name="browsermode" content="application"/>
+    <!-- QQ强制竖屏` QQ强制全屏 -->
+    <meta name="x5-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="x5-page-mode" content="app"/>
+</if>
+<script src="../public/js/rem.js"></script>
+<script src="../public/js/zepto.min.js"></script>
+<script src="../public/js/htmlspecialchars.js"></script>
+<script>
+	var qscms = {
+		base : "",
+		domain : "{:C('HTTP_TYPE')}{$_SERVER['HTTP_HOST']}",
+		root : "__ROOT__/index.php",
+		companyRepeat:"{:C('qscms_company_repeat')}",
+		regularMobile: /^13[0-9]{9}$|14[0-9]{9}$|15[0-9]{9}$|18[0-9]{9}$|17[0-9]{9}$|16[0-9]{9}$|19[0-9]{9}$/,
+        smsTatus: "1",
+        district_level : "{:C('qscms_category_district_level')}",
+        default_district : "{:C('qscms_default_district')}",
+        default_district_spell : "{:C('qscms_default_district_spell')}",
+        is_login : "{$is_login}"
+	};
+    // 安卓机型下显示顶部返回
+    function showAndroidTopBack() {
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+        var isShow = true;
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        	isShow = false;
+        }
+        if (ua.match(/\sQQ/i) !== null) {
+        	isShow = false;
+        }
+        if (isShow){
+            $(".herad_nav").show();
+            $("body").addClass('pdt-n9');
+            $(".J_back").on('click',function(){
+                /*if (history.length == 1){
+                    window.location.href = '{:U("index/index")}';
+                } else {
+                    history.back();
+                }*/
+                history.back();
+            });
+        }
+    }
+    // 对iPhoneX做处理
+    function funJudgeX() {
+        var jsIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        var jsRatio = window.devicePixelRatio || 1;
+        var judgeX = false;
+        var jsScreen = {
+            width : window.screen.width * jsRatio,
+            height : window.screen.height * jsRatio
+        };
+        if (jsIOS && jsScreen.width == 1125 && jsScreen.height === 2436) {
+            judgeX = true;
+        }
+        return judgeX;
+    }
+	<if condition="$rong_state eq 1">
+		var rongConfig = {
+			messageReadUrl:"{:U('Im/read_message')}",
+			messageUrl:"{:U('Im/add_message')}",
+			messageUnreadUrl:"{:U('Im/unread_message')}",
+			messageInfoUrl:"{:U('Im/message',array('uid'=>_touid))}",
+			delDialog : "{:U('Im/del_dialog')}",
+	        Key:"{$ronguser['rong_key']}",
+	        Token:"{$ronguser['rong_token']}",
+	        userInfo : {
+	            id: "{$ronguser['uid']}",
+	            name: "{$ronguser['username']}",
+	            avatars: "{$ronguser['avatars']}"
+	        }
+		};
+		var rongUser = {
+			isDialogue:'',
+			sendUser:{
+	        	id:'',
+	        	name: '',
+	            avatars: ''
+	        },
+	        newTime:''
+		};
+	</if>
+	if (!!window.ActiveXObject || "ActiveXObject" in window) {
+		window.location.href = '{:U('Index/compatibility')}';
+	}
+</script>
+
+{$synsitegroupregister}
+{$synsitegroupunbindmobile}
+{$synsitegroupedit}
+{$synsitegroup}
+
+<link rel="stylesheet" href="../public/css/common.css">
+<link rel="stylesheet" href="../public/css/dialog.css">
+<link rel="stylesheet" href="../public/css/animate.css">
+<if condition="$apply['Magappx'] and $magappx and !$magappx['token']">
+	<script type="text/javascript" src="__ROOT__/{$Think.APP_NAME}/Magappx/View/default/public/magjs-x.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	    var url = "{:U('',array('magappx_token'=>'MAGAPPX'))}";
+	    mag.ready(function(a){
+	      mag.toLogin(function(rs){
+	      	window.location.href=url.replace('MAGAPPX',rs.token);
+	      });
+	    })
+	  });
+	</script>
+</if>
+<if condition="$apply['Qianfanyunapp'] && $qianfanyunapp_is_login">
+	<script type="text/javascript">
+		QFH5.jumpLogin(function(state,data){})
+	</script>
+</if>

@@ -1,0 +1,16 @@
+<notempty name="jobs_list">
+<div class="pub_t font18">{$title}<a href="{$more_url}" class="mo font12">更多</a></div>
+<div class="job_group">
+    <volist name="jobs_list" id="jobs">
+    <a href="{$jobs.jobs_url}" class="job_cell">
+        <div class="job_name substring">{$jobs.jobs_name}</div>
+        <div class="job_wage font13">{$jobs.wage_cn}</div>
+        <div class="job_oth substring font12">{$jobs.district_cn} | {$jobs.experience_cn} | {$jobs.education_cn}</div>
+        <div class="job_time font12">{:date('Y-m-d',$jobs['refreshtime'])}</div>
+        <div class="com_logo"><img src="{$jobs.logo}" alt="{$jobs.companyname}"></div>
+        <div class="com_name substring font13">{$jobs.companyname}</div>
+        <div class="job_int font12">{$jobs.category_cn} | {$jobs.scale_cn}</div>
+    </a>
+    </volist>
+</div>   
+</notempty>

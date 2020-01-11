@@ -1,0 +1,97 @@
+<include file="Admin@default/public/header"/>
+<div class="toptit">基本配置</div>
+<form action="{:U('Qqfloat/Admin/save_config')}" method="post" name="formConfig" id="formConfig">
+    <div class="form_main width150">
+        <div class="fl">客服QQ漂浮条：</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="qq_float_open" class="api_type" type="hidden" value="{:C('qscms_qq_float_open')}">
+                <div class="radio is_open <eq name='Think.config.qscms_qq_float_open' value='1'>select</eq>" data="1" title="开启">开启</div>
+                <div class="radio is_open <eq name='Think.config.qscms_qq_float_open' value='0'>select</eq>" data="0" title="关闭">关闭</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="qq_float_position" <eq name='Think.config.qscms_qq_float_open' value='0'>style="display:none;"</eq>>
+            <div class="fl">漂浮条位置：</div>
+            <div class="fr">
+                <div class="imgradio">
+                    <input name="qq_float_position" class="api_type" type="hidden" value="{:C('qscms_qq_float_position')}">
+                    <div class="radio <eq name='Think.config.qscms_qq_float_position' value='left'>select</eq>" data="left" title="左侧">左侧</div>
+                    <div class="radio <eq name='Think.config.qscms_qq_float_position' value='right'>select</eq>" data="right" title="右侧">右侧</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div id="qq_float_theme" <eq name='Think.config.qscms_qq_float_open' value='0'>style="display:none;"</eq>>
+            <div class="fl">主题样式：</div>
+            <div class="fr">
+                <div class="imgradio">
+                    <input name="qq_float_theme" class="api_type" type="hidden" value="{:C('qscms_qq_float_theme')}">
+                    <div class="radio <eq name='Think.config.qscms_qq_float_theme' value='default'>select</eq>" data="default" title="默认">默认<span style="color: #999999" class="vtip" title="<img src=../public/images/default.png border=0  align=absmiddle>">[预览]</span></div>
+                    <div class="radio <eq name='Think.config.qscms_qq_float_theme' value='purple'>select</eq>" data="purple" title="紫色">紫色<span style="color: #999999" class="vtip" title="<img src=../public/images/purple.png border=0 align=absmiddle>">[预览]</span></div>
+                    <div class="radio <eq name='Think.config.qscms_qq_float_theme' value='red'>select</eq>" data="red" title="红色">红色<span style="color: #999999" class="vtip" title="<img src=../public/images/red.png border=0 align=absmiddle>">[预览]</span></div>
+                    <div class="radio <eq name='Think.config.qscms_qq_float_theme' value='blue'>select</eq>" data="blue" title="蓝色">蓝色<span style="color: #999999" class="vtip" title="<img src=../public/images/blue.png border=0 align=absmiddle>">[预览]</span></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input name="submit" type="submit" class="admin_submit" value="保存修改"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+<form action="{:U('')}" method="post">
+    <div class="list_th">
+        <div class="td" style="width:30%;"><label class="left_padding">QQ号</label></div>
+        <div class="td" style="width:20%;">所属客服</div>
+        <div class="td" style="width:15%;">是否显示</div>
+        <div class="td" style="width:25%;">排序<span class="admin_note">(数字越大越靠前)</span></div>
+        <div class="td" style="width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td link_blue" style="width:30%;"><label class="left_padding"><a href="{:U('Qqfloat/Admin/edit', array('id'=>$vo['id']))}">{$vo['qq']}</a></label></div>
+            <div class="td" style="width:20%;">{$vo['name']}&nbsp;</div>
+            <div class="td" style="width:15%;"><eq name="vo.display" value="1">显示<else/><span style="color: #999999">不显示</span></eq></div>
+            <div class="td" style="width:25%;">
+                <input type="hidden" name="id[]" value="{$vo['id']}">
+                <input type="text" class="input_text_default small" name="sort[]" value="{$vo['sort']}" style="width: 50px;">
+            </div>
+            <div class="td edit" style="width:10%;">
+                <a href="{:U('Qqfloat/Admin/edit', array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('Qqfloat/Admin/del', array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+    <empty name="list">
+        <div class="list_empty">没有任何信息！</div>
+    </empty>
+    <div class="list_foot">
+        <div class="btnbox">
+            <input name="add" type="button" class="admin_submit" id="add" value="新增"
+                   onclick="window.location='{:U('Qqfloat/Admin/add')}'"/>
+            <input name="save_sort" type="submit" class="admin_submit" id="save_sort" value="保存排序"/>
+        </div>
+    </div>
+</form>
+</div>
+<include file="Admin@default/public/footer"/>
+</body>
+<script type="text/javascript">
+    $('.is_open').live('click',function(){
+        var status = $(this).attr('data');
+        if(status == 1){
+            $('#qq_float_theme').show();
+            $('#qq_float_position').show();
+        }else{
+            $('#qq_float_theme').hide();
+            $('#qq_float_position').hide();
+        }
+    });
+</script>
+</html>

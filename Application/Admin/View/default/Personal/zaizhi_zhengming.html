@@ -1,0 +1,137 @@
+<include file="public:header"/>
+   
+<div class="seltpye_x">
+    <div class="left">申请时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="seltpye_x">
+    <div class="left">证明状态</div>
+    <div class="right">
+        <a href="{:P(array('status'=>''))}" <eq name='Think.get.status' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('status'=>'0'))}" <eq name='Think.get.status' value='0'>class="select"</eq>>未开具</a>
+        <a href="{:P(array('status'=>'1'))}" <eq name='Think.get.status' value='1'>class="select"</eq>>已开具</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<form id="form1" name="form1" method="post" action="{:U('delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:20%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>证明材料
+            </label>
+        </div>
+        <div class="td center" style=" width:100px;">用户</div>
+        <div class="td center" style=" width:100px;">姓名</div>
+        <div class="td center" style=" width:100px;">身份证编码</div>
+        <div class="td center" style=" width:100px;">收货地址</div>
+        <div class="td center" style=" width:100px;">联系方式</div>
+        <div class="td center" style=" width:100px;">证明状态</div>
+        <div class="td center" style=" width:100px;">申请时间</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+    <volist name="list" id="vo">
+        <div class="list_tr link_blue">
+            <div class="td" style=" width:20%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <volist name="vo['img']" id="voo">
+                        <a class="vtip" title='<img src="{$voo['src']}"/>'>证明</a>
+                    </volist>
+                    <volist name="vo['files']" id="vfi">
+                        <a class="vtip" href="{$vfi['src']}" title=''>文件下载</a>
+                    </volist>
+                </div>
+            </div>
+            <div class="td center" style=" width:100px;">
+                {$vo['uid_name']}
+            </div>
+
+            <div class="td center" style=" width:100px;">
+                {$vo['name']}
+            </div>
+
+            <div class="td center" style=" width:100px;">
+                {$vo['id_card']}
+            </div>
+
+            <div class="td center" style=" width:100px;">
+                {$vo['address']}
+            </div>
+
+            <div class="td center" style=" width:100px;">
+                {$vo['mobile']}
+            </div>
+
+            
+            <div class="td center" style=" width:100px;">
+                <if condition="$vo['status'] eq 0">未开具<else/>已开具</if>
+            </div>
+             <div class="td center" style=" width:100px;">
+                {:date('Y-m-d',$vo['add_time'])}
+            </div>
+            
+           
+            <div class="td edit" style=" width:10%;">
+            <if condition="$vo['status'] == 0">
+                <a href="{:U('zhengming_kaiju',array('id'=>$vo['id']))}">开具</a>
+            </if>
+                <a href="{:U('zhengming_del',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+
+<div class="pages">{$page}</div>
+
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //点击批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择广告！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("form[name=form1]").submit();
+                }
+            }
+        });
+    });
+
+$('.vtip').click(function(){
+    var link = document.createElement('a');
+    link.setAttribute("download", "");
+    link.href = "/index.php?m=Admin&c=index&a=index";
+    link.click();
+
+    window.location.href="你的url";
+
+    window.open("你的url")
+</script>
+});
+
+</html>

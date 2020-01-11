@@ -1,0 +1,33 @@
+<include file="Admin@default/public:header" />
+<div class="toptip">
+    <div class="toptit">提示：</div>
+    <p>微信内容不能超过600个字！</p>
+</div>
+<div class="toptit">修改微信任务</div>
+<form id="form1" name="form1" method="post"   action="{:U('queue_edit')}" >
+    <div class="form_main width150">
+        <div class="fl">发送内容：</div>
+        <div class="fr">
+            <textarea name="content" class="input_text_default" id="s_body" style="height:80px;width:300px;"  onpropertychange="if(this.value.length&gt;600){this.value=this.value.slice(0,600)}">{$info.content}</textarea> 内容超过600个字将自动截取
+        </div>
+        <div class="fl">用户名：</div>
+        <div class="fr">
+          <input name="username" type="text" maxlength="100" class="input_text_default middle" value="{$info.username}" disabled="true"/>
+        </div>
+        <div class="fl">openid：</div>
+        <div class="fr">
+          <input name="openid" type="text" maxlength="100" class="input_text_default middle" value="{$info.openid}" disabled="true"/>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="id" value="{$info.id}">
+            <input name="submit3" type="submit" class="admin_submit"    value="保存"/>
+            <input name="submit22" type="button" class="admin_submit"    value="返回" onclick="Javascript:window.history.go(-1)"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+</div>
+<include file="Admin@default/public:footer" />
+</body>
+</html>

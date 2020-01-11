@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/personal.css">
+</head>
+<body>
+<include file="public:header"/>
+<script>showAndroidTopBack();</script>
+<div class="perindexnewtop">
+    <div class="new-pt" onClick="javascript:location.href='{:U('Personal/resume_edit',array('pid'=>$resume_info['id']))}'">
+        <div class="pic">
+            <img src="{$visitor['avatars']}?{:time()}" border="0"/>
+        </div>
+        <div class="txt"><if condition="$resume_info['fullname']">{$resume_info.fullname}<else/>{$visitor['username']}</if><br/>
+            <span class="font12"><if condition="$resume_info['telephone']">{$resume_info.telephone}<else/>{$visitor['mobile']}</if></span>
+        </div>
+        <div class="pt-arrow"></div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="split-block"></div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/resume_edit',array('pid'=>$resume_info['id']))}'">
+    <div class="pic me"></div>
+    <div class="tit font14">我的简历</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img last" id="J_refresh_resume">
+    <div class="pic res"></div>
+    <div class="tit font14">刷新简历</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="split-block"></div>
+<if condition="C('apply.Allowance')">
+    <div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/allowance')}'">
+        <div class="pic t-alw"></div>
+        <div class="tit font14">我的红包</div>
+        <div class="describe font12"></div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+</if>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('PersonalService/gold_task')}'">
+    <div class="pic jifen"></div>
+    <div class="tit font14">推荐有奖签到积分</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('PersonalService/gold_log')}'">
+    <div class="pic jifen"></div>
+    <div class="tit font14">积分日志</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/jobs_interview',array('resume_id'=>$resume_info['id']))}'" >
+    <div class="pic rog"></div>
+    <div class="tit font14">收到的面试邀请</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/jobs_apply',array('resume_id'=>$resume_info['id']))}'">
+    <div class="pic apl"></div>
+    <div class="tit font14">我申请的职位</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/jobs_favorites')}'">
+    <div class="pic fav"></div>
+    <div class="tit font14">我收藏的职位</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/attention_me',array('resume_id'=>$resume_info['id']))}'" >
+    <div class="pic see"></div>
+    <div class="tit font14">谁看过我</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Personal/feedback')}'">
+    <div class="pic fed"></div>
+    <div class="tit font14">意见反馈</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="split-block"></div>
+<if condition="!empty($zaizhi)">
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/gongzi')}'">
+    <div class="pic gongzi"></div>
+    <div class="tit font14">工资查询</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/zhengming')}'">
+    <div class="pic zhengming"></div>
+    <div class="tit font14">证明开具</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/huodong_list')}'">
+    <div class="pic huodong"></div>
+    <div class="tit font14">员工活动</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/hetong')}'">
+    <div class="pic hetong"></div>
+    <div class="tit font14">员工合同</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/xuexi')}'">
+    <div class="pic xuexi"></div>
+    <div class="tit font14">我的学习</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+
+
+
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('MembersBind/lizhi')}'">
+    <div class="pic lizhi"></div>
+    <div class="tit font14">离职</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+    <div class="split-block"></div>
+</if>
+
+<if condition="$apply['Parttime']">
+    <div class="list_height plist-img" onClick="javascript:location.href='{:U('Parttime/manage')}'">
+        <div class="pic part"></div>
+        <div class="tit font14">我的兼职</div>
+        <div class="describe font12"></div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+</if>
+<if condition="$apply['Store']">
+    <div class="list_height plist-img" onClick="javascript:location.href='{:U('Storerecruit/manage')}'">
+        <div class="pic store"></div>
+        <div class="tit font14">门店招聘</div>
+        <div class="describe font12"></div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+</if>
+
+
+
+<if condition="empty($zaizhi)">
+<div class="list_height plist-img" onClick="javascript:location.href='{:U('Members/switch_utype', array('utype'=>1))}'">
+    <div class="pic exc"></div>
+    <div class="tit font14">切换企业</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+</if>
+<if condition="!$is_weixin">
+<div class="list_height plist-img last" id="logout">
+    <div class="pic out"></div>
+    <div class="tit font14">退出</div>
+    <div class="describe font12"></div>
+    <div class="arrow"></div>
+    <div class="clear"></div>
+</div>
+</if>
+<include file="public:footer_min" />
+<script type="text/javascript">
+    // 登出
+    $('#logout').on('click', function() {
+        $(document).dialog({
+            type: 'confirm',
+            content: '确定退出吗？',
+            onClickConfirmBtn: function() {
+                window.location.href = "{:U('Members/logout')}";
+            }
+        });
+    });
+    // 刷新简历
+    $('#J_refresh_resume').click(function() {
+        var pid = $(this).attr('pid');
+        $.post("{:U('Personal/refresh_resume')}", {
+            pid: pid
+        }, function(result) {
+            if (result.status == 1) {
+                if (result.data) {
+                    if (result.data.url) {
+                        // 无简历，提示创建简历
+                        $(document).dialog({
+                            titleText: '提示',
+                            type : 'confirm',
+                            content: result.msg,
+                            onClickConfirmBtn: function() {
+                                window.location.href = result.data.url;
+                            }
+                        });
+                    } else {
+                        qsToast('刷新成功，' + '{:C('qscms_points_byname ')}' + '+' + result.data, 1, '');
+                    }
+                } else {
+                    qsToast(result.msg, 0, '');
+                }
+            } else {
+                qsToast(result.msg, '', '');
+            }
+        }, 'json');
+    });
+    <if condition="$resume['level'] eq 1">
+        $(document).dialog({
+            titleText: '提示',
+            type : 'confirm',
+            content: '<div class="dialog_notice">你的简历完整度<span class="font_red">太差</span>！完整的简历更容易获得企业的关注，建议你立即完善！</div>',
+            buttons: [
+                {
+                    name: '取消',
+                    callback: function() {}
+                },
+                {
+                    name: '完善简历',
+                    callback: function() {
+                        window.location.href = "{:U('Personal/resume_edit',array('pid'=>$resume['id']))}";
+                    }
+                }
+            ]
+        });
+    </if>
+</script>
+</body>
+</html>

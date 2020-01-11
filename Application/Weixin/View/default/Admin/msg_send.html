@@ -1,0 +1,68 @@
+<div class="dialog_box">
+    <form action="{:U('msg_send')}" method="post" name="form" id="form">
+        <table width="420" border="0" align="center" cellpadding="0" cellspacing="6">
+            <tr>
+                <td width="80" height="40" align="right">接收会员：</td>
+                <td>
+                    <input type="hidden" name="username" value="{$userinfo.username}">
+                    <input type="hidden" name="uid" value="{$userinfo.uid}">
+                    {$userinfo.username} <span style="color: #999999;">(uid:{$userinfo.uid})</span>
+                </td>
+            </tr>
+            <tr>
+                <td width="80" height="40" align="right">会员类型：</td>
+                <td>
+                    <input type="hidden" name="utype" value="{$userinfo.utype}">
+                    <switch name="userinfo['utype']">
+                        <case value="1">企业</case>
+                        <case value="2">个人</case>
+                        <default />无
+                    </switch>
+                </td>
+            </tr>
+            <tr>
+                <td width="80" height="40" align="right">OpenId：</td>
+                <td>
+                    <input type="hidden" name="weixin_openid" value="{$userinfo.openid}">
+                    {$userinfo.openid} 
+                </td>
+            </tr>
+            <tr>
+                <td width="80" align="right">消息内容：</td>
+                <td>
+                    <textarea name="content" class="input_text_default" style="width:300px; height:60px; line-height: 180%;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td height="60">&nbsp;</td>
+                <td>
+                    <input type="button" name="set_audit" value="确定" class="admin_submit" id="J_submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('msg_send')}",$('#form').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.reload();
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                        location.reload();
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>

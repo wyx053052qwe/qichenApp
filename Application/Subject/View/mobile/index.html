@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <qscms:subject 列表名="list" 分页显示="1" 填补字符="…" 摘要长度="160" 显示数目="4"/>
+        <include file="Mobile@public/meta" />
+        <link rel="stylesheet" href="{$tpl_public_dir}/css/subject.css">
+        <style>
+            .herad_nav{background-color: transparent;border-bottom: 1px transparent solid;color:#fff;}
+        </style>
+    </head>
+    <body>
+        <include file="Mobile@public/header" />
+        <script>showAndroidTopBack();</script>
+        <div class="top_bg_box"><div class="top_bg font20">网络专题招聘会</div></div>
+        <notempty name="list['list']">
+        <div class="lsp_group">
+            <volist name="list['list']" id="vo">
+                <a href="{$vo.url}" class="lsg_cell">
+                    <img src="{$vo.img}" alt="">
+                    <div class="tit_box font12">{$vo.title}</div>
+                    <div class="time_box font10">{:date('Y-m-d',$vo['addtime'])} </div>
+                </a>
+            </volist>
+            <div class="clear"></div>
+        </div>
+        <div class="qspage">{$list['page']}</div>
+        <else />
+            <div class="list-empty link_blue">
+            抱歉，暂时没有信息！
+            </div>
+        </notempty>
+        <include file="Mobile@public/footer_min" />
+    </body>
+</html>

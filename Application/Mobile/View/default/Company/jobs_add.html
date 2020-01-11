@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/company.css">
+    <link rel="stylesheet" href="../public/css/jobs_manager.css">
+    <qscms:load type="category" search="1"/>
+</head>
+<body>
+    <include file="public:header"/>
+    <div class="split-block-title">您的账号还可以发布 <strong>{$total}</strong> 条职位！</div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">职位名称<span class="font_red_light">*</span></div>
+        <div class="describe"><input type="text" id="jobs_name" placeholder="请输入职位名称" value="{$jobs.jobs_name}" class="font13">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">职位性质<span class="font_red_light">*</span></div>
+            <div class="describe font13">
+                <span class="selectTxt">请选择职位性质</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="nature" id="nature" value="{$jobs.nature}">
+        </div>
+        <div class="imSelect">
+            <volist name="category['QS_jobs_nature']" id="nature">
+                <div class="imOption" data-key="{$key}" data-txt="{$nature}">{$nature}</div>
+            </volist>
+        </div>
+    </div>
+    <div class="list_height plist-txt qs-relative js-actionParent">
+        <div class="abAct js-showActionSheet"></div>
+        <div class="pic"></div>
+        <div class="tit font14">职位类别<span class="font_red_light">*</span></div>
+        <div class="describe font13 qs-temp" data-type="jobs" data-addjob="true" data-base="QS_jobs_parent" data-source="QS_jobs" data-multiple="false" data-num="0" data-link="false" data-level="{:C('qscms_category_jobs_level')}">
+            <span class="qs-temp-txt-jobs" data-otxt="请选择职位类别">{$jobs['category_cn']|default='请选择职位类别'}</span>
+            <input class="qs-temp-code-jobs" type="hidden" id="jobcategory" value="<if condition="$jobs['topclass']">{$jobs.topclass}.{$jobs.category}.{$jobs.subclass}<else /></if>">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+        <!--BEGIN actionSheet-->
+        <div>
+            <div class="qs-mask" style="display: none"></div>
+            <div class="qs-actionsheet js-actionsheet">
+                <div class="qs-actionsheet-menu">
+                    <div class="con-filter">
+                        <div class="f-selected-group f-selected-group-jobs">
+                            <div class="s-bar">
+                                <div class="qs-btn qs-btn-inline qs-btn-small qs-btn-border-gray qs-left js-cancelActionSheet">取消</div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="s-list qs-hidden"></div>
+                        </div>
+                        <div class="f-box f-box-jobs"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list_height plist-txt qs-relative">
+        <div class="abAct J_describe"></div>
+        <div class="pic"></div>
+        <div class="tit font14">职位描述<span class="font_red_light">*</span></div>
+        <a href="#describe" class="describe font13 describeText">
+            {$jobs['contents']|default='请输入职位描述'}
+        </a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt qs-relative">
+        <div class="abAct J_wage"></div>
+        <div class="pic"></div>
+        <div class="tit font14">薪资待遇<span class="font_red_light">*</span></div>
+        <a href="#describe" class="describe font13">
+            <span class="J_wage_txt">
+                <empty name="jobs">请选择薪资待遇<else/><if condition="$jobs['minwage'] eq 0 && $jobs['maxwage'] eq 0">面议<else/>{$jobs.minwage} - {$jobs.maxwage}</if></empty>
+            </span>
+        </a>
+        <div class="arrow"></div> 
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt qs-relative js-actionParent">
+        <div class="abAct js-showActionSheet"></div>
+        <div class="pic"></div>
+        <div class="tit font14">工作地区<span class="font_red_light">*</span></div>
+        <div class="describe font13 qs-temp-new-city" data-multiple="false" >
+            <span class="qs-temp-txt-city" data-otxt="请选择工作地区">{$jobs['district_cn']|default='请选择工作地区'}</span>
+            <input class="qs-temp-code-city" type="hidden" id="district" value="<if condition="$jobs['district']">{$jobs.district}</if>" keep="<if condition="$jobs['district']">{$jobs.district}</if>">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+        <!--BEGIN actionSheet-->
+        <div>
+            <div class="qs-mask" style="display: none"></div>
+            <div class="qs-actionsheet js-actionsheet">
+                <div class="qs-actionsheet-menu">
+                    <div class="con-filter">
+                        <div class="f-selected-group f-selected-group-city">
+                            <div class="s-bar">
+                                <div class="qs-btn qs-btn-inline qs-btn-small qs-btn-border-gray qs-left js-cancelActionSheet">取消</div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="s-list qs-hidden"></div>
+                        </div>
+                        <div class="f-box f-box-city"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list_height plist-txt qs-relative last">
+        <div class="abAct J_tag"></div>
+        <div class="pic"></div>
+        <div class="tit font14">职位亮点</div>
+        <a href="#tagStr" class="describe font13"><span class="J_tag_txt">{$tagStr.cn|default='请选择职位亮点'}</span></a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="split-block"></div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">学历要求</div>
+            <div class="describe font13">
+                <span class="selectTxt">请选择学历要求</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="education" id="education" value="{$jobs.education}">
+        </div>
+        <div class="imSelect">
+            <volist name="category['QS_education']" id="education">
+                <div class="imOption" data-key="{$key}" data-txt="{$education}">{$education}</div>
+            </volist>
+        </div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">经验要求</div>
+            <div class="describe font13">
+                <span class="selectTxt">请选择经验要求</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="experience" id="experience" value="{$jobs.experience}">
+        </div>
+        <div class="imSelect">
+            <volist name="category['QS_experience']" id="experience">
+                <div class="imOption" data-key="{$key}" data-txt="{$experience}">{$experience}</div>
+            </volist>
+        </div>
+    </div>
+    <div class="list_height plist-txt qs-relative">
+        <div class="abAct J_age"></div>
+        <div class="pic"></div>
+        <div class="tit font14">年龄要求</div>
+        <a href="#describe" class="describe font13">
+            <span class="J_age_txt">
+                <!-- <empty name="jobs">请填写年龄要求<else/>{$jobs['age'][0]} - {$jobs['age'][1]}</empty> -->
+               <if condition="$jobs['age'][0] gt 0 && $jobs['age'][1] gt 0" >{$jobs['age'][0]} - {$jobs['age'][1]}<else />请填写年龄要求</if> 
+            </span>
+        </a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">招聘人数</div>
+        <div class="describe"><input type="text" name="amount" id="amount" placeholder="请输入招聘人数" value="{$jobs.amount}" class="font13">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">所属部门</div>
+        <div class="describe"><input type="text" name="department" id="department" placeholder="请输入所属部门" value="{$jobs.department}" class="font13">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="split-block"></div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">联系方式</div>
+            <div class="describe font13">
+                <span class="selectTxt">默认使用企业资料的联系方式</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="basis_contact" id="basis_contact" value="1">
+        </div>
+        <div class="imSelect">
+            <div class="imOption contactType" data-key="1" data-txt="默认使用企业资料的联系方式">默认使用企业资料的联系方式</div>
+            <div class="imOption contactType" data-key="0" data-txt="使用其它联系方式">使用其它联系方式</div>
+        </div>
+    </div>
+    <if condition="C('apply.Allowance') && !$jobs['allowance_id'] && $could_allowance">
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">开启打赏</div>
+        <div class="describe font12">
+            <div class="d-txt">提高招聘效率</div>
+            <div class="d-switch js-alw-switch <if condition="!$jobs['id']">active</if>"></div>
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+        <input type="hidden" value="<if condition="!$jobs['id']">1<else />0</if>" id="jobMoney"/>
+    </div>
+    </if>
+    <div id="contact_box" style="display:none;">
+        <!--联系方式-->
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">联系人</div>
+            <div class="describe">
+                <input type="text" id="contact" placeholder="请输入联系人" class="font13" value="{$company_profile.contact}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">联系手机</div>
+            <div class="describe">
+                <input type="text" id="telephone" placeholder="请输入联系手机" class="font13" value="<if condition="$visitor['mobile']">{$visitor.mobile}<else/>{$company_profile.telephone}</if>">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt qs-relative">
+            <div class="abAct J_tel"></div>
+            <div class="pic"></div>
+            <div class="tit font14">企业固话</div>
+            <a href="#describe" class="describe font13">
+                {$company_profile.landline_tel|default="请输入企业固话"}
+            </a>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">联系邮箱</div>
+            <div class="describe">
+                <input type="text" id="email" placeholder="请输入联系邮箱" class="font13" value="{$company_profile.email}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">联系地址</div>
+            <div class="describe font13">
+                <input type="text" id="address" value="{$company_profile.address|default="请输入联系地址"}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="btn-spacing">
+        <input type="hidden" id="id" value="{$jobs.id}">
+        <input type="hidden" id="contents" value="{$jobs.contents}">
+        <input type="hidden" id="tel_first" value="{$telarray[0]}">
+        <input type="hidden" id="tel_next" value="{$telarray[1]}">
+        <input type="hidden" id="tel_last" value="{$telarray[2]}">
+        <input type="hidden" id="minwage" value="<if condition="$jobs['minwage']">{$jobs.minwage}</if>">
+        <input type="hidden" id="maxwage" value="<if condition="$jobs['maxwage']">{$jobs.maxwage}</if>">
+        <input type="hidden" id="minage" value="<if condition="$jobs['age']['0']">{$jobs['age']['0']}</if>">
+        <input type="hidden" id="maxage" value="<if condition="$jobs['age']['1']">{$jobs['age']['1']}</if>">
+        <input type="hidden" id="negotiable" value="{$jobs.negotiable}">
+        <input type="hidden" id="tag" value="{$tagStr.id}">
+        <div id="J_release" class="qs-btn qs-btn-blue font18" title="发布职位">发布职位</div>
+    </div>  
+    <div class="split-block"></div>
+    <include file="public:footer_min" />
+    <script src="../public/js/popWin.js"></script>
+    <script src="../public/js/qsCategory.js"></script>
+    <script src="../public/js/qsCityUser.js"></script>
+    <!--职位亮点模板-->
+    <script id="tagWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">职位亮点<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="edittag">
+            <div class="tit font12">最多可以选6项
+                <div class="J_more more for-event">换一批</div>
+            </div>
+            <div id="J_tagWrap">
+                <volist name="tag_arr" id="stag" key="k">
+                    <div class="J_tagPage <if condition="$k neq 1">qs-hidden</if>">
+                        <volist name="stag" id="tag">
+                            <div class="tag <if condition="in_array($key,$tag_val)">select</if>" tid="{$key}" title="{$tag}">{$tag}</div>
+                        </volist>
+                    </div>
+                </volist>
+            </div>
+            <div class="clear"></div>
+            <div class="tagbtns">
+                <div id="J_savetag" class="qs-btn qs-btn-blue font18">保存</div>
+            </div>
+        </div>
+    </script>
+    <!--薪资待遇模板-->
+    <script id="wageWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">薪资待遇<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">最低薪资(元/月)</div>
+            <div class="describe font12">
+                <input type="text" id="tpl_minwage" placeholder="最低薪资" value="" class="font13">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">最高薪资(元/月)</div>
+            <div class="describe font12">
+                <input type="text" id="tpl_maxwage" placeholder="最高薪资" value="" class="font13">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">面议</div>
+            <div class="describe font12">
+	              <div class="d-switch js-d-switch"></div>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <input type="hidden" id="negotiable" value="{$jobs.negotiable}">
+            <input type="hidden" id="notify_mobile" value="1">
+            <div id="wageBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+    </script>
+    <!--年龄模板-->
+    <script id="ageWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">年龄要求<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">最低年龄</div>
+            <div class="describe font12">
+                <input type="text" id="tpl_minage" placeholder="最低年龄" value="" class="font13">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">最高年龄</div>
+            <div class="describe font12">
+                <input type="text" id="tpl_maxage" placeholder="最高年龄" value="" class="font13">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <div id="ageBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+    </script>
+    <!--企业固话模板-->
+    <script id="telWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">固定电话<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">区号</div>
+            <div class="describe">
+                <input type="text" id="tpl_tel_first" placeholder="请输入区号" class="font13" value="{$telarray[0]}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">电话号</div>
+            <div class="describe">
+                <input type="text" id="tpl_tel_next" placeholder="请输入电话号码" class="font13" value="{$telarray[1]}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow last">
+            <div class="pic"></div>
+            <div class="tit font14">分机号</div>
+            <div class="describe">
+                <input type="text" id="tpl_tel_last" placeholder="请输入分机号" class="font13" value="{$telarray[2]}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <div id="telBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+    </script>
+    <!--职位描述模板-->
+    <script type="text/html" id="tpl-describe">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">职位描述<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="com-introduce">
+            <textarea placeholder="请输入职位描述" id="tpl_contents">{$jobs['contents']}</textarea>
+        </div>
+        <div class="com-introduce-tip">
+            <div class="text-num">最多可输入2000字</div>
+            <div class="J_empty text-clear">清空</div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <div id="contentsBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+        <div class="split-block"></div>
+    </script>
+    <script type="text/javascript">
+        // 定义验证正则
+        var regularTelFirst = /^[0-9]{3}[0-9]?$/;
+        var regularTelNext = /^[0-9]{6,11}$/;
+        var regularTelLast = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
+        var regularMobile = qscms.regularMobile;
+        var regularEmail = /^[_\.0-9a-zA-Z-]+[_0-9a-zA-Z-]@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,3}$/;
+        // 职位描述
+        var describeTemp = $('#tpl-describe').html();
+        $(".J_describe").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: describeTemp,
+                handle: function(a) {
+                    if ($('#contents').val().length) {
+                        $('#tpl_contents').val($('#contents').val());
+                    }
+                    $('.J_empty').on('click', function() {
+                        $('#tpl_contents').val('');
+                    });
+                    $('#contentsBtn').on('click', function() {
+                        if ($.trim($('#tpl_contents').val()) == "") {
+                            qsToast('请填写职位描述');
+                            return false;
+                        }
+                        $('#contents').val($('#tpl_contents').val());
+                        $('.describeText').html($('#tpl_contents').val());
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 职位亮点
+        var tagWrap = $('#tagWrap').html();
+        $(".J_tag").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: tagWrap,
+                handle: function(a) {
+                    var tpl_tagvalueArray = $('#tag').val();
+                    $.each(tpl_tagvalueArray.split(','), function(k, v) {
+                        $('.tag[tid="' + v + '"]').addClass('select');
+                    });
+                    $('#J_tagWrap .tag,#J_taglist .tag').die().live('click', function() {
+                        if ($(this).hasClass('select')) {
+                            $(this).removeClass('select');
+                        } else {
+                            if ($('.tag.select').length >= 6) {
+                                qsToast('职位亮点最多可以选6项！');
+                                return false;
+                            }
+                            $(this).addClass('select');
+                        }
+                    });
+                    var n = 0;
+                    $('.J_more').on('click', function() {
+                        n++;
+                        if (n > $('.J_tagPage').length - 1) {
+                            n = 0;
+                        }
+                        $('.J_tagPage').eq(n).removeClass('qs-hidden').siblings().addClass('qs-hidden');
+                    });
+                    $('#J_savetag').on('click', function() {
+                        var tagvalueArray = $('.tag.select').map(function() {
+                            return $(this).attr('tid');
+                        }).get().join(',');
+                        var tagcnvalueArray = $('.tag.select').map(function() {
+                            return $(this).attr('title');
+                        }).get().join(',');
+                        $('#tag').val(tagvalueArray);
+                        $('.J_tag_txt').html(tagcnvalueArray);
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 企业固话
+        var telWrap = $('#telWrap').html();
+        $(".J_tel").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: telWrap,
+                handle: function(a) {
+                    var telfirstValue = $.trim($('#tel_first').val());
+                    var telnextValue = $.trim($('#tel_next').val());
+                    var tellastValue = $.trim($('#tel_last').val());
+                    if ($('#tel_first').val().length) {
+                        $('#tpl_tel_first').val($('#tel_first').val());
+                    }
+                    if ($('#tel_next').val().length) {
+                        $('#tpl_tel_next').val($('#tel_next').val());
+                    }
+                    if ($('#tel_last').val().length) {
+                        $('#tpl_tel_last').val($('#tel_last').val());
+                    }
+                    $('#telBtn').on('click', function() {
+                        var tpl_tel_first = $('#tpl_tel_first').val();
+                        var tpl_tel_next = $('#tpl_tel_next').val();
+                        var tpl_tel_last = $('#tpl_tel_last').val();
+                        if (tpl_tel_first != "" && !regularTelFirst.test(tpl_tel_first)) {
+                            qsToast('请填写正确的区号');
+                            return false;
+                        }
+                        if (tpl_tel_next != "" && !regularTelNext.test(tpl_tel_next)) {
+                            qsToast('电话号码为6-11位数字');
+                            return false;
+                        }
+                        if (tpl_tel_last != "" && !regularTelLast.test(tpl_tel_last)) {
+                            qsToast('分机号码为数字');
+                            return false;
+                        }
+                        if (tpl_tel_last != "" && !regularTelLast.test(tpl_tel_last) || tpl_tel_last.length > 4) {
+                            qsToast('分机号码不能超出4位');
+                            return false;
+                        }
+                        $('#tel_first').val(tpl_tel_first);
+                        $('#tel_next').val(tpl_tel_next);
+                        $('#tel_last').val(tpl_tel_last);
+                        var return_tel = tpl_tel_first ? tpl_tel_first + '-' + tpl_tel_next : tpl_tel_next;
+                        return_tel = tpl_tel_last ? return_tel + '-' + tpl_tel_last : return_tel;
+                        $('.J_tel').html(return_tel);
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 薪资待遇
+        var wageWrap = $('#wageWrap').html();
+        $(".J_wage").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: wageWrap,
+                handle: function(a) {
+                    if ($('#minwage').val()) {
+                        $('#tpl_minwage').val($('#minwage').val());
+                    }
+                    if ($('#maxwage').val()) {
+                        $('#tpl_maxwage').val($('#maxwage').val());
+                    }
+                    if ($('#negotiable').val() == 1) {
+                        $('.js-d-switch').addClass('active');
+                    }
+                    // 开关
+                    $('.js-d-switch').on('click', function() {
+                        if ($(this).hasClass('active')) {
+                            $('#negotiable').val('0');
+                            $(this).removeClass('active');
+                        } else {
+                            $('#negotiable').val('1');
+                            $(this).addClass('active');
+                        }
+                    })
+                    $('#wageBtn').on('click', function() {
+                        var tpl_minwage = $('#tpl_minwage').val() == '' ? 0 : parseInt($('#tpl_minwage').val());
+                        var tpl_maxwage = $('#tpl_maxwage').val() == '' ? 0 : parseInt($('#tpl_maxwage').val());
+                        if (!$('.js-d-switch').hasClass('active')) {
+                            if (!tpl_minwage) {
+                                qsToast('请填写最低薪资');
+                                return false;
+                            }
+                            if (tpl_minwage != "" && !regularTelLast.test(tpl_minwage)) {
+                                qsToast('薪资应为数字');
+                                return false;
+                            }
+                            if (!tpl_maxwage) {
+                                qsToast('请填写最高薪资');
+                                return false;
+                            }
+                            if (tpl_maxwage != "" && !regularTelLast.test(tpl_maxwage)) {
+                                qsToast('薪资应为数字');
+                                return false;
+                            }
+                            if (tpl_minwage != "" && tpl_maxwage != "" && parseInt(tpl_minwage) > parseInt(tpl_maxwage)) {
+                                qsToast('最低薪资不能大于最高薪资');
+                                return false;
+                            }
+                            if (parseInt(tpl_maxwage) > (parseInt(tpl_minwage) * 2)) {
+                                qsToast('最高薪资不能超过最低薪资的2倍');
+                                return false;
+                            }
+                        }
+                        if (!$('.js-d-switch').hasClass('active')) {
+                            $('#minwage').val($('#tpl_minwage').val());
+                            $('#maxwage').val($('#tpl_maxwage').val());
+                            $('#negotiable').val(0);
+                            $('.J_wage_txt').html(tpl_minwage + '-' + tpl_maxwage);
+                        } else {
+                            $('#minwage').val(0);
+                            $('#maxwage').val(0);
+                            $('#negotiable').val(1);
+                            $('.J_wage_txt').html('面议');
+                        }
+                        a.close();
+                    });
+                }
+            })
+        });
+        //年龄
+        var ageWrap = $('#ageWrap').html();
+        $(".J_age").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: ageWrap,
+                handle: function(a) {
+                    if ($('#minage').val()) {
+                        $('#tpl_minage').val($('#minage').val());
+                    }
+                    if ($('#maxage').val()) {
+                        $('#tpl_maxage').val($('#maxage').val());
+                    }
+                    if ($('#negotiable').val() == 1) {
+                        $('.js-d-switch').addClass('active');
+                    }
+                    $('#ageBtn').on('click', function() {
+                        var tpl_minage = $('#tpl_minage').val() == '' ? 0 : parseInt($('#tpl_minage').val());
+                        var tpl_maxage = $('#tpl_maxage').val() == '' ? 0 : parseInt($('#tpl_maxage').val());
+                        if (!tpl_minage) {
+                            qsToast('请填写最低年龄');
+                            return false;
+                        }
+                        if (tpl_minage != "" && !regularTelLast.test(tpl_minage)) {
+                            qsToast('年龄应为数字');
+                            return false;
+                        }
+                        if (!tpl_maxage) {
+                            qsToast('请填写最高年龄');
+                            return false;
+                        }
+                        if (tpl_maxage != "" && !regularTelLast.test(tpl_maxage)) {
+                            qsToast('年龄应为数字');
+                            return false;
+                        }
+                        if (tpl_minage != "" && tpl_maxage != "" && parseInt(tpl_minage) > parseInt(tpl_maxage)) {
+                            qsToast('最低年龄不能大于最高年龄');
+                            return false;
+                        }
+                        $('#minage').val($('#tpl_minage').val());
+                        $('#maxage').val($('#tpl_maxage').val());
+                        $('#negotiable').val(0);
+                        $('.J_age_txt').html(tpl_minage + '-' + tpl_maxage);
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 打赏开关
+        $('.js-alw-switch').on('click', function() {
+            if ($(this).hasClass('active')) {
+                $('#jobMoney').val('0');
+                $(this).removeClass('active');
+            } else {
+                $('#jobMoney').val('1');
+                $(this).addClass('active');
+            }
+        });
+        // 发布职位验证
+        $('#J_release').click(function() {
+            // 有禁用class不执行，阻止多次点击
+            if ($('#J_release').hasClass('qs-btn-border-disabled')) {
+                return false;
+            }
+            var id = $.trim($('#id').val());
+            var jobsnameValue = $.trim($('#jobs_name').val());
+            var natureValue = $.trim($('#nature').val());
+            var jobcategoryValue = $.trim($('#jobcategory').val());
+            var district = $.trim($('#district').val());
+            var minwageValue = $.trim($('#minwage').val());
+            var maxwageValue = $.trim($('#maxwage').val());
+            var tagValue = $.trim($('#tag').val());
+            var contentsValue = $.trim($('#contents').val());
+            var contactValue = $.trim($('#contact').val());
+            var telephoneValue = $.trim($('#telephone').val());
+            var telfirstValue = $.trim($('#tel_first').val());
+            var telnextValue = $.trim($('#tel_next').val());
+            var tellastValue = $.trim($('#tel_last').val());
+            var landlinetelValue = telfirstValue + '-' + telnextValue + '-' + tellastValue;
+            var emailValue = $.trim($('#email').val());
+            var addressValue = $.trim($('#address').val());
+            var negotiableValue = $('#negotiable').val();
+            var notify_mobileValue = $('#notify_mobile').val();
+            var basis_contact = $('#basis_contact').val();
+            var isMoney = eval($.trim($("#jobMoney").val()));
+
+            var educationValue = $.trim($('#education').val());
+            var experienceValue = $.trim($('#experience').val());
+            var minageValue = $.trim($('#minage').val());
+            var maxageValue = $.trim($('#maxage').val());
+            var amountValue = $.trim($('#amount').val());
+            var departmentValue = $.trim($('#department').val());
+            if (jobsnameValue == "") {
+                qsToast('请填写职位名称');
+                $("#J_release").removeClass('qs-btn-border-disabled');
+                return false;
+            }
+            if (natureValue == "") {
+                qsToast('请选择职位性质');
+                $("#J_release").removeClass('qs-btn-border-disabled');
+                return false;
+            }
+            if (jobcategoryValue == "") {
+                qsToast('请选择职位类别');
+                $("#J_release").removeClass('qs-btn-border-disabled');
+                return false;
+            }
+            if (district == "") {
+                qsToast('请选择工作地区');
+                $("#J_release").removeClass('qs-btn-border-disabled');
+                return false;
+            }
+            if (!$('#negotiable').val()) {
+                if (!minwageValue || !maxwageValue) {
+                    qsToast('请填写薪资');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (minwageValue != "" && !regularTelLast.test(minwageValue)) {
+                    qsToast('薪资应为数字');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (maxwageValue != "" && !regularTelLast.test(maxwageValue)) {
+                    qsToast('薪资应为数字');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (minwageValue != "" && maxwageValue != "" && parseInt(minwageValue) > parseInt(maxwageValue)) {
+                    qsToast('最低薪资不能大于最高薪资');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (parseInt(maxwageValue) > (parseInt(minwageValue) * 2)) {
+                    qsToast('最高薪资不能超过最低薪资的2倍');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+            }
+            // 根据联系方式的类型选择性验证
+            if (basis_contact == 0) {
+                if (contactValue == "") {
+                    qsToast('请填写联系人');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (contactValue != "" && contactValue.length > 10) {
+                    qsToast('联系人1-10个字');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (telnextValue == "" && telephoneValue == "") {
+                    qsToast('请填写联系手机或座机');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                } else {
+                    if (telephoneValue != "" && !regularMobile.test(telephoneValue)) {
+                        qsToast('手机号格式不正确');
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                        return false;
+                    }
+                    if (telfirstValue != "" && !regularTelFirst.test(telfirstValue)) {
+                        qsToast('请填写正确的区号');
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                        return false;
+                    }
+                    if (telnextValue != "" && !regularTelNext.test(telnextValue)) {
+                        qsToast('电话号码为6-11位数字');
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                        return false;
+                    }
+                    if (tellastValue != "" && !regularTelLast.test(tellastValue)) {
+                        qsToast('分机号码为数字');
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                        return false;
+                    }
+                    if (tellastValue != "" && !regularTelLast.test(tellastValue) || tellastValue.length > 4) {
+                        qsToast('分机号码不能超出4位');
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                        return false;
+                    }
+                }
+                if (emailValue != "" && !regularEmail.test(emailValue) || emailValue.split("@")[0].length > 20) {
+                    qsToast('邮箱格式不正确');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (addressValue == "") {
+                    qsToast('联系地址不能为空');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+                if (addressValue != "" && addressValue.length > 30) {
+                    qsToast('联系地址不能大于30个字');
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                    return false;
+                }
+            }
+            var cuToast = qsToasting('正在保存中');
+            $(this).text('正在保存...');
+            $(this).addClass('qs-btn-border-disabled');
+            $.ajax({
+                url: "{:U('Company/jobs_add')}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: id,
+                    jobs_name: jobsnameValue,
+                    nature: natureValue,
+                    jobcategory: jobcategoryValue,
+                    district: district,
+                    minwage: parseInt(minwageValue),
+                    maxwage: parseInt(maxwageValue),
+                    negotiable: negotiableValue,
+                    tag: tagValue,
+                    contents: contentsValue,
+                    contact: contactValue,
+                    telephone: telephoneValue,
+                    landline_tel: landlinetelValue,
+                    email: emailValue,
+                    address: addressValue,
+                    notify_mobile: negotiableValue,
+                    department: departmentValue,
+                    amount: amountValue,
+                    minage: parseInt(minageValue),
+                    maxage: parseInt(maxageValue),
+                    sex: 3,
+                    experience: experienceValue,
+                    education: educationValue
+                },
+                success: function(result) {
+                    if (result.status == 1) {
+                        qsToast(result.msg, 1, cuToast);
+                        // 判断是否开启了职位打赏
+                        if (isMoney) {
+                            setTimeout(function() {
+                                location.href = qscms.root + "?m=Mobile&c=Company&a=set_allowance_job&jobsid=" + result.data.insertid;
+                            }, 2000);
+                        } else {
+                            setTimeout(function() {
+                                location.href = result.data.url;
+                            }, 2000);
+                        }
+                    } else {
+                        qsToast(result.msg, 0, cuToast);
+                        $("#J_release").text($('#J_release').attr('title'));
+                        $("#J_release").removeClass('qs-btn-border-disabled');
+                    }
+                },
+                error: function() {
+                    qsToast(result.msg, '', cuToast);
+                    $("#J_release").text($('#J_release').attr('title'));
+                    $("#J_release").removeClass('qs-btn-border-disabled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

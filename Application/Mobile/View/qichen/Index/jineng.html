@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" href="../public_qichen/css/index.css" />
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+		<script type="text/javascript" src="../public_qichen/js/job.js"></script>
+
+	</head>
+
+	<body>
+		<div class="job training">
+			<!--头部  -->
+			<header class="zy_search_top_box" style="">
+				<div class="zy_search_top fix">
+					<div class="one"><img src="../public_qichen/img/logo.png"></div>
+
+					<div class="box">
+						<span id="subm11"><img src="../public_qichen/img/icon_search.png"></span>
+						<input type="text" id="keywords" placeholder="请输入关键词搜索" value="{$keywords}">
+					</div>
+					<div class="r">
+
+						<a href="{:U('jineng')}">全部课程</a>
+					</div>
+				</div>
+			</header>
+			<!--筛选  -->
+			<div class="screening">
+				<ul>
+					<li class="Sort"><span>全部培训</span></li>
+					<li class="Brand"><span>智能排序</span></li>
+
+				</ul>
+			</div>
+		</div>
+		<!-- End screening -->
+
+		<!-- 培训类型-->
+		<div class="Sort-eject Sort-height">
+			<ul class="Sort-Sort" id="Sort-Sort">
+				<volist name="category" id="cate">
+					<li onclick="location.href='{:U('jineng',array('cate_id'=>$cate['id']))}'">{$cate['name']}</li>
+				</volist>
+				
+			</ul>
+		</div>
+		<!--排序-->
+		<div class="Category-eject">
+			<ul class="Category-w" id="Categorytw">
+				<li onclick="location.href='{:U('jineng',array('is_display'=>1))}'">可报名</li>
+				<li onclick="location.href='{:U('jineng',array('is_show'=>1))}'">推荐培训</li>
+
+			</ul>
+		</div>
+		<!-- End 专业 -->
+		<!--培训列表 -->
+		<div class="training-list">
+			<!--1-->
+			<volist name="list" id="vo">
+			<div class="tj-worklist">
+
+				<a href="{:U('jineng_show',array('id'=>$vo['id']))}">
+					<div class="work"><img src="{:attach($vo['small_img'],'images')}?_t={:time()}"></div>
+					<div class="work">
+						<p class="px-title">{$vo['name']}</p>
+						<p class="px-con">{$vo['type']}</p>
+						<p class="px-people">报名人数：<span class="px-gr">{$vo['count']}</span></p>
+					</div>
+					<div class="work work-yh"><if condition="empty($vo['money'])">
+								免费
+							<else/>
+								优惠
+							</if></div>
+				</a>
+
+			</div>
+			</volist>
+			<!--1-->
+			
+	
+		
+		</div>
+		<!--培训列表 -->
+
+		<!--回到顶部 -->
+		<div class="goTop" id="goTop">
+			<a href="javascript:;" title="返回顶部"></a>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 70px;"></div>
+		<include file="public_qichen:footer_shouye_2"/>
+	</body>
+
+</html>
+<script>
+	//返回顶部
+	$(window).scroll(function() {
+		if($(this).scrollTop() >= 150) {
+			$("#goTop").fadeIn();
+		} else {
+			$("#goTop").fadeOut();
+		}
+	});
+	$("#goTop").click(function() {
+		$("html,body").animate({
+			scrollTop: "0px"
+		}, 400);
+	});
+	$("#subm11").click(function(){
+		
+		var keywords = $("#keywords").val();
+		if(keywords == ''){
+			alert('请输入关键词搜索');
+			return false;
+		}
+		window.location.href="/index.php?m=Mobile&c=Index&a=jineng&keywords="+keywords;
+	});
+</script>

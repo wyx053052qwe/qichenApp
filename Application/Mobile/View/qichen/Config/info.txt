@@ -1,0 +1,4 @@
+name:启辰人资
+version:5.0
+author:qichenhr.xyz
+authorurl:http://www.qichenhr.xyz

@@ -1,0 +1,42 @@
+[ 2019-07-13T12:16:10+08:00 ] 223.96.240.176 /?m=Mobile
+INFO: Cron:ClearPromotion Runat 2019-07-13 12:16:10 Use 0.011028 s 
+Cron:AutoRefreshResume Runat 2019-07-13 12:16:10 Use -0.000070 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 12:16:10 Use -0.001220 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 12:16:10 Use -0.001653 s 
+
+[ 2019-07-13T13:24:45+08:00 ] 198.199.92.66 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 13:24:45 Use 0.010423 s 
+Cron:AutoRefreshResume Runat 2019-07-13 13:24:45 Use -0.000071 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 13:24:45 Use -0.001166 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 13:24:45 Use -0.001629 s 
+
+[ 2019-07-13T14:13:32+08:00 ] 47.92.124.187 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 14:13:32 Use 0.010366 s 
+Cron:AutoRefreshResume Runat 2019-07-13 14:13:32 Use -0.000094 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 14:13:32 Use -0.001243 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 14:13:32 Use -0.001683 s 
+
+[ 2019-07-13T15:24:27+08:00 ] 106.52.70.77 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 15:24:27 Use 0.009821 s 
+Cron:AutoRefreshResume Runat 2019-07-13 15:24:27 Use -0.000107 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 15:24:27 Use -0.001144 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 15:24:27 Use -0.001558 s 
+
+[ 2019-07-13T16:14:37+08:00 ] 119.23.139.140 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 16:14:37 Use 0.010149 s 
+Cron:AutoRefreshResume Runat 2019-07-13 16:14:37 Use -0.000065 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 16:14:37 Use -0.001178 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 16:14:37 Use -0.001618 s 
+
+[ 2019-07-13T20:03:36+08:00 ] 210.52.224.201 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 20:03:36 Use 0.009522 s 
+Cron:AutoRefreshResume Runat 2019-07-13 20:03:36 Use -0.000066 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 20:03:36 Use -0.001130 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 20:03:36 Use -0.001552 s 
+
+[ 2019-07-13T21:22:10+08:00 ] 120.55.13.109 /
+INFO: Cron:ClearPromotion Runat 2019-07-13 21:22:10 Use 0.010527 s 
+Cron:AutoRefreshResume Runat 2019-07-13 21:22:10 Use -0.000094 s 
+Cron:AutoRefreshJobs Runat 2019-07-13 21:22:10 Use -0.001149 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-13 21:22:10 Use -0.001710 s 
+

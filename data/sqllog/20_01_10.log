@@ -1,0 +1,30 @@
+[ 2020-01-10T15:52:34+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=member_list
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=member_list','127.0.0.1','本机地址','1578642752','1','admin888','0') [RunTime:1.8161s] [IP:127.0.0.1] [AddTime:1578642754] [qscms]
+[ 2020-01-10T15:59:25+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=gongzi&zaizhi_id=21
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=gongzi&zaizhi_id=21','127.0.0.1','本机地址','1578643163','1','admin888','0') [RunTime:1.7963s] [IP:127.0.0.1] [AddTime:1578643165] [qscms]
+[ 2020-01-10T16:01:22+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi_edit&id=18
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=zaizhi_edit&id=18','127.0.0.1','本机地址','1578643280','1','admin888','0') [RunTime:1.8022s] [IP:127.0.0.1] [AddTime:1578643282] [qscms]
+[ 2020-01-10T16:03:29+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=gongzi_add&id=21
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=gongzi_add&id=21','127.0.0.1','本机地址','1578643407','1','admin888','0') [RunTime:1.7576s] [IP:127.0.0.1] [AddTime:1578643409] [qscms]
+[ 2020-01-10T16:08:28+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=zaizhi','127.0.0.1','本机地址','1578643708','1','admin888','0') [RunTime:0.2479s] [IP:127.0.0.1] [AddTime:1578643708] [qscms]
+[ 2020-01-10T16:18:00+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=resume_imports
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=resume_imports','127.0.0.1','本机地址','1578644280','1','admin888','0') [RunTime:0.2659s] [IP:127.0.0.1] [AddTime:1578644280] [qscms]
+[ 2020-01-10T16:22:42+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=zaizhi','127.0.0.1','本机地址','1578644560','1','admin888','0') [RunTime:1.745s] [IP:127.0.0.1] [AddTime:1578644562] [qscms]
+[ 2020-01-10T16:40:33+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=resume_imports
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=resume_imports','127.0.0.1','本机地址','1578645633','1','admin888','0') [RunTime:0.2213s] [IP:127.0.0.1] [AddTime:1578645633] [qscms]
+[ 2020-01-10T16:41:16+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=affair
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=affair','127.0.0.1','本机地址','1578645676','1','admin888','0') [RunTime:0.2058s] [IP:127.0.0.1] [AddTime:1578645676] [qscms]
+[ 2020-01-10T16:44:25+08:00 ] 127.0.0.1 /index.php?m=Resumeimport&c=Admin&a=imports
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Resumeimport&c=Admin&a=imports','127.0.0.1','本机地址','1578645865','1','admin888','0') [RunTime:0.3371s] [IP:127.0.0.1] [AddTime:1578645865] [qscms]
+[ 2020-01-10T17:07:18+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=affair
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=affair','127.0.0.1','本机地址','1578647238','1','admin888','0') [RunTime:0.2378s] [IP:127.0.0.1] [AddTime:1578647238] [qscms]
+[ 2020-01-10T17:07:55+08:00 ] 127.0.0.1 /index.php?m=Resumeimport&c=Admin&a=imports
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Resumeimport&c=Admin&a=imports','127.0.0.1','本机地址','1578647275','1','admin888','0') [RunTime:0.24s] [IP:127.0.0.1] [AddTime:1578647275] [qscms]
+[ 2020-01-10T17:10:01+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=affair
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=affair','127.0.0.1','本机地址','1578647400','1','admin888','0') [RunTime:0.3524s] [IP:127.0.0.1] [AddTime:1578647401] [qscms]
+[ 2020-01-10T17:11:21+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Ajax&a=affair_stat
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Ajax&a=affair_stat','127.0.0.1','本机地址','1578647481','1','admin888','0') [RunTime:0.2464s] [IP:127.0.0.1] [AddTime:1578647481] [qscms]
+[ 2020-01-10T17:13:31+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+SQL: INSERT INTO `qs_admin_log` (`log_url`,`log_ip`,`log_address`,`log_addtime`,`operater_id`,`operater`,`log_id`) VALUES ('/index.php?m=Admin&c=Personal&a=zaizhi','127.0.0.1','本机地址','1578647611','1','admin888','0') [RunTime:0.366s] [IP:127.0.0.1] [AddTime:1578647611] [qscms]

@@ -1,0 +1,272 @@
+<include file="Admin@default/public/header" />
+
+<div class="toptit">发布招聘会</div>
+<form id="form1">
+    <div class="form_main width150">
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>标题:</div>
+        <div class="fr">
+            <input name="title" type="text" class="input_text_default middle" value=""/>
+            <label class="no-fl-note">(如：2017年5月1日(星期六)医药行业主题招聘会)</label>
+        </div>
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>举办日期:</div>
+        <div class="fr">
+            <input name="holddate" type="text" class="input_text_default small" id="holddate" maxlength="20" value="" style="width: 300px;" autocomplete="off">
+        </div>
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>联系人:</div>
+        <div class="fr">
+            <input name="contact" type="text" class="input_text_default" value=""/>
+        </div>
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>联系电话:</div>
+        <div class="fr">
+            <input name="phone" type="text" class="input_text_default middle" value=""/>
+            <label class="no-fl-note">(多个号码请用英文半角逗号“,”隔开)</label>
+        </div>
+        <div class="fl">缩略图:</div>
+        <div class="fr J-file-input-box">
+            <if condition="$info['thumb']">
+                <div class="file-input-src">
+                    <div class="img"><img src="{:attach($info['thumb'],'jobfair')}?_t={:time()}" align=absmiddle></div>
+                    <div class="del file-input-del" id="J_upload_thumb" name="thumb">点击更换</div>
+                </div>
+            <else/>
+                <div class="file-input-src hid">
+                    <div class="img"></div>
+                    <div class="del file-input-del" id="" name="pic">点击更换</div>
+                </div>
+                <div class="file-input-block" id="J_upload_thumb" name="thumb"><span class="o-txt">上传</span>图片</div>
+            </if>
+            <input type="hidden" class="file-input-save-name" name="thumb" value="{$info.thumb}">
+        </div>
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>举办地址:</div>
+        <div class="fr">
+            <input name="address" type="text" class="input_text_default" value=""/>
+        </div>
+        <div class="fl">乘车路线:</div>
+        <div class="fr">
+            <input name="bus" type="text" class="input_text_default" value=""/>
+        </div>
+        <div class="fl">地图标注:</div>
+        <div class="fr">
+            <input name="map_x" type="hidden" id="x" value="">
+            <input name="map_y" type="hidden" id="y" value="">
+            <input name="map_zoom" type="hidden" id="zoom" value="">
+            <div style="width:682px;height:250px;border:1px solid  #CCCCCC; cursor: pointer;" id="container"></div>
+        </div>
+        <div class="fl"><span style="color:#FF3300; font-weight:bold">*</span>招聘会简介:</div>
+        <div class="fr">
+            <textarea name="introduction" class="input_text_default" style=" width:682px;height:400px; line-height:180%"></textarea>
+        </div>
+        <div class="fl">简介配图:</div>
+        <div class="fr J-file-input-box">
+            <if condition="$info['intro_img']">
+                <div class="file-input-src">
+                    <div class="img"><img src="{:attach($info['intro_img'],'jobfair')}?_t={:time()}" align=absmiddle></div>
+                    <div class="del file-input-del" id="J_upload_intro_img" name="intro_img">点击更换</div>
+                </div>
+            <else/>
+                <div class="file-input-src hid">
+                    <div class="img"></div>
+                    <div class="del file-input-del" id="" name="pic">点击更换</div>
+                </div>
+                <div class="file-input-block" id="J_upload_intro_img" name="intro_img"><span class="o-txt">上传</span>图片</div>
+            </if>
+            <input type="hidden" class="file-input-save-name" name="intro_img" value="{$info.intro_img}">
+        </div>
+        <div class="clear"></div>
+        <div class="fl">选择展位模板:</div>
+        <div class="fr txt">
+            <select name="tpl_id" style="width: 200px;">
+                <volist name="tpl_arr" id="vo">
+                    <option value="{$vo['id']}">&nbsp;{$vo['title']}&nbsp;</option>
+                </volist>
+            </select>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <div class="admin_submit small gray" id="J_moreform">更多选项</div>
+        </div>
+        <div class="clear"></div>
+        <div class="moreform">
+            <div class="fl">显示状态:</div>
+            <div class="fr" style="width: 200px;">
+                <div class="imgradio">
+                    <input name="display" type="hidden" value="1">
+                    <div class="radio select" data="1" title="正常">正常</div>
+                    <div class="radio" data="2" title="暂停">暂停</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="fl">排序:</div>
+            <div class="fr" style="width: 220px;">
+                <input name="ordid" type="text" class="input_text_default small" style="width: 50px;" id="ordid" maxlength="3" value="0" onkeyup="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" placeholder="数字越大越靠前，默认是0"/>
+                <label class="no-fl-note">(数字越大越靠前)</label>
+            </div>
+            <div class="clear"></div>
+            <div class="fl">参会对象:</div>
+            <div class="fr">
+                <textarea name="participants_object" class="input_text_default" style="height:100px; line-height:180%"></textarea>
+            </div>
+            <div class="fl">摊位设置及费用:</div>
+            <div class="fr">
+                <textarea name="price" class="input_text_default" style="height:100px; line-height:180%"></textarea>
+            </div>
+            <div class="fl">参会报名办法:</div>
+            <div class="fr">
+                <textarea name="registration_method" class="input_text_default" style="height:100px; line-height:180%"></textarea>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+            <input type="button" class="admin_submit" value="返回" onClick="window.location='{:U('index')}'"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    var uploadUrl = "{:U('Admin/Upload/form_upload')}";
+</script>
+<script src="__ADMINPUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__ADMINPUBLIC__/js/fileupload.js"></script>
+<link rel="stylesheet" href="__ADMINPUBLIC__/js/kindeditor/themes/default/default.css"/>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak={:C('qscms_map_ak')}"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+<link rel="stylesheet" href="https://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        //日期
+        laydate.render({
+            elem: '#holddate' //指定元素
+            ,range: '~'
+        });
+        // 上传照片
+        $.upload('#J_upload_thumb',{name:'thumb',dir:'jobfair'},function(result){
+              if(result.error == 1){
+                var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                $('#J_upload_thumb').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                $('#J_upload_thumb').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                if ($('#J_upload_thumb').hasClass('file-input-block')) {
+                  $('#J_upload_thumb').closest('.J-file-input-box').find('.file-input-src').removeClass('hid');
+                  var $delObj = $('#J_upload_thumb').closest('.J-file-input-box').find('.file-input-del');
+                  $('#J_upload_thumb').remove();
+                  $delObj.attr('id', "J_upload_thumb_change_btn");
+                  $.upload('#J_upload_thumb_change_btn',{name:'thumb',dir:'jobfair'},function(result){
+                    if(result.error == 1){
+                      var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                      $('#J_upload_thumb_change_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                      $('#J_upload_thumb_change_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                    } else {
+                      disapperTooltip("remind", "上传失败："+result.message);
+                    }
+                  })
+                }
+              } else {
+                disapperTooltip("remind", "上传失败："+result.message);
+              }
+      });
+        $.upload('#J_upload_intro_img',{name:'intro_img',dir:'jobfair'},function(result){
+              if(result.error == 1){
+                var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                $('#J_upload_intro_img').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                $('#J_upload_intro_img').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                if ($('#J_upload_intro_img').hasClass('file-input-block')) {
+                  $('#J_upload_intro_img').closest('.J-file-input-box').find('.file-input-src').removeClass('hid');
+                  var $delObj = $('#J_upload_intro_img').closest('.J-file-input-box').find('.file-input-del');
+                  $('#J_upload_intro_img').remove();
+                  $delObj.attr('id', "J_upload_intro_img_change_btn");
+                  $.upload('#J_upload_intro_img_change_btn',{name:'intro_img',dir:'jobfair'},function(result){
+                    if(result.error == 1){
+                      var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                      $('#J_upload_intro_img_change_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                      $('#J_upload_intro_img_change_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                    } else {
+                      disapperTooltip("remind", "上传失败："+result.message);
+                    }
+                  })
+                }
+              } else {
+                disapperTooltip("remind", "上传失败："+result.message);
+              }
+      });
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="introduction"]', {
+                uploadJson : "?m={:C('admin_alias')}&c=upload&a=index",
+                afterBlur: function () { this.sync(); },
+                allowFileManager : true});
+        });
+        $('#J_submit').click(function(){
+            editor.sync();
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('jobfair_add')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("index")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+
+        var map = new BMap.Map("container");
+        var overlays = [];
+        //假如有设置的，显示参数
+        var point = new BMap.Point({:C('qscms_map_center_x')},{:C('qscms_map_center_y')});
+        map.centerAndZoom(point, {:C('qscms_map_zoom')});
+        map.setCenter(point);
+        map.addControl(new BMap.NavigationControl());//添加鱼骨
+        map.enableScrollWheelZoom();//启用滚轮放大缩小，默认禁用。
+        var styleOptions = {
+            strokeColor:"red",    //边线颜色。
+            fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
+            strokeWeight: 3,       //边线的宽度，以像素为单位。
+            strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+            fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+            strokeStyle: 'solid' //边线的样式，solid或dashed。
+        }
+        //实例化鼠标绘制工具
+        var drawingManager = new BMapLib.DrawingManager(map, {
+            isOpen: false, //是否开启绘制模式
+            enableDrawingTool: true, //是否显示工具栏
+            drawingToolOptions: {
+                anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                offset: new BMap.Size(5, 5), //偏离值
+                drawingModes : [
+                    BMAP_DRAWING_MARKER
+                ]
+            },
+            circleOptions: styleOptions, //圆的样式
+        });
+        var overlaycomplete = function(e){
+            clearAll();
+            overlays.push(e.overlay);
+            document.getElementById('x').value = e.overlay.point.lng;
+            document.getElementById('y').value = e.overlay.point.lat;
+            document.getElementById('zoom').value = map.getZoom();
+        };
+        drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+
+        function clearAll() {
+            for(var i = 0; i < overlays.length; i++){
+                map.removeOverlay(overlays[i]);
+            }
+            overlays.length = 0
+        }
+    });
+</script>
+</html>

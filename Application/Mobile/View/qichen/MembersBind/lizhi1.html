@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>申请离职</title>
+		<!-- css -->
+		<link rel="stylesheet" href="../public_qichen/css/select-ceng.css" />
+
+		<link rel="stylesheet" href="../public_qichen/css/style.css" />
+		<link rel="stylesheet" href="../public_qichen/css/ep.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+
+	
+		
+		<script type="text/javascript" src="../public_qichen/js/mui.min.js"></script>
+	</head>
+	<style>
+		body,
+		html {
+			height: auto;
+			background: #Fff;
+		}
+		
+		.mui-input-group textarea {
+			height: 150px;
+			border: 1px solid #F3F3F3;
+			margin: 13px;
+			width: 93%;
+			font-size: 15px;
+			color: #333;
+		}
+	</style>
+	<style type="text/css">
+        #images{min-height:7em;max-height:21em;text-align:left;overflow-y:auto}
+        #images img{
+            width: 7em;
+            height: 7em;
+            margin:0.5em;
+        }
+        .inputFiles{display:none;}
+    </style>
+
+	<body>
+		<!--头部 -->
+		<div class="salary-xqall">
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<h1>申请离职</h1>
+					<div class="r">
+						<a href="{:U('Personal/index')}"><img src="../public_qichen/img/menu_icon04.png"></a>
+					</div>
+				</div>
+			</header>
+		</div>
+
+		<div class="baodan_all">
+
+			<!--头部结束-->
+			<!--列表-->
+			<div class="baodan_list ">
+				<form action="" enctype="multipart/form-data" method="post">
+					<div class="baodan_list_first mui-input-group">
+						<div class="mui-input-row">
+							<label>姓名</label>
+							<input type="text" name="name" placeholder="请填写姓名">
+						</div>
+						
+						<div class="mui-input-row">
+							<label>手机号</label>
+							<input type="text" name="mobile" placeholder="请填写联系方式">
+						</div>
+						
+						<div class="mui-input-row">
+							<label>身份证号</label>
+							<input type="text" name="id_card" placeholder="请填写身份证证件号">
+						</div>
+					</div>
+
+					<div class="baodan_list_content mui-input-group work-years">
+						<div class="mui-input-row mui-work-years">
+							<label>离职说明</label>
+
+						</div>
+						<textarea name="descript" placeholder="请输入离职说明"></textarea>
+					</div>
+					<div id="images"></div>
+					<div class="inputFiles"></div>
+					<div class="btn_submit">
+						
+							
+						
+				        <button  type="button" class="btn btn-success btn_upImg" onClick="addinputFile()">选择图片</button>
+				        
+				    	
+				    </div> 
+
+					<!-- -->
+					
+					<div class="upload_photo">
+						<button class="zy_login_btn" type="submit" style="margin: 0 auto;"><a style="color: #fff;">申请离职</a></button></div>
+				</form>
+			</div>
+
+		</div>
+		<!--选择弹层-->
+		<section id="selectCeng" class="express-area-box">
+			<header>
+				<h3 id="selectTitle"></h3>
+				<a id="closeSelect" class="close" href="javascript:void(0)"></a>
+			</header>
+			<article id="selectBox">
+				<ul id="selectList" class="area-list"></ul>
+			</article>
+		</section>
+		<!--遮罩层-->
+		<div id="areaMask" class="mask"></div>
+		<!--公共底部-->
+		<div style="height: 50px;"></div>
+		<include file="public_qichen:footer_fuwu_2"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public/g/up/js/tpUpload.js"></script>
+<script type="text/javascript" src="../public_qichen/js/jquery.area.js"></script>
+
+<script type="text/javascript">
+	var selectAll = new Object;
+	$(function() {
+		var forSelect = $('.for-select');
+		for(var i = 0; i < forSelect.length; i++) {
+			var selOptions = $('.select-for-' + forSelect[i].name)[0].options;
+			var objName = forSelect[i].name;
+			eval('selectAll.' + objName + ' = new Array');
+			for(var o = 0; o < selOptions.length; o++) {
+				eval('selectAll.' + objName + '[o] = {"value":selOptions[o].value,"text":selOptions[o].innerText}');
+			}
+		}
+
+		forSelect.click(function() {
+			$("#areaMask").fadeIn();
+			$("#selectTitle").text($(this).attr('title'));
+			var listObj = eval('selectAll.' + $(this).attr('name'));
+			for(var i in listObj) {
+				$("#selectList").append("<li onClick='selectIntoBox(\"" + $(this).attr('name') + "\",\"" + listObj[i].text + "\")'>" + listObj[i].text + "</li>");
+			}
+
+			$("#selectCeng").animate({
+				"bottom": 0
+			});
+		});
+
+		$("#areaMask,#closeSelect").click(function() {
+			clockSelect();
+		});
+
+	});
+
+	function clockSelect() {
+		$("#areaMask").fadeOut();
+		$("#selectCeng").animate({
+			"bottom": "-100%"
+		});
+		$("#selectList").empty();
+		intProvince();
+	}
+
+	function selectIntoBox(name, value) {
+		$('.for-select[name="' + name + '"]').val(value);
+		clockSelect();
+	}
+</script>

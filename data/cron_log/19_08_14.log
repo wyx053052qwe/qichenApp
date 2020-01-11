@@ -1,0 +1,13 @@
+[ 2019-08-14T16:34:30+08:00 ] ::1 /index.php?m=Mobile&c=Index&a=index
+INFO: Cron:ClearPromotion Runat 2019-08-14 16:34:30 Use 0.134179 s 
+Cron:AutoRefreshResume Runat 2019-08-14 16:34:30 Use -0.000079 s 
+Cron:AutoRefreshJobs Runat 2019-08-14 16:34:30 Use -0.032239 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-14 16:34:30 Use -0.033599 s 
+Cron:ClearOrder Runat 2019-08-14 16:34:30 Use -0.055922 s 
+
+[ 2019-08-14T18:08:23+08:00 ] ::1 /index.php?m=Mobile&c=Index&a=sign
+INFO: Cron:ClearPromotion Runat 2019-08-14 18:08:23 Use 0.101550 s 
+Cron:AutoRefreshResume Runat 2019-08-14 18:08:23 Use -0.000091 s 
+Cron:AutoRefreshJobs Runat 2019-08-14 18:08:23 Use -0.017282 s 
+Cron:ClearExpiredSetmeal Runat 2019-08-14 18:08:23 Use -0.020935 s 
+

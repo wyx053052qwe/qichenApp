@@ -1,0 +1,167 @@
+<!-- public:header 以下内容 -->
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>网站后台管理中心- Powered by 74cms.com</title>
+    <link rel="shortcut icon" href="{:C('qscms_site_dir')}favicon.ico"/>
+    <meta name="author" content="骑士CMS" />
+    <meta name="copyright" content="74cms.com" />
+    <link href="__ADMINPUBLIC__/css/common.css" rel="stylesheet" type="text/css">
+    <script src="__ADMINPUBLIC__/js/jquery.min.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.highlight-3.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.vtip-min.js"></script>
+    <script src="__ADMINPUBLIC__/js/jquery.modal.dialog.js"></script>
+    <script type="text/javascript" src="__ADMINPUBLIC__/js/laydate/laydate.js"></script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="__ADMINPUBLIC__/js/PIE.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.pie = function (name, v) {
+                // 如果没有加载 PIE 则直接终止
+                if (!PIE) return false;
+                // 是否 jQuery 对象或者选择器名称
+                var obj = typeof name == 'object' ? name : $(name);
+                // 指定运行插件的 IE 浏览器版本
+                var version = 9;
+                // 未指定则默认使用 ie10 以下全兼容模式
+                if (typeof v != 'number' && v < 9) {
+                    version = v;
+                }
+                // 可对指定的多个 jQuery 对象进行样式兼容
+                if ($.browser.msie && obj.size() > 0) {
+                    if ($.browser.version * 1 <= version * 1) {
+                        obj.each(function () {
+                            PIE.attach(this);
+                        });
+                    }
+                }
+            }
+        })(jQuery);
+        if ($.browser.msie) {
+            $.pie('.pie_about');
+        };
+    </script>
+    <![endif]-->
+    <script src="__ADMINPUBLIC__/js/jquery.disappear.tooltip.js"></script>
+    <script src="__ADMINPUBLIC__/js/common.js"></script>
+    <script>
+        var URL = '__URL__',
+            SELF = '__SELF__',
+            ROOT_PATH = '__MODULE__',
+            APP  =   '__APP__';
+
+        var qscms = {
+            district_level : "{:C('qscms_category_district_level')}",
+            default_district : "{:C('qscms_default_district')}"
+        };
+    </script>
+    {$synsitegroupunbindmobile}
+    {$synsitegroupregister}
+    {$synsitegroupedit}
+    {$synsitegroup}
+</head>
+<body>
+
+<!-- public:header 以上内容 -->
+<empty name="menu_title">
+    <div class="allpagetop">后台管理中心<strong>/</strong>首页</div>
+    <else/>
+    <div class="allpagetop">{$menu_title}<strong>/</strong>{$sub_menu_title}</div>
+</empty>
+<div class="mains">
+    <div class="h1tit">
+        <div class="h1">
+            分类管理
+        </div>
+        <div class="topnav">
+            <a href="{:U('Personal/jineng')}" class="">技能列表</a>
+        </div>
+        <div class="topnav">
+            <a href="{:U('Personal/jineng_cate')}" class="select">分类管理</a>
+        </div>
+        
+        <div class="clear"></div>
+    </div>
+
+<div class="seltpye_x">
+    <div class="left">添加时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<form id="form1" name="form1" method="post" action="{:U('delete_jineng')}">
+    <div class="list_th">
+        <div class="td" style=" width:70%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>标题
+            </label>
+        </div>
+        
+        <div class="td center" style=" width:20%;">添加日期</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:70%;">
+                <div class="left_padding striking link_blue">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <a>{$vo.name}</a>
+                    
+                </div>
+            </div>
+          
+            <div class="td center" style=" width:20%;">{:admin_date($vo['add_time'])}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('edit_jineng_cate',array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('delete_jineng_cate',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="添加分类" onclick="window.location='{:U('add_jineng_cate')}'"/>
+        
+    </div>
+
+    
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择公告！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

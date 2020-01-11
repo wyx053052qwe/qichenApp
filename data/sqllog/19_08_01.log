@@ -1,0 +1,2 @@
+[ 2019-08-01T22:51:53+08:00 ] ::1 /index.php?m=Admin&c=Index&a=left_menu&menuid=1
+SQL: SHOW COLUMNS FROM `qs_menu` [RunTime:0.2078s] [IP:0.0.0.0] [AddTime:1564671113] [qscms]

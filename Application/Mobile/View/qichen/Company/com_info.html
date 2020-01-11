@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../public_qichen/css/style1.css">
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/company.css">
+		<link rel="stylesheet" href="../public/css/nprogress.css">
+        <qscms:load type="category" search="1"/>
+        
+</head>
+   
+<body>
+    <include file="public:header"/>
+    <div class="com-logo">
+        <div class="logo qs-relative">
+            <img id="logo" src="<if condition="$company_profile['logo']">{:attach($company_profile['logo'],'company_logo')}<else/>{:attach('logo_mobile.jpg','resource')}</if>?{:time()}" border="0" />
+	        <input type="file" id="browseFile" class="browseFile">
+        </div>
+        <div class="desc">
+            公司logo是企业文化的彰显，可提升企业价值，提高招聘效率！
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="split-block"></div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">企业名称</div>
+        <div class="describe">
+            <input type="text" name="companyname" <notempty name='company_profile.companyname'>readonly="readonly"</notempty>  class="font13" value="{$company_profile.companyname}">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt qs-relative notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">企业简称</div>
+        <div class="describe">
+            <input type="text" name="short_name" <if condition="$company_profile['short_name']">readonly="readonly"</if>
+                class="font13" value="{$company_profile.short_name}" placeholder="请填写大家最熟悉的名字">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">企业性质</div>
+            <div class="describe font13">
+                <span class="selectTxt">请选择企业性质</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="nature" id="nature" value="{$company_profile.nature}">
+        </div>
+        <div class="imSelect">
+            <volist name="category['QS_company_type']" id="nature">
+                <div class="imOption" data-key="{$key}" data-txt="{$nature}">{$nature}</div>
+            </volist>
+        </div>
+    </div>
+    <div class="list_height plist-txt qs-relative js-actionParent">
+        <div class="abAct js-showActionSheet"></div>
+	    <div class="pic"></div>
+	    <div class="tit font14">所在地区</div>
+	    <div class="describe font13 qs-temp-new-city" data-multiple="false">
+		    <span class="qs-temp-txt-city" data-otxt="请选择">{$company_profile.district_cn|default="请选择所在地区"}</span>
+		    <input class="qs-temp-code-city" id="district" type="hidden" value="<if condition="$company_profile['district']">{$company_profile.district}</if>" keep="<if condition="$company_profile['district']">{$company_profile.district}</if>">
+	    </div>
+	    <div class="arrow"></div>
+	    <div class="clear"></div>
+	    <!--BEGIN actionSheet-->
+	    <div>
+		    <div class="qs-mask" style="display: none"></div>
+		    <div class="qs-actionsheet js-actionsheet">
+			    <div class="qs-actionsheet-menu">
+				    <div class="con-filter">
+					    <div class="f-selected-group f-selected-group-city">
+						    <div class="s-bar">
+							    <div class="qs-btn qs-btn-inline qs-btn-small qs-btn-border-gray qs-left js-cancelActionSheet">取消</div>
+							    <div class="clear"></div>
+						    </div>
+						    <div class="s-list qs-hidden"></div>
+					    </div>
+					    <div class="f-box f-box-city"></div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+    <div class="list_height plist-txt qs-relative js-actionParent">
+        <div class="abAct js-showActionSheet"></div>
+        <div class="pic"></div>
+        <div class="tit font14">所属行业</div>
+        <div class="describe font13 qs-temp-level1" data-type="trade" data-base="QS_trade" data-multiple="false" data-num="0" data-link="false">
+            <span class="qs-temp-txt-trade" data-otxt="请选择">{$company_profile.trade_cn|default="请选择所属行业"}</span>
+            <input class="qs-temp-code-trade" type="hidden" name="trade" value="{$company_profile.trade}">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+		    <!--BEGIN actionSheet-->
+		    <div>
+			    <div class="qs-mask" style="display: none"></div>
+			    <div class="qs-actionsheet js-actionsheet">
+				    <div class="qs-actionsheet-menu">
+					    <div class="con-filter">
+						    <div class="f-selected-group f-selected-group-trade">
+							    <div class="s-bar">
+								    <div class="qs-btn qs-btn-inline qs-btn-small qs-btn-border-gray qs-left js-cancelActionSheet">取消</div>
+								    <div class="clear"></div>
+							    </div>
+							    <div class="s-list qs-hidden"></div>
+						    </div>
+						    <div class="f-box f-box-trade"></div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">企业规模</div>
+            <div class="describe font13">
+                <span class="selectTxt">请选择企业规模</span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="scale" id="scale" value="{$company_profile.scale}">
+        </div>
+        <div class="imSelect">
+            <volist name="category['QS_scale']" id="scale">
+                <div class="imOption" data-key="{$key}" data-txt="{$scale}">{$scale}</div>
+            </volist>
+        </div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">企业简介</div>
+        <div class="describe">
+            <input type="text" name="short_desc" class="font13" value="{$company_profile.short_desc}" placeholder="请用一句话描述企业的主营业务">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height qs-relative plist-txt">
+        <div class="abAct J_describe"></div>
+        <div class="pic"></div>
+        <div class="tit font14">企业介绍</div>
+        <a href="#describe" class="describe font13 describeText">{$company_profile.contents|default="请输入企业介绍"}</a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt qs-relative last">
+        <div class="abAct J_tag"></div>
+        <div class="pic"></div>
+        <div class="tit font14">企业福利</div>
+        <a href="#tagStr" class="describe font13 J_tag_txt">{$tagStr.cn|default='请选择企业福利'}</a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="split-block"></div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">联系人</div>
+        <div class="describe">
+            <input type="text" name="contact" placeholder="请输入联系人" class="font13" value="{$company_profile.contact}">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">联系手机</div>
+        <div class="describe">
+            <input type="text" name="telephone" placeholder="请输入联系手机" class="font13" value="<if condition="$visitor['mobile']">{$visitor.mobile}<else/>{$company_profile.telephone}</if>">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height qs-relative plist-txt">
+        <div class="abAct J_tel"></div>
+        <div class="pic"></div>
+        <div class="tit font14">企业固话</div>
+        <a href="#J_tel" class="describe font13 J_tel_txt">
+            {$company_profile.landline_tel|default="请输入企业固话"}
+        </a>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">联系邮箱</div>
+        <div class="describe">
+            <input type="text" name="email" placeholder="请输入联系邮箱" class="font13" value="{$company_profile.email}">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="list_height plist-txt notarrow">
+        <div class="pic"></div>
+        <div class="tit font14">联系地址</div>
+        <div class="describe">
+            <input type="text" name="address" placeholder="请输入详细地址" class="font13" value="{$company_profile.address}">
+        </div>
+        <div class="arrow"></div>
+        <div class="clear"></div>
+    </div>
+    <div class="btn-spacing">
+        <input type="hidden" id="contents" name="contents" value="{$company_profile.contents}">
+        <input type="hidden" id="tpl_tel_first" name="landline_tel_first" value="{$company_profile.landline_tel_first}">
+        <input type="hidden" id="tpl_tel_next" name="landline_tel_next" value="{$company_profile.landline_tel_next}">
+        <input type="hidden" id="tpl_tel_last" name="landline_tel_last" value="{$company_profile.landline_tel_last}">
+        <input name="district" id="tpl_districtcategory" type="hidden" value="<if condition="$company_profile['district']">{$company_profile.district}</if>">
+        <input id="tpl_districtcategory_cn" type="hidden" value="{$company_profile.district_cn}">
+        <input type="hidden" id="tpl_address" name="address" value="{$company_profile.address}">
+        <input type="hidden" name="map_x" id="tpl_map_x" value="{:C('qscms_map_center_x')}">
+        <input type="hidden" name="map_y" id="tpl_map_y" value="{:C('qscms_map_center_y')}">
+        <input type="hidden" name="map_zoom" id="tpl_map_zoom" value="{:C('qscms_map_zoom')}">
+        <input type="hidden" id="tag" name="tag" value="{$tagStr.id}">
+        <div id="save_info" class="qs-btn qs-btn-blue font18">保 存</div>
+    </div>
+    <div class="split-block"></div>
+    <div style="height:60px"></div>
+    <include file="public_qichen:footer_geren_1" />
+<script src="../public/js/fastclick.js"></script>
+<script>
+    window.addEventListener( "load", function() {
+        FastClick.attach(document.body);
+    }, false );
+</script>
+<script src="../public/js/QSpopout.js"></script>
+<script src="../public/js/QSfilter.js"></script>
+<script src="../public/js/zepto.hwSlider.js"></script>
+<script src="../public/js/scrollTo.js"></script>
+<script src="../public/js/RongIMLib-2.2.8.min.js"></script>
+<script src="../public/js/qs.action.js"></script>
+<script src="../public/js/qs.select.js"></script>
+<script src="../public/js/dialog.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<if condition="$rong_state eq 1">
+<script src="../public/js/rong_main.js"></script>
+</if>
+<script>
+    if (!$('.foot_pub_box_list li').length) {
+        $('#JFootPub').remove();
+        $('.fix-footNav').addClass('n4');
+    }
+    // 锁定屏幕
+    function lockTouchMove(){
+        //document.body.addEventListener('touchmove', handler, { passive: false })
+        $("body").bind("touchmove",function(event){event.preventDefault()});
+    }
+
+    // 解锁屏幕
+    function unLockTouchMove(){
+        //document.body.removeEventListener('touchmove', handler, { passive: false })
+        $("body").unbind("touchmove");
+    }
+    // 服务
+    function closeFootPub() {
+        $('.JFootPubNav').removeClass('slideInUp animated').addClass('slideOutDown animated'); unLockTouchMove();
+    }
+    $('#JFootPub').off().on('click', function() {
+        lockTouchMove();
+        $('.JFootPubNav').removeClass('slideOutDown animated').addClass('slideInUp animated');
+        // 关闭
+        $('#JFootPubClose').off().on('click', function() { closeFootPub(); });
+    });
+    $('a[href]').click(function() {
+        var f = $(this).attr('href');
+        var reg = /\#(\w+)/;
+        if (reg.test(f)) {
+            if (!$(this).data('nm')) {
+                return !1;
+            }
+        }
+    });
+    $(".js-back").on('click',function(){
+        /*if (history.length == 1){
+            window.location.href = '{:U("index/index")}';
+        } else {
+            history.back();
+        }*/
+        history.back();
+    });
+    /**
+     * 监听鼠标
+     */
+    if ('ontouchstart' in window) {
+        $.EVENT_START = 'touchstart';
+        $.EVENT_END = 'touchend';
+    } else {
+        $.EVENT_START = 'mousedown';
+        $.EVENT_END = 'mouseup';
+    }
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_START, function() {
+        $(this).addClass('eventactive');
+        /*if($(this).find('input[type="text"]').length) {
+            $(this).find('input[type="text"]').focus();
+        }*/
+    });
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_END, function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.plist-txt, .qs-btn, .for-event').on('touchcancel', function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.logout').on('click', function() {
+        forCloseNav();
+        $(document).dialog({
+            type: 'confirm',
+            content: '确定退出吗？',
+            onClickConfirmBtn: function() {
+                window.location.href = "{:U('Members/logout')}";
+            }
+        });
+    });
+    /**
+     * 返回顶部
+     */
+    var global = {
+        h: $(window).height(),
+        st: $(window).scrollTop(),
+        backTop: function() {
+            global.st > (global.h * 0.5) ? $("#backtop").show() : $("#backtop").hide();
+        }
+    };
+    /**
+     * Notice 提醒公用方法
+     * @param infoText 提示文字
+     */
+    function qsNotice(infoText) {
+        $(document).dialog({
+            type : 'notice',
+            infoText: infoText,
+            autoClose: 1500,
+            position: 'center',
+            dialogClass: 'dialog_toast'
+        });
+    }
+    // 定义Toast图片路径
+    var loadingImg = '../public/images/dialog/loading.gif',
+        successImg = '../public/images/dialog/success.png',
+        failImg = '../public/images/dialog/fail.png',
+        warningImg = '../public/images/dialog/warning.png';
+    /**
+     * 正在加载中
+     * @param infoText 内容
+     */
+    function qsToasting() {
+        var infoContent = arguments[0] ? arguments[0] : '';
+        var closeTime = arguments[1] === 0 ? arguments[1] : 1500;
+        var $cuToasting = $(document).dialog({
+            type : 'toast',
+            infoIcon: loadingImg,
+            infoText: infoContent,
+            autoClose: closeTime
+        });
+        return $cuToasting;
+    }
+    /**
+     * Toast 类型通知 用于需要反馈结果
+     * @param msg 反馈内容
+     * @param type 反馈类型 可以不传参数有默认值 0->失败 1->成功
+     * @param obj 正在加载对象 用于更新Toast
+     */
+    function qsToast(msg, type, obj) {
+        type = arguments[1] ? arguments[1] : 2;
+        var icons = [failImg, successImg, warningImg];
+        var setting = {
+            type : 'toast',
+            infoText: msg,
+            infoIcon: icons[type],
+            autoClose: 1500,
+            dialogClass: 'dialog_toast'
+        };
+        if (obj){
+            obj.update(setting);
+        } else {
+            return $(document).dialog(setting);
+        }
+    }
+    // 锁定屏幕
+    function lock_touchmove(){
+        $("body").bind("touchmove",function(event){event.preventDefault();});
+    }
+    // 解锁屏幕
+    function un_lock_touchmove(){
+        $("body").unbind("touchmove");
+    }
+    // 弹出框登录
+    function logDialog() {
+        // 是否需要刷新页面
+        var isRefresh = arguments[0] === 0 ? arguments[0] : 1;
+        // 页面跳转链接
+        var urlValue = arguments[1] ? arguments[1] : '';
+        if(qscms.is_login > 0 && urlValue){
+            window.location.href = urlValue;
+            return !1;
+        }
+        var utype = arguments[2] ? arguments[2] : 0;
+        // 正在加载
+        var $logLoad = qsToasting('', 0);
+        var loginUrl = "{:U('AjaxCommon/ajax_login')}";
+        $.getJSON(loginUrl, {refresh: isRefresh, url: urlValue, utype:utype}, function(result){
+            $logLoad.close();
+            if(result.status==1){
+                var $logPop = new QSpopout('亲，验证一下手机吧');
+                $logPop.setContent(result.data);
+                $('.qs-popout-ft').remove();
+                $('.qs-popout-bd').addClass('no-pd');
+                $logPop.show();
+                // 关闭
+                $('.closePopout').on('click', function() {
+                    $('#popout').fadeOut(200);
+                    $('#popout').remove();
+                });
+            } else {
+                qsToast(result.msg, '', '');
+            }
+        });
+    }
+    // 如果文档高度不大于窗口高度，数据较少，删除页面中的无数据提醒
+    function removeDropLoadDown() {
+        var doc = document;
+        var $doc = $(doc);
+        var $dropDownEle = $('.dropload-down');
+        var scrollContentHeight = $doc.height();
+        var scrollWindowHeight = doc.documentElement.clientHeight;
+        var threshold = Math.floor($dropDownEle.height()*1/3);
+        if((scrollContentHeight - threshold) <= scrollWindowHeight){
+            $dropDownEle.remove();
+        }
+    }
+    //判断是不是iPhoneX，适配iPhoneX底部遮挡问题
+    if (funJudgeX()) {
+        $('.fix-footNav').addClass('iPhoneX');
+        $('body').addClass('iPhoneX');
+    }
+</script>
+<div class="qs-hidden">{:htmlspecialchars_decode(C('qscms_statistics'))}</div>
+    <script src="../public/js/qsCategory.js"></script>
+    <script src="../public/js/qsCityUser.js"></script>
+    <!--企业介绍-->
+    <script type="text/html" id="tpl-describe">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">公司简介<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <!--简介-->
+        <div class="com-introduce">
+            <textarea placeholder="请输入公司简介" name="contents" id="tpl_contents">{$company_profile.contents}</textarea>
+        </div>
+        <div class="com-introduce-tip">
+            <div class="text-num">最多可输入2000字</div>
+            <div class="J_empty text-clear">清空</div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <div id="contentsBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+    </script>
+    <!--企业福利-->
+    <script id="tagWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">企业福利<div class="return js-back"></div></div></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="edittag">
+            <div class="tit font12">最多可以选6项
+                <div class="J_more more for-event">换一批</div>
+            </div>
+            <div id="J_tagWrap">
+                <volist name="tag_arr" id="stag" key="k">
+                    <div class="J_tagPage <if condition="$k neq 1">qs-hidden</if>">
+                        <volist name="stag" id="tag">
+                            <div class="tag <if condition="in_array($key,$tagArr['id'])">select</if>" tid="{$key}" title="{$tag}">{$tag}</div>
+                        </volist>
+                    </div>
+                </volist>
+            </div>
+            <div class="clear"></div>
+            <div class="tagbtns">
+                <div id="J_savetag" class="qs-btn qs-btn-blue font18">保存</div>
+            </div>
+        </div>
+    </script>
+    <!--企业固话-->
+    <script id="telWrap" type="text/html">
+        <div class="headernavfixed">
+            <div class="headernav font18"><div class="title">企业固话<div class="return js-back"></div></div></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">区号</div>
+            <div class="describe">
+                <input type="text" id="tel_first" placeholder="请输入区号" class="font13" value="{$company_profile.landline_tel_first}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow">
+            <div class="pic"></div>
+            <div class="tit font14">电话号</div>
+            <div class="describe">
+                <input type="text" id="tel_next" placeholder="请输入电话号码" class="font13" value="{$company_profile.landline_tel_next}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="list_height plist-txt notarrow last">
+            <div class="pic"></div>
+            <div class="tit font14">分机号</div>
+            <div class="describe">
+                <input type="text" id="tel_last" placeholder="请输入分机号" class="font13" value="{$company_profile.landline_tel_last}">
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+        </div>
+        <div class="split-block"></div>
+        <div class="btn-spacing">
+            <div id="telBtn" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+    </script>
+
+    <script src="../public/js/popWin.js"></script>
+    <script src="../public/js/mobileBUGFix.mini.js"></script>
+    <script src="../public/js/LocalResizeIMG.js"></script>
+    <script src="../public/js/nprogress.js"></script>
+    <script type="text/javascript">
+        // 企业简介
+        var describeTemp = $('#tpl-describe').html();
+        $(".J_describe").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: describeTemp,
+                handle: function(a) {
+                    if ($('#contents').val().length) {
+                        $('#tpl_contents').val($('#contents').val());
+                    }
+                    $('.J_empty').on('click', function() {
+                        $('#tpl_contents').val('');
+                    });
+                    $('#contentsBtn').on('click', function() {
+                        if ($.trim($('#tpl_contents').val()) == "") {
+                            qsToast('请填写企业简介');
+                            return false;
+                        }
+                        $('#contents').val($('#tpl_contents').val());
+                        $('.describeText').html($('#tpl_contents').val());
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 企业福利
+        var tagWrap = $('#tagWrap').html();
+        $(".J_tag").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: tagWrap,
+                handle: function(a) {
+                    var tpl_tagvalueArray = $('#tag').val();
+                    $.each(tpl_tagvalueArray.split(','), function(k, v) {
+                        $('.tag[tid="' + v + '"]').addClass('select');
+                    });
+                    $('#J_tagWrap .tag,#J_taglist .tag').die().live('click', function() {
+                        if ($(this).hasClass('select')) {
+                            $(this).removeClass('select');
+                        } else {
+                            if ($('.tag.select').length >= 6) {
+                                qsToast('企业福利最多可以选6项！');
+                                return false;
+                            }
+                            $(this).addClass('select');
+                        }
+                    });
+                    var n = 0;
+                    $('.J_more').on('click', function() {
+                        n++;
+                        if (n > $('.J_tagPage').length - 1) {
+                            n = 0;
+                        }
+                        $('.J_tagPage').eq(n).removeClass('qs-hidden').siblings().addClass('qs-hidden');
+                    });
+                    $('#J_savetag').on('click', function() {
+                        var tagvalueArray = $('.tag.select').map(function() {
+                            return $(this).attr('tid');
+                        }).get().join(',');
+                        var tagcnvalueArray = $('.tag.select').map(function() {
+                            return $(this).attr('title');
+                        }).get().join(',');
+                        $('#tag').val(tagvalueArray);
+                        $('.J_tag_txt').html(tagcnvalueArray);
+                        a.close();
+                    });
+                }
+            })
+        });
+        // 企业固话
+        var telWrap = $('#telWrap').html();
+        $(".J_tel").on('click', function() {
+            var $this = $(this),
+                baseTxt = $this.text();
+            popWin.init({
+                from: "right",
+                html: telWrap,
+                handle: function(a) {
+                    var telfirstValue = $.trim($('#tpl_tel_first').val());
+                    var telnextValue = $.trim($('#tpl_tel_next').val());
+                    var tellastValue = $.trim($('#tpl_tel_last').val());
+                    if (telfirstValue.length) {
+                        $('#tel_first').val($('#tpl_tel_first').val());
+                    }
+                    if (telnextValue.length) {
+                        $('#tel_next').val($('#tpl_tel_next').val());
+                    }
+                    if (tellastValue) {
+                        $('#tel_last').val($('#tpl_tel_last').val());
+                    }
+                    $('#telBtn').on('click', function() {
+                        var tpl_tel_first = $('#tel_first').val();
+                        var tpl_tel_next = $('#tel_next').val();
+                        var tpl_tel_last = $('#tel_last').val();
+                        if (tpl_tel_first != "" && !regularTelFirst.test(tpl_tel_first)) {
+                            qsToast('请填写正确的区号');
+                            return false;
+                        }
+                        if (tpl_tel_next != "" && !regularTelNext.test(tpl_tel_next)) {
+                            qsToast('电话号码为6-11位数字');
+                            return false;
+                        }
+                        if (tpl_tel_last != "" && !regularTelLast.test(tpl_tel_last)) {
+                            qsToast('分机号码为数字');
+                            return false;
+                        }
+                        if (tpl_tel_last != "" && !regularTelLast.test(tpl_tel_last) || tpl_tel_last.length > 4) {
+                            qsToast('分机号码不能超出4位');
+                            return false;
+                        }
+                        $('#tpl_tel_first').val(tpl_tel_first);
+                        $('#tpl_tel_next').val(tpl_tel_next);
+                        $('#tpl_tel_last').val(tpl_tel_last);
+                        var return_tel = tpl_tel_first ? tpl_tel_first + '-' + tpl_tel_next : tpl_tel_next;
+                        return_tel = tpl_tel_last ? return_tel + '-' + tpl_tel_last : return_tel;
+                        $('.J_tel_txt').html(return_tel);
+                        a.close();
+                    });
+                }
+            });
+        });
+
+        /* 保存企业基本资料验证 */
+        var regularMobile = qscms.regularMobile;
+        var regularEmail = /^[_\.0-9a-zA-Z-]+[_0-9a-zA-Z-]@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,3}$/;
+        var regularTelFirst = /^[0-9]{3}[0-9]?$/;
+        var regularTelNext = /^[0-9]{6,11}$/;
+        var regularTelLast = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
+        $("#save_info").die().live('click', function() {
+            // 有禁用class不执行，阻止多次点击
+            if ($('#save_info').hasClass('qs-btn-border-disabled')) {
+                return false;
+            }
+            var companyname = $.trim($("input[name=companyname]").val());
+            var short_name = $.trim($("input[name=short_name]").val());
+            var nature = $.trim($("#nature").val());
+            var trade = $.trim($("input[name=trade]").val());
+            var scale = $.trim($("#scale").val());
+            var district = $.trim($("#district").val());
+            var short_desc = $.trim($("input[name=short_desc]").val());
+            var contents = $.trim($("#contents").val());
+            var contact = $.trim($("input[name=contact]").val());
+            var telephone = $.trim($("input[name=telephone]").val());
+            var landline_tel_first = $.trim($("input[name=landline_tel_first]").val());
+            var landline_tel_next = $.trim($("input[name=landline_tel_next]").val());
+            var landline_tel_last = $.trim($("input[name=landline_tel_last]").val());
+            var email = $.trim($("input[name=email]").val());
+            var address = $.trim($("input[name=address]").val());
+            var map_x = $.trim($("input[name=map_x]").val());
+            var map_y = $.trim($("input[name=map_y]").val());
+            var map_zoom = $.trim($("input[name=map_zoom]").val());
+            var id = "{$company_profile['id']}";
+            var tag = $.trim($("input[name=tag]").val());
+            if (companyname == "") {
+                qsToast('请填写企业名称');
+                return false;
+            }
+            if (!nature) {
+                qsToast('请选择企业性质');
+                return false;
+            }
+            if (!trade) {
+                qsToast('请选择所属行业');
+                return false;
+            }
+            if (scale == "0") {
+                qsToast('请选择企业规模');
+                return false;
+            }
+            if (district == "0") {
+                qsToast('请选择所在地区');
+                return false;
+            }
+            if (contents == "") {
+                qsToast('请填写企业介绍');
+                return false;
+            }
+            if (contact == "") {
+                qsToast('请填写联系人');
+                return false;
+            }
+            if (contact != "" && contact.length > 10) {
+                qsToast('联系人1-10个字');
+                return false;
+            }
+            if (landline_tel_next == "" && telephone == "") {
+                qsToast('请填写联系手机或座机');
+                return false;
+            } else {
+                if (telephone != "" && !regularMobile.test(telephone)) {
+                    qsToast('手机号格式不正确');
+                    return false;
+                }
+                if (landline_tel_first != "" && !regularTelFirst.test(landline_tel_first)) {
+                    qsToast('请填写正确的区号');
+                    return false;
+                }
+                if (landline_tel_next != "" && !regularTelNext.test(landline_tel_next)) {
+                    qsToast('电话号码为6-11位数字');
+                    return false;
+                }
+                if (landline_tel_last != "" && !regularTelLast.test(landline_tel_last)) {
+                    qsToast('分机号码为数字');
+                    return false;
+                }
+                if (landline_tel_last != "" && !regularTelLast.test(landline_tel_last) || landline_tel_last.length > 4) {
+                    qsToast('分机号码不能超出4位');
+                    return false;
+                }
+            }
+            if (email != "" && !regularEmail.test(email) || email.split("@")[0].length > 20) {
+                qsToast('邮箱格式不正确');
+                return false;
+            }
+            if (address == "") {
+                qsToast('联系地址不能为空');
+                return false;
+            }
+            if (address != "" && address.length > 30) {
+                qsToast('联系地址不能大于30个字');
+                return false;
+            }
+            var cuToast = qsToasting('正在保存中');
+            $(this).text('正在保存...');
+            $(this).addClass('qs-btn-border-disabled');
+            $.post("{:U('company/com_info')}", {
+                id: id,
+                companyname: companyname,
+                short_name: short_name,
+                nature: nature,
+                trade: trade,
+                scale: scale,
+                district: district,
+                short_desc: short_desc,
+                contents: contents,
+                contact: contact,
+                telephone: telephone,
+                landline_tel_first: landline_tel_first,
+                landline_tel_next: landline_tel_next,
+                landline_tel_last: landline_tel_last,
+                email: email,
+                address: address,
+                map_x: map_x,
+                map_y: map_y,
+                map_zoom: map_zoom,
+                tag: tag
+            }, function(r) {
+                if (r.status == 1) {
+                    if (r.data) {
+                        cuToast.close();
+                        $(document).dialog({
+                            titleText: '保存成功',
+                            content: '完善企业资料增加' + r.data + '{:C('qscms_points_byname')}',
+                            buttons: [{
+                                name: '确定',
+                                callback: function() {}
+                            }]
+                        });
+                    } else {
+                        qsToast(r.msg, 1, cuToast);
+                    }
+                } else {
+                    qsToast(r.msg, 0, cuToast);
+                }
+                $("#save_info").text('保存');
+                $("#save_info").removeClass('qs-btn-border-disabled');
+            }, 'json');
+        });
+        // 上传logo
+        $('#browseFile').localResizeIMG({
+            width: 400,
+            quality: 1,
+            success: function(result) {
+                var submitData = {
+                    base64_string: result.clearBase64,
+                    company_id: "{$company_profile['id']}"
+                };
+                NProgress.start();
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('upload/company_logo')}",
+                    data: submitData,
+                    dataType: "json",
+                    success: function(result) {
+                        NProgress.done();
+                        if (result.status == 1) {
+                            qsToast(result.msg, 1, '');
+                            $('#logo').attr('src', result.data.path);
+                        } else {
+                            qsToast(result.msg, 0, '');
+                        }
+                    },
+                    complete: function(XMLHttpRequest, textStatus) {},
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        //上传失败
+                        qsToast('LOGO上传失败', 0, '');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

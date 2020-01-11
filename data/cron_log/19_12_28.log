@@ -1,0 +1,8 @@
+[ 2019-12-28T13:42:54+08:00 ] 64.233.172.126 /index.php/admin
+INFO: Cron:ClearCache Runat 2019-12-28 13:42:54 Use 0.269212 s 
+Cron:ClearPromotion Runat 2019-12-28 13:42:54 Use -0.000112 s 
+Cron:AutoRefreshResume Runat 2019-12-28 13:42:54 Use -0.068579 s 
+Cron:AutoRefreshJobs Runat 2019-12-28 13:42:54 Use -0.070893 s 
+Cron:ClearExpiredSetmeal Runat 2019-12-28 13:42:54 Use -0.071814 s 
+Cron:ClearOrder Runat 2019-12-28 13:42:54 Use -0.075524 s 
+

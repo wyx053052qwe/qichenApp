@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+
+	</head>
+
+	<body>
+		<!--幻灯  -->
+		<div class="index-slider">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<notempty name="index_focus">
+					<volist name="index_focus" id="vo">
+                        <div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="{$vo['url']}">
+								<img src="{:attach($vo['content'],'attach_img')}" alt="{$vo['explain']}">
+							</a>
+                    	</div>
+                    </volist>
+                    <else />
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="../public_qichen/img/ban/1.jpg">
+						</a>
+					</div>
+					</notempty>
+					
+					
+
+					
+				</div>
+				<div class="mui-slider-indicator">
+					<notempty name="index_focus">
+					<volist name="index_focus" id="vo">
+                        <div class="mui-indicator"></div>
+                    </volist>
+                    <else />
+						<div class="mui-indicator"></div>
+					</notempty>
+					
+					
+					
+
+				</div>
+			</div>
+		</div>
+		
+		<!-- 列表1 -->
+		<div class="index-list">
+			<li>
+				<a href="{:U('jobs/index')}">
+					<img src="../public_qichen/img/icon01.png">
+					<p>找工作</p>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('sign')}">
+					<img src="../public_qichen/img/icon02.png">
+					<p>签到有礼</p>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('index/jineng')}">
+					<img src="../public_qichen/img/icon03.png">
+					<p>技能提升</p>
+				</a>
+			</li>
+		</div>
+		<!-- 公告 -->
+		<div class="index-gg">
+			<div class="index-ad-photo">
+				<img src="../public_qichen/img/gg.png">
+			</div>
+			<div class="index_photo_news" id="scrolltop">
+				<div>
+					<qscms:notice_list 列表名="notice_list" 显示数目="10" 分类="1" 排序="addtime:desc"/>
+					<volist name="notice_list['list']" id="notice">
+					<p>{$notice.title}</p>
+					
+					</volist>
+				</div>
+				<div></div>
+			</div>
+			<div class="more-news">
+				<a href="{:U('News/index')}">更多</a>
+			</div>
+
+		</div>
+		<!--推荐培训  -->
+		<div class="tuij_box">
+			<div class="tj-title">
+				<h2><img src="../public_qichen/img/icon_tjpx.png"><span>推荐培训</span></h2>
+				<a href="{:U('index/jineng')}">查看更多&gt;</a>
+			</div>
+			<!--1 -->
+			<volist name="jineng" id="vo">
+				<a href="{:U('jineng_show',array('id'=>$vo['id']))}">
+				<div class="tj-worklist">
+
+
+						<div class="work"><img src="{:attach($vo['small_img'],'images')}?_t={:time()}"></div>
+						<div class="work">
+							<p class="px-title">{$vo['name']}</p>
+							<p class="px-con">{$vo['type']}</p>
+							<p class="px-people">报名人数：<span class="px-gr">{$vo['count']}</span></p>
+						</div>
+						<div class="work work-yh">
+							<if condition="empty($vo['money'])">
+								免费
+							<else/>
+								优惠
+							</if>
+						</div>
+
+
+				</div>
+				</a>
+			</volist>
+			
+			<!--1 -->
+			
+		</div>
+		<!--推荐工作  -->
+		<div class="tuij_box">
+			<div class="tj-title">
+				<h2><img src="../public_qichen/img/tj1.png"><span style="color: #5589ff;">推荐工作</span></h2>
+				<a href="job.html">查看更多&gt;</a>
+			</div>
+			<volist name="jobs_list" id="vo">
+				<div class="tj-worklist">
+					<a href="job-xq.html">
+						<div class="work1">{$vo['jobs_name']}<span>{$vo['refreshtime_cn']}</span></div>
+						<div class="work2">待遇：<b>{$vo['wage_cn']}</b></div>
+						<div class="work3">
+							<volist name="vo['tag_cn']" id="voo">
+								<c>{$voo}</c>
+							</volist>
+							<span>浏览次数：{$vo['click']}次</span></div>
+					</a>
+				</div>
+			</volist>
+			
+		</div>
+		<!--兼职模块  -->
+		<div class="tuij_box">
+			<div class="tj-title">
+				<h2><img src="../public_qichen/img/jz.png"><span style="color: #5589ff;">找兼职</span></h2>
+				<a href="{:U('Parttime/index')}">查看更多&gt;</a>
+			</div>
+			<!--1-->
+			<qscms:parttime_jobs_list 列表名="joblist" 显示数目='3' 地区分类="168"/>
+			
+			<volist name="joblist['list']" id="vo">
+			<div class="tj-worklist part-time">
+				<a href="{$vo['url']}" class="aui-flex b-line">
+					<div class="aui-flex-box">
+						<h3>{$vo['jobs_name']}</h3>
+						<h4><em>{$vo['wage']}元/{$vo['wage_type_cn']}</em> {$vo['settlement_cn']} | {$vo['sex_cn']} | </h4>
+						<h5><i class="aui-img-logo"><img src="../public_qichen/img/icon-sml-001.png" alt=""></i>{$vo['contents']}</h5>
+					</div>
+					<div class="aui-flex-images">
+						
+						<div class="aui-sam-text">
+							<p>{$vo['like_num']}人已加入</p>
+						</div>
+					</div>
+				</a>
+			</div>
+			</volist>
+			
+		</div>
+		<!--兼职模块  -->
+		
+		<!--公司业务 -->
+		<div class="business">
+			<div class="business-title">公司业务</div>
+			<div class="index-list business-list">
+				<li>
+					<a href="{:U('Yewu/index',array('id'=>1))}">
+						<img src="../public_qichen/img/yw1.png">
+						<p>劳务派遣</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Yewu/index',array('id'=>2))}">
+						<img src="../public_qichen/img/yw2.png">
+						<p>劳务外包</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Yewu/index',array('id'=>3))}">
+						<img src="../public_qichen/img/yw3.png">
+						<p>保险代理</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:U('Yewu/index',array('id'=>4))}">
+						<img src="../public_qichen/img/yw4.png">
+						<p>薪酬福利</p>
+					</a>
+				</li>
+			</div>
+
+		</div>
+		<!--首页底部 -->
+		<div class="index-footer">
+			
+			<div class="index-jj">
+
+				<span><a href="{:U('news/show',array('id'=>2))}">关于我们</a></span>
+				<span><a href="{:U('news/show',array('id'=>3))}">求职指南</a></span>
+				<span><a href="{:U('news/show',array('id'=>5))}">联系我们</a></span>
+				<span><a href="{:U('news/show',array('id'=>4))}">免责声明</a></span>
+
+			</div>
+			<div class="txt">
+				<p>鲁备案号 110100123896579</p>
+			</div>
+		</div>
+		<!--返回顶部 -->
+		<div class="goTop" id="goTop">
+			<a href="javascript:;" title="返回顶部"></a>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen/footer_shouye_2"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/mui.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak={:C('qscms_map_ak')}"></script>
+	<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		wx.config({
+		    // debug: true,
+		    appId: '{$signPackage.appId}',
+		    
+		    timestamp: '{$signPackage.timestamp}',
+		    nonceStr: '{$signPackage.nonceStr}',
+		    signature: '{$signPackage.signature}',
+		    jsApiList: [
+		      // 所有要调用的 API 都要加到这个列表中
+		      "onMenuShareTimeline",
+		      "onMenuShareAppMessage",
+		      "onMenuShareQQ",
+		      "onMenuShareWeibo"
+		    ]
+		  });
+		  wx.ready(function () 
+		  {
+		      var linkUrl = "{$url}";//放链接
+		      var title = "招聘、求职就到{:C('qscms_site_name')}";
+		      var desc = "更多好工作请看这里"; 
+		      var imgUrl="<if condition="C('qscms_logo_home')">{:attach(C('qscms_logo_home'),'resource')}<else/>{:C('TPL_HOME_PUBLIC_DIR')}/images/logo.gif</if>";//图片链接
+		      
+		      wx.onMenuShareTimeline({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		          success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareAppMessage({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		          type: '', // 分享类型,music、video或link，不填默认为link
+		          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareQQ({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		      wx.onMenuShareWeibo({
+		          title: title, // 分享标题
+		          desc: desc, // 分享描述
+		          link: linkUrl, // 分享链接
+		          imgUrl: imgUrl, // 分享图标
+		                    success: function () { 
+		          // 用户确认分享后执行的回调函数
+		          },
+		          cancel: function () { 
+		              // 用户取消分享后执行的回调函数
+		          }
+		      });
+		  });
+<script>
+	//获得slider插件对象
+	var gallery = mui('.mui-slider');
+	gallery.slider({
+		interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+	});
+	function showError(error)
+		{
+			switch(error.code)
+		    {
+		    case error.PERMISSION_DENIED:
+		    case error.POSITION_UNAVAILABLE:
+		    case error.TIMEOUT:
+		    case error.UNKNOWN_ERROR:
+		    	baiduapi_geolocation();
+		      	break;
+		    }
+		}
+        function getLocation()
+        {
+          	//navigator.geolocation
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition, showError,{
+			        // 指示浏览器获取高精度的位置，默认为false
+			        enableHighAccuracy: true,
+			        // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+			        timeout: 5000,
+			        // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+			        maximumAge: 3000
+			    });
+            }
+            else
+            {
+                baiduapi_geolocation();
+            }
+        }
+        function showPosition(position)
+        {
+          	
+        	var latitude = position.coords.latitude;
+        	var longitude = position.coords.longitude;
+        	var convertor = new BMap.Convertor();
+	        var pointArr = [];
+          	
+		    console.log(longitude);
+	        pointArr.push(ggPoint);
+	        convertor.translate(pointArr, 1, 5, function (data){
+		      if(data.status === 0) {
+		        var marker = new BMap.Marker(data.points[0]);
+		        latitude = data.points[0].lat;
+		        longitude = data.points[0].lng;
+		      }
+		    });
+          	
+	        set_geolocation_cookie(latitude,longitude,30);
+        }
+        //设置定位cookie
+        function set_geolocation_cookie(lat,lng,min){
+        	var expiresDate= new Date();
+	        expiresDate.setTime(expiresDate.getTime() + (min * 60 * 1000));
+	        $.fn.cookie('cookie_lat', lat,{path : '{:C("qscms_site_dir")}',expires:expiresDate});
+	        $.fn.cookie('cookie_lng', lng,{path : '{:C("qscms_site_dir")}',expires:expiresDate});
+        }
+        //百度地图定位
+        function baiduapi_geolocation(){
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r){
+              	
+				if(this.getStatus() == BMAP_STATUS_SUCCESS)
+				{
+					set_geolocation_cookie(r.point.lat,r.point.lng,30);
+				}
+				else 
+				{
+					set_geolocation_cookie("{:C('qscms_map_center_y')}","{:C('qscms_map_center_x')}",5);
+				}        
+			},{enableHighAccuracy: true})
+        }
+</script>

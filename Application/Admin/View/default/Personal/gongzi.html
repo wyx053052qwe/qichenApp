@@ -1,0 +1,33 @@
+
+<div class="admin_business link_blue">
+        <div style="height:30px;">用户名 <strong style="color:#FF6600">{$userinfo['username']}</strong>(uid：{$userinfo['uid']}) &nbsp;&nbsp;&nbsp;&nbsp;
+            <a target="_blank" href="{$manage_url}">进入会员中心>></a><br/>
+        </div>
+        <volist name="return_config" id="vo">
+            <div class="manitem active" url="{:U('gongzi_log',array('com_id'=>$vo['com_id'],'zaizhi_id'=>$zaizhi_id))}">{$vo['companyname']}</div>
+        </volist>
+        
+        
+        
+        <div class="clear"></div>
+        <div class="show_box" style="margin-top:10px;"></div>
+</div>
+
+<script type="text/javascript">
+<if condition="!empty($return_config)">
+    $.getJSON("{:U('gongzi_log',array('com_id'=>$return_config[0]['com_id'],'zaizhi_id'=>$zaizhi_id))}", function (result) {
+        $('.show_box').html(result.data);
+        afreshDialogPosition();
+    });
+</if>
+
+
+    $(".manitem").click(function () {
+        $('.manitem').removeClass('active');
+        $(this).addClass('active');
+        var url = $(this).attr('url');
+        $.getJSON(url, function (result) {
+            $('.show_box').html(result.data);
+        });
+    });
+</script>

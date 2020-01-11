@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$info['header_title']}</title>
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/news.css">
+</head>
+<body>
+<style>
+    .baoming{
+        width:100%;
+        height: 100px;
+    }
+    .baoming button{
+        width: 100%;
+        height: 60px;
+        margin-top:23px; 
+        color: #e0d6d6;
+        font-size:30px;
+        background-color: #40444c;
+    }
+</style>
+
+<include file="public:header"/>
+<script>showAndroidTopBack();</script>
+<div class="news-show">
+    <h1 class="font18">{$info['name']}</h1>
+    <div class="attribute font13">
+        
+        <div class="category">活动时间:{:date("Y-m-d",$info['start_time'])} - {:date("Y-m-d",$info['end_time'])}</div>
+        <div class="category">已报名人数:{$info['count']}</div>
+
+        
+        <div class="clear"></div>
+    </div>
+    <div class="content link_blue">{$info['content']}</div>
+    <div class="baoming"><button onclick="baoming({$info['id']});">立即报名</button></div>
+</div>
+
+<div class="list-split-block"></div>
+
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function () {
+        var linkUrl = "{:build_mobile_url(array('c'=>'MembersBind','a'=>'huodong_show','params'=>'id='.$info['id']))}";//放链接
+        var title = "{$info['seo_keywords']} - {:C('qscms_site_name')}";
+        var desc = "{$info['seo_description']}";
+        var imgUrl = "{$info['img']}";//图片链接
+
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+    function baoming(id){
+        <if condition="empty($is_bao)">
+            alert('报名已结束');
+            return false;
+
+        </if>
+        $.get("{:U('baoming')}",{id:id},function(data){
+            alert(data.msg);
+            location.reload();
+        });
+    }
+</script>
+</body>
+</html>

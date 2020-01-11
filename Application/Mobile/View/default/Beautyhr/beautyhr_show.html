@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>最美HR</title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,shrink-to-fit=no,user-scalable=no,minimal-ui" name="viewport"/>
+        <meta name ="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script src="../public/js/rem.js"></script>
+        <include file="public:meta" />
+        <link rel="stylesheet" href="../public/css/common.css">
+        <link rel="stylesheet" href="../public/css/hr.css">
+    </head>
+    <body>
+    <div class="gz_top_main">
+        <div class="gtm_con">
+            <img src="images/logo.png" alt="" class="gtm_logo">
+            <div class="gtm_tx1 font12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$info.title}</div>
+            <div class="gtm_tx2 font10">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:date('Y-m-d',$info['holddate_start'])} - {:date('Y-m-d',$info['holddate_end'])}</div>
+            <div class="gtm_info font12">
+                <div class="gtm_cell">
+                    <div class="gin_tit">
+                        <div class="pub_t font16">活动简介
+                            <div class="tha"></div>
+                            <div class="thi"></div>
+                        </div>
+                    </div>
+                    <div class="gin_line">投票开始：{:date('Y-m-d',$info['holddate_start'])}</div>
+                    <div class="gin_line">投票截止：{:date('Y-m-d',$info['holddate_end'])}</div>
+                    <div class="gin_line">参与方式：{$info.range}</div>
+                    <div class="gin_line">活动要求：{$info.requirement}</div>
+                </div>
+            </div>
+            <div class="pub_t1">
+                <div class="pub_t">最美HR展示
+                    <div class="tha"></div>
+                    <div class="thi"></div>
+                </div>
+            </div>
+            <div class="gz_se_bar">
+                <div class="gz_se_cell checked JNavC">全部参赛</div><div class="gz_se_cell JNavC">当前排行</div><div class="gz_se_bt JSe">搜索</div>
+            </div>
+            <div class="gz_group JGroup" id="JSeResult">
+              <volist name="company" id="vo">
+                <div class="gz_cell font12">
+                    <div class="bt_sub">{$vo.bianhao}</div>
+                    <div class="logo_box"><img src="{:attach($vo['photo'],'hr_img')}" alt=""></div>
+                    <div class="name_box">{$vo.fullname}</div>
+                    <div class="bt_box JUpClick" data-id="{$vo.id}"><div class="hua"></div>支持TA</div>
+                    <div class="bt_num"><span class="JResNum">{$vo.number}</span>票</div>
+                </div>
+              </volist>  
+              <div class="clear"></div>
+                <!-- <div class="gz_next font13">下一页</div> -->
+            </div>
+            <div class="gz_group_ph JGroup">
+              <volist name="paiming" id="vo" key="k">
+                <if condition="$k eq 1">
+                  <div class="gzp_line font12">
+                      <div class="gzp_or or1"></div><img src="{:attach($vo['photo'],'hr_img')}" alt="" class="gzp_ava"><div class="gzp_tx1 font13">{$vo.fullname}</div><div class="gzp_tx2">编号：{$vo.bianhao}</div>
+                      <div class="gzp_tx3"><span class="font14">{$vo.number}</span>票</div>
+                  </div>
+                </if>
+                <if condition="$k eq 2">
+                  <div class="gzp_line font12">
+                      <div class="gzp_or or2"></div><img src="{:attach($vo['photo'],'hr_img')}" alt="" class="gzp_ava"><div class="gzp_tx1 font13">{$vo.fullname}</div><div class="gzp_tx2">编号：{$vo.bianhao}</div>
+                      <div class="gzp_tx3"><span class="font14">{$vo.number}</span>票</div>
+                  </div>
+                </if>
+                <if condition="$k eq 3">  
+                  <div class="gzp_line font12">
+                      <div class="gzp_or or3"></div><img src="{:attach($vo['photo'],'hr_img')}" alt="" class="gzp_ava"><div class="gzp_tx1 font13">{$vo.fullname}</div><div class="gzp_tx2">编号：{$vo.bianhao}</div>
+                      <div class="gzp_tx3"><span class="font14">{$vo.number}</span>票</div>
+                  </div>
+                </if>
+                <if condition="$k gt 3">
+                  <div class="gzp_line font12">
+                      <div class="gzp_num font14">{$k}</div><img src="{:attach($vo['photo'],'hr_img')}" alt="" class="gzp_ava"><div class="gzp_tx1 font13">{$vo.fullname}</div><div class="gzp_tx2">编号：{$vo.bianhao}</div>
+                      <div class="gzp_tx3">{$vo.number}票</div>
+                  </div>
+                </if>
+              </volist>  
+            </div>
+            <div class="gz_des_box font12">
+                活动规则：{$info.rules}<br><br>
+                评选奖品：{$info.prize}
+            </div>
+            <div class="pub_t1">
+                <div class="pub_t">合作企业展示
+                    <div class="tha"></div>
+                    <div class="thi"></div>
+                </div>
+            </div>
+            <div class="gz_hz_group">
+              <volist name="img" id= "vo">
+                <div class="gz_hz_cell"><img src="{:attach($vo['img'],'beautyhr_img')}" alt=""></div>
+              </volist>
+                <div class="clear"></div>
+            </div>
+            <div class="gz_bt_txt font15">活动最终解释权归主办方骑士人才网所有</div>
+        </div>
+    </div>
+    <div class="gz_so">
+        <div class="top_bg">
+            <div class="c_return"></div>
+            <input value="" type="text" class="so_imput" id="J_so" oninput="onInput(event)" placeholder="请输入关键字"/>
+            <div class="so_close"></div>
+            <div class="btn_so" id="JSeBtn">搜索</div>
+        </div>
+    </div>
+    <include file="public:footer_js" />
+    </body>
+    <script src="../public/js/zepto.min.js"></script>
+    <script type="text/javascript">
+        $('.JNavC').on('click', function(event) {
+            var cuIndex = $('.JNavC').index(this);
+            $(this).addClass('checked').siblings('.JNavC').removeClass('checked');
+            $('.JGroup').eq(cuIndex).show().siblings('.JGroup').hide();
+            cuIndex > 0 ? $('.JSe').hide() : $('.JSe').show();
+        });
+        $('.JSe').on('click', function(){
+            $('.gz_so').toggle();
+            $('#J_so').focus();
+        });
+        $('.c_return').click(function() {
+            $('.gz_so').toggle();
+        })
+        // 搜索
+        $('#JSeBtn').click(function(event) {
+            var cuVal = $.trim($('#J_so').val()), isRes = false;
+            if (cuVal) {
+                $('.gz_so').toggle();
+                $('#JSeResult .bt_sub').each(function(index, el) {
+                    $(this).closest('.gz_cell').hide();
+                    if ($.trim($(this).text()) == cuVal) {
+                        $(this).closest('.gz_cell').show();
+                        isRes = true;
+                    }
+                });
+            } else {
+                $('.gz_so').toggle();
+                $('#JSeResult .bt_sub').each(function(index, el) {
+                    $(this).closest('.gz_cell').show();
+                    isRes = true;
+                });
+            }
+            if (!isRes) {
+
+            }
+        });
+        // 投票
+        var emId = "{$info.id}";
+        $('.JUpClick').click(function(event) {
+            if ($(this).hasClass('disabled')) { return false; }
+            var cuId = $(this).data('id'), $that = $(this);
+            $.get('{:U('beautyhr/vote')}', {hr_id: cuId, beautyhr_id: emId}, function(data) {
+                if (data.status ==1 ) {
+                    qsToast(data.msg, '', '');
+                    $that.addClass('disabled').text('已投票');
+                    $that.closest('.gz_cell').find('.JResNum').text(data.data.numbers);
+                } else {
+                   qsToast(data.msg, '', '');
+                }
+            });
+        });
+    </script>
+</html>

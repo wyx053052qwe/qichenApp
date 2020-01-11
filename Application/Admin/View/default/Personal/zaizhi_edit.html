@@ -1,0 +1,134 @@
+<include file="public:header"/>
+
+<div class="toptit">
+    编辑在职人员 (用户名：<span style="color:#0066CC">{$data.name}</span>)
+</div>
+
+
+<div class="toptit link_blue">基本信息</div>
+<form action="{:U('zaizhi_edit')}" method="post" name="FormData" id="FormData" >
+    <div class="form_main width120">
+        <div class="fl">姓名:</div>
+        <div class="fr">
+            <input name="name" type="text" class="input_text_default middle" maxlength="16" value="{$data.name}"/>
+        </div>
+        <div class="fl">身份证:</div>
+        <div class="fr">
+            <input name="id_card" type="text" class="input_text_default middle" maxlength="11" value="{$data.id_card}" onKeyUp="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"/>
+        </div>
+
+        <div class="fl">工资卡号:</div>
+        <div class="fr">
+            <input name="gongzi_card" type="text" class="input_text_default middle" maxlength="" value="{$data.gongzi_card}"/>
+        </div>
+
+        <div class="fl">联系方式:</div>
+        <div class="fr">
+            <input name="mobile" type="text" class="input_text_default middle" maxlength="11" value="{$data.mobile}"/>
+        </div>
+
+        <div class="fl">在职公司:</div>
+        <div class="fr">
+            <input  type="text" class="input_text_default middle" id="companyname"  value="{$data['companyname']}"/>
+        </div>
+
+        <div class="fl">合同到期日期:</div>
+        <div class="fr">
+            <input name="ht_time" type="text" class="input_text_default small " id="starttime" maxlength="10" value="{:date('Y-m-d',$data['ht_time'])}" autocomplete="off"/>
+            <label class="no-fl-note">(设置合同到期时间，格式yyyy-mm-dd，不能留空)</label>
+        </div>
+        
+       
+        
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="id" value="{$data['id']}" />
+
+            
+            <input type="hidden" id="com_id" name="com_id" value="{$data['com_id']}">
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+            <input type="button" class="admin_submit" value="返回" onClick="history.go(-1)"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+
+
+
+</div>
+<include file="public:footer"/>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('zaizhi_edit')}",$('#FormData').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("zaizhi_edit",array('id'=>$data['id']))}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+        $("#companyname").blur(function(){
+            var companyname = $(this).val();
+            $.post("{:U('get_com')}",{companyname:companyname},function(data){
+                if(data.status==0){
+                    alert(data.msg);
+                    $("#com_id").val('');
+                }else{
+                    $("#com_id").val(data.data.id);
+                }
+            });
+        });
+        $('#J_submit1').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('member_edit')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("member_edit",array('uid'=>$info['uid']))}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+        $('#J_submit2').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('member_edit')}",$('#form2').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("member_edit",array('uid'=>$info['uid']))}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>
+</html>

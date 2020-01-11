@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/company.css">
+</head>
+<body>
+    <include file="public:header"/>
+    <div class="split-block-title">请您对求职者做出评价</div>
+    <div class="ptitle border">
+        <div class="th1">选择分值</div>
+        <div class="rtxt"><a>满分为5分</a></div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">工作经验与简历相符：<span class="font_red_light">*</span></div>
+            <div class="describe font13">
+                <span class="selectTxt"></span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="score_experience" id="score_experience" value="">
+        </div>
+        <div class="imSelect">
+            <div class="imOption selected" data-key="0" data-txt="0分">0分</div>
+            <div class="imOption" data-key="1" data-txt="1分">1分</div>
+            <div class="imOption" data-key="2" data-txt="2分">2分</div>
+            <div class="imOption" data-key="3" data-txt="3分">3分</div>
+            <div class="imOption" data-key="4" data-txt="4分">4分</div>
+            <div class="imOption" data-key="5" data-txt="5分">5分</div>
+        </div>
+    </div>
+    <div class="imSelectParent">
+        <div class="list_height plist-txt imitateSelect">
+            <div class="pic"></div>
+            <div class="tit font14">学历与简历描述相符：<span class="font_red_light">*</span></div>
+            <div class="describe font13">
+                <span class="selectTxt"></span>
+            </div>
+            <div class="arrow"></div>
+            <div class="clear"></div>
+            <input class="selectKey" type="hidden" name="score_education" id="score_education" value="">
+        </div>
+        <div class="imSelect">
+            <div class="imOption selected" data-key="0" data-txt="0分">0分</div>
+            <div class="imOption" data-key="1" data-txt="1分">1分</div>
+            <div class="imOption" data-key="2" data-txt="2分">2分</div>
+            <div class="imOption" data-key="3" data-txt="3分">3分</div>
+            <div class="imOption" data-key="4" data-txt="4分">4分</div>
+            <div class="imOption" data-key="5" data-txt="5分">5分</div>
+        </div>
+    </div>
+    <div class="btn-spacing">
+        <div class="btn-half-box">
+            <input type="hidden" id="record_id" value="{$record_id}">
+            <div class="qs-btn qs-btn-inline qs-btn-orange font18" id="yes">评价并确认</div>
+            <div class="qs-btn qs-btn-inline qs-btn-blue font18" id="no">直接确认</div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="split-block"></div>
+    <include file="public:footer_min" />
+    <script type="text/javascript">
+        var url = "{:U('Company/confirm_interview')}";
+        var record_id = $('#record_id').val();
+        $('#yes').on('click',function(){
+            var score_experience = $('#score_experience').val();
+            var score_education = $('#score_education').val();
+            $.post(url,{score:1,record_id:record_id,score_experience:score_experience,score_education:score_education},function(result){
+                    if(result.status == 1){
+                        qsToast(result.msg);
+                        setTimeout(function () {
+                            location.href="{:U('Company/allowance_detail',array('id'=>$record_id))}";
+                        }, 2000);
+                    } else {
+                        qsToast(result.msg);
+                    }
+            },'json');
+        });
+        $('#no').on('click',function(){
+            $.post(url,{score:0,record_id:record_id},function(result){
+                if(result.status == 1){
+                    qsToast(result.msg);
+                    setTimeout(function () {
+                        location.href="{:U('Company/allowance_detail',array('id'=>$record_id))}";
+                    }, 2000);
+                } else {
+                    qsToast(result.msg);
+                }
+            },'json');
+        });
+    </script>
+</body>
+</html>

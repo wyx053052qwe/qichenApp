@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+        <include file="public:meta" />
+        <link rel="stylesheet" href="../public/css/company.css">
+    </head>
+    <style>
+        body{
+                font-size: 15px;
+            }
+    </style>
+    <body>
+    <include file="public:header" />
+    <div class="split-block"></div>
+    <notempty name="log">
+        <volist name="log" id="vo">
+        <div class="setmeal-detail-item <if condition="$key eq count($log)-1">last</if>">
+            <div class="title">{$vo['log_value']}</div>
+            <div class="time font_gray9 font12">{:date('Y-m-d H:i:s',$vo['log_addtime'])}</div>
+            <div class="clear"></div>
+        </div>
+        </volist>
+        <div class="split-block"></div>
+        <div class="qspage">{$log_page}</div>
+    <else />
+        <div class="list-empty">
+            您暂时没有套餐使用记录！
+        </div>
+    </if>
+    </notempty>
+    <include file="public_qichen:footer_geren_1" />
+    </body>
+</html>

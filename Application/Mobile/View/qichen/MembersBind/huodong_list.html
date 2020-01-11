@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>活动列表</title>
+    <include file="public:meta" />
+    <link rel="stylesheet" href="../public/css/news.css">
+</head>
+<body>
+
+<include file="public:header" />
+<div class="news-top-menu-bar">
+	<div class="top-menu">
+		<div class="top-menu-list">
+			<a data-url="" href="" class="t-btn active font16">活动列表</a>
+			
+		</div>
+	</div>
+</div>
+<div class="split-block"></div>
+
+<notempty name="list">
+<volist name="list" id="vo">
+<div class="news-list-item for-event" onclick="window.location='{$vo.url}'">
+    <div class="news-info">
+        <div class="thumbnail">
+            <img src="/data/upload/images/{$vo['img']}?{:time()}" border="0" />
+        </div>
+        <div class="info">
+            <div class="line-one substring">{$vo['name']}</div>
+            <div class="line-two font12 substring">
+                <div class="pic time">{:date('Y-m-d',$vo['add_time'])}</div>
+                <div class="pic page-views">{$vo['count']}</div>
+            </div>
+            <div class="line-three font12">{$vo['descript']}</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="list-split-block"></div>
+</volist>
+<div class="qspage">{$list['page']}</div>
+<else />
+    <div class="list-empty link_blue">
+        抱歉，暂时没有找到相关资讯！
+    </div>
+</notempty>
+
+</body>
+</html>

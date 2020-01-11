@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>任务中心</title>
+		
+		<link rel="stylesheet" href="../public_qichen/css/check-in.css">
+		<link rel="stylesheet" href="../public_qichen/css/style.css" />
+		<link rel="stylesheet" href="../public_qichen/css/bootstrap.min.css" />
+
+	</head>
+	<style>
+		.container-fluid {
+			background: #faca34;
+			padding: 0px;
+		}
+		
+		.footer>div p {
+			margin-top: 8px;
+		}
+		
+		.col-xs-9 {
+			padding: 0px;
+			width: 73%;
+		}
+	</style>
+
+	<body>
+		<div class="container-fluid">
+
+			<div id="wrap">
+				<div class="banner2"><img src="../public_qichen/img/banner.jpg" /></div>
+
+				<div class="padding10">
+					<div class="font16 pb10 borderb pt15"><strong>做任务领积分</strong></div>
+					<div class="libaolist">
+						<volist name="task" id="vo">
+          					<if condition="(!isset($done_task[$vo['id']]) || ($done_task[$vo['id']] gt 0 and $done_task[$vo['id']] lt $vo['times'])) && $task_url[$vo['t_alias']]['type'] neq 'nourl'">
+						<div class="clearfix borderb ptb10">
+							<div class="col-xs-9 clearPadding">
+								<div class="media">
+									<a class="media-left pt3" href="javascript:void(0);">
+										<img src="../public_qichen/img/dou.png" style="width:30px;height:30px;">
+									</a>
+									<div class="media-body">
+										<div class="">{$vo['points']}积分</div>
+										<div class="text-muted font12">{$vo['title']}</div>
+									</div>
+								</div>
+							</div>
+							<else class="col-xs-3 clearPadding text-right pt2">
+								<button  data-type="{$vo['t_alias']}" 
+								<if condition="$task_url[$vo['t_alias']]['type'] eq 'ajax'" >data="{$vo['t_alias']}" class="btn btn-lingqu ajax_do"<else />class="btn btn-lingqu" onclick="location.href='{$task_url[$vo['t_alias']]['url']}'"</if> url="{$task_url[$vo['t_alias']]['url']}"
+								id="lq-but1"><if condition="$reg['state']==0 && $task_url[$vo['t_alias']]['type'] eq 'ajax'"> 已完成<else />去完成</if></button>
+							</div>
+						</div>
+						</if>
+          			</volist>
+						
+					</div>
+				</div>
+				<a href="{:U('Personal/index')}" class="btn4">返回</a>
+			</div>
+		</div>
+		<div class="maskbox"></div>
+		
+
+		<div class="qdbox" id="qdbox2">
+			<div class="text-center text-green font18"><strong>领取成功！</strong></div>
+			<div class="text-center pt10">恭喜您获得&nbsp;<span class="text-green">100</span>&nbsp;积分</div>
+			<div class="text-center ptb15"><img src="../public_qichen/img/liwu.png" style="width:125px;margin-left:20px;"></div>
+			<div class="text-center"><button class="btn btn-lottery" onClick="signIn4()">确定</button></div>
+		</div>
+
+	
+		<!--公共底部-->
+		<div style="height: 80px;background: #faca34;"></div>
+		<include file="public_qichen:footer_geren_2"/>
+	</body>
+
+</html>
+<script src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script src="../public_qichen/js/calendar.js"></script>
+<script>
+	$(function() {
+		//ajax获取日历json数据
+		var signList = [];
+		calUtil.init(signList);
+	});
+
+	$(".ajax_do").on('click',function(){
+               var type = $(this).attr('data-type');
+               var url = $(this).attr('url');
+               if(type=='sign'){
+                    
+                    $.getJSON(url,function(result){
+                         if(result.status == 1){
+                              alert('每天签到增加'+result.data+'{:C('qscms_points_byname')}');
+                              
+                              setTimeout(function () {
+                                   window.location.reload();
+                              }, 2000);
+                         } else {
+                              alert(result.msg);
+                              
+                         }
+                    });
+               }
+          });
+
+	function signIn() {
+		$(".maskbox").fadeIn();
+		$("#qdbox1").fadeIn();
+		$(".maskbox").height($(document).height());
+	}
+	$("#msqd-but1").one('click', function() {
+		var key = 1;
+		var date = new Date();
+		var now_day = date.getDate();
+		console.log(now_day);
+		var demo = {
+			"signDay": now_day
+		};
+		var signList = [];
+		signList.push(demo);
+		calUtil.init(signList);
+
+		$(".maskbox").fadeOut();
+		$("#qdbox1").fadeOut();
+		$(".maskbox").height($(document).height());
+		$("#msqd-but1").addClass("btn-disable3");
+		$("#msqd-but1").text("已签到");
+
+	});
+
+	function signIn2() {
+
+	}
+
+	function signIn3() {
+		$(".maskbox").fadeIn();
+		$("#qdbox2").fadeIn();
+		$(".maskbox").height($(document).height());
+	}
+
+	function signIn4() {
+		$(".maskbox").fadeOut();
+		$("#qdbox2").fadeOut();
+		$("#qdbox3").fadeOut();
+		$(".maskbox").height($(document).height());
+		$("#lq-but1").addClass("btn-disable");
+		$("#lq-but1").attr("disabled", "disabled");
+		$("#lq-but1").text("已领取");
+
+	}
+
+	function signIn5() {
+		$(".maskbox").fadeIn();
+		$("#qdbox3").fadeIn();
+		$(".maskbox").height($(document).height());
+	}
+</script>

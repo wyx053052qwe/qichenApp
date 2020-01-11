@@ -1,0 +1,61 @@
+<if condition="$info">
+<div style="max-height:200px;overflow-y:auto">
+<table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#DFDFDF" class="link_blue">
+    <tr>
+        <td width="49%" bgcolor="#FFFFFF"><b>企业名称</b>：{$info['com_name']}</td>
+        <td bgcolor="#FFFFFF"><b>企业法人</b>：{$info['corporate']}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>主体类型</b>：{$info['com_type']}</td>
+        <td bgcolor="#FFFFFF"><b>创立时间</b>：{:date('Y-m-d',$info['reg_time'])}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>注册资金</b>：{$info['reg_capital']}万元</td>
+        <td bgcolor="#FFFFFF"><b>注册地址</b>：{$info['reg_address']}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>办公地址</b>：{$info['office_address']}</td>
+        <td bgcolor="#FFFFFF"><b>登记机关</b>：{$info['registrar']}</td>
+    </tr>
+    <tr>
+        <td colspan="2" bgcolor="#FFFFFF"><b>经营范围</b>：<br />{:nl2br($info['scope'])}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>办公环境</b>：<if condition="$info['office_env'] eq 1">一般<elseif condition="$info['office_env'] eq 2" />良好<else />优美</if></td>
+        <td bgcolor="#FFFFFF"><b>办公场所</b>：{$info['workplace']}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>员工人数</b>：{$info['number']}</td>
+        <td bgcolor="#FFFFFF"><b>男女比例</b>：{$info['sex_ratio']}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>平均年龄</b>：{$info['average_age']}岁左右</td>
+        <td bgcolor="#FFFFFF"><b>乘车路线</b>：{$info['route']}</td>
+    </tr>
+    <tr>
+        <td colspan="2" bgcolor="#FFFFFF"><b>评价</b>：<br />{:nl2br($info['evaluation'])}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>认证时间</b>：{:date('Y-m-d',$info['addtime'])}</td>
+        <td bgcolor="#FFFFFF"><b>认证师</b>：{$info['certifier']}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#FFFFFF"><b>是否显示</b>：<eq name="info['status']" value="1">显示<else />不显示</eq></td>
+        <td bgcolor="#FFFFFF"><b>办公面积</b>：{$info['office_area']}平米</td>
+    </tr>
+    <tr>
+        <td colspan="2" bgcolor="#FFFFFF"><b>企业照片</b>：<br />
+            <volist name="img" id="vo">
+                <a target="_blank" href="{:attach($vo,'images')}" style="margin:10px 5px;display:inline-grid;border:1px solid #d3d3d3;padding:2px;"><img src="{:attach($vo,'images')}" width="90" height="70"></a>
+            </volist>
+        </td>
+    </tr>
+</table>
+</div>
+<else />
+<table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#DFDFDF" class="link_blue">
+    <tr>
+        <td bgcolor="#FFFFFF">该企业未通过实地认证</td>
+    </tr>
+</table>
+</if>

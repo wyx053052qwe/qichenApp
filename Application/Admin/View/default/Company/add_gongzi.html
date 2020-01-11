@@ -1,0 +1,111 @@
+<include file="public:header"/>
+<form id="form1">
+
+
+<div class="toptit">工资表配置(中文名和英文名请对应，英文名包含大小写字母，填写错误系统会出错，请慎重填写)</div>
+<div class="form_main width150" id="peizhi">
+    
+    <if condition="empty($data)">
+        <div class="fr">
+
+            <div class="fl">工资表中文名:</div>
+            <div style="float: left;">
+                <input name="cn[]" type="text" class="input_text_default"  value="" style="width: 100px;" /> 
+            </div>
+             <div class="fl">工资表英文名:</div>
+             <div style="float: left;">
+                <input name="en[]" type="text" class="input_text_default" maxlength="" value="" style="width: 100px;" /> 
+            </div>
+            <button onclick="del($(this))" class="admin_submit">删除</button>
+        
+        </div>
+    <else/>
+        <input type="hidden" name="id" value="{$data['id']}">
+        <volist name="data['config']" id="vo">
+            <div class="fr">
+
+            <div class="fl">工资表中文名:</div>
+            <div style="float: left;">
+                <input name="cn[]" type="text" class="input_text_default"  value="{$vo['cn']}" style="width: 100px;" /> 
+            </div>
+             <div class="fl">工资表英文名:</div>
+             <div style="float: left;">
+                <input name="en[]" type="text" class="input_text_default" maxlength="" value="{$vo['en']}" style="width: 100px;" /> 
+            </div>
+            <button onclick="del($(this))" class="admin_submit">删除</button>
+            
+            </div>
+        </volist>
+    </if>
+    
+
+    
+    
+    
+    <div class="clear"></div>
+</div>
+
+<div class="form_main width150">
+    
+    <div class="fl"></div>
+    <div class="fr">
+        <input type="hidden" name="com_id"  value="{$id}"/>
+
+        <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+        <input type="button" class="admin_submit" value="添加" id="add"/>
+        <input type="button" class="admin_submit" value="返回" onclick="window.location.href='{:U('index')}'"/>
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+<include file="public:footer"/>
+<qscms:load type="category" search="1"/>
+<script type="text/javascript" src="../public/js/jquery.user.city.js"></script>
+<script type="text/javascript" src="../public/js/jquery.modal.userselectlayer.js"></script>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('add_gongzi')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("index")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('确定').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+        $("#add").click(function(){
+            $("#peizhi").append(" <div class='fr'><div class='fl'>工资表中文名:</div><div style='float: left;''><input name='cn[]' type='text' class='input_text_default'  value='' style='width: 100px;' /> </div><div class='fl'>工资表英文名:</div><div style='float: left;'><input name='en[]' type='text' class='input_text_default' maxlength='' value='' style='width: 100px;' /> </div> <button onclick='del($(this))' class='admin_submit'>删除</button> </div>");
+        });
+        $(".no_points").click(function(){
+            $(".regpoints_num").hide();
+        });
+        $(".yes_points").click(function(){
+            $(".regpoints_num").show();
+        });
+        // 公司性质cn
+        $(".J_company_nature .radio").live('click',function(){
+            $("#nature_cn").val($(this).attr("title"));
+        });
+        // 公司规模cn
+        $(".J_company_scale .radio").live('click',function(){
+            $("#scale_cn").val($(this).attr("title"));
+        });
+    });
+
+    function del(obj){
+        var that = obj.parent();
+        that.remove();
+    }
+</script>
+</html>

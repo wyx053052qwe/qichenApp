@@ -1,0 +1,52 @@
+[ 2019-07-27T00:04:48+08:00 ] 139.129.100.204 /api/exchg/order/queryPendingOrders?page=1&count=1
+INFO: Cron:ClearPromotion Runat 2019-07-27 00:04:48 Use 0.010053 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 00:04:48 Use -0.000053 s 
+
+[ 2019-07-27T02:20:48+08:00 ] 128.14.133.58 /
+INFO: Cron:ClearCache Runat 2019-07-27 02:20:48 Use 0.022293 s 
+Cron:ClearPromotion Runat 2019-07-27 02:20:48 Use -0.000109 s 
+Cron:AutoRefreshResume Runat 2019-07-27 02:20:48 Use -0.010970 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 02:20:48 Use -0.012147 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 02:20:48 Use -0.012609 s 
+Cron:ClearOrder Runat 2019-07-27 02:20:48 Use -0.014171 s 
+
+[ 2019-07-27T08:13:32+08:00 ] 184.105.247.252 /
+INFO: Cron:ClearPromotion Runat 2019-07-27 08:13:32 Use 0.009996 s 
+Cron:AutoRefreshResume Runat 2019-07-27 08:13:32 Use -0.000078 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 08:13:32 Use -0.001136 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 08:13:32 Use -0.001575 s 
+
+[ 2019-07-27T09:15:34+08:00 ] 112.224.2.174 /index.php?m=Mobile
+INFO: Cron:ClearPromotion Runat 2019-07-27 09:15:34 Use 0.010436 s 
+Cron:AutoRefreshResume Runat 2019-07-27 09:15:34 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 09:15:34 Use -0.001135 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 09:15:34 Use -0.001558 s 
+
+[ 2019-07-27T11:03:51+08:00 ] 106.15.76.85 /
+INFO: Cron:ClearPromotion Runat 2019-07-27 11:03:51 Use 0.010202 s 
+Cron:AutoRefreshResume Runat 2019-07-27 11:03:51 Use -0.000062 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 11:03:51 Use -0.001344 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 11:03:51 Use -0.001835 s 
+
+[ 2019-07-27T13:09:27+08:00 ] 47.101.187.231 /
+INFO: Cron:ClearPromotion Runat 2019-07-27 13:09:27 Use 0.010582 s 
+Cron:AutoRefreshResume Runat 2019-07-27 13:09:27 Use -0.000071 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 13:09:27 Use -0.001213 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 13:09:27 Use -0.001650 s 
+
+[ 2019-07-27T14:29:11+08:00 ] 223.96.242.184 /index.php?m=Mobile
+INFO: Cron:ClearPromotion Runat 2019-07-27 14:29:11 Use 0.010190 s 
+Cron:AutoRefreshResume Runat 2019-07-27 14:29:11 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 14:29:11 Use -0.001280 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 14:29:11 Use -0.001751 s 
+
+[ 2019-07-27T15:05:44+08:00 ] ::1 /index.php?m=admin
+INFO: Cron:ClearPromotion Runat 2019-07-27 15:05:44 Use 0.339316 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 15:05:44 Use -0.024665 s 
+
+[ 2019-07-27T16:12:56+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=switch_utype&utype=2
+INFO: Cron:ClearPromotion Runat 2019-07-27 16:12:56 Use 0.162068 s 
+Cron:AutoRefreshResume Runat 2019-07-27 16:12:56 Use -0.000071 s 
+Cron:AutoRefreshJobs Runat 2019-07-27 16:12:56 Use -0.057594 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-27 16:12:56 Use -0.085556 s 
+

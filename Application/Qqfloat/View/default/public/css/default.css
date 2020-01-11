@@ -1,0 +1,14 @@
+.qq-float{width: 164px;position: fixed; right: 5px; top:50%; z-index: 5000;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);display: none;}
+.qq-float.left{ left: 5px;}
+.qq-float .qq{ background-color: #F39800; padding: 10px 0 0; margin-left: 16px; width: 125px;}
+.qq-float .qq .item{text-align: center; padding-top: 10px;}
+.qq-float .contact{ background-color: #F39800; padding: 10px 0 15px; margin-left: 16px; width: 125px;}
+.qq-float .contact .tip{ text-align: center; color: #333333; font-family: "microsoft yahei","宋体"; font-size: 16px;}
+.qq-float .contact .tel{ background-image:url(../images/tel.png); background-repeat:no-repeat; background-position:7px 7px; font-size: 13px; color: #333333; padding: 8px 0 0 27px;}
+.qq-float .contact .qr-code{ width: 90px; height: 90px; margin: 10px auto; background-color: #FFFFFF;}
+.qq-float .contact .qr-code img{ width: 90px; height: 90px; border: 0;}
+.qq-float .contact .tip.scan{ font-size: 14px;}
+.qq-float .footer{ margin-left: 16px; width: 125px; cursor: pointer;}
+
+.qq-float-min{width:35px; height:195px; background-image: url(../images/right.png); position: fixed; right: 0; bottom:330px; cursor: pointer; z-index: 5000; }
+.qq-float-min.left{background-image: url(../images/left.png); left: 0;}

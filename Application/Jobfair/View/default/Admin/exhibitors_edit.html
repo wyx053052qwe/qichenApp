@@ -1,0 +1,65 @@
+<include file="Admin@default/public/header" />
+
+<div class="toptit">修改参会企业</div>
+<form action="{:U('exhibitors_edit')}" method="post" name="FormData">
+    <div class="form_main width150">
+        <div class="fl">企业全称:</div>
+        <div class="fr txt link_blue">
+            <input name="companyname" id="companyname" type="hidden"  value="{$info.companyname}" class="input_text_400" />
+            <a href="{$info.company_url}" target="_blank"> {$info.companyname}</a>
+        </div>
+        <div class="fl">预定方式:</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="etype" type="hidden" value="{$info['etype']}">
+                <div class="radio <eq name='info.etype' value='1'>select</eq>" data="1" title="在线预定">在线预定</div>
+                <div class="radio <eq name='info.etype' value='2'>select</eq>" data="2" title="电话预定">电话预定</div>
+                <div class="radio <eq name='info.etype' value='3'>select</eq>" data="3" title="其他方式">其他方式</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">预定状态:</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="audit" type="hidden" value="{$info['audit']}">
+                <div class="radio <eq name='info.audit' value='1'>select</eq>" data="1" title="成功预定">成功预定</div>
+                <div class="radio <eq name='info.audit' value='2'>select</eq>" data="2" title="等待确认">等待确认</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">预定招聘会:</div>
+        <div class="fr txt">{$info['jobfair_title']}</div>
+        <div class="fl">预定展位:</div>
+        <div class="fr txt">{$info['position']}</div>
+        <div class="fl">推荐名企:</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="recommend" type="hidden" value="{$info['recommend']}">
+                <div class="radio <eq name='info.recommend' value='1'>select</eq>" data="1" title="推荐">推荐</div>
+                <div class="radio <eq name='info.recommend' value='0'>select</eq>" data="0" title="未推荐">未推荐</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">备注:</div>
+        <div class="fr">
+            <textarea name="note" class="input_text_default" style="height:100px; line-height:180%">{$info.note}</textarea>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="hidden" name="id" value="{$info['id']}">
+            <input type="submit" class="admin_submit" value="保存"/>
+            <input type="button" class="admin_submit" value="返回" onClick="Javascript:window.history.go(-1)"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+</script>
+</html>

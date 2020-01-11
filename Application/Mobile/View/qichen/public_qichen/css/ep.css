@@ -1,0 +1,509 @@
+/*员工服务*/
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
+
+.aui-head-bg {
+	background-image: url("../img/head-bg.png");
+	background-size: cover;
+	height: 198px;
+	/*position: relative;*/
+}
+
+.aui-navBar.aui-flex {
+	background: #fff;
+	padding: 0;
+}
+
+.aui-resume-white {
+	background-color: #fff;
+	border-radius: 3px;
+	margin: 15px;
+	box-shadow: 0 3px 3px #efefef;
+	position: absolute;
+	top: 87px;
+	width: 92%;
+}
+
+.aui-palace {
+	padding: 5px 10px;
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+.aui-palace-grid {
+	position: relative;
+	float: left;
+	padding: 12px 1px 12px 1px;
+	width: 25%;
+	box-sizing: border-box;
+}
+
+.aui-palace-grid-icon {
+	width: 32px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.aui-palace-grid-icon img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.aui-palace-grid-text {
+	display: block;
+	text-align: center;
+	color: #333333;
+	font-size: 13px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding-top: 2px;
+}
+
+.aui-palace-grid-text h2 {
+	font-size: 13px;
+	font-weight: normal;
+	color: #3e3e3e;
+}
+
+.aui-flex-clear em {
+	font-size: 12px;
+	color: #0081ec;
+	border: 1px solid #a3d5fb;
+	border-radius: 2px;
+	padding: 2px 5px;
+	font-style: normal;
+	background: #f7fcff;
+	margin-right: 10px;
+}
+
+.aui-flex-clear {
+	padding: 10px;
+}
+
+.aui-flex {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.aui-flex-clear .aui-flex-box {
+	color: #999;
+	font-size: 12px;
+}
+
+.aui-flex-fr-aro:after {
+	content: " ";
+	display: inline-block;
+	height: 7px;
+	width: 7px;
+	border-width: 2px 2px 0 0;
+	border-color: #666;
+	border-style: solid;
+	transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+	position: absolute;
+	top: 50%;
+	margin-top: -4px;
+	right: 10px;
+	border-radius: 2px;
+}
+
+.aui-flex-clear .index_photo_news {
+	width: 77%;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	overflow: hidden;
+	float: left;
+	margin-left: 33px;
+	position: absolute;
+	top: 0px;
+}
+
+.aui-flex-clear .index_photo_news p {
+	margin: 0;
+	height: auto;
+	margin-left: 5%;
+	font-size: 12px;
+	color: #FF0000;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-all;
+}
+
+.aui-head-tl-box {
+	padding-top: 100px;
+	background: #fff;
+}
+
+.aui-flex-box h2 {
+	position: relative;
+	font-size: 14px;
+	padding-left: 10px;
+	color: #999;
+}
+
+.aui-flex-box h2:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-image: url(../img/icon-info.png);
+	background-size: cover;
+	width: 4px;
+	height: 18px;
+	background-repeat: no-repeat;
+}
+
+.aui-flex {
+	align-items: center;
+	padding: 12px;
+	position: relative;
+}
+
+.aui-ad-box img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border: none;
+}
+
+.b-line {
+	background: #fff;
+	border-bottom: 1px solid #F5F5F5;
+}
+
+.aui-palace {
+	border-radius: 3px;
+}
+
+.divHeight {
+	width: 100%;
+	height: 10px;
+	background: #f5f5f5;
+	position: relative;
+	overflow: hidden;
+}
+
+.aui-list-box {
+	position: relative;
+	overflow: hidden;
+	background: #fff;
+}
+
+.aui-list-box .aui-flex {
+	width: 50%;
+	float: left;
+}
+
+.aui-flex-icon-img {
+	width: 35px;
+	height: 35px;
+	margin-right: 5px;
+}
+
+.aui-flex-icon-img img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border: none;
+}
+
+.aui-flex-box {
+	font-size: 15px;
+	color: #999;
+}
+
+.aui-flex-box h4 {
+	color: #333;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+.ago-activty {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background: #fff;
+}
+
+.ago-activty .aui-flex-box p {
+	padding-top: 10px;
+	color: #5eb95e;
+	font-size: 14px;
+}
+
+.ago-activty .aui-flex-box h3 {
+	font-size: 16px;
+	color: #333333;
+	font-weight: 500;
+	line-height: 1.5;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	word-break: break-all;
+	-webkit-box-orient: vertical;
+}
+
+.ago-activty .aui-flex-iphone {
+	width: 100px;
+	height: 73px;
+	margin-left: 10px;
+}
+
+.ago-activty .aui-flex-iphone img {
+	width: 100px;
+	height: 73px;
+	border: none;
+	display: block;
+}
+
+.ago-activty .aui-flex {
+	border-bottom: 1px dashed #F5F5F5;
+}
+
+
+/*工资查询样式*/
+
+.salary-box .zhuce_con {
+	margin-top: 0px;
+}
+
+.salary-xqall .zy_search_top_box {
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	width: 100%;
+}
+
+.salary-box {
+	padding-top: 25%;
+}
+
+.salary-box .login_box form div input {
+	margin-bottom: 0px;
+	border: none;
+	padding: 0px;
+}
+
+.salary-box .zy_login_btn {
+	border: 1px solid #f2b300;
+	padding: 0px;
+}
+
+
+/*工资详情样式*/
+
+.salary-xq-box {
+	padding: 10px 10px 0px 10px;
+	margin-top: 50px;
+	height: auto;
+	overflow: hidden;
+	background: #fff;
+}
+
+.salary-xq-box .form_line {
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px solid #F5F5F5;
+	font-size: 15px;
+	color: #333;
+	text-align: left;
+	background: #fff;
+}
+
+.salary-xq-box .form_line label span {
+	margin-left: 8%;
+	text-align: left;
+	font-size: 15px;
+	color: #333;
+}
+
+.month-money {
+	width: 100%;
+	height: auto;
+	overflow: auto;
+	padding: 12px;
+	font-size: 16px;
+	color: #f2b300;
+	background: #F5F5F5;
+}
+
+.salary-foot .salary-flex-xq {
+	bottom: 61px;
+}
+
+.salary-foot .salary-flex-xq a:first-child {
+	background-color: #e02727;
+}
+
+.salary-foot .salary-flex-xq a span {
+	font-size: 17px;
+}
+
+.salary-xq-box label {
+	width: 30%;
+	float: left;
+	text-align: left;
+}
+
+.salary-xq-box span {
+	float: right;
+	width: 70%;
+}
+
+
+/*证明开具页面*/
+
+.baodan_all {
+	margin-top: 50px;
+}
+
+.baodan_all .mui-input-group:before {
+	background-color: #fff;
+}
+
+.baodan_list .mui-input-row label {
+	font-size: 15px;
+	color: #333;
+}
+
+.baodan_list .mui-input-row label~input,
+.mui-input-row label~select,
+.mui-input-row label~textarea {
+	font-size: 15px;
+	color: #333;
+	text-align: right;
+	width: 58%;
+	float: left;
+}
+
+.baodan_list_content .mui-input-row span {
+	position: absolute;
+	top: 10px;
+	color: #9B9B9B;
+	font-size: 20px;
+	right: 13px;
+}
+
+.baodan_list_last .mui-input-row span {
+	position: absolute;
+	top: 8px;
+	color: #9B9B9B;
+	font-size: 20px;
+	right: 13px;
+}
+
+.baodan_list_first .mui-input-row span {
+	position: absolute;
+	top: 10px;
+	color: #9B9B9B;
+	font-size: 20px;
+	right: 13px;
+}
+
+.baodan_list_content .mui-input-row {
+	background: #FFFFFF;
+	position: relative;
+}
+
+.baodan_list .mui-input-group .mui-input-row:after {
+	right: 15px;
+	background-color: #e7e7e8;
+}
+
+.baodan_list .mui-input-group:after {
+	display: none;
+}
+
+.baodan_list .mui-input-row label~input::-webkit-input-placeholder {
+	color: #999;
+	font-size: 15px;
+	letter-spacing: 1.2px;
+}
+
+.baodan_list .mui-input-row label~input:::-moz-placeholder {
+	letter-spacing: 1.2px;
+	color: #999;
+	font-size: 15px;
+}
+
+.baodan_list .mui-input-row label~input::::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #999;
+	font-size: 15px;
+	letter-spacing: 1.2px;
+}
+
+.baodan_list .mui-input-row label~input:::-ms-input-placeholder {
+	letter-spacing: 1.2px;
+	color: #999;
+	font-size: 15px;
+}
+
+.sc-zm {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 14px;
+	background: #fff;
+	font-size: 15px;
+	color: #333;
+}
+
+.upload_photo {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	padding: 10px;
+	background: #fff;
+}
+
+.upload_photo>li {
+	float: left;
+	width: 33.33%;
+	position: relative;
+	padding: 10px;
+}
+
+.upload_photo>li img {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	border: 1px solid #F2F2F2;
+}
+
+.upload_photo>li .photo_sc {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	opacity: 0;
+}
+
+.zy_login_btn {
+	border: 1px solid #f2b300;
+	padding: 0px;
+	width: 100%;
+	background-color: #f2b300;
+	color: #fff;
+	border-radius: 3px;
+	font-size: 16px;
+	line-height: 3;
+	margin: 20px auto;
+}

@@ -1,0 +1,75 @@
+<volist name="resumelist" id="resume">
+    <div class="res-item">
+        <a href="{$resume.resume_url}" class="ji-top">
+            <div class="res-info">
+                <div class="info-img"><img src="{$resume.photosrc}"></div>
+                <div class="info-txt">
+                    <div class="it-o">
+                        <div class="io-jn substring font16 txt-3">{$resume.intention_jobs} <span class="font12 txt-6">({$resume.fullname})</span></div>
+                        <div class="io-jd font13 txt-o">
+                            <if condition="$resume['stick']">
+                                置顶
+                            <else/>
+                                {$resume['refreshtime_cn']}
+                            </if>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="it-t">
+                        <div class="it-cn font13 substring">{$resume.current_cn}</div>
+                        <div class="it-jw font13">{$resume.wage_cn}</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="it-t">
+                        <div class="it-cn font13 substring">{$resume.sex_cn} / {$resume.age}岁 / {$resume.education_cn} / {$resume.experience_cn}</div>
+                        <div class="it-jw font13 substring">{$resume.district_cn}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <if condition="$resume['tag_cn']">
+                <div class="res-tag">
+                    <volist name="resume['tag_cn']" id="tag" offset="0" length="4">
+                        <div class="tag-item">{$tag}</div>
+                    </volist>
+                    <div class="clear"></div>
+                </div>
+            </if>
+            <div class="job-des font13">{$resume.specialty_}</div>
+        </a>
+        <div class="ji-bot" data-jid="{$resume.id}">
+            <a href="javascript:;" class="bot-item applyJob"><div class="bot-cell dli">下载简历</div></a>
+            <if condition="C('qscms_rongyun_open') eq 1">
+            <a onclick="logDialog(0,'{:U('Im/message',array('uid'=>$resume['uid']))}',1)" href="javascript:;" class="J_Im bot-item"><div class="bot-cell chat">打招呼</div></a>
+            <else />
+            <eq name="resume['is_collect']" value="1">
+            <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect has">已收藏</div></a>
+            <else />
+            <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect">收藏</div></a>
+            </eq>
+            </if>
+            <eq name="resume['is_like']" value="1">
+            <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click has"><if condition="$resume['like_num']">{$resume.like_num}<else/>点赞</if></div></a>
+            <else />
+            <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click"><if condition="$resume['like_num']">{$resume.like_num}<else/>点赞</if></div></a>
+            </eq>
+        </div>
+    </div>
+</volist>
+<script>
+    // 特长标签随机背景色
+    function randomsort(a, b) {
+        return Math.random() > .5 ? -1 : 1;
+    }
+    var bgArrBefore = [1, 2, 3, 4];
+    $('.res-item').each(function() {
+        var $resTagDom = $(this).find('.tag-item');
+        if ($resTagDom.length) {
+            var bgArray = bgArrBefore.sort(randomsort);
+            $($resTagDom).each(function(index, value) {
+                $(this).addClass('ti' + bgArray[index]);
+            })
+        }
+    });
+</script>

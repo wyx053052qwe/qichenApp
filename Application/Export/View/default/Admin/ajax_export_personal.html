@@ -1,0 +1,83 @@
+<style type="text/css">
+	.form_main{width: 430px;}
+	.form_main .fr{width: 300px;}
+</style>
+<form name="form_dia" method="post">
+<div class="dialog_box">
+    <div class="form_main ">
+        <div class="fl">添加时间：</div>
+        <div class="fr">
+            <input name="settr" type="text"  id="dateRange" class="input_text_default arrow small date" placeholder="请选择日期范围"  value="" autocomplete="off" />
+        </div>
+        <div class="fl">性别：</div>
+        <div class="fr">
+            <div class="select_input_new w200 J_hoverinput J_dropdown J_listitme_parent">
+                <span class="J_listitme_text">不限</span>
+                <div class="dropdowbox_sn J_dropdown_menu">
+                    <div class="dropdow_inner_sn">
+                        <ul class="nav_box">
+                            <li><a class="J_listitme " href="javascript:;" data-code="0">不限</a></li>
+                            <li><a class="J_listitme " href="javascript:;" data-code="1">男</a></li>
+                            <li><a class="J_listitme " href="javascript:;" data-code="2">女</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <input class="J_listitme_code" name="sex" id="sex" type="hidden" value="0" />
+            </div>
+        </div>
+        <div class="fl">学历：</div>
+        <div class="fr">
+            <div class="select_input_new w200 J_hoverinput J_dropdown J_listitme_parent">
+                <span class="J_listitme_text">不限</span>
+                <div class="dropdowbox_sn J_dropdown_menu">
+                    <div class="dropdow_inner_sn">
+                        <ul class="nav_box">
+                            <li><a class="J_listitme " href="javascript:;" data-code="0">不限</a></li>
+                            <volist name="education_arr" id="vo">
+                            <li><a class="J_listitme " href="javascript:;" data-code="{$key}">{$vo}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+                <input class="J_listitme_code" name="education" id="education" type="hidden" value="0" />
+            </div>
+        </div>
+        <div class="fl">工作经验：</div>
+        <div class="fr">
+            <div class="select_input_new w200 J_hoverinput J_dropdown J_listitme_parent">
+                <span class="J_listitme_text">不限</span>
+                <div class="dropdowbox_sn J_dropdown_menu">
+                    <div class="dropdow_inner_sn">
+                        <ul class="nav_box">
+                            <li><a class="J_listitme " href="javascript:;" data-code="0">不限</a></li>
+                            <volist name="experience_arr" id="vo">
+                            <li><a class="J_listitme " href="javascript:;" data-code="{$key}">{$vo}</a></li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+                <input class="J_listitme_code" name="experience" id="experience" type="hidden" value="0" />
+            </div>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="submit" class="admin_submit" id="J_dia_export" value="导出"/>
+        </div>
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+    laydate.render({
+        elem: '#dateRange' //指定元素
+        ,range: true
+        ,format:'yyyy/MM/dd'
+    });
+	$("#J_dia_export").click(function () {
+        disapperTooltip("success", "正在导出，请稍候",function(){
+        	$('.modal_backdrop').remove();
+			$('.modal').remove();
+        });
+        $("form[name=form_dia]").attr("action", "{:U('Export/Admin/export_personal_s')}");
+        $("form[name=form_dia]").submit();
+    });
+</script>

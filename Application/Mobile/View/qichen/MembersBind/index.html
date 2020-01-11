@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" href="../public_qichen/css/ep.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<script type="text/javascript" src="../public_qichen/js/mui.min.js"></script>
+	</head>
+	<style>
+		.service-list>.service-one a {
+			width: inherit;
+			float: none;
+		}
+		.header-list>.list-one p {
+			font-size: 15px;
+			color: #112ae2;
+			margin-bottom: 0px;
+		}
+		.header-list {
+			width: 100%;
+			height: 61px;
+			overflow: hidden;
+			padding: 20px 0px 10px 0px;
+			text-align: center;
+		}
+		.header-list>.list-one a {
+			color: #2c1cae;
+		}
+	</style>
+	<body>
+		<!--头部-->
+
+		<div class="aui-head-bg">
+
+			<div class="aui-resume-white">
+				<div class="header-list">
+
+					<div class="list-one">
+						<a href="{:U('PersonalService/gold_log1')}">
+							{$points}积分
+							<p>签到积分</p>
+						</a>
+					</div>
+					<div class="list-one">
+						<a href="{:U('PersonalService/gold_task1')}">
+							2/2
+							<p>任务中心</p>
+						</a>
+					</div>
+					<div class="list-one">
+						<a href="{:U('personal/pms_list1')}">
+							{$msg_count}
+							<p>通知中心</p>
+						</a>
+					</div>
+				</div>
+				<div class="aui-palace b-line">
+					<a href="{:U('MembersBind/gongzi')}" class="aui-palace-grid">
+						<div class="aui-palace-grid-icon">
+							<img src="../public_qichen/img/icon-item-001.png" alt="">
+						</div>
+						<div class="aui-palace-grid-text">
+							<h2>工资查询</h2>
+						</div>
+					</a>
+					<a href="{:U('MembersBind/zhengming')}" class="aui-palace-grid">
+						<div class="aui-palace-grid-icon">
+							<img src="../public_qichen/img/icon-item-002.png" alt="">
+						</div>
+						<div class="aui-palace-grid-text">
+							<h2>证明开具</h2>
+						</div>
+					</a>
+					<a href="{:U('MembersBind/huodong_list')}" class="aui-palace-grid">
+						<div class="aui-palace-grid-icon">
+							<img src="../public_qichen/img/icon-item-003.png" alt="">
+						</div>
+						<div class="aui-palace-grid-text">
+							<h2>员工活动</h2>
+						</div>
+					</a>
+					<a href="{:U('MembersBind/lizhi')}" class="aui-palace-grid">
+						<div class="aui-palace-grid-icon">
+							<img src="../public_qichen/img/icon-item-004.png" alt="">
+						</div>
+						<div class="aui-palace-grid-text">
+							<h2>申请离职</h2>
+						</div>
+					</a>
+				</div>
+				<div class="aui-flex aui-flex-clear">
+					<div class="aui-flex-box">
+						<em>通知</em>
+						<div class="index_photo_news" id="scrolltop">
+							<div>
+								<qscms:notice_list 列表名="notice_list" 显示数目="10" 分类="2" 排序="addtime:desc"/>
+								<volist name="notice_list['list']" id="notice">
+								<p>{$notice.title}</p>
+								
+								</volist>
+
+							</div>
+							<div></div>
+						</div>
+
+					</div>
+					<div class="aui-flex-fr-aro"></div>
+				</div>
+			</div>
+		</div>
+		<!--头部-->
+		<!-- 推荐有奖-->
+		<div class="aui-head-tl-box">
+			<div class="aui-flex b-line">
+				<div class="aui-flex-box">
+					<h2>推荐有奖</h2>
+				</div>
+			</div>
+		</div>
+		<div class="aui-ad-box">
+			<a href="{:U('PersonalService/tuijian')}">
+			<img src="../public_qichen/img/ad-001.png" alt=""></a>
+		</div>
+		<!-- 我的学习-->
+		<div class="divHeight"></div>
+		<div class="aui-flex b-line">
+			<div class="aui-flex-box">
+				<h2>我的学习</h2>
+			</div>
+		</div>
+		<!--   -->
+		<div class="aui-list-box">
+			<a href="{:U('MembersBind/xuexi')}" class="aui-flex">
+				<div class="aui-flex-icon-img">
+					<img src="../public_qichen/img/icon-item-005.png" alt="">
+				</div>
+				<div class="aui-flex-box">
+					<h4>培训资料</h4>
+					<p>个人培训 | 公司培训</p>
+				</div>
+			</a>
+			<a href="{:U('MembersBind/xuexi')}" class="aui-flex">
+				<div class="aui-flex-icon-img">
+					<img src="../public_qichen/img/icon-item-006.png" alt="">
+				</div>
+				<div class="aui-flex-box">
+					<h4>学习任务</h4>
+					<p>学历提升 | 员工培训</p>
+				</div>
+			</a>
+			<a href="{:U('MembersBind/xuexi')}" class="aui-flex">
+				<div class="aui-flex-icon-img">
+					<img src="../public_qichen/img/icon-item-007.png" alt="">
+				</div>
+				<div class="aui-flex-box">
+					<h4>在线学习</h4>
+					<p>成人高考 | 在线考试</p>
+				</div>
+			</a>
+			<a href="{:U('MembersBind/xuexi')}" class="aui-flex">
+				<div class="aui-flex-icon-img">
+					<img src="../public_qichen/img/icon-item-008.png" alt="">
+				</div>
+				<div class="aui-flex-box">
+					<h4>在线考试</h4>
+					<p>能力提升 | 在线考试</p>
+				</div>
+			</a>
+
+		</div>
+		<!--往期活动  显示3个-->
+		<div class="divHeight"></div>
+		<div class="aui-flex b-line">
+			<div class="aui-flex-box">
+				<h2>往期活动</h2>
+			</div>
+		</div>
+		
+		<div class="ago-activty">
+			<!--1-->
+			<volist name="list" id="vo">
+			<a href="{$vo['url']}" class="aui-flex ">
+
+				<div class="aui-flex-box">
+					<h3>{$vo['name']}</h3>
+					<p>启辰人力资源</p>
+				</div>
+				<div class="aui-flex-iphone">
+					<img src="/data/upload/images/{$vo['img']}?{:time()}" alt="">
+				</div>
+
+			</a>
+			</volist>
+			<!--2-->
+			
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen/footer_fuwu_2"/>
+	</body>
+	<div id="animateMe"></div>
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>

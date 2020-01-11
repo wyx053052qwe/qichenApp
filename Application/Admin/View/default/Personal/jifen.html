@@ -1,0 +1,50 @@
+<div class="dialog_box">
+    
+    <form action="" method="post" name="form" id="form">
+        <input type="hidden" name="uid" value="{$members['uid']}">
+        <table width="100%" border="0" cellspacing="10" cellpadding="1" style=" margin-bottom:3px;">
+            <tr>
+                <td width="60" align="right">积分数量:</td>
+                <td>
+                    <input name="jifen" type="text" class="input_text_default small" value="{$mobile}"/>
+                </td>
+            </tr>
+            <tr>
+                <td width="60" align="right">内容:</td>
+                <td width="420">
+                    <textarea name="content" class="input_text_default middle" style="height:80px;"></textarea><br>
+                    <span style="color: #999999;">内容为用户看到的积分备注（必须填写）</span></td>
+            </tr>
+            <if condition="$need_tpl">
+            
+            <tr>
+                <td align="right">&nbsp;</td>
+                <td>
+                    <input name="check" type="button" class="admin_submit" id="check" value="立即赠送"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#check').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在赠送...').addClass('disabled');
+            $.post("{:U('jifen_send')}",$('#form').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.reload();
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>

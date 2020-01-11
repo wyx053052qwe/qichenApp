@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/personal.css">
+	</head>
+	<body>
+		<include file="public:header"/>
+		<div class="split-block"></div>
+		<div class="edittag">
+			<div class="tit font12">最多可以选5项
+				<div class="J_more more for-event">换一批</div>
+			</div>
+			<div id="J_tagWrap">
+				<volist name="tag_arr" id="stag" key="k">
+					<div class="J_tagPage <if condition="$k neq 1">qs-hidden</if>">
+						<volist name="stag" id="tag">
+							<div class="tag <if condition="in_array($key,$resume['tag_key'])">select</if>" tid="{$key}" title="{$tag}">{$tag}</div>
+						</volist>
+					</div>
+				</volist>
+			</div>
+			<div class="clear"></div>
+			<div class="split-block"></div>
+			<div id="J_taglist" style="padding-top:.3rem;">
+				<volist name="resume['tag_cn']" id="tag">
+					<if condition="!in_array($tag,$tags)">
+						<div class="tag select" title="{$tag}">{$tag}</div>
+					</if>
+				</volist>
+			</div>
+			<div class="clear"></div>
+			<div class="addtagbox">
+				<div class="inputbox">
+					<input id="tagVal" type="text"  placeholder="标签不够？手动输入8字内标签">
+				</div>
+				<div class="btnbox">
+					<div id="J_addtag" class="qs-btn qs-btn-medium qs-btn-green">贴标签</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="tagbtns">
+				<div id="J_saveresume" class="qs-btn qs-btn-blue font18">保存</div>
+			</div>
+		</div>
+		<include file="public:footer_min" />
+		<script type="text/javascript">
+            // 添加自定义标签
+			$('#J_addtag').on('click',function(){
+				var tag = $('#tagVal').val();
+				var isRepeat = false;
+				if(tag == ''){
+					qsToast('标签不能为空！');
+					return false;
+				}
+				if (tag.length > 8) {
+					qsToast('自定义标签不能超过8个字！');
+					return false;
+				}
+				$('.tag').each(function(index, el) {
+					if (tag == $(this).attr('title')) {
+						isRepeat = true;
+					}
+				})
+				if (isRepeat) {
+					qsToast('填写的亮点已经存在了哦！');
+					return false;
+				}
+				$('#J_taglist').append('<div class="tag" title="'+tag+'">'+tag+'</div>');
+				$('#tagVal').val('');
+			});
+			// 选项
+			$('#J_tagWrap .tag,#J_taglist .tag').live('click',function(){
+				if($(this).hasClass('select')){
+	        		$(this).removeClass('select');
+	        	}else{
+	        		if($('.tag.select').length >= 5){
+						qsToast('特长标签最多可以选5项！');
+	        			return false;
+					}
+	        		$(this).addClass('select');
+	        	}
+			});
+			// 验证
+			$('#J_saveresume').on('click',function(){
+                // 有禁用class不执行，阻止多次点击
+                if ($('#J_saveresume').hasClass('qs-btn-border-disabled')) {
+                    return false;
+                }
+				var tagListArray = $('.tag.select');
+				var tagvalueArray = new Array();
+				var tagcnvalueArray = new Array();
+				var pid = "{$resume.id}";
+				var news = "{$Think.get.news}";
+				if (tagListArray.length) {
+					$.each(tagListArray, function(index, val) {
+						if($(this).attr('tid')){
+							tagvalueArray.push($(this).attr('tid'));
+						}else{
+							tagcnvalueArray.push($(this).attr('title'));
+						}
+					});
+				} else {
+					qsToast('请选择特长标签');
+					return false;
+				}
+                var cuToast = qsToasting('正在保存中');
+				$('#J_saveresume').text('保存中...');
+                $(this).addClass('qs-btn-border-disabled');
+	            // 提交表单
+	            $.ajax({
+	                url: "{:U('Personal/resume_edit_speciality')}",
+	                type: 'POST',
+	                dataType: 'json',
+	                data: {pid: pid, tag: tagvalueArray, tag_cn:tagcnvalueArray,news:news},
+	                success:function(data){
+	                    if (data.status == 1) {
+                            qsToast(data.msg, 1, cuToast);
+                            setTimeout(function () {
+                                window.location.href = data.data.url;
+                            }, 2000);
+	                    } else {
+                            qsToast(data.msg, 0, cuToast);
+	                        $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                    }
+	                },
+	                error:function(result){
+                        qsToast(result.msg, '', cuToast);
+	                    $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                }
+	            });
+			});
+			// 换一批
+			var n = 0;
+			$('.J_more').on('click',function(){
+				n++;
+				if(n>$('.J_tagPage').length-1){
+					n=0;
+				}
+				$('.J_tagPage').eq(n).removeClass('qs-hidden').siblings().addClass('qs-hidden');
+			});
+		</script>
+	</body>
+</html>

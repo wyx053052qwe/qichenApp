@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/personal.css">
+	</head>
+	<body>
+		<include file="public:header"/>
+		<div class="list_height plist-txt notarrow">
+	        <div class="pic"></div>
+	        <div class="tit font14">项目名称<span class="font_red_light">*</span></div>
+	        <div class="describe font13">
+	            <input type="text" id="projectname" id="projectname" placeholder="请输入项目名称" value="{$info['projectname']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+	    </div>
+	    <div class="list_height plist-txt notarrow">
+	        <div class="pic"></div>
+	        <div class="tit font14">担任角色<span class="font_red_light">*</span></div>
+	        <div class="describe font13">
+	            <input type="text" id="role" id="role" placeholder="请输入担任角色" value="{$info['role']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+	    </div>
+	    <div class="list_height plist-txt qs-relative js-actionParent">
+            <div class="abAct js-showActionSheet"></div>
+	        <div class="pic"></div>
+	        <div class="tit font14">开始时间<span class="font_red_light">*</span></div>
+	        <div class="describe font13 qs-temp-date" data-type="start">
+		        <span class="f-date-txt-start">
+	        	<if condition="$Think.get.id eq ''">
+	        		请选择
+	        	<elseif condition="$info['tonowEdu']"/>
+	        		至今
+				<else/>
+					{$info.startyear}年-{$info.startmonth}月
+	        	</if>
+		        </span>
+	        	<input type="hidden" class="f-year-code-start" id="startyear"  value="{$info['startyear']}">
+				<input type="hidden" class="f-month-code-start" id="startmonth"  value="{$info['startmonth']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+		    <!--BEGIN actionSheet-->
+		    <div>
+			    <div class="qs-mask" style="display:none"></div>
+			    <div class="qs-actionsheet js-actionsheet">
+				    <div class="qs-actionsheet-menu">
+					    <div class="con-filter">
+						    <div class="f-selected-group">
+							    <div class="s-bar">
+								    <div class="s-bar-title qs-left">开始时间</div>
+								    <div class="clear"></div>
+							    </div>
+							    <div class="s-list"></div>
+						    </div>
+						    <div class="f-box f-box-date-start"></div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="list_height plist-txt qs-relative js-actionParent last">
+            <div class="abAct js-showActionSheet"></div>
+	        <div class="pic"></div>
+	        <div class="tit font14">结束时间<span class="font_red_light">*</span></div>
+	        <div class="describe font13 qs-temp-date" data-type="end">
+		        <span class="f-date-txt-end">
+	        	<if condition="$Think.get.id eq ''">
+	        		请选择
+	        	<elseif condition="$info['todate']"/>
+	        		至今
+				<else/>
+					{$info.endyear}年-{$info.endmonth}月
+	        	</if>
+		        </span>
+				<input type="hidden" class="f-year-code-end" id="endyear" value="{$info['endyear']}">
+				<input type="hidden" class="f-month-code-end" id="endmonth" value="{$info['endmonth']}">
+				<input type="hidden" id="todate" value="{$info['todate']}">
+	        </div>
+	        <div class="arrow"></div>
+	        <div class="clear"></div>
+		    <!--BEGIN actionSheet-->
+		    <div>
+			    <div class="qs-mask" style="display:none"></div>
+			    <div class="qs-actionsheet js-actionsheet">
+				    <div class="qs-actionsheet-menu">
+					    <div class="con-filter">
+						    <div class="f-selected-group">
+							    <div class="s-bar">
+								    <div class="s-bar-title qs-left">结束时间</div>
+								    <div class="qs-btn qs-btn-inline qs-btn-small qs-btn-border-orange qs-right js-cancelActionSheet js-todate">至今</div>
+								    <div class="clear"></div>
+							    </div>
+							    <div class="s-list"></div>
+						    </div>
+						    <div class="f-box f-box-date-end"></div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	    <div class="split-block"></div>
+	    <div class="textarea-txt">
+    		<textarea id="description" name="description" placeholder="请简述一下你的项目经验，可使用人单位对你了解更多！" class="font13">{$info['description']}</textarea>
+		</div>
+		<div class="bottom_txt font12">
+		    <div class="llt">最多可输入1000字</div>
+		    <div class="rlt clear-content">清空</div>
+		</div>
+        <div class="btn-spacing">
+        	<input type="hidden" id="id" value="{$info['id']}">
+            <div id="J_saveresume" class="qs-btn qs-btn-blue font18" title="确定">确定</div>
+        </div>
+        <div class="split-block"></div>
+	    <include file="public:footer_min" />
+        <script src="../public/js/qs.date.js"></script>
+	    <script type="text/javascript">
+	    	//清空内容
+		    $('.clear-content').on('click', function () {
+		        $('#description').val('');
+		    });
+		    // 验证
+	    	$('#J_saveresume').die().live('click', function() {
+                // 有禁用class不执行，阻止多次点击
+                if ($('#J_saveresume').hasClass('qs-btn-border-disabled')) {
+                    return false;
+                }
+				var projectnameValue = $.trim($('#projectname').val());
+	            var roleValue = $.trim($('#role').val());
+	            var startyearProValue = $.trim($('#startyear').val());
+	            var startmonthProValue = $.trim($('#startmonth').val());
+	            var endyearProValue = $.trim($('#endyear').val());
+	            var endmonthProValue = $.trim($('#endmonth').val());
+	            var todateProValue = $.trim($('#todate').val());
+	            var descriptionValue = $.trim($('#description').val());
+				var id = $.trim($('#id').val());
+				var pid = "{$resume.id}";
+				var news = "{$Think.get.news}";
+				if (projectnameValue == "") {
+					qsToast('请填写项目名称');
+					return false;
+				}
+				if (roleValue == "") {
+					qsToast('请填写担任角色');
+					return false;
+				}
+				if (startyearProValue == "") {
+					qsToast('请选择项目开始时间');
+					return false;
+				}
+				if (startmonthProValue == "") {
+					qsToast('请选择项目开始月份');
+					return false;
+				}
+				if (!parseInt(todateProValue)) {
+					if (endyearProValue == "") {
+						qsToast('请选择项目结束时间');
+						return false;
+					}
+					if (endmonthProValue == "") {
+						qsToast('请选择项目结束月份');
+						return false;
+					}
+					if (wrongTime(startyearProValue, startmonthProValue, endyearProValue, endmonthProValue)) {
+						qsToast('项目开始时间需小于结束时间');
+						return false;
+					}
+				}
+				if (descriptionValue == "") {
+					qsToast('请填写项目描述');
+					return false;
+				}
+                var cuToast = qsToasting('正在保存中');
+				$('#J_saveresume').text('保存中...');
+                $(this).addClass('qs-btn-border-disabled');
+	            // 提交表单
+	            $.ajax({
+	                url: "{:U('Personal/resume_edit_project')}",
+	                type: 'POST',
+	                dataType: 'json',
+	                data: {id: id, pid: pid, projectname: projectnameValue, role: roleValue, startyear: startyearProValue, startmonth: startmonthProValue, endyear: endyearProValue, endmonth: endmonthProValue, todate: todateProValue, description: descriptionValue,news:news},
+	                success:function(data){
+	                    if (data.status == 1) {
+                            qsToast(data.msg, 1, cuToast);
+                            setTimeout(function () {
+                                window.location.href = data.data.url;
+                            }, 2000);
+	                    } else {
+                            qsToast(data.msg, 0, cuToast);
+	                        $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                    }
+	                },
+	                error:function(result){
+                        qsToast(result.msg, '', cuToast);
+	                    $('#J_saveresume').text('保存').removeClass('qs-btn-border-disabled');
+	                }
+	            });
+			    // 判断结束时间是否大于开始时间
+			    function wrongTime(sYear, sMonth, eYear, eMonth) {
+				    if (parseInt(sYear) > parseInt(eYear)) {
+					    return true;
+				    } else {
+					    if (parseInt(sYear) == parseInt(eYear)) {
+						    if (parseInt(sMonth) >= parseInt(eMonth)) {
+							    return true;
+						    } else {
+							    return false;
+						    }
+					    } else {
+						    return false;
+					    }
+				    }
+			    }
+	        });
+	    </script>
+	</body>
+</html>

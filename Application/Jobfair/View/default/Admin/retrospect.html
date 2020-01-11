@@ -1,0 +1,59 @@
+<include file="Admin@default/public/header" />
+
+<div class="toptit link_blue">招聘会精彩回顾</div>
+<div class="form_main">
+    <form id="img_form" action="{:U('upload_retrospect')}" method="post" enctype="multipart/form-data">
+        <notempty name="retrospect">
+            <volist name="retrospect" id="vo">
+                <div style="float:left; text-align:center; padding:15px; line-height:180%;margin-left: 20px; margin-bottom: 20px;"  class="link_blue img_list">
+                    <a href="{:attach($vo['img'],'jobfair')}" target="_blank">
+                        <img src="{:attach($vo['img'],'jobfair')}" width="180" height="130" border="1" style="border: #CCCCCC;"/>
+                    </a>
+                    <br />
+                    <a href="javascript:;" class="delete_img" img_id="{$vo['id']}">删除</a>
+                </div>
+            </volist>
+            <div class="clear"></div>
+        </notempty>
+        <div class="fl" style=" width: 15px;">&nbsp;</div>
+        <div class="fr">
+            <input type="button" value="添加图片" class="admin_submit img_add"/>
+            <input type="file" class="hidden_file" id="hidden_file" name="img" style="display:none;">
+            <input type="hidden" name="jobfair_id" value="{$jobfair_id}">
+        </div>
+        <div class="clear"></div>
+    </form>
+
+</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // 上传图片
+        $('.img_add').click(function(){
+            $("#hidden_file").click();
+        });
+        $("#hidden_file").change(function(){
+            $("#img_form").submit();
+        });
+        // 删除图片
+        $(".delete_img").click(function(){
+            if(confirm('确定删除该图片吗？')){
+                var id = $(this).attr('img_id');
+                location.href="{:U('retrospect_delete')}&id="+id;
+            }
+        });
+        // 鼠标效果
+        $(".img_list").hover(
+            function () {
+                $(this).css("background-color","#E4F4FC");
+            },
+            function () {
+                $(this).css("background-color","");
+            }
+        );
+    });
+</script>
+</html>

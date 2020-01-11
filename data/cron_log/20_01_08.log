@@ -1,0 +1,200 @@
+[ 2020-01-08T10:46:41+08:00 ] 144.0.159.63 /
+INFO: Cron:ClearCache Runat 2020-01-08 10:46:40 Use 0.107401 s 
+Cron:ClearPromotion Runat 2020-01-08 10:46:41 Use -0.000111 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:46:41 Use -0.112000 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:46:41 Use -0.114434 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:46:41 Use -0.115097 s 
+Cron:ClearOrder Runat 2020-01-08 10:46:41 Use -0.134961 s 
+
+[ 2020-01-08T10:46:42+08:00 ] 144.0.159.63 /index.php?m=Home&c=Qrcode&a=index&url=%2F%3Fm%3DMobile
+INFO: Cron:ClearCache Runat 2020-01-08 10:46:42 Use 0.004280 s 
+Cron:ClearPromotion Runat 2020-01-08 10:46:42 Use -0.000070 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:46:42 Use -0.014119 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:46:42 Use -0.015613 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:46:42 Use -0.016081 s 
+Cron:ClearOrder Runat 2020-01-08 10:46:42 Use -0.018160 s 
+
+[ 2020-01-08T10:46:42+08:00 ] 144.0.159.63 /index.php?m=Qqfloat&c=Index&a=index
+INFO: Cron:ClearCache Runat 2020-01-08 10:46:42 Use 0.002269 s 
+Cron:ClearPromotion Runat 2020-01-08 10:46:42 Use -0.000097 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:46:42 Use -0.014335 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:46:42 Use -0.015868 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:46:42 Use -0.016291 s 
+Cron:ClearOrder Runat 2020-01-08 10:46:42 Use -0.018356 s 
+
+[ 2020-01-08T10:46:56+08:00 ] 144.0.159.63 /
+INFO: Cron:ClearCache Runat 2020-01-08 10:46:56 Use 0.003165 s 
+Cron:ClearPromotion Runat 2020-01-08 10:46:56 Use -0.000095 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:46:56 Use -0.013703 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:46:56 Use -0.015140 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:46:56 Use -0.015544 s 
+Cron:ClearOrder Runat 2020-01-08 10:46:56 Use -0.017600 s 
+
+[ 2020-01-08T10:46:56+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=members&a=login
+INFO: Cron:ClearCache Runat 2020-01-08 10:46:56 Use 0.002241 s 
+Cron:ClearPromotion Runat 2020-01-08 10:46:56 Use -0.000069 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:46:56 Use -0.013902 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:46:56 Use -0.015358 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:46:56 Use -0.015816 s 
+Cron:ClearOrder Runat 2020-01-08 10:46:56 Use -0.017890 s 
+
+[ 2020-01-08T10:47:06+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Members&a=login
+INFO: Cron:ClearCache Runat 2020-01-08 10:47:06 Use 0.002881 s 
+Cron:ClearPromotion Runat 2020-01-08 10:47:06 Use -0.000071 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:47:06 Use -0.013772 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:47:06 Use -0.015204 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:47:06 Use -0.015617 s 
+Cron:ClearOrder Runat 2020-01-08 10:47:06 Use -0.017674 s 
+
+[ 2020-01-08T10:47:22+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=jobs&a=index
+INFO: Cron:ClearCache Runat 2020-01-08 10:47:22 Use 0.003591 s 
+Cron:ClearPromotion Runat 2020-01-08 10:47:22 Use -0.000097 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:47:22 Use -0.013711 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:47:22 Use -0.015137 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:47:22 Use -0.015560 s 
+Cron:ClearOrder Runat 2020-01-08 10:47:22 Use -0.017612 s 
+
+[ 2020-01-08T10:47:35+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Personal&a=index
+INFO: Cron:ClearCache Runat 2020-01-08 10:47:35 Use 0.007152 s 
+Cron:ClearPromotion Runat 2020-01-08 10:47:35 Use -0.000067 s 
+Cron:AutoRefreshResume Runat 2020-01-08 10:47:35 Use -0.014075 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 10:47:35 Use -0.015541 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 10:47:35 Use -0.015986 s 
+Cron:ClearOrder Runat 2020-01-08 10:47:35 Use -0.018066 s 
+
+[ 2020-01-08T11:05:31+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Bind&a=member_binds
+INFO: Cron:ClearPromotion Runat 2020-01-08 11:05:31 Use 0.014030 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 11:05:31 Use -0.000058 s 
+
+[ 2020-01-08T11:12:40+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Bind&a=member_binds
+INFO: Cron:AutoRefreshResume Runat 2020-01-08 11:12:40 Use 0.005406 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 11:12:40 Use -0.000055 s 
+
+[ 2020-01-08T11:12:53+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Bind&a=member_binds
+INFO: Cron:AutoRefreshResume Runat 2020-01-08 11:12:53 Use 0.005439 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 11:12:53 Use -0.000062 s 
+
+[ 2020-01-08T11:13:22+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Bind&a=member_binds
+INFO: Cron:AutoRefreshResume Runat 2020-01-08 11:13:22 Use 0.005458 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 11:13:22 Use -0.000052 s 
+
+[ 2020-01-08T14:11:45+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=MembersBind&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 14:11:45 Use 0.013683 s 
+Cron:AutoRefreshResume Runat 2020-01-08 14:11:45 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 14:11:45 Use -0.001484 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 14:11:45 Use -0.001952 s 
+
+[ 2020-01-08T14:11:48+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=MembersBind&a=zhengming
+INFO: Cron:ClearPromotion Runat 2020-01-08 14:11:48 Use 0.014126 s 
+Cron:AutoRefreshResume Runat 2020-01-08 14:11:48 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 14:11:48 Use -0.001500 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 14:11:48 Use -0.001913 s 
+
+[ 2020-01-08T16:21:21+08:00 ] 144.0.159.63 /
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:21 Use 0.013795 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:21 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:21 Use -0.001464 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:21 Use -0.001918 s 
+
+[ 2020-01-08T16:21:22+08:00 ] 144.0.159.63 /index.php?m=&c=Index&a=ajax_scroll
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:22 Use 0.014786 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:22 Use -0.000070 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:22 Use -0.001642 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:22 Use -0.002026 s 
+
+[ 2020-01-08T16:21:22+08:00 ] 144.0.159.63 /index.php?m=Home&c=Qrcode&a=index&url=%2F%3Fm%3DMobile
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:22 Use 0.013985 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:22 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:22 Use -0.001497 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:22 Use -0.001940 s 
+
+[ 2020-01-08T16:21:22+08:00 ] 144.0.159.63 /index.php?m=Recommend&c=index&a=get_recommend
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:22 Use 0.016137 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:22 Use -0.000052 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:22 Use -0.001446 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:22 Use -0.001892 s 
+
+[ 2020-01-08T16:21:22+08:00 ] 144.0.159.63 /index.php?m=Qqfloat&c=Index&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:22 Use 0.014060 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:22 Use -0.000052 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:22 Use -0.002060 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:22 Use -0.002493 s 
+
+[ 2020-01-08T16:21:22+08:00 ] 144.0.159.63 /index.php?m=Home&c=AjaxCommon&a=get_header_min
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:22 Use 0.013849 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:22 Use -0.000075 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:22 Use -0.002095 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:22 Use -0.002511 s 
+
+[ 2020-01-08T16:21:31+08:00 ] 144.0.159.63 /
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:31 Use 0.013882 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:31 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:31 Use -0.001495 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:31 Use -0.001924 s 
+
+[ 2020-01-08T16:21:31+08:00 ] 144.0.159.63 /?m=Mobile
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:31 Use 0.013383 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:31 Use -0.000075 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:31 Use -0.001483 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:31 Use -0.001960 s 
+
+[ 2020-01-08T16:21:31+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=members&a=login
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:31 Use 0.013593 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:31 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:31 Use -0.001509 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:31 Use -0.002020 s 
+
+[ 2020-01-08T16:21:43+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=members&a=login&type=login_pwd
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:43 Use 0.014037 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:43 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:43 Use -0.001505 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:43 Use -0.001922 s 
+
+[ 2020-01-08T16:21:47+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=Members&a=login
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:47 Use 0.013765 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:47 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:47 Use -0.001483 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:47 Use -0.001878 s 
+
+[ 2020-01-08T16:21:47+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=personal&a=index&uid=139
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:47 Use 0.013950 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:47 Use -0.000074 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:47 Use -0.001535 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:47 Use -0.001946 s 
+
+[ 2020-01-08T16:21:51+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=jobs&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:21:51 Use 0.013735 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:21:51 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:21:51 Use -0.001486 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:21:51 Use -0.001934 s 
+
+[ 2020-01-08T16:22:10+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=personal&a=resume_add
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:22:10 Use 0.013904 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:22:10 Use -0.000053 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:22:10 Use -0.001456 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:22:10 Use -0.001883 s 
+
+[ 2020-01-08T16:22:11+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=personal&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:22:11 Use 0.013897 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:22:11 Use -0.000052 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:22:11 Use -0.001577 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:22:11 Use -0.001992 s 
+
+[ 2020-01-08T16:22:12+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=index&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:22:12 Use 0.013509 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:22:12 Use -0.000051 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:22:12 Use -0.001497 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:22:12 Use -0.001914 s 
+
+[ 2020-01-08T16:22:15+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=MembersBind&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:22:15 Use 0.013998 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:22:15 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:22:15 Use -0.002763 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:22:15 Use -0.003264 s 
+
+[ 2020-01-08T16:22:17+08:00 ] 144.0.159.63 /index.php?m=Mobile&c=index&a=index
+INFO: Cron:ClearPromotion Runat 2020-01-08 16:22:17 Use 0.013813 s 
+Cron:AutoRefreshResume Runat 2020-01-08 16:22:17 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2020-01-08 16:22:17 Use -0.001512 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-08 16:22:17 Use -0.001922 s 
+

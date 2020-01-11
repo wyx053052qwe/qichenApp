@@ -1,0 +1,163 @@
+<include file="public:header"/>
+<div class="seltpye_x">
+    <div class="left">申请时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+<form id="form1" name="form1" method="post" action="{:U('zaizhi_delete')}">
+    <div class="list_th">
+        
+       
+        <div class="td" style=" width:10%;">用户</div>
+        <div class="td" style=" width:10%;">身份证</div>
+        <div class="td" style=" width:10%;">姓名</div>
+        <div class="td " style="width:10%;">在职企业</div>
+        <div class="td " style="width:10%;">工资卡号</div>
+        <div class="td " style="width:10%;">联系方式</div>
+        
+        
+        <div class="td" style=" width:40%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            
+           
+            
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['uid_name']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['id_card']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['name']|default="未填写"}</span>
+            </div>
+            
+
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['companyname']|default="未填写"}</span>
+            </div>
+            
+           <div class="td" style=" width: 10%;">
+                <span>{$vo['gongzi_card']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['mobile']|default="未填写"}</span>
+            </div>
+            
+            
+            <div class="td edit" style=" width:40%;">
+               
+                <if condition="$vo['status'] == 0">
+                    <!-- <a href="{:U('shenqing_true',array('id'=>$vo['id']))}">通过</a> -->
+                    <a href="javascript:;" class="J_message" parameter="id={$vo['id']}">不通过</a>
+                    
+                </if>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+
+<div class="pages">{$page}</div>
+
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //登录日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登录日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //会员日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登陆日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+         //会员日志
+        $(".personal_log").click(function () { 
+            var qsDialog = $(this).dialog({
+                title: '会员日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/personal_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        $(".J_message").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '审核',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('shenqing_false')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //业务
+        $(".business").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '业务',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('gongzi')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //批量删除
+        $("#ButDel").click(function () {
+            if (confirm('删除在职人员后，缺少部分功能')) {
+                $("form[name=form1]").attr("action", "{:U('zaizhi_delete')}");
+                $("form[name=form1]").submit();
+            }
+        });
+    });
+</script>
+</html>

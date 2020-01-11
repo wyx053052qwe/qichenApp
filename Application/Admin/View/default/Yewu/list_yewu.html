@@ -1,0 +1,144 @@
+<include file="public:header"/>
+
+
+
+
+<form id="form1" name="form1" method="post" action="">
+    <div class="list_th">
+        
+       
+        <div class="td" style=" width:10%;">名字</div>
+        <div class="td" style=" width:30%;">链接</div>
+        <div class="td" style=" width:20%;">添加时间</div>
+        
+        
+        
+        <div class="td" style=" width:40%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            
+           
+            
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['name']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 30%;">
+                <span>https://www.qichenhr.xyz{:U('mobile/yewu/index',array('id'=>$vo['id']))}</span>
+            </div>
+            <div class="td" style=" width: 20%;">
+                <span>{:date("Y-m-d",$vo['add_time'])}</span>
+            </div>
+            
+
+           
+            
+            <div class="td edit" style=" width:40%;">
+               <a href="{:U('edit_yewu',array('id'=>$vo['id']))}">编辑</a>
+               <a href="{:U('del_yewu',array('id'=>$vo['id']))}">删除</a>
+                
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="添加业务" onclick="window.location.href='{:U('add_yewu')}'"/>
+        
+    </div>
+
+    
+</div>
+<div class="pages">{$page}</div>
+    
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //登录日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登录日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //会员日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登陆日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+         //会员日志
+        $(".personal_log").click(function () { 
+            var qsDialog = $(this).dialog({
+                title: '会员日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/personal_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        $(".J_message").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '审核',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('shenqing_false')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //业务
+        $(".business").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '业务',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('gongzi')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //批量删除
+        $("#ButDel").click(function () {
+            if (confirm('删除在职人员后，缺少部分功能')) {
+                $("form[name=form1]").attr("action", "{:U('zaizhi_delete')}");
+                $("form[name=form1]").submit();
+            }
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,18 @@
+[ 2020-01-11T08:40:16+08:00 ] 127.0.0.1 /index.php?m=admin
+INFO: Cron:ClearCache Runat 2020-01-11 08:40:16 Use 0.047231 s 
+Cron:ClearPromotion Runat 2020-01-11 08:40:16 Use -0.001207 s 
+Cron:AutoRefreshResume Runat 2020-01-11 08:40:16 Use -0.180787 s 
+Cron:AutoRefreshJobs Runat 2020-01-11 08:40:16 Use -0.195461 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-11 08:40:16 Use -0.196720 s 
+Cron:ClearOrder Runat 2020-01-11 08:40:16 Use -0.286643 s 
+
+[ 2020-01-11T09:13:01+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-11 09:13:01 Use 0.026803 s 
+Cron:AutoRefreshResume Runat 2020-01-11 09:13:01 Use -0.000081 s 
+Cron:AutoRefreshJobs Runat 2020-01-11 09:13:01 Use -0.003124 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-11 09:13:01 Use -0.003990 s 
+
+[ 2020-01-11T10:01:33+08:00 ] 127.0.0.1 /index.php?m=Admin&c=Personal&a=zaizhi
+INFO: Cron:ClearPromotion Runat 2020-01-11 10:01:33 Use 0.025257 s 
+Cron:ClearExpiredSetmeal Runat 2020-01-11 10:01:33 Use -0.000079 s 
+

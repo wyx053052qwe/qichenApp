@@ -1,0 +1,128 @@
+<include file="Admin@default/public/header" />
+<div class="seltpye_x">
+    <div class="left">预定状态</div>
+    <div class="right">
+        <a href="{:P(array('status'=>''))}" <eq name='Think.get.status' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('status'=>'1'))}" <eq name='Think.get.status' value='1'>class="select"</eq>>允许预定</a>
+        <a href="{:P(array('status'=>'2'))}" <eq name='Think.get.status' value='2'>class="select"</eq>>停止预定</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="seltpye_x">
+    <div class="left">添加时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<form id="form1" name="form1" method="post" action="{:U('jobfair_delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:22%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>举办时间
+            </label>
+        </div>
+        <div class="td" style=" width:30%;">招聘会标题</div>
+        <div class="td center" style=" width:10%;">预定状态</div>
+        <div class="td center" style=" width:10%;">添加日期</div>
+        <div class="td" style=" width:28%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:22%;">
+                <div class="left_padding striking link_blue">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <if condition="$vo['holddate_start'] gt $time">
+                        <span style="color:#009900">{$vo['holddate_start']|date="Y-m-d",###}&nbsp;至&nbsp;{$vo['holddate_end']|date="Y-m-d",###}</span>
+                        <else />
+                        <span style="color: #999999">{$vo['holddate_start']|date="Y-m-d",###}&nbsp;至&nbsp;{$vo['holddate_end']|date="Y-m-d",###}</span>
+                    </if>
+                </div>
+            </div>
+            <div class="td" style=" width:30%;">
+                <a target="_blank" href="{:url_rewrite('QS_jobfairshow',array('id'=>$vo['id']))}">{$vo['title']}</a>
+            </div>
+            <div class="td center" style=" width:10%;">
+                <if condition="$vo['holddate_start'] gt $time">
+                    允许预定
+                    <else />
+                    <span style="color: #999999">停止预定</span>
+                </if>
+            </div>
+            <div class="td center" style=" width:10%;">{:admin_date($vo['addtime'])}</div>
+            <div class="td edit" style=" width:28%;">
+                <if condition="$vo['holddate_end'] lt $time">
+                    <a href="{:U('retrospect',array('jobfair_id'=>$vo['id']))}">精彩回顾</a>
+                </if>
+                <a href="{:U('AdminPosition/index',array('jobfair_id'=>$vo['id']))}">展位设置</a>
+                <a href="{:U('exhibitors_list',array('jobfair_id'=>$vo['id'],'jobfair_cn'=>$vo['title']))}">参会企业</a>
+                <a href="{:U('jobfair_edit',array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('jobfair_delete',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="新增" onclick="window.location='{:U('jobfair_add')}'"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除所选"/>
+    </div>
+
+    <div class="footso">
+        <form action="?" method="get">
+            <div class="sobox">
+                <input type="hidden" name="m" value="{:MODULE_NAME}">
+                <input type="hidden" name="c" value="{:CONTROLLER_NAME}">
+                <input type="hidden" name="a" value="{:ACTION_NAME}">
+                <input name="key" type="text" class="sinput" value="{$Think.get.key}"/>
+                <input name="key_type" id="J_key_type_id" type="hidden" value="{$Think.get.key_type|default='1'}" />
+                <input name="key_type_cn" id="J_key_type_cn" type="hidden" value="{$Think.get.key_type_cn|default='标题'}"/>
+                <input name="" type="submit" value="" class="sobtn"/>
+                <div class="sotype" id="J_key_click">{$Think.get.key_type_cn|default='标题'}</div>
+                <div class="mlist" id="J_mlist">
+                    <ul>
+                        <li id="1" title="标题">标题</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择招聘会！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

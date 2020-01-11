@@ -1,0 +1,135 @@
+<include file="Admin@default/public/header" />
+<div class="toptit">基本配置</div>
+<form id="form1" action="{:U('edit')}" method="post" name="FormData" enctype="multipart/form-data">
+    <div class="form_main width200">
+        <div class="fl">安全密钥:</div>
+        <div class="fr">
+            <input name="weixinapp_secretkey" type="text" class="input_text_default small" maxlength="100" value="{:C('qscms_weixinapp_secretkey')}"/>
+        </div>
+        <div class="fl">小程序appid:</div>
+        <div class="fr">
+            <input name="weixinapp_appid" type="text" class="input_text_default small" maxlength="100" value="{:C('qscms_weixinapp_appid')}"/>
+        </div>
+        <div class="fl">小程序appsecret:</div>
+        <div class="fr">
+            <input name="weixinapp_appsecret" type="text" class="input_text_default small" maxlength="100" value="{:C('qscms_weixinapp_appsecret')}"/>
+        </div>
+        <div class="fl">顶部背景色：</div>
+        <div class="fr">
+            <div class="n-form">
+                <div class="color_layer" style="display: inline-block;">
+                    <div id="color_box" onclick="color_box_display()" style="background-color: {:C('qscms_weixinapp_top_color')};"></div>
+                    <input type="hidden" name="weixinapp_top_color" id="tit_color" value="{:C('qscms_weixinapp_top_color')}">
+                    <include file="select_color" />
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">首页职位推荐类型：</div>
+        <div class="fr" style="width:722px;">
+            <div class="imgradio">
+                <input name="weixinapp_index_jobs_type" type="hidden" value="{:C('qscms_weixinapp_index_jobs_type')}">
+                <div class="radio weixinapp_index_jobs_type <eq name='Think.config.qscms_weixinapp_index_jobs_type' value='new'>select</eq>" data="new" title="最新职位">最新职位</div>
+                <div class="radio weixinapp_index_jobs_type <eq name='Think.config.qscms_weixinapp_index_jobs_type' value='nearby'>select</eq>" data="nearby" title="附近职位">附近职位</div>
+                <if condition="C('apply.Allowance')">
+                <div class="radio weixinapp_index_jobs_type <eq name='Think.config.qscms_weixinapp_index_jobs_type' value='allowance'>select</eq>" data="allowance" title="红包职位">红包职位</div>
+                </if>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">登录开启千人千面：</div>
+        <div class="fr">
+            <div data-code="0,1" class="imgchecked_small <if condition="C('qscms_weixinapp_index_login_recommend') eq 1">select</if>"><input name="weixinapp_index_login_recommend" type="hidden" value="{:C('qscms_weixinapp_index_login_recommend')}" /></div>
+            <label class="note">(开启后，用户登录状态时，在首页推荐符合用户求职意向的职位，否则按设置的推荐类型显示)</label>
+            <div class="clear"></div>
+        </div>
+        <div class="fl">二维码图片：</div>
+        <div class="fr J-file-input-box">
+            <if condition="C('qscms_weixinapp_qrcode')">
+                <div class="file-input-src">
+                    <div class="img"><img src="{:attach(C('qscms_weixinapp_qrcode'),'images')}?_t={:time()}" align=absmiddle></div>
+                    <div class="del file-input-del" id="J_upload_weixin_img_btn" name="weixinapp_qrcode">点击更换</div>
+                </div>
+            <else/>
+                <div class="file-input-src hid">
+                    <div class="img"></div>
+                    <div class="del file-input-del" id="" name="weixinapp_qrcode">点击更换</div>
+                </div>
+                <div class="file-input-block" id="J_upload_weixin_img_btn" name="weixinapp_qrcode"><span class="o-txt">上传</span>小程序二维码</div>
+            </if>
+            <input type="hidden" class="file-input-save-name" name="weixinapp_qrcode" value="{:C('qscms_weixinapp_qrcode')}">
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+            <input type="button" class="admin_submit" value="返回" onClick="history.go(-1)"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+<script type="text/javascript">
+  var uploadUrl = "{:U('Admin/Upload/form_upload')}";
+</script>
+<script src="__ADMINPUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__ADMINPUBLIC__/js/fileupload.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('edit')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("index")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+            // 微信小程序二维码图片
+          $.upload('#J_upload_weixin_img_btn',{name:'weixinapp_qrcode',dir:'images'},function(result){
+            if(result.error == 1){
+              var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+              $('#J_upload_weixin_img_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+              $('#J_upload_weixin_img_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+              if ($('#J_upload_weixin_img_btn').hasClass('file-input-block')) {
+                $('#J_upload_weixin_img_btn').closest('.J-file-input-box').find('.file-input-src').removeClass('hid');
+                var $delObj = $('#J_upload_weixin_img_btn').closest('.J-file-input-box').find('.file-input-del');
+                $('#J_upload_weixin_img_btn').remove();
+                $delObj.attr('id', "J_upload_weixin_img_change_btn");
+                $.upload('#J_upload_weixin_img_change_btn',{name:'weixinapp_qrcode',dir:'images'},function(result){
+                  if(result.error == 1){
+                    var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                    $('#J_upload_weixin_img_change_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                    $('#J_upload_weixin_img_change_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                  } else {
+                    disapperTooltip("remind", "上传失败："+result.message);
+                  }
+                })
+              }
+            } else {
+              disapperTooltip("remind", "上传失败："+result.message);
+            }
+          })
+        });
+</script>
+</body>
+<if condition="C('qscms_weixinapp_top_color')">
+    <script type="text/javascript" >
+        var rgb="{:C('qscms_weixinapp_top_color')}";
+        document.FormData.weixinapp_top_color.value= rgb;
+        document.getElementById('tit_color').style.background=rgb;
+        document.getElementById('color_box').style.background=rgb;
+    </script>
+</if>
+</html>

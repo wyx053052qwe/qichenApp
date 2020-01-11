@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/members.css?v={:time()}">
+	</head>
+	<body style="background:#FFF;">
+		<!-- 头部 -->
+        <include file="public:header_logo" />
+        <div class="mn_na">
+            <div class="mn_cell font16" onclick="window.location.href='{:U('members/login',array('type'=>'login'))}'">验证码登录</div>
+            <div class="mn_cell active font16">用户名登录</div>
+            <div class="clear"></div>
+        </div>
+		<form action="post" id="logingForm">
+            <div class="verify_mobile">
+                <div class="vm m">
+                    <input name="username" type="text" id="username" class="input" placeholder="输入你的手机号">
+                </div>
+                <div class="vm c"><input name="password" type="password" id="password" class="input" placeholder="请输入密码">
+                </div>
+                <div class="btn font16" id="loginBtn">登录</div>
+                <div class="btn log font16" onclick="window.location.href='{:U('members/register')}'">注册</div>
+            </div>
+			<div id="pop" style="display:none"></div>
+            <input name="org" type="hidden" value="bind">
+            <input name="magappx" type="hidden" value="{$magappx['token']}">
+            <input type="hidden" name="qianfan" value="{$qianfan}">
+            <input type="hidden" id="btnCheck">
+            <input type="hidden" id="btnCheckLogin">
+			<input type="hidden" name="expire" id="expire" value="1" >
+            <input type="hidden" name="geetest_challenge" class="J_gee_cha" value="">
+            <input type="hidden" name="geetest_validate" class="J_gee_val" value="">
+            <input type="hidden" name="geetest_seccode" class="J_gee_sec" value="">
+		</form>
+        <div class="mn_na_ot">
+            <div class="mna_con">
+                <volist name="oauth_list" id="oauth">
+                <if condition="$key neq 'weixin'">
+                    <a href="{:U('callback/index',array('mod'=>$key,'type'=>'login'))}" class="mno_cell {$key} font13">{$oauth.name}</a>
+                </if>
+                </volist>
+                <div class="mna_sl"></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <input type="hidden" id="J_captcha_open" value="{:C('qscms_mobile_captcha_open')}" />
+		<input type="hidden" id="verifyLogin" value="{$verify_userlogin}">
+        <input type="hidden" id="J_captcha_open_mobile" value="{:C('qscms_wap_captcha_config.varify_mobile')}" />
+        <include file="public:footer_js" />
+	</body>
+	<script>
+        var regularMobile = qscms.regularMobile;
+        var captcha_open = eval($('#J_captcha_open').val());
+        var captcha_open_mobile = eval($('#J_captcha_open_mobile').val());
+        // ajax 登录方法
+        function doLoginAjax() {
+            $.ajax({
+                url: "{:U('Members/login')}",
+                type: 'POST',
+                dataType: 'json',
+                data: $('#logingForm').serialize(),
+                success: function(result) {
+                    if (result.status) {
+                        window.location.href = result.data;
+                    } else {
+                        $('#pop').hide();
+                        if (result.data) {
+                            $("#verifyLogin").val(result.data);
+                        }
+                        $('#loginBtn').removeClass('disabled');
+                        qsToast(result.msg, 0, '');
+                    }
+                },
+                error: function(result) {
+                    $('#pop').hide();
+                    $('#loginBtn').removeClass('disabled');
+                    qsToast(result.msg, '', '');
+                }
+            })
+        }
+        // 登录验证
+        $('#loginBtn').on('click', function(e) {
+            if ($(this).hasClass('disabled')) return false;
+            var mobileValue = $.trim($('input[name=username]').val());
+            var pwdValue = $.trim($('input[name=password]').val());
+            if (mobileValue == '') {
+                qsToast('请输入用户名');
+                return false;
+            }
+            if (pwdValue == '') {
+                qsToast('请输入密码');
+                return false;
+            }
+            $('#loginBtn').addClass('disabled');
+            if (captcha_open) {
+                if (eval($('#verifyLogin').val())) {
+                    $('#doType').val('0'); // 标识为登录
+                    $('.geetest_panel').remove();
+                    $.ajax({
+                        url: qscms.root + '?m=Mobile&c=Captcha&type=mobile&t=' + (new Date()).getTime(),
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(config) {
+                            initGeetest({
+                                gt: config.gt,
+                                challenge: config.challenge,
+                                offline: !config.success, // 表示用户后台检测极验服务器是否宕机
+                                new_captcha: config.new_captcha, // 用于宕机时表示是新验证码的宕机
+                                product: 'bind'
+                            }, function(captchaObj) {
+                                captchaObj.appendTo("#pop");
+                                captchaObj.onSuccess(function() {
+                                    var captChaResult = captchaObj.getValidate();
+                                    $('.J_gee_cha').val(captChaResult.geetest_challenge);
+                                    $('.J_gee_val').val(captChaResult.geetest_validate);
+                                    $('.J_gee_sec').val(captChaResult.geetest_seccode);
+                                    doLoginAjax();
+                                })
+                                captchaObj.onReady(function() {
+                                    captchaObj.verify();
+                                });
+                                $('#btnCheckLogin').on('click', function() {
+                                    captchaObj.verify();
+                                })
+                                window.captchaObj = captchaObj;
+                            });
+                        }
+                    });
+                } else {
+                    doLoginAjax();
+                }
+            } else {
+                doLoginAjax();
+            }
+        });
+	</script>
+</html>

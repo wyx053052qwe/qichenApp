@@ -1,0 +1,107 @@
+<include file="Admin@default/public/header" />
+<div class="toptip">
+    <div class="toptit">提示：</div>
+    <p>点击“继续添加”按钮，可同时添加多个分类！</p>
+</div>
+
+<div class="toptit">修改微信菜单</div>
+<form id="form1" action="{:U('menu_edit')}" method="post" name="FormData">
+    <div class="form_main width120">
+        <div class="fl">所属菜单:</div>
+        <div class="fr txt">
+            <select name="parentid" id="parentid">
+                <option value="0" <eq name='info.parentid' value='0'>selected="selected"</eq>>顶级菜单</option>
+                <volist name="menus[0]" id="parent">
+                    <option value="{$key}" <eq name='info.parentid' value='$key'>selected="selected"</eq>>{$parent}</option>
+                </volist>
+            </select>
+        </div>
+        <div class="fl">标题:</div>
+        <div class="fr">
+            <input name="title" type="text" class="input_text_default" maxlength="20" value="{$info.title}"/>
+        </div>
+        <div class="fl">菜单KEY:</div>
+        <div class="fr">
+            <input name="key" type="text" class="input_text_default" maxlength="50" value="{$info.key}"/>
+        </div>
+        <div class="fl">菜单类型：</div>
+        <div class="fr">
+            <div id="type" class="imgradio">
+                <input name="type" type="hidden" value="{$info.type}">
+                <div class="radio <eq name='info.type' value='click'>select</eq>" data="click">点击事件</div>
+                <div class="radio <eq name='info.type' value='view'>select</eq>" data="view">链接事件</div>
+                <div class="radio <eq name='info.type' value='miniprogram'>select</eq>" data="miniprogram">小程序</div>
+                <!--<label class="note-radio">()</label>-->
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">菜单URL:</div>
+        <div class="fr">
+            <input name="url" type="text" class="input_text_default" value="{$info.url}"/>
+        </div>
+        <div id="miniprogram" <if condition="$info['type'] neq 'miniprogram'">style="display:none"</if>>
+            <div class="fl">小程序appid:</div>
+            <div class="fr">
+                <input name="appid" type="text" class="input_text_default" value="{$info.appid}"/>
+            </div>
+            <div class="fl">小程序显示页面:</div>
+            <div class="fr">
+                <input name="pagepath" type="text" class="input_text_default" value="{$info.pagepath}"/>
+            </div>
+        </div>
+        <div class="fl">菜单状态：</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="status" type="hidden" value="{$info.status}">
+                <div class="radio <eq name='info.status' value='1'>select</eq>" data="1">显示</div>
+                <div class="radio <eq name='info.status' value='0'>select</eq>" data="0">隐藏</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">排序:</div>
+        <div class="fr">
+            <input name="menu_order" type="text" class="input_text_default middle" maxlength="3" value="{$info.menu_order}" onkeyup="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))" placeholder="数字越大越靠前，默认是0"/>
+            <label class="no-fl-note">(数字越大越靠前)</label>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input name="id" type="hidden" value="{$info.id}" />
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+            <input type="button" class="admin_submit" value="返回" onClick="window.location='{:U('menu')}'"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    $('#type .radio').click(function(){
+        if($(this).attr('data') == 'miniprogram'){
+            $('#miniprogram').show();
+        }else{
+            $('#miniprogram').hide();
+        }
+    });
+    $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('menu_edit')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("menu")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+</script>
+</html>

@@ -1,0 +1,127 @@
+[ 2019-07-26T02:42:45+08:00 ] 71.6.143.90 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 02:42:45 Use 0.009812 s 
+Cron:AutoRefreshResume Runat 2019-07-26 02:42:45 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 02:42:45 Use -0.001200 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 02:42:45 Use -0.001616 s 
+Cron:ClearOrder Runat 2019-07-26 02:42:45 Use -0.003023 s 
+
+[ 2019-07-26T03:18:54+08:00 ] 202.108.211.151 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 03:18:54 Use 0.010392 s 
+Cron:AutoRefreshResume Runat 2019-07-26 03:18:54 Use -0.000056 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 03:18:54 Use -0.001200 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 03:18:54 Use -0.001672 s 
+
+[ 2019-07-26T05:05:55+08:00 ] 47.94.52.138 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 05:05:55 Use 0.009814 s 
+Cron:AutoRefreshResume Runat 2019-07-26 05:05:55 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 05:05:55 Use -0.001140 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 05:05:55 Use -0.001574 s 
+
+[ 2019-07-26T06:46:10+08:00 ] 47.94.52.138 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 06:46:10 Use 0.011279 s 
+Cron:AutoRefreshResume Runat 2019-07-26 06:46:10 Use -0.000062 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 06:46:10 Use -0.001120 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 06:46:10 Use -0.001535 s 
+
+[ 2019-07-26T07:38:31+08:00 ] 101.132.171.93 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 07:38:31 Use 0.010422 s 
+Cron:AutoRefreshResume Runat 2019-07-26 07:38:31 Use -0.000069 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 07:38:31 Use -0.001181 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 07:38:31 Use -0.001609 s 
+
+[ 2019-07-26T11:37:53+08:00 ] 184.105.247.194 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 11:37:53 Use 0.013414 s 
+Cron:AutoRefreshResume Runat 2019-07-26 11:37:53 Use -0.000065 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 11:37:53 Use -0.001141 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 11:37:53 Use -0.001560 s 
+
+[ 2019-07-26T14:23:12+08:00 ] 47.101.200.88 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 14:23:12 Use 0.010029 s 
+Cron:AutoRefreshResume Runat 2019-07-26 14:23:12 Use -0.000065 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 14:23:12 Use -0.001107 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 14:23:12 Use -0.001548 s 
+
+[ 2019-07-26T15:03:56+08:00 ] 223.96.242.184 /index.php?m=Mobile&c=Index&a=recommend_jobs_index&type=new_jobs&lng=&lat=
+INFO: Cron:ClearPromotion Runat 2019-07-26 15:03:56 Use 0.010673 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 15:03:56 Use -0.000060 s 
+
+[ 2019-07-26T15:15:12+08:00 ] 223.96.242.184 /index.php?m=Mobile&c=Index&a=index
+INFO: Cron:AutoRefreshResume Runat 2019-07-26 15:15:12 Use 0.006687 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 15:15:12 Use -0.000055 s 
+
+[ 2019-07-26T16:32:13+08:00 ] 124.205.145.242 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 16:32:13 Use 0.010212 s 
+Cron:AutoRefreshResume Runat 2019-07-26 16:32:13 Use -0.000054 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 16:32:13 Use -0.001129 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 16:32:13 Use -0.001563 s 
+
+[ 2019-07-26T17:03:44+08:00 ] 124.205.145.242 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 17:03:44 Use 0.010915 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 17:03:44 Use -0.000068 s 
+
+[ 2019-07-26T17:34:30+08:00 ] 47.97.21.76 /
+INFO: Cron:AutoRefreshResume Runat 2019-07-26 17:34:30 Use 0.011111 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 17:34:30 Use -0.000086 s 
+
+[ 2019-07-26T19:17:01+08:00 ] 112.224.2.174 /index.php?m=Weixinapp&c=WxPublic&a=get_index_nav&secretKey=123456
+INFO: Cron:ClearPromotion Runat 2019-07-26 19:17:01 Use 0.050374 s 
+Cron:AutoRefreshResume Runat 2019-07-26 19:17:01 Use -0.000069 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 19:17:01 Use -0.002742 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 19:17:01 Use -0.004414 s 
+
+[ 2019-07-26T19:17:01+08:00 ] 112.224.2.174 /index.php?m=Weixinapp&c=WxPublic&a=web_cfg&secretKey=123456
+INFO: Cron:ClearPromotion Runat 2019-07-26 19:17:01 Use 0.023288 s 
+Cron:AutoRefreshResume Runat 2019-07-26 19:17:01 Use -0.000046 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 19:17:01 Use -0.003240 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 19:17:01 Use -0.004832 s 
+
+[ 2019-07-26T19:17:01+08:00 ] 112.224.2.174 /index.php?m=Weixinapp&c=WxPublic&a=get_openid&secretKey=123456&code=0213rIAd1NYOWz0SkIDd1qFIAd13rIAV
+INFO: Cron:ClearPromotion Runat 2019-07-26 19:17:01 Use 0.036708 s 
+Cron:AutoRefreshResume Runat 2019-07-26 19:17:01 Use -0.000047 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 19:17:01 Use -0.003693 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 19:17:01 Use -0.004863 s 
+
+[ 2019-07-26T21:32:31+08:00 ] 169.197.108.30 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 21:32:31 Use 0.010790 s 
+Cron:AutoRefreshResume Runat 2019-07-26 21:32:31 Use -0.000058 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 21:32:31 Use -0.001210 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 21:32:31 Use -0.001691 s 
+
+[ 2019-07-26T22:39:52+08:00 ] 128.14.209.226 /
+INFO: Cron:ClearPromotion Runat 2019-07-26 22:39:52 Use 0.010019 s 
+Cron:AutoRefreshResume Runat 2019-07-26 22:39:52 Use -0.000055 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 22:39:52 Use -0.001195 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 22:39:52 Use -0.001672 s 
+
+[ 2019-07-26T23:01:20+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=get_openid&secretKey=123456&code=033n8yAP1j5iW217qcyP1K8OAP1n8yAO
+INFO: Cron:ClearPromotion Runat 2019-07-26 23:01:20 Use 0.054691 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 23:01:20 Use -0.000065 s 
+
+[ 2019-07-26T23:01:20+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=web_cfg&secretKey=123456
+INFO: Cron:ClearPromotion Runat 2019-07-26 23:01:20 Use 0.073002 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 23:01:20 Use -0.000055 s 
+
+[ 2019-07-26T23:01:21+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=get_index_nav&secretKey=123456
+INFO: Cron:ClearPromotion Runat 2019-07-26 23:01:20 Use 0.053038 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 23:01:20 Use -0.000049 s 
+
+[ 2019-07-26T23:01:21+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPersonal&a=getUserInfo&secretKey=123456&openid=
+INFO: Cron:ClearPromotion Runat 2019-07-26 23:01:20 Use 0.046527 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 23:01:21 Use -0.000050 s 
+
+[ 2019-07-26T23:01:21+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=get_index_ads&secretKey=123456
+INFO: Cron:ClearPromotion Runat 2019-07-26 23:01:20 Use 0.036285 s 
+Cron:ClearExpiredSetmeal Runat 2019-07-26 23:01:21 Use -0.000063 s 
+
+[ 2019-07-26T23:57:14+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=get_index_ads&secretKey=123456
+INFO: Cron:AutoRefreshResume Runat 2019-07-26 23:57:14 Use 0.036681 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 23:57:14 Use -0.000062 s 
+
+[ 2019-07-26T23:57:14+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=web_cfg&secretKey=123456
+INFO: Cron:AutoRefreshResume Runat 2019-07-26 23:57:14 Use 0.016742 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 23:57:14 Use -0.000047 s 
+
+[ 2019-07-26T23:57:14+08:00 ] 111.16.167.9 /index.php?m=Weixinapp&c=WxPublic&a=get_index_nav&secretKey=123456
+INFO: Cron:AutoRefreshResume Runat 2019-07-26 23:57:14 Use 0.024052 s 
+Cron:AutoRefreshJobs Runat 2019-07-26 23:57:14 Use -0.000069 s 
+

@@ -1,0 +1,42 @@
+<div class="dialog_box">
+    <form action="{:U('add_follow')}" method="post" name="form" id="form">
+        <table width="420" border="0" align="center" cellpadding="0" cellspacing="6">
+            <tr>
+                <td width="80" align="right">联系记录：</td>
+                <td>
+                    <textarea name="comment" class="input_text_default" style="width:300px; height:80px; line-height: 180%;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td height="60">&nbsp;</td>
+                <td>
+                    <input type="hidden" value="{$rpo_id}" name="rpo_id" id="rpo_id"/>
+                    <input type="button" name="set_audit" value="保存" class="admin_submit" id="J_submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('add_follow')}",$('#form').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.reload();
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>

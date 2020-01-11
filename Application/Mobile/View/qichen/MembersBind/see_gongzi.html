@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>工资明细</title>
+		<link rel="stylesheet" href="../public/g/css/ny.css">
+		<link rel="stylesheet" href="../public/g/css/style.css" />
+		<link rel="stylesheet" href="../public/g/css/mui.min.css" />
+		<link rel="stylesheet" href="../public/g/css/owner.css" />
+
+	</head>
+
+	<body style="background: #fff;">
+		
+		<div class="main_referee_title">工资详情</div>
+		<div class="sr-money">企业：{$config['companyname']}</div>
+		<div class="zc-money">月份：{$data['gongzi_time']}</div>
+		
+		<div class="main_referee_list_down">
+			<volist name="data['data']" id="vo">
+				<li>{$vo['en']}</li>
+				<li>:</li>
+				<li>
+					<d>{$vo['value']}</d>
+				</li>
+			</volist>
+			
+
+		</div>
+		<!--返回顶部-->
+		<div class="goTop" id="goTop">
+			<a href="javascript:;" title="返回顶部"></a>
+		</div>
+		<div style="height: 80px;"></div>
+		
+	</body>
+
+</html>

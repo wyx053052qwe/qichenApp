@@ -1,0 +1,69 @@
+<include file="Admin@default/public/header" />
+<div class="toptip">
+    <div class="toptit">提示：</div>
+    <p>您可以修改关键字搜索次数来改变关键词排序</p>
+</div>
+
+<form id="form1" name="form1" method="post" action="{:U('hotword_delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:50%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>关键词
+            </label>
+        </div>
+        <div class="td center" style=" width:40%;">搜索次数</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:50%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>{$vo['w_word']}
+                </div>
+            </div>
+            <div class="td center" style=" width:40%;">{$vo['w_hot']}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('hotword_edit',array('id'=>$vo['id']))}">修改</a>
+                <a href="{:U('hotword_delete',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('确定删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="添加词语" onclick="window.location.href='{:U('hotword_add')}'"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除"/>
+    </div>
+
+    <div class="footso"></div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择关键词！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

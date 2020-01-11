@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <include file="public:meta"/>
+        <link rel="stylesheet" href="../public/css/company.css">
+    </head>
+    <body>
+        <include file="public:header"/>
+        <div class="split-block-title">绑定第三方账号后，您可用于快速登录{:C('qscms_site_name')}，便于账号密码记忆。</div>
+        <volist name="oauth_list" id="oauth">
+            <div mod="{$oauth.alias}" class="list_height plist-txt" <empty name="user_bind[$oauth['alias']]">bind-url="{:U('callback/index',array('type'=>'bind','mod'=>$oauth['alias']))}"<else/>relieve-url="{:U('callback/index',array('type'=>'unbind','mod'=>$oauth['alias']))}"</empty> onclick="oauth(this);" name="{$oauth.name}">
+                <div class="pic"></div>
+                <div class="tit font14">{$oauth.name}</div>
+                <div class="describe font13">
+                    <empty name="user_bind[$oauth['alias']]">
+                        未绑定
+                    <else/>
+                        解绑
+                    </empty>
+                </div>
+                <div class="arrow"></div>
+                <div class="clear"></div>
+            </div>
+        </volist>
+        <include file="public:footer_min" />
+        <script type="text/javascript">
+            var qrcode_bind_time,
+                weixin = function() {
+                    clearInterval(qrcode_bind_time);
+                    $.getJSON("{:U('Members/get_weixin')}", {
+                        type: 'bind'
+                    }, function(result) {
+                        $(document).dialog({
+                            titleText: '微信绑定',
+                            content: result.msg
+                        });
+                    });
+                },
+                oauth = function(a) {
+                    if ($(a).attr('mod') == 'weixin') {
+                        weixin();
+                        return !1;
+                    }
+                    if (!$(a).attr('bind-url')) {
+                        $(document).dialog({
+                            titleText: '帐号解绑',
+                            content: '当前帐号已绑定<' + $(a).attr('name') + '><br/>确定解绑吗？',
+                            onClickConfirmBtn: function() {
+                                setTimeout(function() {
+                                    window.location.href = $(a).attr('relieve-url');
+                                }, 2000);
+                            }
+                        });
+                        return false;
+                    }
+                    window.location.href = $(a).attr('bind-url');
+                };
+        </script>
+    </body>
+</html>

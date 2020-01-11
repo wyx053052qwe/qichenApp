@@ -1,0 +1,147 @@
+<include file="Admin@default/public/header" />
+
+<div class="toptit">添加商品</div>
+<form id="form1">
+    <div class="form_main width150">
+        <div class="fl">商品名称:</div>
+        <div class="fr">
+            <input name="goods_title" type="text" class="input_text_default" maxlength="25" value=""/>
+        </div>
+        <div class="fl">品牌:</div>
+        <div class="fr">
+            <input name="goods_brand" type="text" class="input_text_default" maxlength="25" value=""/>
+        </div>
+        <div class="fl">商品编号:</div>
+        <div class="fr">
+            <input name="goods_number" type="text" class="input_text_default" maxlength="25" value=""/>
+        </div>
+        <div class="fl">所属分类:</div>
+        <div class="fr txt">
+            <select name="scategory" id="scategory">
+                <option value="0">请选择所属分类</option>
+                <volist name="category[0]" id="parent">
+                    <option disabled>{$parent.categoryname}</option>
+                        <volist name="category[$parent['id']]" id="sub">
+                            <option value="{$sub.parentid},{$sub.id},{$sub.categoryname}">├─{$sub.categoryname}</option>
+                        </volist>
+                </volist>
+            </select>
+        </div>
+        <div class="fl">库存:</div>
+        <div class="fr">
+            <input name="goods_stock" type="text" class="input_text_default" maxlength="10" value=""/>
+        </div>
+        <div class="fl">每人限制兑换数:</div>
+        <div class="fr">
+            <input name="goods_customer" type="text" class="input_text_default" maxlength="10" value=""/>
+        </div>
+        <div class="fl">兑换所需{:C("qscms_points_byname")}:</div>
+        <div class="fr">
+            <input name="goods_points" type="text" class="input_text_default" maxlength="10" value=""/>
+        </div>
+        <div class="fl">商品缩略图:</div>
+        <div class="fr J-file-input-box">
+            <if condition="$info['goods_img']">
+                <div class="file-input-src">
+                    <div class="img"><img src="{:attach($info['goods_img'],'mall')}?_t={:time()}" align=absmiddle></div>
+                    <div class="del file-input-del" id="J_upload_goods_img" name="goods_img">点击更换</div>
+                </div>
+            <else/>
+                <div class="file-input-src hid">
+                    <div class="img"></div>
+                    <div class="del file-input-del" id="" name="pic">点击更换</div>
+                </div>
+                <div class="file-input-block" id="J_upload_goods_img" name="goods_img"><span class="o-txt">上传</span>图片</div>
+            </if>
+            <input type="hidden" class="file-input-save-name" name="goods_img" value="{$info.goods_img}">
+        </div>
+        <div class="fl">首页推广:</div>
+        <div class="fr">
+            <div class="imgradio">
+                <input name="recommend" type="hidden" value="1">
+                <div class="radio select" data="1" title="是">是</div>
+                <div class="radio" data="0" title="否">否</div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="fl">商品描述:</div>
+        <div class="fr">
+            <textarea name="content" class="input_text_default" style=" width:682px;height:400px; line-height:180%"></textarea>
+        </div>
+        <div class="fl"></div>
+        <div class="fr">
+            <input type="button" id="J_submit" class="admin_submit" value="保存"/>
+            <input type="button" class="admin_submit" value="返回" onClick="window.location='{:U('index')}'"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    var uploadUrl = "{:U('Admin/Upload/form_upload')}";
+</script>
+<script src="__ADMINPUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__ADMINPUBLIC__/js/fileupload.js"></script>
+<link rel="stylesheet" href="__ADMINPUBLIC__/js/kindeditor/themes/default/default.css"/>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__ADMINPUBLIC__/js/kindeditor/lang/zh_CN.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.upload('#J_upload_goods_img',{name:'goods_img',dir:'mall'},function(result){
+              if(result.error == 1){
+                var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                $('#J_upload_goods_img').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                $('#J_upload_goods_img').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                if ($('#J_upload_goods_img').hasClass('file-input-block')) {
+                  $('#J_upload_goods_img').closest('.J-file-input-box').find('.file-input-src').removeClass('hid');
+                  var $delObj = $('#J_upload_goods_img').closest('.J-file-input-box').find('.file-input-del');
+                  $('#J_upload_goods_img').remove();
+                  $delObj.attr('id', "J_upload_goods_img_change_btn");
+                  $.upload('#J_upload_goods_img_change_btn',{name:'goods_img',dir:'mall'},function(result){
+                    if(result.error == 1){
+                      var htmlResult = '<img src="'+ result.url.src +'" align=absmiddle>';
+                      $('#J_upload_goods_img_change_btn').closest('.J-file-input-box').find('.file-input-src .img').html(htmlResult);
+                      $('#J_upload_goods_img_change_btn').closest('.J-file-input-box').find('.file-input-save-name').val(result.url.savename);
+                    } else {
+                      disapperTooltip("remind", "上传失败："+result.message);
+                    }
+                  })
+                }
+              } else {
+                disapperTooltip("remind", "上传失败："+result.message);
+              }
+      });
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="content"]', {
+                uploadJson : "?m={:C('admin_alias')}&c=upload&a=index",
+                afterBlur: function () { this.sync(); },
+                allowFileManager : true});
+        });
+        $('#J_submit').click(function(){
+            editor.sync();
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('goods_add')}",$('#form1').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("index")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    });
+</script>
+</html>

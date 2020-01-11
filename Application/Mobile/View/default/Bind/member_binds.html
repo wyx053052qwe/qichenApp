@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>在职人员注册</title>
+		<link rel="stylesheet" href="../public/g/css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../public/g/css/register.css" />
+		<style>
+			.butyzm {
+				right: 0px;
+				position: absolute;
+				top: 10px;
+			}
+			
+			.phone-yzm {
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body style="background: #fff;">
+
+		<div class=" login_news">
+			<form class="form1 form2" method="post">
+				<div>
+					<img src="../public/g/img/yh.png">
+					<input id="name" type="text" name='name' value='' placeholder="姓名" />
+				</div>
+				<div>
+					<img src="../public/g/img/sf.png">
+					<input id="id_card" type="text" name='id_card' value='' placeholder="身份证编号" />
+				</div>
+				<div>
+					<img src="../public/g/img/car.png">
+					<input id="company" type="text" value='' placeholder="现任职公司" />
+					<input type="hidden" id="com_id" name="com_id">
+				</div>
+				<div>
+					<img src="../public/g/img/shouji.png">
+					<input id="mobile" type="text" name='mobile' value='' placeholder="手机号" />
+				</div>
+
+				<div>
+					<img src="../public/g/img/sf.png">
+					<input id="gongzi_card" type="text" name='gongzi_card' value='' placeholder="工资卡号" />
+				</div>
+				
+				
+
+				<div class="login_button" style="border-bottom:none;">
+					<button type="button" id='tijiao'>立即注册</button>
+				</div>
+
+			</form>
+		</div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="../public/g/js/jQuery-v1.1.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#company').blur(function(){
+			var companyname = $(this).val();
+			$.post("{:U('get_com')}",{companyname:companyname},function(data){
+				if(data.status == 1){
+					$("#com_id").val(data.data.id);
+				}
+				if(data.status == 0){
+					$("#com_id").val('');
+					alert('请输入正确的企业名称');
+				}
+			});
+		});
+
+		$("#tijiao").click(function(){
+			var name = $("#name").val();
+			var id_card = $("#id_card").val();
+			var com_id = $("#com_id").val();
+			var mobile = $("#mobile").val();
+			var gongzi_card = $("#gongzi_card").val();
+			if(name==""){
+				alert('请输入姓名');
+				return false;
+			}
+			if(id_card==""){
+				alert('请输入身份证编号');
+				return false;
+			}
+			if(com_id==""){
+				alert('请输入正确企业名称');
+				return false;
+			}
+			if(mobile==""){
+				alert('请输入手机号码');
+				return false;
+			}
+			if(gongzi_card==""){
+				alert('请输入工资卡号');
+				return false;
+			}
+
+			$.post("{:U('member_binds')}",{name:name,mobile:mobile,gongzi_card:gongzi_card,id_card:id_card,com_id:com_id},function(data){
+				if(data.status == 1){
+					alert(data.msg);
+					if(data.dialog != ''){
+						window.location.href=data.dialog;
+					}else{
+						return false;
+					}
+				}
+				if(data.status == 0){
+					alert(data.msg);
+					if(data.dialog != ''){
+						window.location.href=data.dialog;
+					}else{
+						return false;
+					}
+				}
+			})
+
+		});
+	});
+</script>

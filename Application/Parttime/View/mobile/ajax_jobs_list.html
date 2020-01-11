@@ -1,0 +1,27 @@
+<volist name="jobslist" id="vo">
+    <div class="job-item">
+        <a href="{$vo.url}" class="ji-top">
+            <div class="job-info">
+                <div class="info-txt">
+                    <div class="it-o">
+                        <div class="io-jn substring font16 txt-3">{$vo['jobs_name']}</div>
+                        <div class="io-jd font13 txt-o">{:date('Y-m-d',$vo['refreshtime'])}</div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="it-t">
+                        <div class="it-cn font13 substring">{$vo['category_cn']} | {$vo['district_cn']} | {$vo['settlement_cn']}</div>
+                        <div class="it-jw font13">{$vo['wage']}元/{$vo['wage_type_cn']}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="job-des font13">{$vo['contents']}</div>
+        </a>
+        <div class="ji-bot" data-jid="{$vo['id']}">
+            <a href="javascript:;" class="bot-item applyJob"><div class="bot-cell dli">报名</div></a>
+            <a onclick="logDialog(0,'{:U('Im/message',array('uid'=>$vo['uid']))}')" href="javascript:;" class="J_Im bot-item"><div class="bot-cell chat">聊聊</div></a>
+            <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click"><if condition="$vo['like_num']">{$vo.like_num}<else/>点赞</if></div></a>
+        </div>
+    </div>
+</volist>

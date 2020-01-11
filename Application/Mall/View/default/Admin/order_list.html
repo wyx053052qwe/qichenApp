@@ -1,0 +1,144 @@
+<include file="Admin@default/public/header" />
+<div class="seltpye_y">
+    <div class="tit">订单状态</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.status'>select</notempty>">{$Think.get.status_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('status'=>'','status_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('status'=>'1','status_cn'=>'等待审核'))}">等待审核<if condition="$count"><span style="color: #ff0000;">({$count})</span></if></li>
+        <li url="{:P(array('status'=>'2','status_cn'=>'审核通过'))}">审核通过</li>
+        <li url="{:P(array('status'=>'3','status_cn'=>'审核未通过'))}">审核未通过</li>
+    </div>
+</div>
+<div class="seltpye_y">
+    <div class="tit">添加时间</div>
+    <div class="ct">
+        <div class="txt <notempty name='Think.get.settr'>select</notempty>">{$Think.get.settr_cn|default="不限"}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('settr'=>'','settr_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('settr'=>'3','settr_cn'=>'三天内'))}">三天内</li>
+        <li url="{:P(array('settr'=>'7','settr_cn'=>'一周内'))}">一周内</li>
+        <li url="{:P(array('settr'=>'30','settr_cn'=>'一月内'))}">一月内</li>
+    </div>
+</div>
+<div class="clear"></div>
+
+<form id="form1" name="form1" method="post" action="{:U('order_delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:12%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>订单ID
+            </label>
+        </div>
+        <div class="td" style=" width:18%;">商品名称</div>
+        <div class="td" style=" width:18%;">用户名</div>
+        <div class="td center" style=" width:8%;">商品单价</div>
+        <div class="td center" style=" width:8%;">兑换数量</div>
+        <div class="td center" style=" width:8%;">所需{:C('qscms_points_byname')}</div>
+        <div class="td center" style=" width:8%;">订单状态</div>
+        <div class="td center" style=" width:10%;">添加时间</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:12%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>{$vo['id']}
+                </div>
+            </div>
+            <div class="td vtip" style=" width:18%;" title="{$vo['goods_title']}">{$vo['goods_title']|default='-'}</div>
+            <div class="td" style=" width: 18%;">{$vo['username']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['goods_points']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['goods_num']|default='-'}</div>
+            <div class="td center" style=" width:8%;">{$vo['order_points']|default='-'}</div>
+            <div class="td center" style=" width:8%;">
+                <if condition="$vo['status'] eq 1"><span style="color:#FF0000">等待审核<span><elseif condition="$vo['status'] eq 2"/><span style="color: #009900">审核通过</span><else />审核未通过</if>
+            </div>
+            <div class="td center" style=" width:10%;">{:admin_date($vo['addtime'])}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('order_show',array('id'=>$vo['id']))}">查看</a>
+                <a href="{:U('order_delete',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('确定删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAudit" value="审核"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除"/>
+    </div>
+
+    <div class="footso">
+        <form action="?" method="get">
+            <div class="sobox">
+                <input type="hidden" name="m" value="{:MODULE_NAME}">
+                <input type="hidden" name="c" value="{:CONTROLLER_NAME}">
+                <input type="hidden" name="a" value="{:ACTION_NAME}">
+                <input name="key" type="text" class="sinput" value="{$Think.get.key}"/>
+                <input name="key_type" id="J_key_type_id" type="hidden" value="{$Think.get.key_type|default='1'}" />
+                <input name="key_type_cn" id="J_key_type_cn" type="hidden" value="{$Think.get.key_type_cn|default='名称'}"/>
+                <input name="" type="submit" value="" class="sobtn"/>
+                <div class="sotype" id="J_key_click">{$Think.get.key_type_cn|default='名称'}</div>
+                <div class="mlist" id="J_mlist">
+                    <ul>
+                        <li id="1" title="名称">名称</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //订单状态
+        $("#ButAudit").click(function () {
+            var data = $("form[name=form1]").serialize();
+            if(data.length == 0){
+                disapperTooltip('remind','请选择订单！');
+            } else {
+                var qsDialog = $(this).dialog({
+                    title: '设置订单状态',
+                    loading: true,
+                    footer : false
+                });
+                var url = "{:U('order_set')}";
+                $.post(url, data, function (result) {
+                    if(result.status == 1){
+                        qsDialog.setContent(result.data);
+                    } else {
+                        qsDialog.hide();
+                        disapperTooltip('remind',result.msg);
+                    }
+                });
+            }
+        });
+        //批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择订单！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("#form1").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

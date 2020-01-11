@@ -1,0 +1,44 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$page_seo.title}</title>
+<meta name="keywords" content="{$page_seo.keywords}"/>
+<meta name="description" content="{$page_seo.description}"/>
+<meta name="author" content="骑士CMS"/>
+<meta name="copyright" content="74cms.com"/>
+<link rel="shortcut icon" href="{:C('qscms_site_dir')}favicon.ico"/>
+<script src="{:C('TPL_HOME_PUBLIC_DIR')}/js/jquery.min.js"></script>
+<script src="{:C('TPL_HOME_PUBLIC_DIR')}/js/htmlspecialchars.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<script type="text/javascript">
+	var app_spell = "<?php echo APP_SPELL;?>";
+	var qscms = {
+		base : "",
+		keyUrlencode:"{:C('qscms_key_urlencode')}",
+		domain : "http://{$_SERVER['HTTP_HOST']}",
+		root : "__ROOT__/index.php",
+		companyRepeat:"{:C('qscms_company_repeat')}",
+		regularMobile: /^13[0-9]{9}$|14[0-9]{9}$|15[0-9]{9}$|18[0-9]{9}$|17[0-9]{9}$|16[0-9]{9}$|19[0-9]{9}$/,
+		district_level : "{:C('qscms_category_district_level')}",
+		smsTatus: "1",
+		captcha_open:"{:C('qscms_captcha_open')}",
+		varify_mobile:"{:C('qscms_captcha_config.varify_mobile')}",
+		varify_suggest:"{:C('qscms_captcha_config.varify_suggest')}",
+        varify_user_login:"{$verify_userlogin}",
+		is_login:"<if condition="$visitor">1<else/>0</if>",
+		default_district : "{:C('qscms_default_district')}",
+		default_district_spell : "{:C('qscms_default_district_spell')}"
+	};
+	$(function(){
+		$.getJSON("{:U('Home/AjaxCommon/get_header_min')}",function(result){
+			if(result.status == 1){
+				$('#J_header').html(result.data.html);
+			}
+		});
+	})
+</script>
+{$synsitegroupregister}
+{$synsitegroupunbindmobile}
+{$synsitegroupedit}
+{$synsitegroup}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/enterprise.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+
+	</head>
+	<style>
+		.user-list>li {
+    float: left;
+    width: 24%;
+    list-style: none;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+	</style>
+	
+	<body>
+		<!--头部-->
+		<div class="user-header">
+			<div class="user-xx">
+				<a href="{:U('Company/com_info')}">
+					<img src="<if condition=" $company_profile['logo']">{:attach($company_profile['logo'],'company_logo')}<else/>{:attach('logo_mobile.jpg','resource')}</if>?{:time()}"><span>{$company_profile.companyname}</span>
+				</a>
+			<a href="{:U('company/com_auth')}"><div class="certification">企业认证</div></a>	
+			</div>
+			<div class="user-list">
+				<li>
+					<a href="{:U('company/resume_favorites')}">
+						{$favorites_num}
+						<p>收藏夹</p>
+					</a>
+				</li>
+				<div class="user-sx"></div>
+				<li>
+					<a href="{:U('company/pms_list1')}">
+						{$msg_count}
+						<p>消息中心</p>
+					</a>
+				</li>
+				<div class="user-sx"></div>
+				<li>
+					<a href="{:U('companyService/gold')}">
+						{$points}
+						<p>签到积分</p>
+					</a>
+				</li>
+				<div class="user-sx"></div>
+				<li>
+					<a href="{:U('Parttime/manage')}">
+						+
+						<p>我的兼职</p>
+					</a>
+				</li>
+			</div>
+			<div class="user-vip">
+				<a href="{:U('companyService/service')}">开通增值服务<span>立即开通</span></a>
+			</div>
+		</div>
+		<!--主体-->
+		<div class="user-con">
+			<div class="user-con-one">
+				<a href="{:U('company/com')}">
+					<img src="../public_qichen/img/user-1.png">
+					<p>资料设置</p>
+				</a>
+			</div>
+			<div class="user-con-one">
+				<a href="{:U('company/jobs_list')}">
+					<img src="../public_qichen/img/user-2.png">
+					<p>我的发布</p>
+				</a>
+			</div>
+			<div class="user-con-one">
+				<a href="{:U('CompanyService/index')}">
+					<img src="../public_qichen/img/user-3.png">
+					<p>会员中心</p>
+				</a>
+			</div>
+		</div>
+		<!--广告 -->
+		
+		<!-- -->
+
+		<div class="person-service user-ff">
+			企业服务
+		</div>
+		<!-- -->
+		<div class="user-service">
+			<div class="user-serviceone">
+				<a href="{:U('company/jobs_apply')}">
+					
+					<img src="../public_qichen/img/user-4.png">
+					<p>收到的简历</p>
+				</a>
+			</div>
+			<div class="user-serviceone">
+				<a href="{:U('companyService/order_list')}">
+					<img src="../public_qichen/img/user-5.png">
+					<p>订单中心</p>
+				</a>
+			</div>
+			<div class="user-serviceone">
+				<a href="tel:{$config['qscms_top_tel']}">
+					<img src="../public_qichen/img/user-6.png">
+					<p>客服中心</p>
+				</a>
+			</div>
+			<div class="user-serviceone">
+				<a href="{:U('news/index')}">
+					<img src="../public_qichen/img/user-7.png">
+					<p>职场新闻</p>
+				</a>
+			</div>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen:footer_geren_1"/>
+	</body>
+
+</html>

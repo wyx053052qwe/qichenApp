@@ -1,0 +1,21 @@
+/*事业单位招考首页*/
+.top_box{width:100%;height:316px;background-image:url(../images/1.jpg);background-repeat:no-repeat;background-position:center center;}
+.top_box .tb_main{width:1200px;height:316px;margin:0 auto;}
+.list_group{width:1252px;margin:0 auto;}
+.list_group .list_cell{width:626px;float:left;margin-bottom: 35px;}
+.list_group .list_cell .list_box{width:572px;margin:0 auto;}
+.list_group .list_cell .list_box .img{width:572px;height:276px;margin-bottom:20px;filter:progid:DXImageTransform.Microsoft.Shadow(color=#CCCCCC,direction=120,strength=3);-moz-box-shadow:0px 0px 10px #CCCCCC;-webkit-box-shadow:0px 0px 10px #CCCCCC;box-shadow:0px 0px 10px #CCCCCC;}
+.list_group .list_cell .list_box .img img{width:572px;height:276px;border:0;}
+.list_group .list_cell .list_box .tit{width:572px;height:22px;line-height:22px;color:#292929;font-size:22px;margin-bottom:15px;}
+.list_group .list_cell .list_box .tit a{text-decoration: none;color:#292929}
+.list_group .list_cell .list_box .tit a:hover{ text-decoration:underline;color:#292929;}
+.list_group .list_cell .list_box .img_some{height:18px;line-height:18px;}
+.list_group .list_cell .list_box .img_some .img_some_left{float:left;color:#b2b2b2;}
+.list_group .list_cell .list_box .img_some .img_some_right{float:right;}
+/*事业单位招考详细页*/
+.career_show{width:1198px;background:#FFF;margin:0 auto;margin-top:-40px;margin-bottom:45px;padding-top:55px;border:1px solid #f1f1f1;padding-bottom:45px;}
+.career_show .tit{text-align:center;height:26px;line-height:26px;color:#ff6600;margin-bottom:30px;font-size:26px;}
+.career_show .time{text-align:center;height:14px;line-height:14px;color:#acacac;margin-bottom:30px;}
+.career_show .des{word-break:break-all;line-height:2.3;padding:0 36px;font-size:16px;margin-bottom:30px;}
+.career_show .des_next{height:18px;line-height:18px;padding:0 36px;margin-bottom:10px;}
+.career_show .des_prev{height:18px;line-height:18px;padding:0 36px;}

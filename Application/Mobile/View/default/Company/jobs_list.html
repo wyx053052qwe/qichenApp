@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<include file="public:meta" />
+		<link rel="stylesheet" href="../public/css/company.css">
+	</head>
+	<body>
+		<include file="public:header" />
+		<div class="jobs-manager-top-nav list_height">
+			<div class="n-cell <if condition="$Think.get.type eq 0 or $Think.get.type eq ''">active</if>" onclick="window.location='{:U('company/jobs_list')}'">全部职位<if condition="$Think.get.type eq 0 or $Think.get.type eq ''"><div class="b-line"></div></if></div>
+			<div class="n-cell <if condition="$Think.get.type eq 1">active</if>" onclick="window.location='{:U('company/jobs_list',array('type'=>1))}'">发布中的<if condition="$Think.get.type eq 1 or $Think.get.type eq ''"><div class="b-line"></div></if></div>
+			<div class="n-cell <if condition="$Think.get.type eq 2">active</if>" onclick="window.location='{:U('company/jobs_list',array('type'=>2))}'">未显示的<if condition="$Think.get.type eq 2"><div class="b-line"></div></if></div>
+			<div class="clear"></div>
+		</div>
+		<div class="split-block"></div>
+		<notempty name="jobs_list['list']">
+			<volist name="jobs_list['list']" id="list">
+				<div class="job js-actionParent">
+					<div class="info" onclick="window.location='{$list.jobs_url}'">
+						<div class="line-one">
+							<div class="job-name substring">{$list.jobs_name}</div>
+					        <if condition="$list['allowance_id'] gt 0 && C('apply.Allowance')">
+							<div class="j-n-money">
+				                <div class="j-m-l jm<eq name="list['allowance']['type_alias']" value="apply">2</eq><eq name="list['allowance']['type_alias']" value="interview">3</eq><eq name="list['allowance']['type_alias']" value="entry">1</eq>"></div>
+				                <div class="j-m-r"><span class="font9">￥</span><span class="font12">{$list['allowance']['per_amount']}</span></div>
+				                <div class="clear"></div>
+				            </div>
+				            </if>
+							<div class="job-status font12 <if condition="$list['_audit'] eq 2">font_yellow<elseif condition="$list['_audit'] eq 3 || $list['display'] eq 2" />font_red</if>">{$list.status_cn}</div>
+							<div class="clear"></div>
+						</div>
+						<div class="line-two font12">{$list.district_cn} | {$list.nature_cn} | 经验{$list.experience_cn} | {$list.wage_cn}</div>
+						<div class="line-three font12">
+							<div class="pic apply">投递{$list.applys|default="0"}次</div>
+							<div class="pic browse">浏览{$list.views|default="0"}次</div>
+							<div class="pic refresh">{:date('Y-m-d H:i',$list['refreshtime'])}</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="handler font14">
+						<div class="item" onclick="window.location='{:U('company/jobs_apply',array('stop'=>1,'jobs_id'=>$list['id']))}'"><span>简历</span></div>
+						<div class="J_refresh item" yid="{$list.id}"><span>刷新</span></div>
+						<div class="item J_promotion" data-audit="{$list['_audit']}" data-display="{$list['display']}" data-stick="{$list['stick']}" data-emergency="{$list['emergency']}" data-auto="{$list['auto_refresh']}" data-stickmsg="<strong>已购买【职位置顶】服务</strong><br /><span class='time'>开始时间：{:date('Y-m-d',$list['promotion']['stick']['starttime'])}<br />结束时间：{:date('Y-m-d',$list['promotion']['stick']['endtime'])}</span>" data-stickurl="{:U('companyService/service_stick',array('jobs_id'=>$list['id']))}" data-emergencymsg="<strong>已购买【紧急招聘】服务</strong><br /><span class='time'>开始时间：{:date('Y-m-d',$list['promotion']['emergency']['starttime'])}<br />结束时间：{:date('Y-m-d',$list['promotion']['emergency']['endtime'])}</span>" data-emergencyurl="{:U('companyService/service_emergency',array('jobs_id'=>$list['id']))}" data-automsg="<strong>已购买【智能刷新】服务</strong><br /><span class='time'>开始时间：{$list['auto_refresh_starttime']}<br />结束时间：{$list['auto_refresh_endtime']}</span>" data-autourl="{:U('companyService/service_refresh',array('jobs_id'=>$list['id']))}"><span>推广</span></div>
+						<div class="item J_more" data-editurl="{:U('company/jobs_edit',array('id'=>$list['id']))}" data-audit="{$list['_audit']}" data-display="{$list['display']}" data-closeurl="{:U('company/jobs_close',array('id'=>$list['id']))}" data-recoverurl="{:U('company/jobs_display',array('id'=>$list['id']))}" data-delurl="{:U('company/jobs_delete',array('id'=>$list['id']))}" data-allowance="<if condition="$list['allowance_id'] eq 0 && C('apply.Allowance')">1<else />0</if>" data-allowanceurl="{:U('Company/set_allowance_job',array('jobsid'=>$list['id']))}"><span class="last">更多</span></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="split-block"></div>
+			</volist>
+			<div class="qspage">{$jobs_list['page']}</div>
+			<div class="btn-spacing">
+				<a class="qs-btn qs-btn-blue font18" id="J_jobs_add">发布职位</a>
+			</div>
+            <div class="split-block"></div>
+		<else/>
+			<if condition="$hasget">
+				<div class="list-empty">
+					抱歉，没有找到相关职位！
+				</div>
+			<else />
+				<div class="list-empty link_blue">
+					亲爱的HR，您还没有发布的职位！<br>
+					想要快速找到合适的人才，就赶紧 <a id="J_jobs_add">发布职位</a> 吧~
+				</div>
+			</if>
+		</notempty>
+		<include file="public:footer_min" />
+        <script src="../public/js/qs.upScroll.js"></script>
+		<script type="text/javascript">
+        var tip = {
+            jobs_display : '职位恢复后将会对外公开招聘，您确定要恢复选中的职位吗？',
+            jobs_close : '职位关闭后将会暂停招聘，您确定要关闭选中的职位吗？',
+            jobs_delete : '被删除后将无法恢复，您确定要删除选中的职位吗？'
+        };
+        // 职位刷新
+		$('.J_refresh').on('click',function(){
+            var obj = $(this);
+            $.getJSON("{:U('Company/jobs_refresh_confirm')}",{yid:obj.attr('yid')},function(data){
+                if(data.status==1){
+                    if(data.data=='mix') {
+                        $(document).dialog({
+                            titleShow: false,
+                            content: data.msg,
+                            buttons: [
+                                {
+                                    name: '取消',
+                                    callback: function() {}
+                                }
+                            ]
+                        });
+                    } else {
+                        $(document).dialog({
+                            titleShow: false,
+                            content: data.msg,
+                            onClickConfirmBtn: function(){
+                                $.getJSON("{:U('Company/jobs_refresh')}",{yid:obj.attr('yid')},function(result){
+                                    if (result.status == 1) {
+                                        qsToast(result.msg, 1, '');
+                                        setTimeout(function () {
+                                            window.location.reload();
+                                        }, 2000);
+                                    } else {
+                                        qsToast(result.msg, '', '');
+                                        return false;
+                                    }
+                                });
+                            }
+                        });
+                    }
+                } else {
+                    $(document).dialog({
+                        titleText: '职位刷新',
+                        content: data.msg
+                    });
+					return false;
+                }
+            });
+		});
+		// 职位推广
+        $('.J_promotion').on('click', function() {
+            var audit = $(this).data('audit'),
+                display = $(this).data('display'),
+                stick = $(this).data('stick'),
+                stickMsg = $(this).data('stickmsg'),
+                stickUrl = $(this).data('stickurl'),
+                emergency = $(this).data('emergency'),
+                emergencyMsg = $(this).data('emergencymsg'),
+                emergencyUrl = $(this).data('emergencyurl'),
+                auto = $(this).data('auto'),
+                autoMsg = $(this).data('automsg'),
+                autoUrl = $(this).data('autourl');
+            if(audit == 2){
+                qsToast('审核中的职位不能推广', '', '');
+                return false;
+            }
+            if(audit == 3){
+                qsToast('审核未通过的职位不能推广', '', '');
+                return false;
+            }
+            if(display == 2){
+                qsToast('已关闭的职位不能推广', '', '');
+                return false;
+            }
+            var $scroll = new upScroll();
+            $scroll.setContent(['职位置顶','紧急招聘','智能刷新']);
+            $scroll.show();
+            // 职位置顶
+            $scroll.getList(1).on('click', function() {
+                if (stick) {
+                    $(document).dialog({
+                        titleShow: false,
+                        content: stickMsg,
+                        buttons: [
+                            {
+                                name: '确定',
+                                callback: function() {}
+                            }
+                        ]
+                    });
+                } else {
+                    window.location.href = stickUrl;
+                }
+            });
+            // 紧急招聘
+            $scroll.getList(2).on('click', function() {
+                if (emergency) {
+                    $(document).dialog({
+                        titleShow: false,
+                        content: emergencyMsg,
+                        buttons: [
+                            {
+                                name: '确定',
+                                callback: function() {}
+                            }
+                        ]
+                    });
+                } else {
+                    window.location.href = emergencyUrl;
+                }
+            });
+            // 智能刷新
+            $scroll.getList(3).on('click', function() {
+                if (auto) {
+                    $(document).dialog({
+                        titleShow: false,
+                        content: autoMsg,
+                        buttons: [
+                            {
+                                name: '确定',
+                                callback: function() {}
+                            }
+                        ]
+                    });
+                } else {
+                    window.location.href = autoUrl;
+                }
+            });
+        });
+        // 更多
+        $('.J_more').on('click', function() {
+            var audit = $(this).data('audit'),
+                display = $(this).data('display'),
+                editUrl = $(this).data('editurl'),
+                closeUrl = $(this).data('closeurl'),
+                recoverUrl = $(this).data('recoverurl'),
+                delUrl = $(this).data('delurl'),
+                allowance = $(this).data('allowance'),
+                allowanceUrl = $(this).data('allowanceurl');
+            var moreArr = ['修改'];
+            if (audit == 1) {
+                if (display == 2) {
+                    moreArr.push('恢复');
+                } else {
+                    moreArr.push('关闭');
+                }
+            }
+            moreArr.push('删除');
+            if (allowance) {
+                moreArr.push('红包打赏');
+            }
+            var $scroll = new upScroll();
+            $scroll.setContent(moreArr);
+            $scroll.show();
+            // 修改
+            $scroll.getList(1).on('click', function() {
+                $scroll.hide();
+                window.location.href = editUrl;
+            });
+            if (audit == 1) {
+                $scroll.getList(2).on('click', function() {
+                    $scroll.hide();
+                    if (display == 2) {
+                        // 恢复
+                        doFun(tip.jobs_display, recoverUrl);
+                    } else {
+                        // 关闭
+                        doFun(tip.jobs_close, closeUrl);
+                    }
+                });
+                // 删除
+                $scroll.getList(3).on('click', function() {
+                    $scroll.hide();
+                    doFun(tip.jobs_delete, delUrl);
+                });
+                // 红包
+                $scroll.getList(4).on('click', function() {
+                    $scroll.hide();
+                    window.location.href = allowanceUrl;
+                });
+            } else {
+                // 删除
+                $scroll.getList(2).on('click', function() {
+                    $scroll.hide();
+                    doFun(tip.jobs_delete, delUrl);
+                });
+                // 红包
+                $scroll.getList(3).on('click', function() {
+                    $scroll.hide();
+                    window.location.href = allowanceUrl;
+                });
+            }
+        });
+        // 恢复、关闭、删除公用方法
+        function doFun(content, url) {
+            var $doDialog = $(document).dialog({
+                type : 'confirm',
+                titleText: '职位管理',
+                content: content,
+                onClickConfirmBtn: function(){
+                    var cuToast = qsToasting('正在处理');
+                    $.getJSON(url,function(result){
+                        if(result.status==1){
+                            qsToast(result.msg, 1, cuToast);
+                            setTimeout(function(){
+                                window.location.href = result.data;
+                            },2000);
+                        } else if(result.status==2){
+                            $doDialog.close();
+                            $(document).dialog({
+                                overlayShow: false,
+                                content: '<div class="dialog_notice">当前显示的职位已超过最大限制，建议您立即升级服务套餐或将暂时不招聘的职位设为关闭！</div>',
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '升级套餐',
+                                        callback: function() {
+                                            window.location.href = "{:U('CompanyService/setmeal_add')}";
+                                        }
+                                    }
+                                ]
+                            });
+                        } else {
+                            qsToast(result.msg, 0, cuToast);
+                            return false;
+                        }
+                    });
+                }
+            });
+        }
+		// 发布职位
+        $('#J_jobs_add').on('click',function(){
+            $.getJSON("{:U('Company/check_jobs_num')}",function(result){
+                if(result.status == 1){
+                    var free = parseInt("{$setmeal['is_free']}"),
+                        conHtml = '';
+                    if(free==1){
+                        conHtml = '<div class="dialog_notice">您当前是免费会员，发布中的职位数已超过最大限制，升级VIP会员后可继续发布职位，建议您立即升级VIP会员！</div>';
+                    }else{
+                        conHtml = '<div class="dialog_notice">当前显示的职位已超过最大限制，建议您立即升级服务套餐或将暂时不招聘的职位设为关闭！</div>';
+                    }
+                    $(document).dialog({
+                        titleShow: false,
+                        content: conHtml,
+                        type : 'confirm',
+                        buttons: [
+                            {
+                                name: '取消',
+                                callback: function() {}
+                            },
+                            {
+                                name: '升级套餐',
+                                callback: function() {
+                                    window.location.href = "{:U('CompanyService/setmeal_add')}";
+                                }
+                            }
+                        ]
+                    });
+                } else {
+                    window.location.href='{:U("Company/jobs_add")}';
+                }
+            });
+        });
+		</script>
+	</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>协议</title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<link href="../public/g/css/ny.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../public/g/css/mui.min.css" />
+		<link rel="stylesheet" href="../public/g/css/style.css" />
+	</head>
+	<style>
+		.mui-input-group:before {
+			display: none;
+		}
+	</style>
+
+	<body style="background: #fff;">
+		<!--头部-->
+		<div class="protocol-header">
+			<h3 class="tips">在职人员须知</h3>
+			<div class="car-achrve">
+				<div class="reader">
+
+					<p>1.可在本页面开启合同到期续签提醒功能</p>
+					<p>2.员工合同到期提前三个月微信推送通知。</p>
+					
+				</div>
+			</div>
+		</div>
+		<div class="fj-xx">收件人</div>
+		<div class="sjr">
+			<img src="{$visitor['avatars']}?{:time()}">
+		</div>
+		
+			<div class="mui-input-row">
+				<label>姓名：</label>
+				<input type="text" value="{$name}"  disabled="disabled">
+			</div>
+			
+			<div class="mui-input-row">
+				<label>在职公司：</label>
+				<input type="text" value="{$companyname}"  disabled="disabled">
+			</div>
+
+			<div class="mui-input-row">
+				<label>到期时间</label>
+				<input type="text" value="{$ht_time}" disabled="disabled">
+			</div>
+
+			<div class="mui-input-row">
+				<label>提醒状态</label>
+				<if condition="$zaizhi['is_send'] == 1">
+					<input type="text" value="开启" disabled="disabled">
+				<else/>
+					<input type="text" value="关闭" disabled="disabled">
+				</if>
+				
+			</div>
+			<div class="new_where">
+				<div class="mui-content-padded">
+					<if condition="$zaizhi['is_send'] == 1">
+						<button id="guanbi" class="mui-btn mui-btn-block mui-btn-primary protocol-btn">关闭通知</button>
+						
+					<else/>
+						<button id="kaiqi" class=" mui-btn-block mui-btn-primary protocol-btn">开启通知</button>
+					</if>
+				</div>
+			</div>
+		
+		<!--底部 -->
+		
+	</body>
+
+</html>
+<script type="text/javascript" src="../public/g/up/js/jQuery-v1.1.min.js"></script>
+<script>
+	$("#kaiqi").click(function(){
+		var url = "{:U('tongzhi_true',array('id'=>$zaizhi['id']))}";
+		$.get(url,function(data){
+			alert(data.status.info);
+			location.reload();
+		});
+	});
+
+	$("#guanbi").click(function(){
+		var url = "{:U('tongzhi_false',array('id'=>$zaizhi['id']))}";
+		$.get(url,function(data){
+			alert(data.status.info);
+			location.reload();
+		});
+	});
+</script>

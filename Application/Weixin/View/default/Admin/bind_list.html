@@ -1,0 +1,147 @@
+<include file="Admin@default/public/header" />
+<div class="toptip">
+    <div class="toptit">提示：</div>
+    <p>网站接入微信公众平台后，用户只需要使用微信扫描二维码就可登录，简化用户登录注册流程，更有效率的提高转化用户流量；</p>
+    <p class="link_green_line">设置微信公众平台前，网站需首先进行申请，获得对应的AppToken、AppId、AppSecret，以保证后续流程中可正确对网站与用户进行验证与授权。 现在就去<a href="https://mp.weixin.qq.com/" target="_blank">申请</a></p>
+    <p>创建自定义菜单后，由于微信客户端缓存，需要24小时微信客户端才会展现出来。建议测试时可以尝试取消关注公众账号后再次关注，则可以看到创建后的效果</p>
+</div>
+<div class="seltpye_x">
+    <div class="left">绑定状态</div>
+    <div class="right">
+        <a href="{:P(array('is_bind'=>''))}" <if condition="$Think.get.is_bind eq ''">class="select"</if>>不限</a>
+        <a href="{:P(array('is_bind'=>'1'))}" <if condition="$Think.get.is_bind eq '1'">class="select"</if>>绑定</a>
+        <a href="{:P(array('is_bind'=>'0'))}" <if condition="$Think.get.is_bind eq '0'">class="select"</if>>未绑定</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<form id="form1" name="form1" method="post" action="{:U('bind_del')}">
+    <div class="list_th">
+        <div class="td" style=" width:28%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>用户名
+            </label>
+        </div>
+        <div class="td center" style=" width:10%;">用户类型</div>
+        <div class="td center" style=" width:8%;">关注状态</div>
+        <div class="td center" style=" width:8%;">绑定状态</div>
+        <div class="td center" style=" width:10%;">绑定时间</div>
+        <div class="td center" style=" width:10%;">关注时间</div>
+        <div class="td center" style=" width:10%;">最近登录时间</div>
+        <div class="td center" style=" width:15%;">操作</div>
+        <div class="clear"></div>
+    </div>
+    <volist name="list" id="list">
+        <div class="list_tr wx_user link_black">
+            <div class="td wx_user_list" style="width:28%;">
+                <input class="input" name="id[]" type="checkbox" id="id" value="{$list['id']}"/>
+                <a class="ico" href="javascript:;">
+                    <img src="{$list.info.headimgurl}">
+                </a>
+                <div class="info">
+                    <p><a class="title" href="javascript:;">{$list.info.keyname}</a><if condition="$list['uid']">（{$list.uid}）</if></p>
+                    <p>{$list.info.country}&nbsp;{$list.info.province}&nbsp;{$list.info.city}</p>
+                </div>
+            </div>
+            <div class="td wx_user_list center" style="width:10%;">
+                <switch name="list['utype']">
+                    <case value="1">企业</case>
+                    <case value="2">个人</case>
+                    <default />无
+                </switch>
+            </div>
+            <div class="td wx_user_list center" style="width:8%;">
+                <if condition="$list['is_focus'] eq 1">
+                    <span style="color:#009900">ok</span>
+                <else />
+                    <span style="color: #FF3300">no</span>
+                </if>
+            </div>
+            <div class="td wx_user_list center" style="width:8%;">
+                <if condition="$list['is_bind'] eq 1">
+                    <span style="color:#009900">ok</span>
+                <else />
+                    <span style="color: #FF3300">no</span>
+                </if>
+            </div>
+            <div class="td wx_user_list center" style="width:10%;">
+                <if condition="$list['bindingtime']">{:admin_date($list['bindingtime'])}<else/>无</if>
+            </div>
+            <div class="td wx_user_list center" style="width:10%;">
+                <if condition="$list['focustime']">{:admin_date($list['focustime'])}<else/>无</if>
+            </div>
+            <div class="td wx_user_list center" style="width:10%;">
+                <if condition="$list['last_login_time']">{:admin_date($list['last_login_time'])}<else/>无</if>
+            </div>
+            <div class="td wx_user_list edit center" style=" width:15%;">
+                <a href="javascript:void(0);" class="ajax_send_msg" parameter="id={$list['id']}">发送消息</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAddQueue" value="批量发送"/>
+    </div>
+
+    <div class="footso"></div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //发送消息
+        $(".ajax_send_msg").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '发送消息',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('msg_send')}&" + param;
+            $.getJSON(url, function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        });
+        //批量发送消息
+        $("#ButAddQueue").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '批量发送消息',
+                loading: true,
+                footer : false
+            });
+            var url = "{:U('msg_queue_send')}",
+                ids = $('input[name="id[]"]:checked').map(function(){
+                    return $(this).val()
+                }).get().join(',');
+            $.getJSON(url, {ids:ids},function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,93 @@
+<include file="Admin@default/public/header" />
+<div class="seltpye_y">
+    <div class="tit">认证状态</div>
+    <div class="ct">
+        <div class="txt <neq name='Think.get.audit' value=''>select</neq>">{$Think.get.audit_cn|default='不限'}</div>
+    </div>
+    <div class="downlist">
+        <li url="{:P(array('audit'=>'','audit_cn'=>'不限'))}">不限</li>
+        <li url="{:P(array('audit'=>'1','audit_cn'=>'已通过'))}">已通过</li>
+        <li url="{:P(array('audit'=>'2','audit_cn'=>'待认证'))}">待认证<if condition="$count"><span style="color:#FF0000">({$count})</span></if></li>
+        <li url="{:P(array('audit'=>'3','audit_cn'=>'未通过'))}">未通过</li>
+        <li url="{:P(array('audit'=>'0','audit_cn'=>'未认证'))}">未认证</li>
+    </div>
+</div>
+<div class="clear"></div>
+
+<form id="form1" name="form1" method="post">
+    <div class="list_th">
+        <div class="td" style=" width:25%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>公司名称
+            </label>
+        </div>
+        <div class="td center" style=" width:15%;">实地认证</div>
+        <div class="td center" style=" width:10%;">对外显示</div>
+        <div class="td center" style=" width:20%;">用户名</div>
+        <div class="td" style=" width:10%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:25%;">
+                <div class="left_padding striking">
+                    <input name="y_id[]" type="checkbox" id="id" value="{$vo['uid']}"/>
+                    <a href="{$vo['company_url']}" target="_blank">{$vo['companyname']}</a>
+                </div>
+            </div>
+            <div class="td center" style=" width:15%;"><eq name="vo['report_open']" value="1"><span style="color: #009900" title="已认证">已认证</span><else /><span style="color: #999" title="未认证">未认证</span></eq></div>
+            <div class="td center" style=" width:10%;"><eq name="vo['report_open']" value="1"><eq name="vo['report']['status']" value="0">否<else />是</eq><else />-</eq></div>
+            <div class="td center" style=" width:20%;">{$vo['username']}</div>
+            <div class="td edit" style=" width:10%;">
+                <a href="{:U('Report/Admin/set',array('id'=>$vo['id'],'_k_v'=>$vo['id']))}">编辑</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+    </div>
+
+    <div class="footso">
+        <form action="?" method="get">
+            <div class="sobox">
+                <input type="hidden" name="m" value="{:MODULE_NAME}">
+                <input type="hidden" name="c" value="{:CONTROLLER_NAME}">
+                <input type="hidden" name="a" value="{:ACTION_NAME}">
+                <input name="key" type="text" class="sinput" value="{$Think.get.key}"/>
+                <input name="key_type" id="J_key_type_id" type="hidden" value="{$Think.get.key_type|default='1'}" />
+                <input name="key_type_cn" id="J_key_type_cn" type="hidden" value="{$Think.get.key_type_cn|default='公司名'}"/>
+                <input name="" type="submit" value="" class="sobtn"/>
+                <div class="sotype" id="J_key_click">{$Think.get.key_type_cn|default='公司名'}</div>
+                <div class="mlist" id="J_mlist">
+                    <ul>
+                        <li id="1" title="公司名">公司名</li>
+                        <li id="2" title="公司ID">公司ID</li>
+                        <li id="3" title="会员名">会员名</li>
+                        <li id="4" title="会员ID">会员ID</li>
+                        <li id="5" title="地址">地址</li>
+                        <li id="6" title="电话">电话</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer" />
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+</script>
+</html>

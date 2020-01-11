@@ -1,0 +1,1 @@
+<?php	return array ( 'Home' => '骑士人才系统核心模块', 'Mobile' => '手机触屏端', 'Weixinapp' => '微信小程序接口', 'Weixin' => '微信招聘', 'Export' => '信息导出', 'Jobclickup' => '职位点击量提升器', 'Jobfair' => '招聘会', 'Mall' => '积分商城', 'Parttime' => '兼职招聘', 'Qqfloat' => '在线客服', 'Recommend' => '智能推荐', 'Report' => '实地认证报告', 'Resumeimport' => '简历导入', 'Rpo' => '招聘外包', 'Subject' => '专题招聘会', 'Career' => '事业单位招考', ); ?>

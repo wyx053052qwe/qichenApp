@@ -1,0 +1,29 @@
+<div class="toplogo">
+    <div class="logo">
+        <a href="{:U('Index/index')}"><img src="<if condition="C('qscms_logo_mobile')">{:attach(C('qscms_logo_mobile'),'resource')}<else/>../public/images/logo.png</if>" border="0"/></a>
+    </div>
+    <if condition="$is_login">
+        <if condition="$rong_state eq 1">
+            <a href="{:U('Im/user_list')}" class="top_msg" id="J_imStatus"></a>
+        <else />
+            <a href="{:U('Members/index')}" class="top_us"></a>
+        </if>
+    <else />
+        <a href="{:U('Members/index')}" class="top_us"></a>
+    </if>
+    <if condition="strtolower(CONTROLLER_NAME) eq 'resume' || strtolower(CONTROLLER_NAME) eq 'jobs' || strtolower(CONTROLLER_NAME) eq 'index'">
+    <div class="topso J_show_so"></div>
+    </if>
+</div>
+<include file="public:search" />
+<script>
+    // 显示搜索层
+    $('.J_show_so').on('click', function(){
+        $('.qspageso').toggle();
+        $('#J_soinput').focus();
+        if($('#J_soinput').val()!=''){
+            $('#J_soinput').val($('#J_soinput').val());
+            $('#J_soinput').closest('.topbg').addClass('has-inp');
+        }
+    });
+</script>

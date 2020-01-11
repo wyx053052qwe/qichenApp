@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>每日签到</title>
+		<link rel="stylesheet" href="../public_qichen/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../public_qichen/css/check-in.css">
+		<link rel="stylesheet" href="../public_qichen/css/style.css" />
+
+	</head>
+	<style>
+		.container-fluid {
+			background: #faca34;
+		}
+		
+		.media-body,
+		.media-left,
+		.media-right {
+			line-height: 1.5;
+		}
+		
+		.footer>div p {
+			margin-top: 8px;
+		}
+	</style>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12 clearPadding">
+					<div class="banner2"><img src="../public_qichen/img/banner.jpg" class="img-responsive"></div>
+					<div class="col-xs-4">
+						<a href="{:U('shuoming')}" class="btn btn-lingqu2">活动说明</a>
+					</div>
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+						<a href="{:U('PersonalService/gold_log1')}" class="btn btn-lingqu2">我的奖励</a>
+					</div>
+					<div class="calendar">
+						<div class="calenbox">
+							<div id="calendar"></div>
+						</div>
+						<div class="text-center">
+							<if condition="$arr['is_sign'] == 'true'">
+								<button class="btn btn-qiandao btn-disable3" id="msqd-but">已签到</button>
+							<else/>
+								<button class="btn btn-qiandao " id="msqd-but1">马上签到</button>
+							</if>
+						</div>
+					</div>
+					<div class="padding10">
+						<div class="font16 pb10 borderb pt15"><strong>连续签到礼包</strong></div>
+						<div class="libaolist">
+							<volist name="lianxu" id="vo">
+								<div class="clearfix borderb ptb10">
+									<div class="col-xs-9 clearPadding">
+										<div class="media">
+											<a class="media-left pt3" href="javascript:void(0);">
+												<img src="../public_qichen/img/dou.png" style="width:30px;height:30px;">
+											</a>
+											<div class="media-body">
+												<div class="">{$vo['count']}天礼包</div>
+												<div class="text-muted font12">连续签到{$vo['count']}天即可领取</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-3 clearPadding text-right pt2">
+										<button class="btn {$vo['class']}" <if condition="$vo['disabled'] != ''">disabled</if> onClick="signIn3({$vo['count']},{$vo['points']})" id="lq-but1">{$vo['cn']}</button>
+									</div>
+								</div>
+							</volist>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="maskbox"></div>
+		<div class="qdbox" id="qdbox1">
+			<div class="text-center text-green font18"><strong>签到成功！</strong></div>
+			<div class="text-center pt10 pb10">您已经连续签到&nbsp;<span class="text-green">10</span>&nbsp;天</div>
+			<div class="text-center"><button class="btn btn-lottery" onClick="signIn2()">确定</button></div>
+		</div>
+
+		<div class="qdbox" id="qdbox2">
+			<div class="text-center text-green font18"><strong>领取成功！</strong></div>
+			<div class="text-center pt10">恭喜您获得&nbsp;<span class="text-green">300</span>&nbsp;积分</div>
+			<div class="text-center ptb15"><img src="../public_qichen/img/liwu.png" style="width:125px;margin-left:20px;"></div>
+			<div class="text-center"><button class="btn btn-lottery" onClick="signIn4()">确定</button></div>
+		</div>
+
+		<div class="qdbox" id="qdbox3">
+			<div class="text-center text-green font18"><strong>领取失败！</strong></div>
+			<div class="text-center pt10 pb10">您签到未达到次数，无法领取！</div>
+			<div class="text-center"><button class="btn btn-lottery" onClick="signIn4()">确定</button></div>
+		</div>
+		<!--公共底部-->
+		<div style="height: 80px;background: #faca34;"></div>
+		<include file="public_qichen:footer_shouye_2"/>
+		<script src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+		<script src="../public_qichen/js/calendar.js"></script>
+		<script>
+			$(function() {
+				//ajax获取日历json数据
+				var signList = {$arr['json_day']};
+				calUtil.init(signList);
+			});
+
+			function signIn() {
+				$(".maskbox").fadeIn();
+				$("#qdbox1").fadeIn();
+				$(".maskbox").height($(document).height());
+			}
+			$("#msqd-but1").one('click', function() {
+				$.get("{:U('Members/sign_in')}",function(res){
+					alert(res.msg);
+					if(res.status == 0){
+						return false;
+					}else{
+						location.reload();
+					}
+				})
+
+			});
+
+			function signIn2() {
+
+			}
+
+			function signIn3(count,points) {
+
+				$.get("{:U('index/sign_lianxu')}",{count:count,points:points},function(res){
+					alert(res.msg);
+					if(res.status == 0){
+						return false;
+					}else{
+						location.reload();
+					}
+				});
+			}
+
+			function signIn4() {
+				$(".maskbox").fadeOut();
+				$("#qdbox2").fadeOut();
+				$("#qdbox3").fadeOut();
+				$(".maskbox").height($(document).height());
+				$("#lq-but1").addClass("btn-disable");
+				$("#lq-but1").attr("disabled", "disabled");
+				$("#lq-but1").text("已领取");
+
+			}
+
+			function signIn5() {
+				$(".maskbox").fadeIn();
+				$("#qdbox3").fadeIn();
+				$(".maskbox").height($(document).height());
+			}
+		</script>
+
+	</body>
+
+</html>

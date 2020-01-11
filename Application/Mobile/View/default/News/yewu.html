@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{$data['name']}</title>
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/news.css">
+</head>
+<body>
+
+<include file="public:header_logo" />
+<assign name="page_seo['header_title']" value="$info['title']"/>
+<include file="public:header"/>
+<script>showAndroidTopBack();</script>
+<div class="news-show">
+    <h1 class="font18">{$data['name']}</h1>
+    <div class="attribute font13">
+        
+        <div class="category">分类: 主营业务</div>
+        
+        <div class="pic time">{:date('Y-m-d',$data['add_time'])}</div>
+        <div class="clear"></div>
+    </div>
+    <div class="content link_blue">{$data['content']}</div>
+    
+</div>
+
+<div class="list-split-block"></div>
+<include file="public:footer_min"/>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+   
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function () {
+        var linkUrl = "{:build_mobile_url(array('c'=>'Yewu','a'=>'index','params'=>'id='.$data['id']))}";//放链接
+        var title = "{$data['name']} - {:C('qscms_site_name')}";
+        var desc = "更多好工作请看这里";
+        var imgUrl = "<if condition="C('qscms_logo_home')">{:attach(C('qscms_logo_home'),'resource')}<else/>{:C('TPL_HOME_PUBLIC_DIR')}/images/logo.gif</if>";//图片链接
+
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+</script>
+</body>
+</html>

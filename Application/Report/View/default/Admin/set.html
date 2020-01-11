@@ -1,0 +1,213 @@
+<include file="Admin@default/public/header" />
+
+<form action="{:U('')}" id="FormData" name="FormData" method="post" enctype="multipart/form-data">
+    <div class="toptit">企业实地认证报告 - <span style="color:#0066CC">{$info.com_name}</span></div>
+    <div class="form_main width150">
+        <div class="fl">是否显示报告：</div>
+        <div class="fr">
+            <div data-code="0,1" class="J_show imgchecked_small <eq name='info.status' value='1'>select</eq>">
+                <input name="status" type="hidden" value="{$info.status}" />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="J_Box" <eq name='info.status' value='0'>style="display:none;"</eq>>
+        <div class="toptit">工商登记信息</div>
+        <div class="form_main width150">
+            <div class="fl">企业名称：</div>
+            <div class="fr">
+                <input name="com_name" type="text" maxlength="60" class="input_text_default" value="{$info.com_name}"/>
+                <!--<label class="no-fl-note">（填写数字，0为开启验证码，如设置为3，则错误3次才发起验证）</label>-->
+            </div>
+            <div class="fl">企业法人：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="corporate" type="text" maxlength="30" class="input_text_default small" value="{$info.corporate}"/>
+            </div>
+            <div class="fl">主体类型：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="com_type" type="text" maxlength="60" class="input_text_default small" value="{$info.com_type}" placeholder="如：有限责任公司（自然人独资）"/>
+            </div>
+            <div class="fl">成立时间：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="reg_time" type="text" class="input_text_default small " id="reg_time" autocomplete="off" maxlength="20" value="<notempty name='info.reg_time'>{:date('Y-m-d',$info['reg_time'])}</notempty>"/>
+            </div>
+            <div class="fl">注册资金：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="reg_capital" type="text" class="input_text_default small" maxlength="10" value="{$info['reg_capital']}" onKeyUp="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"/> 万元
+            </div>
+            <div class="fl">注册地址：</div>
+            <div class="fr">
+                <input name="reg_address" type="text" class="input_text_default" maxlength="100" value="{$info['reg_address']}"/>
+            </div>
+            <div class="fl">办公地点：</div>
+            <div class="fr">
+                <input name="office_address" type="text" class="input_text_default" maxlength="100" value="{$info['office_address']}"/>
+            </div>
+            <div class="fl">登记机关：</div>
+            <div class="fr">
+                <input name="registrar" type="text" class="input_text_default" maxlength="60" value="{$info['registrar']}"/>
+            </div>
+            <div class="fl">经营范围：</div>
+            <div class="fr">
+                <textarea name="scope" class="input_text_default" style="line-height:200%; height:60px;" onpropertychange="if(this.value.length&gt;120){this.value=this.value.slice(0,120)}">{$info.scope}</textarea>
+                <div style="color: #999999; padding-top: 10px;">请将字数控制在120字以内。</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="toptit">实地认证情况</div>
+        <div class="form_main width150">
+            <div class="fl">办公面积：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="office_area" type="text" maxlength="10" class="input_text_default small" value="{$info.office_area}" onKeyUp="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"/> 平米
+            </div>
+            <div class="fl">办公环境：</div>
+            <div class="fr" style="width: 280px;">
+                <div class="imgradio">
+                    <input name="office_env" type="hidden" value="{$info['office_env']|default='2'}">
+                    <div class="radio <eq name='info.office_env' value='1'>select</eq>" data="1" title="一般">一般</div>
+                    <div class="radio <eq name='info.office_env' value='2'>select</eq>" data="2" title="良好">良好</div>
+                    <div class="radio <eq name='info.office_env' value='3'>select</eq>" data="3" title="优美">优美</div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="fl">办公场所：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="workplace" type="text" maxlength="30" class="input_text_default small" value="{$info.workplace}" placeholder="如：写字楼"/>
+            </div>
+            <div class="fl">员工人数：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="number" type="text" class="input_text_default small" maxlength="30" value="{$info['number']}"/>
+            </div>
+            <div class="fl">男女比例：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="sex_ratio" type="text" class="input_text_default small" maxlength="30" value="{$info['sex_ratio']|default='1:1'}"/>
+            </div>
+            <div class="fl">平均年龄：</div>
+            <div class="fr" style="width: 260px;">
+                <input name="average_age" type="text" class="input_text_default small" maxlength="3" value="{$info['average_age']}" onKeyUp="if(event.keyCode !=37 && event.keyCode != 39) value=value.replace(/\D/g,'');"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/\D/g,''))"/> 岁左右
+            </div>
+            <div class="fl">乘车路线：</div>
+            <div class="fr">
+                <input name="route" type="text" class="input_text_default" maxlength="100" value="{$info['route']}"/>
+            </div>
+            <div class="fl">认证照片：</div>
+            <div class="fr J-file-input-box">
+                <div class="file-input-block" id="J_upload_img" name="report_img"><span class="o-txt">上传</span>企业照片</div>
+                <label class="no-fl-note">（最多可上传 5 张）</label>
+            </div>
+            <div id="J_img" <empty name="info.img_arr">style="display:none;"</empty>>
+                <div class="fl">已上传：</div>
+                <div class="fr link_blue" id="J_img_list">&nbsp;
+                    <volist name="info.img_arr" id="vo">
+                        <div style="float:left; text-align:center; margin-right: 15px; margin-bottom: 5px; border: 1px solid #CCCCCC;" class="img">
+                            <input type="hidden" name="img_item[]" value="{$vo}">
+                            <img src="{:attach($vo,'images')}" width="180" height="130" border="1" style="border: #CCCCCC;"/><br/>
+                            <a href="javascript:;" class="delete_img">删除</a>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+            <div class="fl">人力资源师评价：</div>
+            <div class="fr">
+                <textarea name="evaluation" class="input_text_default" style="line-height:200%; height:120px;" onpropertychange="if(this.value.length&gt;240){this.value=this.value.slice(0,240)}">{$info.evaluation}</textarea>
+                <div style="color: #999999; padding-top: 10px;">请将字数控制在240字以内。</div>
+            </div>
+            <div class="fl">认证人：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="certifier" type="text" maxlength="30" class="input_text_default small" value="{$info.certifier}"/>
+            </div>
+            <div class="fl">认证时间：</div>
+            <div class="fr" style="width: 250px;">
+                <input name="addtime" type="text" class="input_text_default small " id="addtime" autocomplete="off" maxlength="10" value="<notempty name='info.addtime'>{:date('Y-m-d',$info['addtime'])}</notempty>"/>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="form_main width150">
+        <div class="fl"></div>
+        <div class="fr">
+            <empty name="info.id">
+                <input type="hidden" name="com_id" value="{$info.com_id}"/>
+                <input type="hidden" name="uid" value="{$info.uid}"/>
+                <else/>
+                <input type="hidden" name="id" value="{$info.id}"/>
+            </empty>
+            <input type="button" class="admin_submit" value="保存" id="J_submit"/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</form>
+
+</div>
+<include file="Admin@default/public/footer" />
+</body>
+<script type="text/javascript">
+    var uploadUrl = "{:U('Admin/Upload/form_upload')}";
+</script>
+<script src="__ADMINPUBLIC__/js/ajaxfileupload.js"></script>
+<script src="__ADMINPUBLIC__/js/fileupload.js"></script>
+<script type="text/javascript">
+$(function() {
+    //日期
+    laydate.render({
+        elem: '#reg_time' //指定元素
+    });
+    laydate.render({
+        elem: '#addtime' //指定元素
+    });
+    // 是否显示报告
+    $(".J_show").click(function(){
+        if($(this).hasClass('select')){
+            $("#J_Box").hide();
+        } else {
+            $("#J_Box").show();
+        }
+    });
+    $('#J_submit').click(function(){
+            var that = $(this);
+            if(that.hasClass('disabled')){
+                return false;
+            }
+            that.val('正在保存...').addClass('disabled');
+            $.post("{:U('set')}",$('#FormData').serialize(),function(result){
+                if(result.status==1){
+                    disapperTooltip("success", result.msg,function(){
+                        location.href='{:U("index")}';
+                    });
+                }else{
+                    disapperTooltip("remind", result.msg,function(){
+                        that.val('保存').removeClass('disabled');
+                    });
+                    return false;
+                }
+            },'json');
+        });
+    // 上传企业照片
+    $.upload('#J_upload_img',{name:'report_img',dir:'images'},function(result){
+        if(result.error == 1){
+            var html = '<div style="float:left; text-align:center; margin-right: 15px; margin-bottom: 5px; border: 1px solid #CCCCCC;" class="img">';
+            html += '<input type="hidden" name="img_item[]" value="' + result.url.savename + '">'
+            html += '<img src="' + result.url.src + '" width="180" height="130"><br/>';
+            html += '<a href="javascript:;" class="delete_img">删除</a>';
+            html += '</div>';
+            $(html).prependTo($("#J_img_list"));
+            var j_img = $('#J_img');
+            if(j_img.is(":hidden")){
+                j_img.show();
+            }
+        } else {
+            disapperTooltip("remind", "上传失败："+result.message);
+        }
+    });
+    // 删除
+    $(".delete_img").live('click', function () {
+        $(this).parent('.img').remove();
+        if($('#J_img_list').find('.img').length == 0){
+            $('#J_img').hide();
+        }
+    });
+});
+</script>
+</html>

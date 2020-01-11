@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <qscms:career_show 列表名="info" 招考id="$_GET['id']" />
+    <include file="Home@default/public/meta" />
+    <link href="{:C('TPL_HOME_PUBLIC_DIR')}/css/common.css" rel="stylesheet" type="text/css" />
+    <link href="{:C('TPL_PUBLIC_DIR')}/css/career.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <include file="Home@default/public/header_other" />
+    <div class="top_box"><div class="tb_main"></div></div>
+    <div class="career_show">
+        <div class="tit">{$info.title}</div>
+        <div class="time">发布时间：{:date('Y-m-d',$info['addtime'])}</div>
+        <div class="des">{$info.content}</div>
+    <div class="des_next link_gray3">上一篇：
+      <if condition="$info['prev'] eq 1">
+        <a href="{$info['prev_url']}">{$info['prev_title']}</a>
+      <else />
+        <a>没有了</a>
+      </if>
+    </div>
+    <div class="des_prev link_gray3">下一篇：
+        <if condition="$info['next'] eq 1">
+            <a href="{$info['next_url']}">{$info['next_title']}</a>
+        <else />
+            <a>没有了</a>
+        </if>
+    </div>
+    </div>
+    <include file="Home@default/public/footer_min" />
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $.getJSON("{:U('Home/ajaxCommon/career_click')}",{id:"{$info['id']}"},function(result){
+            if(result.status==1){
+                $(".click").html(result.data);
+            }
+        });
+    });
+</script>
+</body>
+</html>

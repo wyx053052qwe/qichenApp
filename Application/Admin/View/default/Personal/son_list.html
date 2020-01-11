@@ -1,0 +1,35 @@
+<div class="mantit" style="margin-top:15px; margin-bottom: 8px;"><strong>推荐入职列表</strong></div>
+<div style="max-height:200px;overflow-y:auto">
+    <table width="100%" border="0" cellpadding="10" cellspacing="1" bgcolor="#DFDFDF" class="link_lan">
+        
+
+        <tr>
+            <td bgcolor="#FFFFFF">在职id</td>
+            <td bgcolor="#FFFFFF">入职时间</td>
+            <td bgcolor="#FFFFFF">姓名</td>
+            <td bgcolor="#FFFFFF">身份证号码</td>
+            <td bgcolor="#FFFFFF">在职企业</td>
+            
+        </tr>
+        
+
+        <if condition="$list">
+            <volist name="list" id="vo">
+                <tr>
+                    <td bgcolor="#FFFFFF" >{$vo['id']}</td>
+                    <td bgcolor="#FFFFFF" >{:date("Y-m-d",$vo['dengji_time'])}</td>
+                    <td bgcolor="#FFFFFF" >{$vo['name']}</td>
+                    <td bgcolor="#FFFFFF" >{$vo['id_card']}</td>
+                    <td bgcolor="#FFFFFF" >{$vo['companyname']}</td>
+                    
+                        
+                    
+                </tr>
+            </volist>
+        <else/>
+            <tr>
+                <td colspan="4" bgcolor="#FFFFFF">没有任何信息！</td>
+            </tr>
+        </if>
+    </table>
+</div>

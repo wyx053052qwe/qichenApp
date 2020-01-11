@@ -1,0 +1,100 @@
+<include file="public:header"/>
+   
+<div class="seltpye_x">
+    <div class="left">申请时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+
+
+<form id="form1" name="form1" method="post" action="{:U('delete')}">
+    <div class="list_th">
+        <div class="td" style=" width:30%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>证明材料
+            </label>
+        </div>
+        
+        <div class="td center" style=" width:10%;">姓名</div>
+        
+        
+        
+        <div class="td center" style=" width:30%;">申请说明</div>
+        <div class="td center" style=" width:10%;">申请时间</div>
+        <div class="td" style=" width:20%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_blue">
+            <div class="td" style=" width:30%;">
+                <div class="left_padding striking">
+                    <input name="id[]" type="checkbox" id="id" value="{$vo['id']}"/>
+                    <volist name="vo['img']" id="voo">
+                        <a class="vtip" title='<img src="{$voo['src']}"/>'>证明</a>
+                        --
+                    </volist>
+                </div>
+            </div>
+            <div class="td center" style=" width:10%;">
+                {$vo['name']}
+            </div>
+            
+            <div class="td center" style=" width:30%;">
+                {$vo['descript']}
+            </div>
+             <div class="td center" style=" width:10%;">
+                {:date('Y-m-d',$vo['add_time'])}
+            </div>
+            
+           
+            <div class="td edit" style=" width:20%;">
+            <if condition="$vo['is_bind'] == 1">
+                <a href="{:U('lizhi',array('id'=>$vo['zaizhi_id']))}">离职</a>
+            </if>
+            <a href="{:U('lizhi_del',array('id'=>$vo['id']))}" class="gray" onclick="return confirm('你确定要删除吗？')">删除</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+
+<div class="pages">{$page}</div>
+
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //点击批量删除
+        $("#ButDel").click(function () {
+            var ids = $("input[name='id[]']:checked");
+            if(ids.length == 0){
+                disapperTooltip('remind','请选择广告！');
+            } else {
+                if(confirm('确定删除吗？')){
+                    $("form[name=form1]").submit();
+                }
+            }
+        });
+    });
+</script>
+</html>

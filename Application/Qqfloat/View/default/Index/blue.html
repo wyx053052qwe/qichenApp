@@ -1,0 +1,27 @@
+<link href="{:C('TPL_PUBLIC_DIR')}/css/blue.css" rel="stylesheet" type="text/css" />
+<script src="{:C('TPL_PUBLIC_DIR')}/js/jquery.qqfloat.js" type="text/javascript" language="javascript"></script>
+<div class="qq-float <eq name='Think.config.qscms_qq_float_position' value='left'>left</eq>" <eq name="is_show" value="1">style="display:block;"</eq>>
+    <img src="{:C('TPL_PUBLIC_DIR')}/images/blue_head.png" border="0" alt="" style="margin: 0; padding: 0;vertical-align: bottom"/>
+    <notempty name="qq_list">
+        <div class="qq">
+            <volist name="qq_list" id="vo">
+                <div class="item">
+                    <a target="blank" href="tencent://message/?uin={$vo.qq}&amp;Site=menu&amp;Menu=yes">
+                        <img border="0" src="http://wpa.qq.com/pa?p=1:{$vo.qq}:1" alt="点击这里给我发消息">
+                    </a>
+                </div>
+            </volist>
+        </div>
+    </notempty>
+    <div class="contact">
+        <div class="qr-code">
+            <img src="{:attach(C('qscms_weixin_img'),'resource')}" alt="">
+        </div>
+        <div class="tip scan">扫码关注</div>
+        <div class="tel">{:C('qscms_bootom_tel')}</div>
+    </div>
+    <div class="footer J-close-qq">
+        <img src="{:C('TPL_PUBLIC_DIR')}/images/blue_foot.png" border="0" alt=""/>
+    </div>
+</div>
+<div class="qq-float-min J-open-qq <eq name='Think.config.qscms_qq_float_position' value='left'>left</eq>" <eq name="is_show" value="1">style="display:none;"</eq>></div>

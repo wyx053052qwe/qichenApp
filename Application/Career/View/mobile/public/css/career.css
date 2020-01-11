@@ -1,0 +1,44 @@
+/**
+ * 事业单位招聘触屏样式
+ * 
+ * @Author: XuZhu
+ * @Date: 2019-1-23
+ */
+
+/*列表页*/
+body{}
+.top_bg_box{height: 2.24rem;}
+.top_bg {
+	position:absolute;top:0;left:0;width:7.5rem;height:3.14rem;background: url(../images/top_bg.png) 0 center no-repeat;background-size:7.5rem 3.14rem;
+}
+.lsp_group {
+	width:7.5rem;padding-bottom:.25rem;background:#FFF;margin-bottom:.15rem;
+}
+.lsp_group.no_data{padding-top:2.24rem;}
+.lsp_group .lsg_cell {
+	position:relative;float:left;width:3.41rem;height:3.16rem;margin:.25rem 0 0 .23rem;padding-top:1.66rem;display:block;text-decoration:none;color:#666;
+	box-shadow:0 0 5px 5px #f6f6f6;
+}
+.lsg_cell img {
+	position:absolute;left:0;top:0;width:3.41rem;height:1.66rem;border:0;
+}
+.lsg_cell .tit_box {
+	padding:.1rem .25rem;line-height:1.6;color:#333;
+}
+.lsg_cell .time_box {
+	padding:0 .25rem;color:#999;
+}
+
+/*详细页*/
+.cop_show {
+    background: #ffffff;padding: 5%;
+}
+.cop_show .cop_tit {
+	font-weight:400;color:#111;text-align:center;padding:0 .45rem;line-height:1.6;
+}
+.cop_show .cop_time {
+	color:#999;text-align:center;padding:.35rem 0;
+}
+.cop_show .cop_con {
+	text-indent:2em;line-height:1.8;word-break:break-all;
+}

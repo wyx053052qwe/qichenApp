@@ -1,0 +1,6 @@
+[ 2019-07-31T13:24:31+08:00 ] ::1 /index.php?m=Mobile&c=News&a=show&id=1
+SQL: SHOW COLUMNS FROM `qs_page` [RunTime:0.2934s] [IP:0.0.0.0:2489] [AddTime:1564550671] [qscms]
+[ 2019-07-31T18:53:54+08:00 ] ::1 /index.php?m=Admin&c=Clearcache&a=index&menu_id=15&sub_menu_id=319
+SQL: SHOW COLUMNS FROM `qs_menu` [RunTime:0.2035s] [IP:0.0.0.0] [AddTime:1564570434] [qscms]
+[ 2019-07-31T23:08:02+08:00 ] ::1 /index.php?m=Mobile&c=Members&a=sign_in
+SQL: SHOW COLUMNS FROM `qs_members` [RunTime:0.2273s] [IP:0.0.0.0:4522] [AddTime:1564585682] [qscms]

@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../public_qichen/css/ny.css">
+    <link rel="stylesheet" href="../public_qichen/css/style.css">
+    <include file="public:meta" />
+    <link rel="stylesheet" href="../public/css/resume.css">
+    <link rel="stylesheet" href="../public/css/dropload.css">
+		<qscms:load type="category" search="1"/>
+</head>
+<style>
+    body{
+        font-size:10px;
+    };
+</style>
+<body>
+<header class="zy_search_top_box scroll_fix">
+                <div class="zy_title_top fix">
+                    <div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+                    <h1>人才列表</h1>
+                    <div class="r">
+                        <a href="{:U('company/index')}"><img src="../public_qichen/img/menu_icon04.png"></a>
+                    </div>
+                </div>
+            </header>
+<include file="public:search" />
+<script>
+    // 显示搜索层
+    $('.J_show_so').on('click', function(){
+        $('.qspageso').toggle();
+        $('#J_soinput').focus();
+        if($('#J_soinput').val()!=''){
+            $('#J_soinput').val($('#J_soinput').val());
+            $('#J_soinput').closest('.topbg').addClass('has-inp');
+        }
+    });
+</script>
+<input type="hidden" id="pageSoType" value="0">
+<div class="lts-box">
+    <div class="list-top-sea">
+        <form action="">
+            <input id="searchKey" type="search" class="tp-input" placeholder="请输入意向职位等关键字" value="{$Think.get.key|urldecode|urldecode}">
+            <input class="tp-icon" type="button" value="" onclick="searchGo()">
+        </form>
+    </div>
+    <div id="hwslider" class="hwslider">
+        <ul>
+            <li><img class="s-img" src="../public/images/lts_bg.jpg" alt=""></li>
+        </ul>
+    </div>
+</div>
+<qscms:classify 列表名="experience_list" 类型="QS_experience" 显示数目="100"/>
+<qscms:classify 列表名="education_list" 类型="QS_education" 显示数目="100"/>
+<qscms:classify 列表名="age_list" 类型="QS_age"/>
+<qscms:classify 列表名="wage_list" 类型="QS_wage" 显示数目="100"/>
+<qscms:classify 列表名="tag_list" 类型="QS_resumetag" 显示数目="100"/>
+<qscms:classify 列表名="city" 类型="QS_citycategory" 地区分类="$_GET['citycategory']" 显示数目="100"/>
+<div class="filter-group x4 filter-outer">
+    <div id="f-mask"></div>
+    <div class="filter-outer">
+        <div class="filter-list js-filter qs-temp-new-city" data-tag="0" data-type="city"><div class="filter-cell"><div class="filter-cell-txt qs-temp-txt-city"><if condition="$Think.get.citycategory neq ''">{$city['select']['categoryname']|default="地区"}<else/>地区</if></div></div></div>
+        <div class="filter-list js-filter" data-tag="1"><div class="filter-cell"><div class="filter-cell-txt f-normal-txt-exp">{$experience_list[$_GET['experience']]|default="经验"}</div></div></div>
+        <div class="filter-list js-filter" data-tag="2"><div class="filter-cell"><div class="filter-cell-txt f-normal-txt-edu">{$education_list[$_GET['education']]|default="学历"}</div></div></div>
+        <div class="filter-list js-filter" data-tag="3"><div class="filter-cell"><div class="filter-cell-txt j-change-color">更多</div></div></div>
+        <div class="clear"></div>
+        <div class="qs-actionmore"></div>
+        <form id="searchForm">
+            <input type="hidden" class="" name="key" value="{$Think.get.key|urldecode|urldecode}">
+            <input type="hidden" class="qs-temp-code-city" name="citycategory" value="{$Think.get.citycategory}">
+            <input type="hidden" class="f-normal-code-exp" name="experience" value="{$Think.get.experience}">
+            <input type="hidden" class="f-normal-code-edu" name="education" value="{$Think.get.education}">
+            <input type="hidden" class="f-more-l-code-sex" name="sex" value="{$Think.get.sex}">
+            <input type="hidden" class="f-more-l-code-age" name="age" value="{$Think.get.age}">
+            <input type="hidden" class="f-more-l-code-major" name="major" value="{$Think.get.major}">
+            <input type="hidden" class="f-more-l-code-wage" name="wage" value="{$Think.get.wage}">
+            <input type="hidden" class="f-more-l-code-tag" name="resumetag" value="{$Think.get.resumetag}">
+            <input type="hidden" class="f-more-l-code-settr" name="settr" value="{$Think.get.settr}">
+            <input type="hidden" class="qs-temp-code-range" name="range" value="">
+        </form>
+        <input type="hidden" class="f-seach-page" value="?m=Mobile&c=Resume&a=index&">
+    </div>
+    <div class="con-filter">
+        <div class="f-box f-box-city"></div>
+        <div class="f-box f-box-exp">
+            <div class="f-box-inner">
+                <volist name="experience_list" id="experience">
+                    <li><a class="f-item f-item-normal <if condition="$Think.get.experience eq $key">select</if>" href="javascript:;" data-type="exp" data-code="{$key}" data-title="{$experience}">{$experience}</a></li>
+                </volist>
+            </div>
+            <div class="f-btn-submit qs-center"><div onclick="window.location='{:P(array('experience'=>''))}';" class="qs-btn qs-btn-inline qs-btn-medium qs-btn-orange">不限</div></div>
+        </div>
+        <div class="f-box f-box-edu">
+            <div class="f-box-inner">
+                <volist name="education_list" id="education">
+                    <li><a class="f-item f-item-normal <if condition="$Think.get.education eq $key">select</if>" href="javascript:;" data-type="edu" data-code="{$key}" data-title="{$education}">{$education}</a></li>
+                </volist>
+            </div>
+            <div class="f-btn-submit qs-center"><div onclick="window.location='{:P(array('education'=>''))}';" class="qs-btn qs-btn-inline qs-btn-medium qs-btn-orange">不限</div></div>
+        </div>
+        <div class="f-box f-box-more">
+            <div class="f-box-inner">
+                <ul class="arrow">
+                    <li><a href="javascript:;" data-id="filter-sex" class="js-more-l">性别<span class="choice f-more-l-txt-sex"><if condition="$Think.get.sex eq 1">男<elseif condition="$Think.get.sex eq 2"/>女<else/>不限</if></span></a></li>
+                    <li><a href="javascript:;" data-id="filter-age" class="js-more-l">年龄<span class="choice f-more-l-txt-age">{$age_list[$_GET['age']]|default="不限"}</span></a></li>
+                    <li><a href="javascript:;" data-id="filter-major" class="js-more-l">专业<span class="choice f-more-l-txt-major">不限</span></a></li>
+                    <li><a href="javascript:;" data-id="filter-wage" class="js-more-l">期望薪资<span class="choice f-more-l-txt-wage">{$wage_list[$_GET['wage']]|default="不限"}</span></a></li>
+                    <li><a href="javascript:;" data-id="filter-tag" class="js-more-l">简历标签<span class="choice f-more-l-txt-tag">{$tag_list[$_GET['resumetag']]|default="不限"}</span></a></li>
+                    <li><a href="javascript:;" data-id="filter-settr" class="js-more-l">更新时间<span class="choice f-more-l-txt-settr">
+                            <switch name="_GET['settr']">
+                                <case value="">不限</case>
+                                <case value="0">不限</case>
+                                <case value="3">3天内</case>
+                                <case value="7">7天内</case>
+                                <case value="15">15天内</case>
+                                <case value="30">30天内</case>
+                            </switch>
+                        </span></a></li>
+                </ul>
+            </div>
+            <div class="f-btn-submit qs-center">
+                <div href="javascript:;" class="qs-btn qs-btn-inline qs-btn-medium qs-btn-orange" id="f-do-filter"> 确 定 </div>
+                &nbsp;&nbsp;&nbsp;
+                <div onclick="javascript:location.href='{:U("resume/index")}'" class="qs-btn qs-btn-inline qs-btn-medium qs-btn-border-gray"> 清空所选 </div>
+            </div>
+            <div class="f-btn-back qs-center"><div href="javascript:;" class="qs-btn qs-btn-inline qs-btn-medium qs-btn-orange f-more-back-btn"> 返 回 </div></div>
+        </div>
+        <div class="f-box f-more-content" id="filter-sex">
+            <div class="f-box-inner">
+                <ul>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.sex eq 0">select</if>" data-type="sex" data-title="不限" data-code="0">不限</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.sex eq 1">select</if>" data-type="sex" data-title="男" data-code="1">男</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.sex eq 2">select</if>" data-type="sex" data-title="女" data-code="2">女</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="f-box f-more-content" id="filter-age">
+            <div class="f-box-inner">
+                <ul>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.age eq 0">select</if>" data-type="age" data-title="不限" data-code="0">不限</a></li>
+                    <volist name="age_list" id="age">
+                        <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.age eq $key">select</if>" data-type="age" data-title="{$age}" data-code="{$key}">{$age}</a></li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <div class="f-box f-more-content" id="filter-major">
+            <div class="f-box-inner">
+                <ul class="for-temp-major-group"></ul>
+            </div>
+        </div>
+        <div class="f-box f-more-content" id="filter-wage">
+            <div class="f-box-inner">
+                <ul>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.wage eq 0">select</if>" data-type="wage" data-title="不限" data-code="0">不限</a></li>
+                    <volist name="wage_list" id="wage">
+                        <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.wage eq $key">select</if>" data-type="wage" data-title="{$wage}" data-code="{$key}">{$wage}</a></li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <div class="f-box f-more-content" id="filter-tag">
+            <div class="f-box-inner">
+                <ul>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.resumetag eq ''">select</if>" data-type="tag" data-title="不限" data-code="0">不限</a></li>
+                    <volist name="tag_list" id="tag">
+                        <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.resumetag eq $key">select</if>" data-type="tag" data-title="{$tag}" data-code="{$key}">{$tag}</a></li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+        <div class="f-box f-more-content" id="filter-settr">
+            <div class="f-box-inner">
+                <ul>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.settr eq 0">select</if>" data-type="settr" data-title="不限" data-code="0">不限</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.settr eq 3">select</if>" data-type="settr" data-title="3天内" data-code="3">3天内</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.settr eq 7">select</if>" data-type="settr" data-title="7天内" data-code="7">7天内</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.settr eq 15">select</if>" data-type="settr" data-title="15天内" data-code="15">15天内</a></li>
+                    <li class="selected"><a href="javascript:;" class="f-more-back-a <if condition="$Think.get.settr eq 30">select</if>" data-type="settr" data-title="30天内" data-code="30">30天内</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<qscms:resume_list 列表名="resumelist" 搜索类型="$_GET['search_type']" 显示数目="3" 分页显示="1" 关键字="$_GET['key']" 职位分类="$_GET['jobcategory']" 地区分类="$_GET['citycategory']" 日期范围="$_GET['settr']" 学历="$_GET['education']" 工作经验="$_GET['experience']" 工资="$_GET['wage']" 工作性质="$_GET['nature']" 标签="$_GET['resumetag']" 照片="$_GET['photo']" 所学专业="$_GET['major']" 行业="$_GET['trade']" 年龄="$_GET['age']" 性别="$_GET['sex']" 特长描述长度="100" 排序="$_GET['sort']" 检测收藏="1" 检测点赞="1"/>
+<div class="res-group">
+    <notempty name="resumelist['list']">
+        <div id="listData">
+            <volist name="resumelist['list']" id="resume">
+                <div class="res-item">
+                    <a href="{$resume.resume_url}" class="ji-top">
+                        <div class="res-info">
+                            <div class="info-img"><img src="{$resume.photosrc}"></div>
+                            <div class="info-txt">
+                                <div class="it-o">
+                                    <div class="io-jn substring font16 txt-3">{$resume.intention_jobs} <span class="font12 txt-6">({$resume.fullname})</span></div>
+                                    <div class="io-jd font13 txt-o">
+                                        <if condition="$resume['stick']">
+                                            置顶
+                                        <else/>
+                                            {$resume['refreshtime_cn']}
+                                        </if>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="it-t">
+                                    <div class="it-cn font13 substring">{$resume.current_cn}</div>
+                                    <div class="it-jw font13">{$resume.wage_cn}</div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="it-t">
+                                    <div class="it-cn font13 substring">{$resume.sex_cn} / {$resume.age}岁 / {$resume.education_cn} / {$resume.experience_cn}</div>
+                                    <div class="it-jw font13 substring">{$resume.district_cn}</div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <if condition="$resume['tag_cn']">
+                            <div class="res-tag">
+                                <volist name="resume['tag_cn']" id="tag" offset="0" length="4">
+                                    <div class="tag-item">{$tag}</div>
+                                </volist>
+                                <div class="clear"></div>
+                            </div>
+                        </if>
+                        <div class="job-des font13">{$resume.specialty_}</div>
+                    </a>
+                    <div class="ji-bot" data-jid="{$resume.id}">
+                        <a href="javascript:;" class="bot-item applyJob"><div class="bot-cell dli">下载简历</div></a>
+                        <if condition="C('qscms_rongyun_open') eq 1">
+                        <a onclick="logDialog(0,'{:U('Im/message',array('uid'=>$resume['uid']))}',1)" href="javascript:;" class="bot-item"><div class="bot-cell chat">打招呼</div></a>
+                        <else />
+                        <eq name="resume['is_collect']" value="1">
+                        <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect has">已收藏</div></a>
+                        <else />
+                        <a href="javascript:;" class="J_collect bot-item"><div class="bot-cell collect">收藏</div></a>
+                        </eq>
+                        </if>
+                        <eq name="resume['is_like']" value="1">
+                        <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click has"><if condition="$resume['like_num']">{$resume.like_num}<else/>点赞</if></div></a>
+                        <else />
+                        <a href="javascript:;" class="J_like bot-item"><div class="bot-cell click"><if condition="$resume['like_num']">{$resume.like_num}<else/>点赞</if></div></a>
+                        </eq>
+                    </div>
+                </div>
+            </volist>
+        </div>
+    <else />
+        <div class="list-split-block"></div>
+        <div class="list-empty link_blue">
+            抱歉，没有找到符合您条件的简历！<br />
+            放宽搜索条件也许有更多合适您的简历哦~
+        </div>
+    </notempty>
+</div>
+<include file="public_qichen:footer_shouye_1" />
+<script src="../public/js/fastclick.js"></script>
+<script>
+    window.addEventListener( "load", function() {
+        FastClick.attach(document.body);
+    }, false );
+</script>
+<script src="../public/js/QSpopout.js"></script>
+<script src="../public/js/QSfilter.js"></script>
+<script src="../public/js/zepto.hwSlider.js"></script>
+<script src="../public/js/scrollTo.js"></script>
+<script src="../public/js/RongIMLib-2.2.8.min.js"></script>
+<script src="../public/js/qs.action.js"></script>
+<script src="../public/js/qs.select.js"></script>
+<script src="../public/js/dialog.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<if condition="$rong_state eq 1">
+<script src="../public/js/rong_main.js"></script>
+</if>
+<script>
+    if (!$('.foot_pub_box_list li').length) {
+        $('#JFootPub').remove();
+        $('.fix-footNav').addClass('n4');
+    }
+    // 锁定屏幕
+    function lockTouchMove(){
+        //document.body.addEventListener('touchmove', handler, { passive: false })
+        $("body").bind("touchmove",function(event){event.preventDefault()});
+    }
+
+    // 解锁屏幕
+    function unLockTouchMove(){
+        //document.body.removeEventListener('touchmove', handler, { passive: false })
+        $("body").unbind("touchmove");
+    }
+    // 服务
+    function closeFootPub() {
+        $('.JFootPubNav').removeClass('slideInUp animated').addClass('slideOutDown animated'); unLockTouchMove();
+    }
+    $('#JFootPub').off().on('click', function() {
+        lockTouchMove();
+        $('.JFootPubNav').removeClass('slideOutDown animated').addClass('slideInUp animated');
+        // 关闭
+        $('#JFootPubClose').off().on('click', function() { closeFootPub(); });
+    });
+    $('a[href]').click(function() {
+        var f = $(this).attr('href');
+        var reg = /\#(\w+)/;
+        if (reg.test(f)) {
+            if (!$(this).data('nm')) {
+                return !1;
+            }
+        }
+    });
+    $(".js-back").on('click',function(){
+        /*if (history.length == 1){
+            window.location.href = '{:U("index/index")}';
+        } else {
+            history.back();
+        }*/
+        history.back();
+    });
+    /**
+     * 监听鼠标
+     */
+    if ('ontouchstart' in window) {
+        $.EVENT_START = 'touchstart';
+        $.EVENT_END = 'touchend';
+    } else {
+        $.EVENT_START = 'mousedown';
+        $.EVENT_END = 'mouseup';
+    }
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_START, function() {
+        $(this).addClass('eventactive');
+        /*if($(this).find('input[type="text"]').length) {
+            $(this).find('input[type="text"]').focus();
+        }*/
+    });
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_END, function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.plist-txt, .qs-btn, .for-event').on('touchcancel', function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.logout').on('click', function() {
+        forCloseNav();
+        $(document).dialog({
+            type: 'confirm',
+            content: '确定退出吗？',
+            onClickConfirmBtn: function() {
+                window.location.href = "{:U('Members/logout')}";
+            }
+        });
+    });
+    /**
+     * 返回顶部
+     */
+    var global = {
+        h: $(window).height(),
+        st: $(window).scrollTop(),
+        backTop: function() {
+            global.st > (global.h * 0.5) ? $("#backtop").show() : $("#backtop").hide();
+        }
+    };
+    /**
+     * Notice 提醒公用方法
+     * @param infoText 提示文字
+     */
+    function qsNotice(infoText) {
+        $(document).dialog({
+            type : 'notice',
+            infoText: infoText,
+            autoClose: 1500,
+            position: 'center',
+            dialogClass: 'dialog_toast'
+        });
+    }
+    // 定义Toast图片路径
+    var loadingImg = '../public/images/dialog/loading.gif',
+        successImg = '../public/images/dialog/success.png',
+        failImg = '../public/images/dialog/fail.png',
+        warningImg = '../public/images/dialog/warning.png';
+    /**
+     * 正在加载中
+     * @param infoText 内容
+     */
+    function qsToasting() {
+        var infoContent = arguments[0] ? arguments[0] : '';
+        var closeTime = arguments[1] === 0 ? arguments[1] : 1500;
+        var $cuToasting = $(document).dialog({
+            type : 'toast',
+            infoIcon: loadingImg,
+            infoText: infoContent,
+            autoClose: closeTime
+        });
+        return $cuToasting;
+    }
+    /**
+     * Toast 类型通知 用于需要反馈结果
+     * @param msg 反馈内容
+     * @param type 反馈类型 可以不传参数有默认值 0->失败 1->成功
+     * @param obj 正在加载对象 用于更新Toast
+     */
+    function qsToast(msg, type, obj) {
+        type = arguments[1] ? arguments[1] : 2;
+        var icons = [failImg, successImg, warningImg];
+        var setting = {
+            type : 'toast',
+            infoText: msg,
+            infoIcon: icons[type],
+            autoClose: 1500,
+            dialogClass: 'dialog_toast'
+        };
+        if (obj){
+            obj.update(setting);
+        } else {
+            return $(document).dialog(setting);
+        }
+    }
+    // 锁定屏幕
+    function lock_touchmove(){
+        $("body").bind("touchmove",function(event){event.preventDefault();});
+    }
+    // 解锁屏幕
+    function un_lock_touchmove(){
+        $("body").unbind("touchmove");
+    }
+    // 弹出框登录
+    function logDialog() {
+        // 是否需要刷新页面
+        var isRefresh = arguments[0] === 0 ? arguments[0] : 1;
+        // 页面跳转链接
+        var urlValue = arguments[1] ? arguments[1] : '';
+        if(qscms.is_login > 0 && urlValue){
+            window.location.href = urlValue;
+            return !1;
+        }
+        var utype = arguments[2] ? arguments[2] : 0;
+        // 正在加载
+        var $logLoad = qsToasting('', 0);
+        var loginUrl = "{:U('AjaxCommon/ajax_login')}";
+        $.getJSON(loginUrl, {refresh: isRefresh, url: urlValue, utype:utype}, function(result){
+            $logLoad.close();
+            if(result.status==1){
+                var $logPop = new QSpopout('亲，验证一下手机吧');
+                $logPop.setContent(result.data);
+                $('.qs-popout-ft').remove();
+                $('.qs-popout-bd').addClass('no-pd');
+                $logPop.show();
+                // 关闭
+                $('.closePopout').on('click', function() {
+                    $('#popout').fadeOut(200);
+                    $('#popout').remove();
+                });
+            } else {
+                qsToast(result.msg, '', '');
+            }
+        });
+    }
+    // 如果文档高度不大于窗口高度，数据较少，删除页面中的无数据提醒
+    function removeDropLoadDown() {
+        var doc = document;
+        var $doc = $(doc);
+        var $dropDownEle = $('.dropload-down');
+        var scrollContentHeight = $doc.height();
+        var scrollWindowHeight = doc.documentElement.clientHeight;
+        var threshold = Math.floor($dropDownEle.height()*1/3);
+        if((scrollContentHeight - threshold) <= scrollWindowHeight){
+            $dropDownEle.remove();
+        }
+    }
+    //判断是不是iPhoneX，适配iPhoneX底部遮挡问题
+    if (funJudgeX()) {
+        $('.fix-footNav').addClass('iPhoneX');
+        $('body').addClass('iPhoneX');
+    }
+</script>
+<div class="qs-hidden">{:htmlspecialchars_decode(C('qscms_statistics'))}</div>
+<script src="../public/js/dropload.min.js"></script>
+<script src="../public/js/zepto.hwSlider.js"></script>
+<script src="../public/js/filter.js"></script>
+<script src="../public/js/qsCitySearchResume.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</body>
+<script>
+wx.config({
+    // debug: true,
+    appId: '{$signPackage.appId}',
+    timestamp: '{$signPackage.timestamp}',
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+      // 所有要调用的 API 都要加到这个列表中
+      "onMenuShareTimeline",
+      "onMenuShareAppMessage",
+      "onMenuShareQQ",
+      "onMenuShareWeibo"
+    ]
+  });
+  wx.ready(function () 
+  {
+      var linkUrl = "{:build_mobile_url(array('c'=>'Resume','a'=>'index'))}";//放链接
+      var title = "招聘就到{:C('qscms_site_name')}";
+      var desc = "更多人才请看这里"; 
+      var imgUrl="<if condition="C('qscms_logo_home')">{:attach(C('qscms_logo_home'),'resource')}<else/>{:C('TPL_HOME_PUBLIC_DIR')}/images/logo.gif</if>";//图片链接
+      
+      wx.onMenuShareTimeline({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: linkUrl, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          success: function () { 
+          // 用户确认分享后执行的回调函数
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+          }
+      });
+      wx.onMenuShareAppMessage({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: linkUrl, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () { 
+          // 用户确认分享后执行的回调函数
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+          }
+      });
+      wx.onMenuShareQQ({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: linkUrl, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+                    success: function () { 
+          // 用户确认分享后执行的回调函数
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+          }
+      });
+      wx.onMenuShareWeibo({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: linkUrl, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+                    success: function () { 
+          // 用户确认分享后执行的回调函数
+          },
+          cancel: function () { 
+              // 用户取消分享后执行的回调函数
+          }
+      });
+  });
+    var cuType = "{:C('visitor.utype')}";
+    // 下拉加载更多
+    $(function(){
+        var page = 1;
+        var size = 5;
+        // 标识关闭弹窗的时候是否应该解锁下拉加载
+        var isLock = true;
+        $('#listData').dropload({
+            scrollArea : window,
+            domDown : { 
+                domClass   : 'dropload-down', 
+                domRefresh : '<p class="dropload-refresh">↑上拉加载更多</p>', 
+                domLoad    : '<p class="dropload-load"><span class="loading"></span>加载中...</p>', 
+                domNoData  : '<p class="dropload-noData">没有更多了</p>'
+               }, 
+            autoLoad : false,
+            loadDownFn : function(me){
+                page++;
+                $.ajax({
+                    type: 'GET',
+                    url: "{:U('resume/ajax_resume_list',$_GET)}",
+                    data:{page:page},
+                    dataType: 'json',
+                    success: function(data){
+                        if (data.status) {
+                            if (data.data.html) {
+                                $("#listData .dropload-down").before(data.data.html);
+                                like();
+                                if ((page > 1) && !(page%2 ==0)) {
+                                    // 如果弹窗引导已经存在则不重复提示
+                                    if ($('.qs-popout').length) {
+                                        // IOS
+                                        me.lock();
+                                        me.resetload();
+                                        return false;
+                                    }
+                                    if ($('.dialog-overlay').length) {
+                                        // Android
+                                        me.lock();
+                                        me.resetload();
+                                        return false;
+                                    }
+                                    // 从第二页开始判断是否登录
+                                    if (qscms.is_login > 0) {
+                                        // 判断登录的是否为企业会员
+                                        if (eval(cuType) === 1) {
+                                            me.lock();
+                                            me.resetload();
+                                            // 企业资料未完善显示引导
+                                            if(data.data.url){
+                                                $(document).dialog({
+                                                    titleText: '提示',
+                                                    type : 'confirm',
+                                                    content: data.msg,
+                                                    buttons: [
+                                                        {
+                                                            name: '暂不完善',
+                                                            callback: function() {
+                                                                if (isLock) {
+                                                                    me.unlock();
+                                                                    me.resetload();
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            name: '立即完善',
+                                                            callback: function() {
+                                                                if (isLock) {
+                                                                    me.unlock();
+                                                                    me.resetload();
+                                                                }
+                                                                $('.dialog').removeClass('dialog-open').addClass('dialog-open');
+                                                                setTimeout(function () {
+                                                                    window.location.href = data.data.url;
+                                                                }, 200);
+                                                            }
+                                                        }
+                                                    ]
+                                                });
+                                            }    
+                                        }
+                                    } else {
+                                        // 未登录显示登录弹窗
+                                        var loginUrl = "{:U('AjaxCommon/ajax_login')}";
+                                        $.getJSON(loginUrl,{utype:1},function(result){
+                                            if(result.status==1){
+                                                var $logPop = new QSpopout('亲，验证一下手机吧');
+                                                $logPop.setContent(result.data);
+                                                $('.qs-popout-ft').remove();
+                                                $('.qs-popout-bd').addClass('no-pd');
+                                                $logPop.show();
+                                                me.lock();
+                                                me.resetload();
+                                                // 关闭
+                                                $('.closePopout').on('click', function() {
+                                                    $('#popout').fadeOut(200);
+                                                    $('#popout').remove();
+                                                    if (isLock) {
+                                                        me.unlock();
+                                                        me.resetload();
+                                                    }
+                                                });
+                                            } else {
+                                                qsToast(result.msg, '', '');
+                                            }
+                                        });
+                                    }
+                                }
+                                if (data.data.isfull) {
+                                    isLock = false;
+                                    me.lock();
+                                    me.noData();
+                                    me.resetload();
+                                    return;
+                                } else {
+                                    me.resetload();
+                                }
+                            }
+                        } else {
+                            me.lock();
+                            me.noData();
+                            me.resetload();
+                            removeDropLoadDown();
+                            return;
+                        }
+                    },
+                    error: function(xhr, type){
+                        qsToast('出错啦', '', '');
+                        me.resetload();
+                    }
+                });
+            }
+        });
+    });
+    // 特长标签随机背景色
+    function randomsort(a, b) {
+        return Math.random() > .5 ? -1 : 1;
+    }
+    var bgArrBefore = [1, 2, 3, 4];
+    $('.res-item').each(function() {
+        var $resTagDom = $(this).find('.tag-item');
+        if ($resTagDom.length) {
+            var bgArray = bgArrBefore.sort(randomsort);
+            $($resTagDom).each(function(index, value) {
+                $(this).addClass('ti' + bgArray[index]);
+            })
+        }
+    });
+    // 下载简历
+    function like(){
+        $('.applyJob').off().on('click',function(){
+            var url = "{:U('AjaxCompany/resume_down')}";
+            var rid = $(this).closest('.ji-bot').data('jid');
+            if ((qscms.is_login > 0)) {
+                if(cuType != 1){
+                    $(document).dialog({
+                        titleText: '提示',
+                        type : 'confirm',
+                        buttonTextConfirm:'切换',
+                        content: '您当前为“个人帐号”，本次操作需为“企业帐号”，是否切换为“企业帐号”？',
+                        onClickConfirmBtn: function() {
+                            $.getJSON("{:U('Members/switch_utype')}",{utype:1},function(result){
+                                if(result.status==1){
+                                    qsToast(result.msg, 1, '');
+                                    setTimeout(function(){
+                                        window.location.reload();
+                                    },2000);
+                                } else {
+                                    qsToast(result.msg, 0, '');
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+                var $cuLoad = qsToasting('', 0);
+                $.getJSON("{:U('AjaxCompany/resume_down_confirm')}",{rid:rid},function(data){
+                    $cuLoad.close();
+                    if(data.status==1){
+                        if (data.data == 'company') {
+                            // 企业资料未完善，‘立即完善’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '立即完善',
+                                        callback: function() {
+                                            $('.dialog').removeClass('dialog-open').addClass('dialog-open');
+                                            setTimeout(function () {
+                                                window.location.href = "{:U('Company/com_info')}";
+                                            }, 200);
+                                        }
+                                    }
+                                ]
+                            });
+                        } else if (data.data == 'status') {
+                            // 帐号处于暂停，只有确定按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '确定',
+                                        callback: function() {}
+                                    }
+                                ]
+                            });
+                        } else if (data.data == 'audit') {
+                            // 企业营业执照未认证，‘立即认证’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '立即认证',
+                                        callback: function() {
+                                            $('.dialog').removeClass('dialog-open').addClass('dialog-open');
+                                            setTimeout(function () {
+                                                window.location.href = "{:U('Company/com_auth')}";
+                                            }, 200);
+                                        }
+                                    }
+                                ]
+                            });
+                        } else if (data.data == 'jobs') {
+                            // 未创建职位，’创建职位’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '创建职位',
+                                        callback: function() {
+                                            $('.dialog').removeClass('dialog-open').addClass('dialog-open');
+                                            setTimeout(function () {
+                                                window.location.href = "{:U('Company/jobs_add')}";
+                                            }, 200);
+                                        }
+                                    }
+                                ]
+                            });
+                        } else if(data.data == 'no'){
+                            // 下载数已超，只显示确定按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '确定',
+                                        callback: function() {}
+                                    }
+                                ]
+                            });
+                        } else if(data.data == 'points') {
+                            // 下载扣积分，‘确定下载’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '确定下载',
+                                        callback: function() {
+                                            $.getJSON(url,{rid:rid},function(result){
+                                                if(result.status==1){
+                                                    qsToast(result.msg, 1, '');
+                                                    setTimeout(function(){
+                                                        window.location.reload();
+                                                    },2000);
+                                                } else {
+                                                    qsToast(result.msg, 0, '');
+                                                    return false;
+                                                }
+                                            });
+                                        }
+                                    }
+                                ]
+                            });
+                        } else if(data.data == 'mix'){
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg
+                            });
+                        } else if(data.data == 'setmeal'){
+                            // 升级套餐，‘升级套餐’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '升级套餐',
+                                        callback: function() {
+                                            $('.dialog').removeClass('dialog-open').addClass('dialog-open');
+                                            setTimeout(function () {
+                                                window.location.href = "{:U('CompanyService/setmeal_add')}";
+                                            }, 200);
+                                        }
+                                    }
+                                ]
+                            });
+                        } else if(data.data == 'free'){
+                            // ‘确定下载’按钮，‘取消’按钮
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: data.msg,
+                                buttons: [
+                                    {
+                                        name: '取消',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '确定下载',
+                                        callback: function() {
+                                            $.getJSON(url,{rid:rid},function(result){
+                                                if(result.status==1){
+                                                    qsToast(result.msg, 1, '');
+                                                    setTimeout(function(){
+                                                        window.location.reload();
+                                                    },2000);
+                                                } else {
+                                                    qsToast(result.msg, 0, '');
+                                                    return false;
+                                                }
+                                            });
+                                        }
+                                    }
+                                ]
+                            });
+                        }
+                    } else if (data.dialog) {
+                        // 登录
+                        logDialog(0, '',1);
+                    } else {
+                        qsToast(data.msg, '', '');
+                    }
+                });
+            } else {
+                logDialog(0, '',1);
+            }
+        });
+        $('.J_like').off().on('click',function(){
+            var url = "{:U('resume/like')}";
+            var id = $(this).closest('.ji-bot').data('jid');
+            var f = $(this).find('div');
+            if ((qscms.is_login > 0)) {
+                // 正在加载
+                var $cuLoad = qsToasting('', 0);
+                // ajax请求
+                $.getJSON(url,{id:id},function(result) {
+                    $cuLoad.close();
+                    if (result.status == 1) {
+                        if (result.data.is_like) {
+                            qsToast(result.msg, '', '');
+                        } else {
+                            qsToast(result.msg, 1, '');
+                            f.addClass('has');
+                        }
+                        f.html(result.data.like_num);
+                    } else if (result.dialog) {
+                        // 登录
+                        logDialog(0, '',1);
+                    } else {
+                        qsToast(result.msg, '', '');
+                        return false;
+                    }
+                });
+            } else {
+                logDialog(0, '',1);
+            }
+        });
+        $('.J_collect').off().on('click',function(){
+            var url = "{:U('AjaxCompany/resume_favor')}";
+            var rid = $(this).closest('.ji-bot').data('jid');
+            var f = $(this).find('div');
+            if ((qscms.is_login > 0)) {
+                if(cuType != 1){
+                    $(document).dialog({
+                        titleText: '提示',
+                        type : 'confirm',
+                        buttonTextConfirm:'切换',
+                        content: '您当前为“个人帐号”，本次操作需为“企业帐号”，是否切换为“企业帐号”？',
+                        onClickConfirmBtn: function() {
+                            $.getJSON("{:U('Members/switch_utype')}",{cuType:1},function(result){
+                                if(result.status==1){
+                                    qsToast(result.msg, 1, '');
+                                    setTimeout(function(){
+                                        window.location.reload();
+                                    },2000);
+                                } else {
+                                    qsToast(result.msg, 0, '');
+                                    return false;
+                                }
+                            });
+                        }
+                    });
+                    return false;
+                }
+                var $cuLoad = qsToasting('', 0);
+                $.getJSON(url,{rid:rid},function(result){
+                    $cuLoad.close();
+                    if(result.status==1){
+                        qsToast(result.msg, 1, '');
+                        if (result.data == 'has') {
+                            f.removeClass('has').text('收藏');
+                        } else {
+                            f.addClass('has').text('已收藏');
+                        }
+                    } else if (result.dialog) {
+                        // 登录
+                        logDialog('','',1);
+                    } else {
+                        qsToast(result.msg, '', '');
+                        return false;
+                    }
+                });
+            } else {
+                logDialog('','',1);
+            }
+        });
+    }
+    like();
+    function searchGo(){
+        var key = $('#searchKey').val(),
+            url = "{:url_rewrite('QS_resumelist',array('key'=>'_key'))}";
+        window.location.href=url.replace('_key',encodeURI(encodeURI(htmlspecialchars(key))));
+    }
+    // 广告位
+    $("#hwslider").hwSlider({
+        autoPlay: true,
+        dotShow: true,
+        touch: true,
+        arrShow: false
+    });
+    // 添加地区筛选底部的按钮
+    setTimeout(function() {
+        var noLimitCityHtml = '<div class="f-btn-submit qs-center"><div class="qs-btn qs-btn-inline qs-btn-medium qs-btn-orange" id="j-no-limit-city">不限</div></div>';
+        $('.f-box-city').append(noLimitCityHtml);
+    }, 100);
+
+    // 地区筛选不限
+    $('#j-no-limit-city').die().live('click', function() { window.location = "{:P(array('citycategory'=>''))}"; });
+
+    // 获取已选条件
+    const recoverMajorVal = '{$Think.get.major}', recoverSex = '{$Think.get.sex}', recoverAge = '{$Think.get.age}', recoverMajor = '{$Think.get.major}', recoverWage = '{$Think.get.wage}',
+        recoverResumetag = '{$Think.get.resumetag}', recoverSettr = '{$Think.get.settr}';
+
+    // 判断是否选择了更多选项中的内容
+    if (eval(recoverSex) > 0 || eval(recoverAge) > 0 || eval(recoverMajor) > 0 || eval(recoverWage) > 0 || eval(recoverResumetag) > 0 || eval(recoverSettr) > 0) {
+        $('.j-change-color').addClass('red-txt');
+    }
+
+    // 读取缓存文件中的专业类别
+    if (QS_major_parent) {
+        var majorHtml = '<li class="selected"><a href="javascript:;" class="f-more-back-a" data-type="major" data-title="不限" data-code="0">不限</a></li>';
+        $.each(QS_major_parent, function (key, value) {
+            if (value.split(',')) {
+                const level2Id = value.split(',')[0];
+                if (QS_major[level2Id]) {
+                    const level2Arr = QS_major[level2Id].split('`');
+                    if (level2Arr) {
+                        for (var i = 0; i < level2Arr.length; i++) {
+                            if (eval(level2Arr[i].split(',')[0]) === eval(recoverMajorVal)) {
+                                $('.f-more-l-txt-major').text(level2Arr[i].split(',')[1]);
+                                majorHtml += '<li class="selected"><a href="javascript:;" class="f-more-back-a select" data-type="major" data-title="' + level2Arr[i].split(',')[1] + '" data-code="' + level2Arr[i].split(',')[0] + '">' + level2Arr[i].split(',')[1] + '</a></li>';
+                            } else {
+                                majorHtml += '<li class="selected"><a href="javascript:;" class="f-more-back-a" data-type="major" data-title="' + level2Arr[i].split(',')[1] + '" data-code="' + level2Arr[i].split(',')[0] + '">' + level2Arr[i].split(',')[1] + '</a></li>';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        $('.for-temp-major-group').html(majorHtml);
+    }
+
+    // 初始化筛选
+    $('.js-filter').on('click', function () {
+        var filter = new QSfilter($(this)); document.getElementById('f-mask').ontouchstart = function(e){ e.preventDefault(); }
+        $('.f-more-content').removeClass('qs-actionsheet-toggle');
+    });
+
+    // 点击筛选
+    $('#f-do-filter').on('click', function () { goPage(); });
+
+    // 跳转方法
+    function goPage() { const toSearchPage = $('.f-seach-page').val(); window.location.href = qscms.root + toSearchPage + $('#searchForm').serialize(); }
+
+    // 更多列表左右切换
+    $('.js-more-l').on('click', function () {
+        const targetId = $(this).data('id'); $('.f-box-more').toggleClass('qs-actionsheet-toggle-left'); $('#' + targetId).toggleClass('qs-actionsheet-toggle');
+    });
+
+    // 更多列表切换返回
+    $('.f-more-back-btn').on('click', function () {  $('.f-box-more').toggleClass('qs-actionsheet-toggle-left'); $('.f-more-content').removeClass('qs-actionsheet-toggle'); });
+
+    // 更多列表项点击
+    $('.f-more-back-a').on('click', function () {
+        const thisType = $(this).data('type'), thisTitle = $(this).data('title'), thisCode = $(this).data('code');
+        $('.f-more-l-code-' + thisType).val(thisCode); $('.f-more-l-txt-' + thisType).text(thisTitle);
+        $('.f-box-more').toggleClass('qs-actionsheet-toggle-left'); $('.f-more-content').removeClass('qs-actionsheet-toggle');
+    });
+
+    // 除更多和读取缓存之外的下拉列表
+    $('.f-item-normal').on('click', function () {
+        const thisType = $(this).data('type'), thisTitle = $(this).data('title'), thisCode = $(this).data('code');
+        $('.f-normal-code-' + thisType).val(thisCode); $('.f-normal-txt-' + thisType).text(thisTitle); $('body').removeClass('filter-fixed'); $('.f-box-' + thisType).addClass('qs-hidden');
+        $('.js-filter').removeClass('active'); $('#f-mask').hide();
+        goPage();
+    });
+
+    // 过滤已投递
+    $('.js-clickedbox').on('click', function () {
+        if ($(this).hasClass('clickedchoice')) {
+            $(this).removeClass('clickedchoice'); $('.f-deliver').val('0');
+        } else {
+            $(this).addClass('clickedchoice'); $('.f-deliver').val('1');
+        }
+    });
+</script>
+</html>

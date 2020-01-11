@@ -1,0 +1,175 @@
+/**
+ * 首页
+ * 
+ * @Author: XuZhu
+ * @Date: 2019-02-15
+ */
+body{
+	background-color:#ffffff;
+}
+/*首页头部*/
+.index_head {
+	width:7.5rem;height:1rem;position:relative;
+}
+.index_head .a_logo {
+	display:inline-block;position:absolute;left:.3rem;top:50%;transform:translate(0,-50%);-webkit-transform: translate(0,-50%);
+}
+.index_head .a_logo img {
+	max-width:1.76rem;max-height:.57rem;border:0;
+}
+.index_head .head_search {
+	width:5.12rem;height:.6rem;background:#f1f1f1;border-radius:.6rem;text-align:center;position:absolute;right:.2rem;top:50%;transform:translate(0,-50%);-webkit-transform: translate(0,-50%);line-height:.6rem;
+}
+.index_head .head_search .hs_txt {
+	display:inline-block;padding-left:.42rem;background:url(../images/index/search_bg.png) 0 center no-repeat;background-size:.25rem .24rem;
+}
+/*轮播*/
+.swiper {
+    width:7rem;height: 2.94rem;margin:.2rem auto 0;
+}
+.swiper .swiper-item {
+	width:7rem;height: 2.94rem;border:0;border-radius:5px;
+}
+.swiper-pagination-bullet {
+	width: 8px;
+	height: 8px;
+	display: inline-block;
+	border-radius: 100%;
+	background: none;
+	border:1px solid #fff;
+	opacity: 1;
+}
+.swiper-pagination-bullet-active {
+	background:#fff;
+}
+/*统计*/
+.info_count {
+	padding-left:.75rem;background:url(../images/index/info_count_bg.png) .16rem center no-repeat;background-size:.35rem .28rem;margin:.3rem 0;
+}
+.info_count .ic_nu {
+	color:#fe5b35;font-weight:600;
+}
+/*应用*/
+.app_group {
+	width:7.5rem;padding-top:.15rem;
+}
+.app_group .app_cell {
+	position:relative;float:left;width:25%;text-align:center;padding:1.1rem 0 .36rem;color:#555555;display:inline-block;text-decoration:none;
+}
+.app_group .app_cell.job {
+	background:url(../images/index/app_job.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.resume {
+	background:url(../images/index/app_resume.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.news {
+	background:url(../images/index/app_news.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.near {
+	background:url(../images/index/app_near.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.add_job {
+	background:url(../images/index/app_add_job.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.add_resume {
+	background:url(../images/index/app_add_resume.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.lz {
+	background:url(../images/index/app_lz.png) center 0 no-repeat;background-size:.85rem;
+}
+.app_group .app_cell.jobfair {
+	background:url(../images/index/app_jobfair.png) center 0 no-repeat;background-size:.85rem;
+}
+.left_float_bar_more {
+	background: rgba(0,0,0,.3);
+	color: #FFF;
+	position: fixed;
+	bottom: 5.5rem;
+	left:auto;
+	right: 0;
+	z-index: 9999;
+	text-align: center;
+	padding: .15rem;
+	letter-spacing: 1px;
+}
+.sliding_nav {
+	z-index:10000;
+}
+/*公告*/
+.index_notice {
+	width:7.5rem;height:1.1rem;border:1px solid #ecebeb;border-left:0;border-right:0;padding-left:1.35rem;background:url(../images/index/notice_bg.png) .25rem center no-repeat;background-size:.76rem .77rem;overflow:hidden;
+}
+.index_notice li {
+	max-width:5.6rem;height:.55rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:.55rem;
+}
+.index_notice a {
+	text-decoration:none;color:#2e2e2e;
+}
+/*名企*/
+.pub_t {
+	width:7.5rem;height:1.3rem;line-height:1.3rem;position:relative;padding-left:.2rem;color:#222;
+}
+.pub_t .mo {
+	position:absolute;right:.2rem;top:50%;transform:translate(0,-50%);-webkit-transform: translate(0,-50%);text-decoration:none;color:#666;
+}
+.famous_group {
+	overflow:hidden;overflow-x: scroll;-webkit-overflow-scrolling: touch;
+}
+.famous_group .famous_container {
+	white-space: nowrap;padding-top:5px;padding-bottom:5px;
+}
+.famous_group .famous_container .fam_cell {
+	white-space:nowrap;display:inline-block;width:3.2rem;height:1.4rem;margin-left:.2rem;text-decoration:none;-webkit-tap-highlight-color:rgba(0,0,0,.3);border-radius:3px;box-shadow:0 0 5px 1px #f0f0f0;position:relative;padding-left:1.23rem;padding-top:.1rem;color:#555;
+}
+.famous_group .famous_container .fam_cell:last-child {
+	margin-right:.2rem;
+}
+.fam_cell img {
+	position:absolute;left:.2rem;top:50%;transform:translate(0,-50%);-webkit-transform: translate(0,-50%);border:0;border-radius:50%;width:.8rem;height:.8rem;
+}
+.fam_cell .fam_name {
+	width:1.8rem;line-height:1;margin:.15rem 0 .05rem;padding:.1rem 0;
+}
+.fam_cell span {
+	color:#fd4810;
+}
+/*最新职位*/
+.job_group {
+	width:7.5rem;
+}
+.job_group .job_cell {
+	position:relative;width:7.1rem;height:2.563rem;margin:0 auto .35rem;border-bottom:1px solid #e1e1e1;padding-bottom:.4rem;text-decoration:none;display:block;
+}
+.job_group .job_cell:last-child {
+	border-bottom:0;margin-bottom:0;
+}
+.job_group .job_cell .job_name {
+	color:#2f2f2f;max-width:5.6rem;
+}
+.job_group .job_cell .job_oth {
+	color:#848484;max-width:5.6rem;margin:.15rem 0 .3rem;
+}
+.job_group .job_cell .com_name {
+	color:#424242;max-width:5.6rem;margin-left:1.3rem;
+}
+.job_group .job_cell .job_int {
+	color:#848484;max-width:5.6rem;margin:.1rem 0 0 1.3rem;
+}
+.job_group .job_cell .job_tag {
+	margin:.15rem 0 0 1.3rem;
+}
+.job_cell .job_tag .ta_cell {
+	background:#f2f2f2;float:left;line-height:1;padding:.1rem .2rem;-webkit-border-radius:.3rem;-moz-border-radius:.3rem;border-radius:.3rem;margin-right:.15rem;color:#999;
+}
+.job_group .job_cell .job_wage {
+	color:#ff4606;position:absolute;right:0;top:.05rem;font-weight:600;
+}
+.job_group .job_cell .job_time {
+	color:#aaaaaa;position:absolute;right:0;top:.57rem;
+}
+.job_group .job_cell .com_logo {
+	width:1rem;height:1rem;border:1px solid #efefef;border-radius:1px;position:absolute;left:0;bottom:.35rem;
+}
+.job_cell .com_logo img {
+	width:.8rem;height:.8rem;border:0;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);-webkit-transform: translate(-50%,-50%);
+}

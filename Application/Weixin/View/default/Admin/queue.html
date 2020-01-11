@@ -1,0 +1,138 @@
+<include file="Admin@default/public/header" />
+<div class="toptip">
+    <div class="toptit">提示：</div>
+    <p>发送微信请确认您的微信公众号配置正确，具体请在 “系统 > 微信平台”中设置。</p>
+</div>
+<div class="seltpye_x">
+    <div class="left">筛选类型</div>
+    <div class="right">
+        <a href="{:P(array('type'=>0))}" <if condition='$Think.get.type eq "" || $Think.get.type eq 0'>class="select"</if>>不限</a>
+        <a href="{:P(array('type'=>1))}" <if condition='$Think.get.type eq 1'>class="select"</if>>等待发送</a>
+        <a href="{:P(array('type'=>2))}" <if condition='$Think.get.type eq 2'>class="select"</if>>发送成功</a>
+        <a href="{:P(array('type'=>3))}" <if condition='$Think.get.type eq 3'>class="select"</if>>发送失败</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="seltpye_x">
+    <div class="left">会员类型</div>
+    <div class="right">
+        <a href="{:P(array('utype'=>''))}" <if condition="$Think.get.utype eq ''">class="select"</if>>不限</a>
+        <a href="{:P(array('utype'=>'1'))}" <if condition="$Think.get.utype eq '1'">class="select"</if>>企业会员</a>
+        <a href="{:P(array('utype'=>'2'))}" <if condition="$Think.get.utype eq '2'">class="select"</if>>个人会员</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<form id="form1" name="form1" method="post" action="{:U('msg_del')}">
+    <div class="list_th">
+        <div class="td" style=" width:10%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>类型
+            </label>
+        </div>
+        <div class="td" style=" width:15%;">用户名</div>
+        <div class="td" style=" width:8%;">会员类型</div>
+        <div class="td" style=" width:18%;">OpenId</div>
+        <div class="td" style=" width:22%;">消息内容</div>
+        <div class="td" style=" width:10%;">添加时间</div>
+        <div class="td" style=" width:10%;">发送时间</div>
+        <div class="td" style=" width:7%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:10%;">
+                <div class="left_padding striking">
+                    <input type="checkbox" name="id[]"  value="{$vo.id}"/>
+                    <if condition="$vo['type'] eq 1"><span style="color:#FF6600">等待发送</span></if>
+                    <if condition="$vo['type'] eq 2"><span style="color:#009900">发送成功</span></if>
+                    <if condition="$vo['type'] eq 3"><span style="color:#666666">发送失败</span></if>
+                </div>
+            </div>
+            <div class="td" style=" width:15%;">
+                    {$vo.username}
+                    <span style="color:#999999">(uid:<if condition="$vo['uid']">{$vo.uid}<else/>未绑定</if>)</span>
+            </div>
+            <div class="td" style=" width:8%;">
+                <if condition="$vo['utype'] eq 1">企业<else />个人</if>会员&nbsp;</div>
+            <div class="td" style=" width: 18%;">{$vo.openid|default='-'}</div>
+            <div class="td vtip" style=" width:22%;" title="{$vo.content}">{$vo.content|default='-'}</div>
+            <div class="td" style=" width:10%;">{:admin_date($vo['addtime'])}</div>
+            <div class="td" style=" width:10%;">
+                <if condition="$vo['sendtime'] eq 0">
+                    ----
+                <else />
+                     {:admin_date($vo['sendtime'])}
+                </if>
+            </div>
+            <div class="td edit" style=" width:7%;">
+                <a href="{:U('queue_edit',array('id'=>$vo['id']))}">修改</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+    <div class="btnbox">
+        <input type="button" name="Submit22" value="发送" class="admin_submit" id="ButSend"/>
+        <input type="button" name="Submit22" value="添加" class="admin_submit" onclick="window.location='{:U('queue_add')}'"/>
+        <input type="button" name="ButDel" id="ButDel" value="删除" class="admin_submit" />
+    </div>
+    <div class="footso"></div>
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="Admin@default/public/footer"/>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        showmenu("#key_type_cn","#sehmenu","#key_type");
+        //发送
+        $("#ButSend").click(function () {
+            var data = $("form[name=form1]").serialize();
+            var qsDialog = $(this).dialog({
+                title: '请选择',
+                loading: true,
+                footer : false
+            });
+            var url = "{:U('Weixin/Admin/send_weixin_queue',array('tpl'=>1))}";
+            $.post(url,data, function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        })
+
+        // 删除
+        $("#ButDel").click(function () {
+            var data = $("form[name=form1]").serialize();
+            var qsDialog = $(this).dialog({
+                title: '您要删除哪些信息',
+                loading: true,
+                footer : false
+            });
+            var url = "{:U('Weixin/Admin/delete_weixin_queue',array('tpl'=>1))}";
+            $.post(url,data, function (result) {
+                if(result.status == 1){
+                    qsDialog.setContent(result.data);
+                } else {
+                    qsDialog.hide();
+                    disapperTooltip('remind',result.msg);
+                }
+            });
+        })
+    });
+</script>
+</html>

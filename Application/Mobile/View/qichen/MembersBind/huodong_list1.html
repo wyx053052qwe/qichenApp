@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+
+	</head>
+	<style>
+		body,
+		html {
+			height: auto;
+			background: #fff;
+		}
+	</style>
+
+	<body>
+		<div class="salary-xqall">
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<h1>员工活动</h1>
+
+				</div>
+			</header>
+		</div>
+		<!--内容 -->
+		<div class="zy_module-content zy_vip_conbox job-list  user-mysc news-ann">
+			<div class="zy_module-content">
+				<div class="zy_newslist_box bgwh">
+
+					<div class="newslist">
+						<ul>
+							<volist name="list" id="vo">
+
+							<li>
+								<a href="{$vo.url}">
+									<h2>
+							<p>{$vo['name']}</p>
+							<span>{:date('Y-m-d',$vo['add_time'])}</span>
+						</h2>
+									<i><img src="/data/upload/images/{$vo['img']}?{:time()}"></i>
+								</a>
+							</li>
+</volist>
+							
+
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 60px;"></div>
+		<include file="public_qichen:footer_fuwu_2"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>

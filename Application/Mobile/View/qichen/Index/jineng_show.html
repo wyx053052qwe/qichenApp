@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+		<script type="text/javascript" src="../public_qichen/js/job.js"></script>
+
+	</head>
+
+	<body>
+		<div class="job-xqall">
+			<!--头部  -->
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<h1>培训详情</h1>
+					<div class="r">
+						<a href=""><img src="../public_qichen/img/menu_icon04.png"></a>
+					</div>
+				</div>
+			</header>
+			<!--详情-->
+			<div class="job-xq training-xq">
+				<div class="zy_content zy_train_xq">
+					<div class="bgwh mb6 p_2">
+						<div class="other_head dis_flex fix">
+							<h2>{$data['name']}</h2>
+							<span>浏览量：{$data['click']}</span>
+						</div>
+						<div class="work_info other_info">
+							<div><span>培训类型：</span>
+								<p>{$data['type']}</p>
+							</div>
+							<div><span>报名人数：</span>
+								<p>{$data['count']}</p>
+							</div>
+							<div><span>培训费用：</span>
+								<p>
+									<if condition="empty($data['money'])">
+										免费
+									<else/>
+										{$data['money']}
+									</if>
+								</p>
+							</div>
+							<div><span>培训机构：</span>
+								<p>{$data['jigou']}</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- 培训对象 -->
+					<div class="work_zhize bgwh mb6 p_2">
+						<h4><span class="ge04">培训对象</span></h4>
+						<div class="txt">
+							<p>{$data['duixiang']}</p>
+						</div>
+					</div>
+					<div class="work_zhize bgwh mb6 p_2">
+						<h4><span class="ge04">培训内容</span></h4>
+						<div class="txt">
+							<p>{$data['content']}</p>
+						</div>
+					</div>
+					<div class="work_zhize bgwh mb6 p_2">
+						<h4><span class="ge04">培训费用</span></h4>
+						<div class="txt">
+							<p>{$data['feiyong']}</p>
+						</div>
+					</div>
+
+					<!-- 详情底部栏 -->
+					
+				</div>
+			</div>
+		</div>
+		<!--公共底部 -->
+		<div style="height: 55px;"></div>
+		<div class="xq_foot xq_foot01 dis_flex">
+			<a onclick="baoming({$data['id']})" is_show="true"><span style="color: rgb(255, 255, 255);">我要报名</span></a>
+			<a href="tel:{$data['mobile']}"><span>电话咨询</span></a>
+		</div>
+	</body>
+	<script>
+	function baoming(id){
+		<if condition="$data['is_display'] == '0'">
+			alert('报名已截至');
+			return false;
+		</if>
+		window.location.href="/index.php?m=Mobile&c=Index&a=baoming&id="+id;
+	}
+	</script>
+
+</html>

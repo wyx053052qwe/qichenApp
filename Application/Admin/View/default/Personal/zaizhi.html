@@ -1,0 +1,298 @@
+<include file="public:header"/>
+<div class="seltpye_x">
+    <div class="left">绑定时间</div>
+    <div class="right">
+        <a href="{:P(array('settr'=>''))}" <eq name='Think.get.settr' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('settr'=>'3'))}" <eq name='Think.get.settr' value='3'>class="select"</eq>>三天内</a>
+        <a href="{:P(array('settr'=>'7'))}" <eq name='Think.get.settr' value='7'>class="select"</eq>>一周内</a>
+        <a href="{:P(array('settr'=>'30'))}" <eq name='Think.get.settr' value='30'>class="select"</eq>>一月内</a>
+        <a href="{:P(array('settr'=>'180'))}" <eq name='Think.get.settr' value='180'>class="select"</eq>>半年内</a>
+        <a href="{:P(array('settr'=>'360'))}" <eq name='Think.get.settr' value='360'>class="select"</eq>>一年内</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="seltpye_x">
+    <div class="left">在职绑定状态</div>
+    <div class="right">
+        <a href="{:P(array('is_bind'=>''))}" <eq name='Think.get.is_bind' value=''>class="select"</eq>>不限</a>
+        <a href="{:P(array('is_bind'=>'1'))}" <eq name='Think.get.is_bind' value='1'>class="select"</eq>>绑定</a>
+        <a href="{:P(array('is_bind'=>'0'))}" <eq name='Think.get.is_bind' value='0'>class="select"</eq>>未绑定</a>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<form id="form1" name="form1" method="post" action="{:U('zaizhi_delete')}">
+    <div class="list_th">
+        
+        <div class="td" style=" width:10%;">
+            <label id="chkAll" class="left_padding">
+                <input type="checkbox" name="chkAll" id="chk" title="全选/反选"/>姓名
+            </label>
+        </div>
+       
+        <div class="td" style=" width:10%;">身份证</div>
+        <div class="td" style=" width:4%;">绑定用户</div>
+        <div class="td center" style=" width:10%;">绑定时间</div>
+        <div class="td center" style=" width:5%;">合同到期时间</div>
+        
+        <div class="td center" style=" width:10%;">在职企业</div>
+        <div class="td " style=" width:10%;">工资卡号</div>
+        <div class="td " style=" width:10%;">联系方式</div>
+        <div class="td" style=" width:30%;">操作</div>
+        <div class="clear"></div>
+    </div>
+
+    <volist name="list" id="vo">
+        <div class="list_tr link_black">
+            <div class="td" style=" width:10%;">
+                <div class="left_padding striking">
+                    <input name="tuid[]" type="checkbox" id="id" value="{$vo['id']}"/>{$vo['name']}
+                    <if condition="!empty($vo['lizhi_time'])">
+                        (已离职)
+                        <else/>
+                        <if condition="$vo['is_bind']">
+                        (在职人员)
+                        <else/>
+                        (未绑定)
+                    </if>
+                    </if>
+
+
+
+                    
+                </div>
+            </div>
+            
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['id_card']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 4%;">
+                <span>
+                <if condition="empty($vo['uid_name'])">
+                    未绑定
+                <else/>
+                    {$vo['uid_name']|default="未绑定"}
+                </if>
+                </span>
+            </div>
+            <div class="td center" style=" width:10%;">
+                <if condition="empty($vo['dengji_time'])">
+                    未绑定
+                    <else/>
+                    {:date("Y-m-d",$vo['dengji_time'])}
+                </if>
+            </div>
+
+            <div class="td center" style=" width:6%;">
+                <if condition="empty($vo['dengji_time'])">
+                    未设置
+                    <else/>
+                    {:date("Y-m-d",$vo['ht_time'])}
+                </if>
+            </div>
+            
+            <div class="td center" style=" width:10%;"><if condition="empty($vo['companyname'])">
+                    未绑定
+                <else/>
+                    {$vo['companyname']|default="未绑定"}
+                </if></div>
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['gongzi_card']|default="未填写"}</span>
+            </div>
+            <div class="td" style=" width: 10%;">
+                <span>{$vo['mobile']|default="未填写"}</span>
+            </div>
+            <div class="td edit" style=" width:30%;">
+               
+                <if condition="$vo['is_bind'] == 1">
+                    <if condition="$vo['is_f'] == 1">
+                        <a href="{:U('send_zaizhi',array('id'=>$vo['uid']))}" style="background-color:red">发送</a>
+                    </if>
+                     <a href="javascript:void(0);" class="business" parameter="zaizhi_id={$vo['id']}" hideFocus="true">工资表</a>
+                     <a href="javascript:void(0);" class="tuijian" parameter="uid={$vo['uid']}" hideFocus="true">推荐入职列表</a>
+                     <a href="javascript:void(0);" class="jifen" parameter="uid={$vo['uid']}" hideFocus="true">送积分</a>
+                    <a href="{:U('gongzi_add',array('id'=>$vo['id']))}">添加工资表</a> 
+                    <a href="{:U('lizhi',array('id'=>$vo['id']))}">离职</a>
+                    
+                </if>
+
+                <!-- <if condition="!empty($vo['lizhi_time'])">
+                    <a href="{:U('lizhi',array('id'=>$vo['id']))}">未绑定</a>
+                </if> -->
+                <a href="{:U('zaizhi_edit',array('id'=>$vo['id']))}">编辑</a>
+                
+                
+            </div>
+            <div class="clear"></div>
+        </div>
+    </volist>
+</form>
+
+<empty name="list">
+    <div class="list_empty">没有任何信息！</div>
+</empty>
+
+<div class="list_foot">
+
+    <div class="btnbox">
+        <input type="button" class="admin_submit" id="ButAdd" value="添加在职人员" onclick="window.location.href='{:U('zaizhi_add')}'"/>
+        <input type="button" class="admin_submit" id="ButDel" value="删除在职人员"/>
+
+        <input type="button" class="admin_submit" id="yijian_f" style="background-color:red" value="一键发送合同到期提醒"/>
+        <if condition="$apply['Export']">
+            <input type="button" class="admin_submit" id="ExPort" value="导出"/>
+        </if>
+        <notempty name="apply['Resumeimport']">
+            <input type="button" class="admin_submit xianshi" id="ButImportresume" value="导入工资表"/>
+        </notempty>
+    </div>
+    </div>
+
+    
+</div>
+<div class="pages">{$page}</div>
+
+</div>
+<include file="public:footer"/>
+
+</body>
+<script type="text/javascript" src="__ADMINPUBLIC__/js/jquery.dropdown.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //登录日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登录日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //会员日志
+        $(".login_log").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '登陆日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/login_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+         //会员日志
+        $(".personal_log").click(function () { 
+            var qsDialog = $(this).dialog({
+                title: '会员日志',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/personal_log')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        $(".J_message").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '发消息',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('Ajax/ajax_message')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+
+        $(".jifen").click(function () {
+            $('.modal_backdrop').remove();
+            $('.modal').remove();
+            var qsDialog = $(this).dialog({
+                title: '赠送积分',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('jifen')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //业务
+        $(".business").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '业务',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('gongzi')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //推荐入职
+        $(".tuijian").click(function () {
+            var qsDialog = $(this).dialog({
+                title: '业务',
+                loading: true,
+                footer : false
+            });
+            var param = $(this).attr('parameter');
+            var url = "{:U('son_list')}&" + param;
+            $.getJSON(url, function (result) {
+                qsDialog.setContent(result.data);
+            });
+        });
+        //批量删除
+        $("#ButDel").click(function () {
+            if (confirm('删除在职人员后，缺少部分功能')) {
+                $("form[name=form1]").attr("action", "{:U('zaizhi_delete')}");
+                $("form[name=form1]").submit();
+            }
+        });
+
+        $("#yijian_f").click(function(){
+            var url = "{:U('yijian_f')}";
+            window.location.href=url;
+        });
+
+            <if condition="$apply['Export']">
+            //点击批量导出
+            $("#ExPort").click(function () {
+                var data = $("form[name=form1]").serialize();
+                if(data.length == 0){
+                    disapperTooltip('remind','请选择员工！');
+                    qsDialog.hide();
+                }
+                $("form[name=form1]").attr("action", "{:U('Export/Admin/export_personal1')}");
+                $("form[name=form1]").submit();
+            });
+    </if>
+        <notempty name="apply['Resumeimport']">
+            //导入简历
+            $("#ButImportresume").click(function () {
+                var qsDialog = $(this).dialog({
+                    title: '导入简历',
+                    loading: true,
+                    footer : false
+                });
+                var url = "{:U('Ajax/resume_imports')}";
+                $.getJSON(url, function (result) {
+                    qsDialog.setContent(result.data);
+                });
+            });
+    </notempty>
+    });
+</script>
+</html>

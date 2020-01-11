@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+    <include file="public:meta"/>
+    <link rel="stylesheet" href="../public/css/personal.css">
+</head>
+<body>
+    <include file="public:header"/>
+    <div class="filter-group x2 filter-outer">
+        <div id="f-mask"></div>
+        <div class="filter-outer">
+            <div class="filter-list js-filter" data-tag="0">
+                <div class="filter-cell">
+	                <div class="filter-cell-txt">
+                    <if condition="$Think.get.look eq ''">
+                        查看状态
+                    <elseif condition="$Think.get.look eq 1"/>
+                        未查看
+                    <else/>
+                        已查看
+                    </if>
+	                </div>
+                </div>
+            </div>
+            <div class="filter-list js-filter" data-tag="1">
+                <if condition="$Think.get.settr eq 0">
+                    <div class="filter-cell"><div class="filter-cell-txt">发送时间</div></div>
+                <else />
+                    <switch name="Think.get.settr">
+                        <case value="0">
+                            <div class="filter-cell"><div class="filter-cell-txt">不限</div></div>
+                        </case>
+                        <case value="3">
+                            <div class="filter-cell"><div class="filter-cell-txt">3天内</div></div>
+                        </case>
+                        <case value="7">
+                            <div class="filter-cell"><div class="filter-cell-txt">7天内</div></div>
+                        </case>
+                        <case value="15">
+                            <div class="filter-cell"><div class="filter-cell-txt">15天内</div></div>
+                        </case>
+                        <case value="30">
+                            <div class="filter-cell"><div class="filter-cell-txt">30天内</div></div>
+                        </case>
+                    </switch>
+                </if>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--查看状态-->
+        <div class="con-filter">
+            <div class="f-box qs-hidden">
+                <div class="f-box-inner">
+                    <li><a class="f-item <if condition="$Think.get.look eq ''">select</if>" href="{:P(array('look'=>''))}">全部</a></li>
+                    <li><a class="f-item <if condition="$Think.get.look eq 2">select</if>" href="{:P(array('look'=>2))}">已查看</a></li>
+                    <li><a class="f-item <if condition="$Think.get.look eq 1">select</if>" href="{:P(array('look'=>1))}">未查看</a></li>
+                </div>
+            </div>
+        </div>
+        <!--发送时间下拉选择-->
+        <div class="con-filter">
+            <div class="f-box qs-hidden">
+                <div class="f-box-inner">
+                    <li><a class="f-item <if condition="$Think.get.settr eq '' || $Think.get.settr eq '0'">select</if>" href="{:P(array('settr'=>0))}">全部</a></li>
+                    <li><a class="f-item <if condition="$Think.get.settr eq 3">select</if>" href="{:P(array('settr'=>3))}">3天内</a></li>
+                    <li><a class="f-item <if condition="$Think.get.settr eq 7">select</if>" href="{:P(array('settr'=>7))}">7天内</a></li>
+                    <li><a class="f-item <if condition="$Think.get.settr eq 15">select</if>" href="{:P(array('settr'=>15))}">15天内</a></li>
+                    <li><a class="f-item <if condition="$Think.get.settr eq 30">select</if>" href="{:P(array('settr'=>30))}">30天内</a></li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split-block"></div>
+    <notempty name="interview['list']">
+        <volist name="interview['list']" id="list">
+            <if condition="$list['company_name']">
+                <div class="list-item J_look js-longpress for-event " data-look="{$list['personal_look']}" data-yid="{$list['did']}" url="{$list.company_url}">
+                    <div class="content">
+                        <div class="line-one">
+                            <div class="title substring <if condition="$list['personal_look'] neq 2">no-read</if>">
+                                {$list.company_name}
+                                <if condition="$list['personal_look'] neq 2">
+                                    <div class="red-tip"></div>
+                                </if>
+                            </div>
+                            <div class="right font12">{:date('Y-m-d',$list['interview_addtime'])}</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="line-two font12">
+                            <div class="left">{$list.jobs_name}</div>
+                            <div class="right font12 font_yellow">{$list.wage_cn}</div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="line-four font12">
+                            {$list.resume_name}，你好！看到你的简历适合我们公司的招聘条件，通知你{:date('Y-m-d H:i',$list['interview_time'])}来公司参见面试。联系电话：{$list.telephone}，
+                            联系人：{$list.contact}，面试地址：{$list.address}。
+                        </div>
+                    </div>
+                </div>
+            <else/>
+                <div class="list-item js-longpress for-event" data-yid="{$list.did}">
+                    <div class="content">
+                        <div class="line-two font12">
+                            <div class="left">该企业不存在或已被删除</div>
+                        </div>
+                    </div>
+                </div>
+            </if>
+        </volist>
+        <div class="split-block"></div>
+        <div class="qspage">{$interview['page']}</div>
+    <else />
+        <if condition="$hasget">
+            <div class="list-empty">
+                抱歉，没有找到符合您条件的的邀请记录！
+            </div>
+            <else />
+            <div class="list-empty link_blue">
+                目前您暂未收到面试邀请！<br />
+                建议您主动出击 <a href="{:url_rewrite('QS_jobslist')}">找工作</a>
+            </div>
+        </if>
+    </notempty>
+    <include file="public_qichen:footer_geren_2" />
+        <script src="../public/js/fastclick.js"></script>
+<script>
+    window.addEventListener( "load", function() {
+        FastClick.attach(document.body);
+    }, false );
+</script>
+<script src="../public/js/QSpopout.js"></script>
+<script src="../public/js/QSfilter.js"></script>
+<script src="../public/js/zepto.hwSlider.js"></script>
+<script src="../public/js/scrollTo.js"></script>
+<script src="../public/js/RongIMLib-2.2.8.min.js"></script>
+<script src="../public/js/qs.action.js"></script>
+<script src="../public/js/qs.select.js"></script>
+<script src="../public/js/dialog.js"></script>
+<script src="https://static.geetest.com/static/tools/gt.js"></script>
+<if condition="$rong_state eq 1">
+<script src="../public/js/rong_main.js"></script>
+</if>
+<script>
+    if (!$('.foot_pub_box_list li').length) {
+        $('#JFootPub').remove();
+        $('.fix-footNav').addClass('n4');
+    }
+    // 锁定屏幕
+    function lockTouchMove(){
+        //document.body.addEventListener('touchmove', handler, { passive: false })
+        $("body").bind("touchmove",function(event){event.preventDefault()});
+    }
+
+    // 解锁屏幕
+    function unLockTouchMove(){
+        //document.body.removeEventListener('touchmove', handler, { passive: false })
+        $("body").unbind("touchmove");
+    }
+    // 服务
+    function closeFootPub() {
+        $('.JFootPubNav').removeClass('slideInUp animated').addClass('slideOutDown animated'); unLockTouchMove();
+    }
+    $('#JFootPub').off().on('click', function() {
+        lockTouchMove();
+        $('.JFootPubNav').removeClass('slideOutDown animated').addClass('slideInUp animated');
+        // 关闭
+        $('#JFootPubClose').off().on('click', function() { closeFootPub(); });
+    });
+    $('a[href]').click(function() {
+        var f = $(this).attr('href');
+        var reg = /\#(\w+)/;
+        if (reg.test(f)) {
+            if (!$(this).data('nm')) {
+                return !1;
+            }
+        }
+    });
+    $(".js-back").on('click',function(){
+        /*if (history.length == 1){
+            window.location.href = '{:U("index/index")}';
+        } else {
+            history.back();
+        }*/
+        history.back();
+    });
+    /**
+     * 监听鼠标
+     */
+    if ('ontouchstart' in window) {
+        $.EVENT_START = 'touchstart';
+        $.EVENT_END = 'touchend';
+    } else {
+        $.EVENT_START = 'mousedown';
+        $.EVENT_END = 'mouseup';
+    }
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_START, function() {
+        $(this).addClass('eventactive');
+        /*if($(this).find('input[type="text"]').length) {
+            $(this).find('input[type="text"]').focus();
+        }*/
+    });
+    $('.plist-txt, .qs-btn, .for-event').on($.EVENT_END, function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.plist-txt, .qs-btn, .for-event').on('touchcancel', function() {
+        $(this).removeClass('eventactive');
+    });
+    $('.logout').on('click', function() {
+        forCloseNav();
+        $(document).dialog({
+            type: 'confirm',
+            content: '确定退出吗？',
+            onClickConfirmBtn: function() {
+                window.location.href = "{:U('Members/logout')}";
+            }
+        });
+    });
+    /**
+     * 返回顶部
+     */
+    var global = {
+        h: $(window).height(),
+        st: $(window).scrollTop(),
+        backTop: function() {
+            global.st > (global.h * 0.5) ? $("#backtop").show() : $("#backtop").hide();
+        }
+    };
+    /**
+     * Notice 提醒公用方法
+     * @param infoText 提示文字
+     */
+    function qsNotice(infoText) {
+        $(document).dialog({
+            type : 'notice',
+            infoText: infoText,
+            autoClose: 1500,
+            position: 'center',
+            dialogClass: 'dialog_toast'
+        });
+    }
+    // 定义Toast图片路径
+    var loadingImg = '../public/images/dialog/loading.gif',
+        successImg = '../public/images/dialog/success.png',
+        failImg = '../public/images/dialog/fail.png',
+        warningImg = '../public/images/dialog/warning.png';
+    /**
+     * 正在加载中
+     * @param infoText 内容
+     */
+    function qsToasting() {
+        var infoContent = arguments[0] ? arguments[0] : '';
+        var closeTime = arguments[1] === 0 ? arguments[1] : 1500;
+        var $cuToasting = $(document).dialog({
+            type : 'toast',
+            infoIcon: loadingImg,
+            infoText: infoContent,
+            autoClose: closeTime
+        });
+        return $cuToasting;
+    }
+    /**
+     * Toast 类型通知 用于需要反馈结果
+     * @param msg 反馈内容
+     * @param type 反馈类型 可以不传参数有默认值 0->失败 1->成功
+     * @param obj 正在加载对象 用于更新Toast
+     */
+    function qsToast(msg, type, obj) {
+        type = arguments[1] ? arguments[1] : 2;
+        var icons = [failImg, successImg, warningImg];
+        var setting = {
+            type : 'toast',
+            infoText: msg,
+            infoIcon: icons[type],
+            autoClose: 1500,
+            dialogClass: 'dialog_toast'
+        };
+        if (obj){
+            obj.update(setting);
+        } else {
+            return $(document).dialog(setting);
+        }
+    }
+    // 锁定屏幕
+    function lock_touchmove(){
+        $("body").bind("touchmove",function(event){event.preventDefault();});
+    }
+    // 解锁屏幕
+    function un_lock_touchmove(){
+        $("body").unbind("touchmove");
+    }
+    // 弹出框登录
+    function logDialog() {
+        // 是否需要刷新页面
+        var isRefresh = arguments[0] === 0 ? arguments[0] : 1;
+        // 页面跳转链接
+        var urlValue = arguments[1] ? arguments[1] : '';
+        if(qscms.is_login > 0 && urlValue){
+            window.location.href = urlValue;
+            return !1;
+        }
+        var utype = arguments[2] ? arguments[2] : 0;
+        // 正在加载
+        var $logLoad = qsToasting('', 0);
+        var loginUrl = "{:U('AjaxCommon/ajax_login')}";
+        $.getJSON(loginUrl, {refresh: isRefresh, url: urlValue, utype:utype}, function(result){
+            $logLoad.close();
+            if(result.status==1){
+                var $logPop = new QSpopout('亲，验证一下手机吧');
+                $logPop.setContent(result.data);
+                $('.qs-popout-ft').remove();
+                $('.qs-popout-bd').addClass('no-pd');
+                $logPop.show();
+                // 关闭
+                $('.closePopout').on('click', function() {
+                    $('#popout').fadeOut(200);
+                    $('#popout').remove();
+                });
+            } else {
+                qsToast(result.msg, '', '');
+            }
+        });
+    }
+    // 如果文档高度不大于窗口高度，数据较少，删除页面中的无数据提醒
+    function removeDropLoadDown() {
+        var doc = document;
+        var $doc = $(doc);
+        var $dropDownEle = $('.dropload-down');
+        var scrollContentHeight = $doc.height();
+        var scrollWindowHeight = doc.documentElement.clientHeight;
+        var threshold = Math.floor($dropDownEle.height()*1/3);
+        if((scrollContentHeight - threshold) <= scrollWindowHeight){
+            $dropDownEle.remove();
+        }
+    }
+    //判断是不是iPhoneX，适配iPhoneX底部遮挡问题
+    if (funJudgeX()) {
+        $('.fix-footNav').addClass('iPhoneX');
+        $('body').addClass('iPhoneX');
+    }
+</script>
+<div class="qs-hidden">{:htmlspecialchars_decode(C('qscms_statistics'))}</div>
+    <script src="../public/js/longPress.js"></script>
+    <script type="text/javascript">
+        $('.js-filter').on('click', function() {
+            var filter = new QSfilter($(this));
+        });
+        $('.J_look').on('click', function() {
+            var y_id = $(this).data('yid');
+            var url = $(this).attr('url');
+            var look = $(this).data('look'); //2已查看 1未查看
+            if (look == 1) {
+                $.getJSON("{:U('Personal/set_interview')}", {
+                    y_id: y_id
+                }, function() {
+                    window.location.href = url;
+                });
+            } else {
+                window.location.href = url;
+            }
+        });
+        // 长按删除
+        $('.js-longpress').each(function() {
+            var y_id = $(this).data('yid');
+            $(this).longPress(function() {
+                $(document).dialog({
+                    type: 'confirm',
+                    content: '确定删除吗？',
+                    onClickConfirmBtn: function() {
+                        // 正在加载
+                        var $cuLoad = qsToasting('', 0);
+                        $.getJSON("{:U('personal/interview_del')}", {
+                            y_id: y_id
+                        }, function(result) {
+                            // 关闭正在加载，重新提示
+                            $cuLoad.close();
+                            if (result.status == 1) {
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function() {
+                                    window.location.href = "{:U('personal/jobs_interview')}";
+                                }, 2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

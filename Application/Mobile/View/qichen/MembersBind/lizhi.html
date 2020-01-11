@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>离职申请</title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<link href="../public/g/css/ny.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../public/g/css/mui.min.css" />
+		<link rel="stylesheet" href="../public/g/css/style.css" />
+	</head>
+	<style type="text/css">
+        #images{min-height:7em;max-height:21em;text-align:left;overflow-y:auto}
+        #images img{
+            width: 7em;
+            height: 7em;
+            margin:0.5em;
+        }
+        .inputFiles{display:none;}
+    </style>
+
+	<body>
+		<section class="aui-scrollView">
+			<div class="aui-banner">
+				<img src="../public/g/img/banner.png" alt="">
+				<div class="aui-banner-text">
+					<h1>离职申请</h1>
+					<h2>提供固定模板，要求抄写模板上文字，拍照上传。</h2>
+					<h2>请上传证明模板</h2>
+				</div>
+			</div>
+			<div class="aui-flex" style="padding-top:8px;">
+				<div class="aui-tag">
+					<img src="../public/g/img/tag.png" alt="">
+				</div>
+				<div class="aui-flex-box">
+					<p>请上传证明模板，并填写真实信息</p>
+				</div>
+			</div>
+			<div class="aui-name-form">
+				<form id="uploadForm" action="" enctype="multipart/form-data" method="post"  >
+					<div class="aui-flex aui-flex-color b-line">
+						<div class="aui-flex-box">
+							<input type="text" name="descript" value="" placeholder="离职原因" id="t1" >
+						</div>
+					</div>
+
+					<div id="images"></div>
+					<div class="inputFiles"></div>
+					<div class="btn_submit">
+						
+							
+						
+				        <button  type="button" class="btn btn-success btn_upImg" onClick="addinputFile()">选择图片</button>
+				        
+				    	
+				    </div> 
+					
+					<div class="aui-flex ver-flex">
+						<div class="aui-flex-box">
+							<button type="submit" id="btn" value="submit">提交</button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+			
+		</section>
+		<!--公共底部 -->
+		<div style="height: 80px;"></div>
+		<include file="public@car_4_footer">
+	</body>
+
+</html>
+<script type="text/javascript" src="../public/g/up/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public/g/up/js/tpUpload.js"></script>

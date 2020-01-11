@@ -1,0 +1,6 @@
+[ 2019-07-28T17:13:50+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=zaizhi
+SQL: SHOW COLUMNS FROM `qs_members_zaizhi` [RunTime:0.226s] [IP:0.0.0.0] [AddTime:1564305230] [qscms]
+[ 2019-07-28T18:55:38+08:00 ] ::1 /
+SQL: SHOW COLUMNS FROM `qs_category_jobs` [RunTime:0.282s] [IP:0.0.0.0:11361] [AddTime:1564311338] [qscms]
+[ 2019-07-28T18:55:39+08:00 ] ::1 /
+SQL: SHOW COLUMNS FROM `qs_ad_category` [RunTime:0.6153s] [IP:0.0.0.0] [AddTime:1564311339] [qscms]

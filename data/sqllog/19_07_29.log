@@ -1,0 +1,4 @@
+[ 2019-07-29T10:49:52+08:00 ] ::1 /index.php?m=Admin&c=Ajax&a=affair
+SQL: SHOW COLUMNS FROM `qs_order_invoice` [RunTime:0.2379s] [IP:0.0.0.0] [AddTime:1564368592] [qscms]
+[ 2019-07-29T21:33:45+08:00 ] ::1 /index.php?m=Admin&c=Personal&a=gongzi_log&com_id=1&zaizhi_id=1
+SQL: SHOW COLUMNS FROM `qs_menu` [RunTime:0.263s] [IP:0.0.0.0] [AddTime:1564407225] [qscms]

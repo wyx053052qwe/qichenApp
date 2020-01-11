@@ -1,0 +1,403 @@
+﻿/*登录*/
+
+.zy_login_box {
+	height: 100%;
+	background-color: #fff;
+}
+
+.zy_login_box .zy_title_top {
+	position: relative;
+}
+
+.zy_login_box .zy_title_top>a {
+	color: #999;
+	font-size: .24rem;
+	line-height: .24rem;
+	display: inline-block;
+	position: absolute;
+	width: 1rem;
+	right: 2%;
+	top: 50%;
+	margin-top: -.12rem;
+}
+
+.zy_login_box .login_box .logo {
+	margin: 10% 0 8%;
+	text-align: center;
+}
+
+.zy_login_box .login_box .logo img {
+	width: 40%;
+}
+
+.login_box .login_style {
+	text-align: center;
+	margin-bottom: 7% !important;
+}
+
+.login_box .login_style span {
+	display: inline-block;
+	color: #333;
+	font-size: .24rem;
+	padding: .6em 1em;
+	border-radius: 3px;
+	background-color: #ddd;
+	margin: 0 3%;
+}
+
+.login_box .login_style .cur {
+	color: #fff;
+	background-color: #f2b300;
+}
+
+.zy_login_box .login_box form {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.zy_login_box .login_box form div {
+	margin-bottom: 8%;
+}
+
+.zy_login_box .login_box form div label {
+	border-bottom: #ddd solid 1px;
+	display: block;
+	padding: 2% 0;
+}
+
+.zy_login_box .login_box form div a {
+	display: inline-block;
+	vertical-align: middle;
+	width: .3rem;
+	height: .3rem;
+	margin: 0 .14rem 0 0;
+}
+
+.zy_login_box .login_box form div a img {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.zy_login_box .login_box form div input {
+	width: 80%;
+	font-size: .24rem;
+	color: #666;
+	line-height: 120%;
+	vertical-align: middle;
+}
+
+.zy_login_box .login_box form h2 {
+	font-size: .22rem;
+	color: #999;
+	margin-top: 8%;
+}
+
+.zy_login_box .login_box form h2 label input {
+	vertical-align: middle;
+}
+
+.zy_login_box .login_box form h2>a {
+	float: right;
+	color: #999;
+}
+
+.zy_login_box .login_box form .zy_login_btn {
+	margin-top: 4%;
+}
+
+.zy_login_btn {
+	width: 100%;
+	background-color: #f2b300;
+	color: #fff;
+	border-radius: 3px;
+	font-size: .28rem;
+	line-height: .72rem;
+}
+
+
+/*注册*/
+
+.zy_login_box .zhuce_con {
+	margin-top: 8%;
+}
+
+.zy_login_box .zhuce_con form h2 label a {
+	color: #f2b300;
+}
+
+.zy_login_box .zhuce_con form h2 {
+	margin-bottom: 3%;
+}
+
+.zy_login_box .zhuce_box form div {
+	margin-bottom: 6%;
+}
+
+.zy_login_box .zhuce_con form div.yzm {
+	overflow: visible;
+	position: relative;
+}
+
+.zy_login_box .zhuce_con form div.yzm label {}
+
+.zy_login_box .zhuce_con form div.yzm label input {
+	width: 50%;
+}
+
+.zy_login_box .zhuce_con form h2 {
+	margin: 6% 0;
+}
+
+.zy_login_box .zhuce_con form .zy_login_btn {
+	margin-top: 0;
+}
+
+.zy_login_box .zhuce_con .zhuce_msg {
+	display: none;
+}
+
+.zy_login_box .footer_box {
+	margin-top: 10%;
+}
+
+.butyzm {
+	right: 0px;
+	position: absolute;
+	top: 10px;
+}
+
+.butyzm {
+	background: #f2b300;
+	border: 1px solid #f2b300;
+	width: 117px;
+	height: 36px;
+	font-size: 14px;
+	color: #ffffff;
+	letter-spacing: 0;
+	right: 0px;
+	position: absolute;
+	top: -8px;
+	border-radius: 4px;
+}
+
+.butyzm:disabled {
+	opacity: 0.6;
+}
+
+
+/*密码找回*/
+
+.zy_login_box .mima_box .zhuce_con form .zy_login_btn {
+	margin-top: 4%;
+}
+
+
+/*新闻公告*/
+
+.zy_newslist_box {
+	min-height: 6rem;
+}
+
+.zy_newslist_box .newslist ul li {
+	padding: 2.5% 2%;
+	border-bottom: #ddd solid 1px;
+}
+
+.zy_newslist_box .newslist ul li a {
+	display: block;
+	overflow: hidden;
+}
+
+.zy_newslist_box .newslist ul li a i {
+	float: right;
+	width: 1.95rem;
+	height: 1.3rem;
+}
+
+.zy_newslist_box .newslist ul li a img {
+	width: 100%;
+	display: block;
+	height: 1.3rem;
+}
+
+.zy_newslist_box .newslist ul li h2 {
+	float: left;
+	width: calc(100% - 1.95rem - 2%);
+}
+
+.zy_newslist_box .newslist ul li h2 p {
+	color: #333;
+	font-size: .26rem;
+	line-height: 130%;
+	height: .66rem;
+	margin-top: 1.5%;
+	overflow: hidden;
+}
+
+.zy_newslist_box .newslist ul li h2 span {
+	color: #999;
+	font-size: .22rem;
+	margin-top: 6%;
+	display: block;
+}
+
+
+/*注册界面*/
+
+.sf {
+	width: 100%;
+	text-align: center;
+	margin-top: 15%;
+	font-size: 16px;
+	color: #333;
+}
+
+.sf-all {
+	width: 100%;
+	text-align: center;
+	height: auto;
+	overflow: hidden;
+}
+
+.sf-all>.sf1 {
+	float: left;
+	width: 50%;
+	border-radius: 50%;
+	padding: 15px;
+}
+
+.sf-all .sf1 img {
+	width: 80px;
+	height: 80px;
+}
+
+.sf-q {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 1px dashed #f2b300;
+	padding: 20px;
+}
+
+.sf-all .sf1 p {
+	font-size: 15px;
+	color: #777;
+	margin-top: 5px;
+}
+
+
+/*注册1*/
+
+.vux-tab {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	background-color: #fff;
+	height: 44px;
+	position: relative;
+}
+
+.vux-tab .vux-tab-item {
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-drag: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	border: none;
+	color: rgb(242, 179, 0);
+}
+
+.vux-tab .vux-tab-item {
+	display: block;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	background: -webkit-linear-gradient(top, #f5f5f5, #f5f5f5, hsla(0, 0%, 90%, 0)) 0 100% no-repeat;
+	background: linear-gradient(180deg, #f5f5f5, #f5f5f5, hsla(0, 0%, 90%, 0)) 0 100% no-repeat;
+	background-size: 100% 1px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 44px;
+	color: #666;
+}
+
+
+/*新闻详情*/
+
+.zy_news_xqbox .tit h2 {
+	font-size: .36rem;
+	color: #333;
+	line-height: 130%;
+	margin: 2% 0;
+}
+
+.zy_news_xqbox .tit span {
+	display: block;
+	margin-top: 4%;
+}
+
+.zy_news_xqbox .tit span a {
+	color: #999;
+	font-size: .22rem;
+	margin-right: 4%;
+}
+
+.zy_news_xqbox .tit span a em {
+	font-style: normal;
+}
+
+.zy_news_xqbox .txt {
+	font-size: .24rem;
+	color: #666;
+	line-height: 180%;
+	margin: 5% 0;
+}
+
+.zy_news_xqbox .txt * {
+	margin: 3% 0;
+}
+
+.zy_news_xqbox .txt img {
+	display: block;
+	width: 100%;
+}
+
+.zy_news_xqbox h3 {
+	margin: 5% 0;
+	margin-top: 8%;
+}
+
+.zy_news_xqbox h3 p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 2.5% 0;
+}
+
+.zy_news_xqbox h3 p b {
+	color: #333;
+	font-size: .24rem;
+	line-height: 120%;
+}
+
+.zy_news_xqbox h3 p a {
+	color: #666;
+	font-size: .24rem;
+	line-height: 120%;
+}
+/*员工手册*/
+.p_2{
+	padding: 2%;
+}
+.zy_news_xqbox .txt {
+    font-size: .24rem;
+    color: #666;
+    line-height: 180%;
+    margin: 5% 0;
+}
+.zy_news_xqbox .txt * {
+    margin: 3% 0;
+}

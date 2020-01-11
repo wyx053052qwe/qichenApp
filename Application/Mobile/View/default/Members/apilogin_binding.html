@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <include file="public:meta" />
+        <link rel="stylesheet" href="../public/css/members.css?v={:time()}">
+    </head>
+    <body style="background:#fff;">
+        <include file="public:header_logo" />
+        <div class="split-block"></div>
+        <div class="bind-top-box qs-center">
+            <img src="<if condition="$user_bind_info['keyavatar_big']">{$user_bind_info.keyavatar_big}<else/>{:attach('no_photo_male.png','resource')}</if>" alt="{$user_bind_info.username}" class="b-img">
+            <div class="b-nickname">{$user_bind_info.username}</div>
+            <div class="font12 txt-color-9">您已登录{$third_name}账号</div>
+        </div>
+        <form action="post" id="logingForm">
+            <div class="verify_mobile">
+                <div class="vm m">
+                    <input name="mobile" type="number" id="mobile" class="input" placeholder="输入你的手机号">
+                </div>
+                <div class="vm c"><input name="mobile_vcode" type="number" id="mobile_vcode" class="input" placeholder="输入验证码">
+                    <div class="sendcode font12" id="getVerifyCode">获取验证码</div>
+                </div>
+                <div class="btn font16" id="loginBtn">绑定</div>
+            </div>
+            <div id="pop" style="display:none"></div>
+            <input name="org" type="hidden" value="bind">
+            <input name="p_id" type="hidden" value="{$p_id}">
+            <input type="hidden" name="openid" value="{$openid}">
+            <input name="magappx" type="hidden" value="{$magappx['token']}">
+            <input type="hidden" name="qianfan" value="{$qianfan}">
+            <input type="hidden" id="btnCheck">
+            <input type="hidden" id="btnCheckLogin">
+            <input type="hidden" name="expire" id="expire" value="1" >
+            <input type="hidden" name="geetest_challenge" class="J_gee_cha" value="">
+            <input type="hidden" name="geetest_validate" class="J_gee_val" value="">
+            <input type="hidden" name="geetest_seccode" class="J_gee_sec" value="">
+        </form>
+        <input type="hidden" id="J_captcha_open" value="{:C('qscms_mobile_captcha_open')}" />
+        <input type="hidden" id="verifyLogin" value="{$verify_userlogin}">
+        <input type="hidden" id="J_captcha_open_mobile" value="{:C('qscms_wap_captcha_config.varify_mobile')}" />
+        <input type="hidden" id="doType" value="1">
+        <include file="public:footer_js" />
+    </body>
+    <script>
+        var regularMobile = qscms.regularMobile;
+        var captcha_open = eval($('#J_captcha_open').val());
+        var captcha_open_mobile = eval($('#J_captcha_open_mobile').val());
+        // 发送验证码方法
+        function sendVerify() {
+            var mobileValue = $.trim($('input[name=mobile]').val());
+            $.ajax({
+                url: "{:U('Members/reg_send_sms')}",
+                cache: false,
+                async: false,
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    sms_type: 'login',
+                    mobile: mobileValue
+                },
+                success: function(result) {
+                    $('#pop').hide();
+                    qsToast(result.msg, 1, '');
+                    if (result.status) {
+                        // 开始倒计时
+                        var countdown = 60;
+                        function settime() {
+                            if (countdown == 0) {
+                                $('#getVerifyCode').removeClass('disabled');
+                                $('#getVerifyCode').text('获取验证码');
+                                countdown = 60;
+                                return;
+                            } else {
+                                $('#getVerifyCode').addClass('disabled');
+                                $('#getVerifyCode').text('重发' + countdown + '秒');
+                                countdown--;
+                            }
+                            setTimeout(function() {
+                                settime()
+                            }, 1000)
+                        }
+                        settime();
+                    } else {
+                        qsToast(result.msg, 0, '');
+                        $('#getVerifyCode').removeClass('disabled');
+                        $('#getVerifyCode').text('获取验证码');
+                        $('#pop').hide();
+                    }
+                }
+            });
+        }
+        // ajax 登录方法
+        function doLoginAjax() {
+            $.ajax({
+                url: "{:U('Members/login')}",
+                type: 'POST',
+                dataType: 'json',
+                data: $('#logingForm').serialize(),
+                success: function(result) {
+                    if (result.status) {
+                        window.location.href = result.data;
+                    } else {
+                        $('#pop').hide();
+                        if (result.data) {
+                            $("#verifyLogin").val(result.data);
+                        }
+                        $('#loginBtn').removeClass('disabled');
+                        qsToast(result.msg, 0, '');
+                    }
+                },
+                error: function(result) {
+                    $('#pop').hide();
+                    $('#loginBtn').removeClass('disabled');
+                    qsToast(result.msg, '', '');
+                }
+            })
+        }
+        // 点击发送验证码
+        $('#getVerifyCode').on('click', function() {
+            if ($(this).hasClass('disabled')) return false;
+            var mobileValue = $.trim($('input[name=mobile]').val());
+            if (mobileValue == '') {
+                qsToast('请输入手机号码');
+                return false;
+            }
+            if (mobileValue != "" && !regularMobile.test(mobileValue)) {
+                qsToast('手机号码格式不正确');
+                return false;
+            }
+            $('#getVerifyCode').addClass('disabled');
+            $('#getVerifyCode').text('发送中...');
+            if (captcha_open) {
+                if (captcha_open_mobile) {
+                    $('#doType').val('0'); // 标识为发送验证码
+                    $('.geetest_panel').remove();
+                    $.ajax({
+                        url: qscms.root + '?m=Mobile&c=Captcha&type=mobile&t=' + (new Date()).getTime(),
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(config) {
+                            initGeetest({
+                                gt: config.gt,
+                                challenge: config.challenge,
+                                offline: !config.success,
+                                new_captcha: config.new_captcha,
+                                product: 'bind'
+                            }, function(captchaObj) {
+                                captchaObj.appendTo("#pop");
+                                captchaObj.onSuccess(function() {
+                                    var captChaResult = captchaObj.getValidate();
+                                    var mobileValue = $.trim($('input[name=mobile]').val());
+                                    $.ajax({
+                                        url: "{:U('Members/reg_send_sms')}",
+                                        cache: false,
+                                        async: false,
+                                        type: 'post',
+                                        dataType: 'json',
+                                        data: {
+                                            sms_type: 'login',
+                                            mobile: mobileValue,
+                                            geetest_challenge: captChaResult.geetest_challenge,
+                                            geetest_validate: captChaResult.geetest_validate,
+                                            geetest_seccode: captChaResult.geetest_seccode
+                                        },
+                                        success: function(result) {
+                                            $('#pop').hide();
+                                            qsToast(result.msg, 1, '');
+                                            if (result.status) {
+                                                // 开始倒计时
+                                                var countdown = 60;
+                                                function settime() {
+                                                    if (countdown == 0) {
+                                                        $('#getVerifyCode').removeClass('disabled');
+                                                        $('#getVerifyCode').text('获取验证码');
+                                                        countdown = 60;
+                                                        return;
+                                                    } else {
+                                                        $('#getVerifyCode').addClass('disabled');
+                                                        $('#getVerifyCode').text('重发' + countdown + '秒');
+                                                        countdown--;
+                                                    }
+                                                    setTimeout(function() {
+                                                        settime()
+                                                    }, 1000)
+                                                }
+                                                settime();
+                                            } else {
+                                                qsToast(result.msg, 0, '');
+                                                $('#getVerifyCode').removeClass('disabled');
+                                                $('#getVerifyCode').text('获取验证码');
+                                                $('#pop').hide();
+                                            }
+                                        }
+                                    });
+                                })
+                                captchaObj.onReady(function() {
+                                    captchaObj.verify();
+                                });
+                                $('#btnCheck').on('click', function() {
+                                    captchaObj.verify();
+                                })
+                                window.captchaObj = captchaObj;
+                            });
+                        }
+                    });
+                } else {
+                    sendVerify();
+                }
+            } else {
+                sendVerify();
+            }
+        })
+        // 绑定验证
+        $('#loginBtn').on('click', function(e) {
+
+            if ($(this).hasClass('disabled')) return false;
+            var mobileValue = $.trim($('input[name=mobile]').val());
+            var verifycodeValue = $.trim($('input[name=mobile_vcode]').val());
+            if (mobileValue == '') {
+                qsToast('请输入手机号码');
+                return false;
+            }
+            if (mobileValue != "" && !regularMobile.test(mobileValue)) {
+                qsToast('手机号码格式不正确');
+                return false;
+            }
+            if (verifycodeValue == '') {
+                qsToast('请输入手机验证码');
+                return false;
+            }
+            $('#loginBtn').addClass('disabled');
+            if (captcha_open) {
+                if (eval($('#verifyLogin').val())) {
+                    $('#doType').val('0'); // 标识为登录
+                    $('.geetest_panel').remove();
+                    $.ajax({
+                        url: qscms.root + '?m=Mobile&c=Captcha&type=mobile&t=' + (new Date()).getTime(),
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(config) {
+                            initGeetest({
+                                gt: config.gt,
+                                challenge: config.challenge,
+                                offline: !config.success, // 表示用户后台检测极验服务器是否宕机
+                                new_captcha: config.new_captcha, // 用于宕机时表示是新验证码的宕机
+                                org: 'bind'
+                            }, function(captchaObj) {
+                                captchaObj.appendTo("#pop");
+                                captchaObj.onSuccess(function() {
+                                    var captChaResult = captchaObj.getValidate();
+                                    $('.J_gee_cha').val(captChaResult.geetest_challenge);
+                                    $('.J_gee_val').val(captChaResult.geetest_validate);
+                                    $('.J_gee_sec').val(captChaResult.geetest_seccode);
+                                    doLoginAjax();
+                                })
+                                captchaObj.onReady(function() {
+                                    captchaObj.verify();
+                                });
+                                $('#btnCheckLogin').on('click', function() {
+                                    captchaObj.verify();
+                                })
+                                window.captchaObj = captchaObj;
+                            });
+                        }
+                    });
+                } else {
+                    doLoginAjax();
+                }
+            } else {
+                doLoginAjax();
+            }
+        });
+    </script>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>协议</title>
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<meta content="telephone=no" name="format-detection" />
+		<link href="../public/g/css/ny.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../public/g/css/mui.min.css" />
+		<link rel="stylesheet" href="../public/g/css/style.css" />
+	</head>
+	<style>
+		.mui-input-group:before {
+			display: none;
+		}
+		.sjr img {
+		    width: 265px;
+		    height: 265px;
+		}
+	</style>
+
+	<body style="background: #fff;">
+		<!--头部-->
+		<div class="protocol-header">
+			<h3 class="tips">转发须知</h3>
+			<div class="car-achrve">
+				<div class="reader">
+
+					<p>1：点击右上角转发功能，转发朋友或者朋友圈</p>
+					<p>2：也可让朋友直接扫描二维码</p>
+					<p>3.推荐用户注册或关注（直接进行积分奖励）</p>
+					<p>4.被推荐人入职。被推荐人入职到达一定时长后，后台工作人员对推荐人员进行积分奖励</p>
+					<p>5.积分可用于兑换现金奖励，可在积分商城消费</p>
+				</div>
+			</div>
+		</div>
+		<div class="fj-xx">推荐二维码</div>
+		<div class="sjr">
+			<img src="/{$filename}">
+		</div>
+			<div class="new_where">
+				<div class="mui-content-padded">
+					<a href="https://www.qichenhr.xyz/{$filename}" download="w3logo"><button id="saveDizhi" class="mui-btn mui-btn-block mui-btn-primary protocol-btn">保存二维码</button></a>
+				</div>
+			</div>
+		
+		<!--底部 -->
+		
+	</body>
+
+</html>
+<script type="text/javascript" src="../public/g/up/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function () {
+        var linkUrl = "{$url}";//放链接
+		var title = "招聘、求职就到{:C('qscms_site_name')}";
+		var desc = "更多好工作请看这里"; 
+		var imgUrl="<if condition="C('qscms_logo_home')">{:attach(C('qscms_logo_home'),'resource')}<else/>{:C('TPL_HOME_PUBLIC_DIR')}/images/logo.gif</if>";//图片链接
+
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+    
+</script>
+

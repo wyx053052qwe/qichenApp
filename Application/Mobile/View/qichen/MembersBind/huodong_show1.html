@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>{$info['header_title']}</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/index.css">
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<link rel="stylesheet" href="../public_qichen/css/ep.css" />
+
+	</head>
+	<style>
+		body,
+		html {
+			height: auto;
+		}
+		
+		.training-xq h2 {
+			width: 100%;
+			font-size: 17px;
+			color: #333;
+			line-height: 150%;
+		}
+		
+		.xq_foot {
+			bottom: 62px;
+		}
+		
+		.xq_foot01 a:first-child {
+			background: #f2b300;
+			width: 100%;
+		}
+		
+		.xq_foot01 .ago-active {
+			background: #bbb !important;
+			width: 100%;
+		}
+		
+		.training-xq .dis_flex span {
+			color: #fff;
+			font-size: 18px;
+			text-align: center;
+			width: 100%;
+		}
+		
+		.work_zhize {
+			margin-bottom: 40px;
+		}
+	</style>
+
+	<body>
+		<div class="salary-xqall">
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<h1>员工活动详情</h1>
+
+				</div>
+			</header>
+		</div>
+		<!--内容 -->
+		<div class="zy_module-content zy_vip_conbox job-list  user-mysc news-ann" style="margin-top: 0px;">
+			<div class="job-xq training-xq">
+				<div class="zy_content zy_train_xq">
+					<div class="bgwh mb6 p_2">
+						<div class="other_head dis_flex fix">
+							<h2>{$info['name']}</h2>
+
+						</div>
+						<div class="work_info other_info">
+							
+							<div><span>报名人数：</span>
+								<p>{$info['count']}</p>
+							</div>
+							<div><span>报名费用：</span>
+								<p>无</p>
+							</div>
+							<div><span>活动机构：</span>
+								<p>启辰人力资源</p>
+							</div>
+						</div>
+					</div>
+
+					<!--  -->
+					<div class="work_zhize bgwh mb6 p_2">
+						<h4><span class="ge04">活动详情</span></h4>
+						<div class="txt">
+							<p>{$info['content']}</p>
+
+						</div>
+
+					</div>
+
+					<!-- 详情底部栏 -->
+					<!--<div class="xq_foot xq_foot01 dis_flex">
+						<a onclick="img_hs(this)" is_show="true"><span>我要报名</span></a>
+
+					</div>-->
+					<!--往期-->
+					<div class="xq_foot xq_foot01 dis_flex">
+						<a onclick="baoming({$info['id']});"><span>我要报名</span></a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--公共底部 -->
+
+		<include file="public_qichen:footer_fuwu_2"/>
+	</body>
+
+</html>
+<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+<script type="text/javascript" src="../public_qichen/js/style.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function () {
+        var linkUrl = "{:build_mobile_url(array('c'=>'MembersBind','a'=>'huodong_show','params'=>'id='.$info['id']))}";//放链接
+        var title = "{$info['seo_keywords']} - {:C('qscms_site_name')}";
+        var desc = "{$info['seo_description']}";
+        var imgUrl = "{$info['img']}";//图片链接
+
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () {
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+    function baoming(id){
+        <if condition="empty($is_bao)">
+            alert('报名已结束');
+            return false;
+
+        </if>
+        $.get("{:U('baoming')}",{id:id},function(data){
+            alert(data.msg);
+            location.reload();
+        });
+    }
+</script>

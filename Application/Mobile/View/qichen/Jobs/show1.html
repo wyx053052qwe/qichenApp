@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<qscms:jobs_show 列表名="jobs_info" 职位id="$_GET['id']"/>
+		<include file="public:meta"/>
+		<meta charset="utf-8">
+		<meta content="招聘" http-equiv="keywords">
+		<meta name="description" content="招聘,培训">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
+		<meta name="renderer" content="webkit" />
+		<title>启辰人力资源</title>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="../public_qichen/css/style.css">
+
+		<link rel="stylesheet" href="../public_qichen/css/ny.css" />
+		<link rel="stylesheet" href="../public_qichen/css/mui.min.css" />
+		<script type="text/javascript" src="../public_qichen/js/jQuery-v1.1.min.js"></script>
+		<script type="text/javascript" src="../public_qichen/js/job.js"></script>
+
+	</head>
+	<php>
+		//dump($jobs_info);die;
+	</php>
+	<body>
+		<div class="job-xqall">
+			<!--头部  -->
+			<header class="zy_search_top_box scroll_fix">
+				<div class="zy_title_top fix">
+					<div class="one" href="javascript:" onclick="history.back();"><img src="../public_qichen/img/back_jt.png"><span>返回</span></div>
+					<h1>工作详情</h1>
+					<div class="r">
+						<a href="{:U('Personal/index')}"><img src="../public_qichen/img/menu_icon04.png"></a>
+					</div>
+				</div>
+			</header>
+			<!--详情-->
+			<div class="job-xq">
+				<div class="job-top">温馨提示：收取费用和押金的职位都是骗子，警防上当受骗</div>
+				<div class="work_tit p_02">
+					<h2>{$jobs_info.jobs_name}</h2>
+					<p class="fix">
+						<a class="l gr">{$jobs_info.wage_cn}</a>
+						<a class="r g9"><span>{$jobs_info['refreshtime_cn']}</span><span>浏览量：{$jobs_info['click']}</span></a>
+					</p>
+				</div>
+				<!---->
+				<div class="work_info p_2">
+					<div><span>职位：</span>
+						<p>{$jobs_info.jobs_name}</p>
+					</div>
+					<div><span>要求：</span>
+						<p><em>{$jobs_info.amount}人</em><em><if condition="$jobs_info.education eq 0">学历不限<else />{$jobs_info.education_cn}</if></em><em><if condition="$jobs_info.experience eq 0">经验不限<else />{$jobs_info.experience_cn}</if></em></p>
+					</div>
+					<div><span>地点：</span>
+						<p>{$jobs_info.company.address}</p>
+					</div>
+					<div>
+						<span>福利：</span>
+						<p>
+						<volist name="jobs_info['tag_cn']" id="vo">
+							<em>{$vo}</em>
+						</volist>
+						</p>
+					</div>
+					<div class="apply zy_butn bord_3 apply_jobs"><eq name="jobs_info['is_apply']" value="1">已投递<else />投递简历</eq></div>
+				</div>
+				<!--岗位职责 -->
+				<div class="work_zhize bgwh mb6 p_2">
+					<h4>岗位职责</h4>
+					<div class="txt">
+						<p>{:nl2br($jobs_info['contents'])}</p>
+					</div>
+				</div>
+				<!--联系人 -->
+				<div class="work_contact bgwh mb6">
+					<div><span>联系人：</span>
+						<p>
+						<if condition="$jobs_info['contact']['contact_show'] eq 1">{$jobs_info.contact.contact}</if>
+						
+						</p>
+					</div>
+					<div>
+						<span>联系电话：</span>
+						<p>
+							<if condition="$jobs_info['contact']['telephone_show'] eq 0">
+								企业设置不公开
+							<else/>
+								<a href="tel:{$jobs_info.contact.telephone}">{$jobs_info.contact.telephone}<img src="../public_qichen/img/zy_icon_tel01.png"></a>
+							</if>
+							
+						</p>
+					</div>
+					
+				</div>
+				<!--企业简介   -->
+				<div class="work_zhize bgwh mb6 p_2">
+					<h2>{$jobs_info.company.companyname}</h2>
+					<h4>企业介绍</h4>
+					<div class="txt">
+						<p>{$jobs_info.company.contents}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--公共底部 -->
+		<div style="height: 55px;"></div>
+		<div class="xq_foot dis_flex">
+			<a class="favor" is_show="true">
+				<if condition="$jobs_info['favor']">
+					<img src="../public/images/282.png"><span>
+	                已收藏
+	                </span>
+	            <else />
+	                <img src="../public/images/281.png"><span>
+	                收藏
+	                </span>
+	            </if>
+			</a>
+			<if condition="$jobs_info['contact']['telephone_show'] eq 0">
+				<a onclick="alert('企业设置不公开');"><img src="../public_qichen/img/zy_icon_tel.png"><span>电话</span></a>
+			<else/>
+			<a href="tel:{$jobs_info.contact.telephone}"><img src="../public_qichen/img/zy_icon_tel.png"><span>电话</span></a>
+			</if>
+			<div class="apply apply_jobs"><eq name="jobs_info['is_apply']" value="1">已投递<else />投递简历</eq></div>
+		</div>
+	</body>
+<include file="public:footer_js" />
+
+</html>
+<script src="../public/js/popWin.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak={:C('qscms_map_ak')}"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    /* 显示分享 覆盖层 */
+    function share() {
+        $(".alw-wx-layer").show();
+    }
+
+    function share_() {
+        $(".alw-layer").show();
+    }
+    //分享按钮
+    $('.alw-yes-share-btn').on('click', function() {
+        var agent = navigator.userAgent.toLowerCase();
+        if (agent.indexOf('micromessenger') < 0) {
+            share_();
+        } else {
+            share();
+        }
+    });
+    $(".alw-layer, .alw-wx-layer").on("click", function() {
+        $(this).hide();
+    });
+    if ($('.jobsshowtag').length) {
+        // 如果有职位亮点，随机变色
+        function randomsort(a, b) {
+            return Math.random() > .5 ? -1 : 1;
+        }
+        var bgArrBefore = [1, 2, 3, 4, 5, 6];
+        var $jobTagDom = $('.jobsshowtag').find('.tagli');
+        var bgArray = bgArrBefore.sort(randomsort);
+        $($jobTagDom).each(function(index, value) {
+            $(this).addClass('tg' + bgArray[index]);
+        })
+    }
+    $.getJSON("{:U('AjaxCommon/jobs_click')}", {
+        id: "{$jobs_info.id}"
+    });
+    $.getJSON("{:U('AjaxCommon/company_statistics_add')}", {
+        comid: "{$jobs_info['company_id']}",
+        jobid: "{$jobs_info['id']}"
+    });
+    var mapTemp = $('#tpl-map').html();
+    $(".show-map").on('click', function() {
+        var $this = $(this);
+        popWin.init({
+            from: "right",
+            html: mapTemp,
+            handle: function(a) {
+                var map = new BMap.Map("container");
+                var point = new BMap.Point("{$jobs_info['map_x']}", "{$jobs_info['map_y']}"); // 创建点坐标
+                map.centerAndZoom(point, "{$jobs_info['map_zoom']}");
+                var qs_marker = new BMap.Marker(point); // 创建标注
+                map.addOverlay(qs_marker);
+                map.setCenter(point);
+                map.addControl(new BMap.NavigationControl()); //添加鱼骨
+                map.enableScrollWheelZoom(); //启用滚轮放大缩小，默认禁用。
+                $('#mapBtn').on('click', function() {
+                    a.close();
+                });
+            }
+        })
+    });
+    var isVisitor = "{:C('visitor.uid')}";
+    var utype = "{:C('visitor.utype')}";
+    // 收藏职位点击事件绑定
+    $(".favor").on('click', function() {
+        var obj = $(this);
+        var url = "{:U('ajaxPersonal/jobs_favorites')}";
+        var jid = "{$jobs_info['id']}";
+        if ((qscms.is_login > 0)) {
+            if (utype != 2) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+            var $cuLoad = qsToasting('', 0);
+            $.getJSON(url, {
+                jid: jid
+            }, function(result) {
+                $cuLoad.close();
+                if (result.status == 1) {
+                    qsToast(result.msg, 1, '');
+                    if (result.data == 'cancel') {
+                        obj.html('<img src="../public/images/281.png"><span>收藏</span>');
+                    } else {
+                        obj.html('<img src="../public/images/282.png"><span>已收藏</span>');
+                    }
+                } else if (result.dialog) {
+                    // 登录
+                    logDialog('','',2);
+                } else {
+                    qsToast(result.msg, '', '');
+                    return false;
+                }
+            });
+        } else {
+            logDialog('','',2);
+        }
+    });
+    // 申请职位点击事件绑定
+    $(".apply_jobs").on('click', function() {
+        var that = $(this);
+        var url = "{:U('ajaxPersonal/resume_apply')}";
+        var jid = "{$jobs_info['id']}";
+        if ((isVisitor > 0)) {
+            if (utype != 2) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+            var $cuLoad = qsToasting('', 0);
+            $.getJSON(url, {
+                jid: jid
+            }, function(result) {
+                $cuLoad.close();
+                if (result.status == 1) {
+                    if (result.data.complete) {
+                        var data = result.data.complete;
+                        if (data.id) {
+                            var url = "{:U('Personal/resume_edit',array('pid'=>Placeholder))}";
+                            url = url.replace('Placeholder', data.id);
+                            $(document).dialog({
+                                titleText: '提示',
+                                type : 'confirm',
+                                content: '<div class="link_yellow" style="line-height: 180%;">您的简历完整度只有 <strong>' + data.percent + '%</strong>，该公司要求达到 <strong>{:C("qscms_apply_job_min_percent")}%</strong> 才可以申请，请<a href="' + url + '">继续完善</a>吧</div>',
+                                buttons: [
+                                    {
+                                        name: '暂不完善',
+                                        callback: function() {}
+                                    },
+                                    {
+                                        name: '立即完善',
+                                        callback: function() {
+                                            window.location.href = url;
+                                        }
+                                    }
+                                ]
+                            });
+                        } else {
+                            qsToast(result.msg, 0, '');
+                            return false;
+                        }
+                    } else if (result.data.create) {
+                        $(document).dialog({
+                            titleText: '提示',
+                            type : 'confirm',
+                            content: result.msg,
+                            buttons: [
+                                {
+                                    name: '稍后再说',
+                                    callback: function() {}
+                                },
+                                {
+                                    name: '立即创建',
+                                    callback: function() {
+                                        window.location.href = "{:U('Personal/resume_add')}";
+                                    }
+                                }
+                            ]
+                        });
+                    } else {
+                        that.text('已投递');
+                        qsToast(result.msg, 1, '');
+                    }
+                } else if (result.dialog) {
+                    // 登录
+                    logDialog('','',2);
+                }  else {
+                    qsToast(result.msg, '', '');
+                    return false;
+                }
+            });
+        } else {
+            if (eval(qscms.smsTatus)) {
+                var regResume = "{:C('qscms_rapid_registration_resume')}";
+                if (regResume == 1) {
+                    window.location.href = qscms.root + '?m=Mobile&c=AjaxPersonal&a=resume_add_dig&jid=' + jid;
+                } else {
+                    window.location.href = "{:url_rewrite('QS_login')}";
+                }
+            } else {
+                window.location.href = "{:url_rewrite('QS_login')}";
+            }
+        }
+    });
+    // 领取红包点击事件绑定
+    $(".apply_allowance").on('click', function() {
+        var url = qscms.root + "?m=Mobile&c=AjaxAllowance&a=apply_allowance";
+        var jid = "{$jobs_info['id']}";
+        if ((isVisitor > 0)) {
+            if (utype != 2) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+            $.getJSON(url, {
+                jid: jid
+            }, function(data) {
+                if (data.status == 1) {
+                    $('body').append(data.data.html);
+                } else {
+                    qsToast(data.msg);
+                    if (data.status == 2) {
+                        setTimeout(function() {
+                            location.href = qscms.root + "?m=Mobile&c=Personal&a=resume_add";
+                        }, 2000);
+                    }
+                }
+            });
+        } else {
+            window.location.href = "{:url_rewrite('QS_login')}";
+        }
+    });
+    $('.J_tel').on('click', function() {
+        if ($(this).hasClass('hide_tel')) {
+            qsToast('该企业设置联系方式不公开！');
+            return false;
+        }
+        if (isVisitor > 0) {
+            if (utype != 2) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+        } else {
+            window.location.href = "{:U('members/login')}";
+            return false;
+        }
+    });
+    $('.J_check_truenum').on('click', function() {
+        if (isVisitor > 0) {
+            if (utype == 1) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            } else {
+                qsToast('请先创建一份简历');
+                window.location.href = "{:U('personal/resume_add')}";
+                return false;
+            }
+        } else {
+            window.location.href = "{:U('members/login')}";
+            return false;
+        }
+    });
+    $('.J_im_btn').on('click', function() {
+        if (isVisitor > 0) {
+            var uid = "{$jobs_info['uid']}";
+            if (isVisitor == uid) {
+                qsToast('不能和自已聊天');
+                return false;
+            }
+            if (utype != 2) {
+                $(document).dialog({
+                    titleText: '提示',
+                    type : 'confirm',
+                    buttonTextConfirm:'切换',
+                    content: '您当前为“企业帐号”，本次操作需为“个人帐号”，是否切换为“个人帐号”？',
+                    onClickConfirmBtn: function() {
+                        $.getJSON("{:U('Members/switch_utype')}",{utype:2},function(result){
+                            if(result.status==1){
+                                qsToast(result.msg, 1, '');
+                                setTimeout(function(){
+                                    window.location.reload();
+                                },2000);
+                            } else {
+                                qsToast(result.msg, 0, '');
+                                return false;
+                            }
+                        });
+                    }
+                });
+                return false;
+            }
+        } else {
+            window.location.href = "{:U('members/login')}";
+            return false;
+        }
+    });
+    wx.config({
+        // debug: true,
+        appId: '{$signPackage.appId}',
+        timestamp: '{$signPackage.timestamp}',
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+        jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo"
+        ]
+    });
+    wx.ready(function() {
+        var linkUrl = "{:build_mobile_url(array('c'=>'Jobs','a'=>'show','params'=>'id='.$jobs_info['id']))}"; //放链接
+        var title = "{$jobs_info['company']['companyname']}高薪诚聘{$jobs_info['jobs_name']},小伙伴们快来看看吧。";
+        var desc = "{$jobs_info['company']['companyname']}正在招聘人才，待遇福利优厚，欢迎各路人才，快来看看吧。";
+      var imgUrl="{$jobs_info['company']['logo']}";//图片链接
+        <if condition = "$jobs_info['allowance_open'] eq 1 && $jobs_info['allowance_id'] gt 0" >
+            var title = "我在{:C('qscms_site_name')}上成功领取了红包了，小伙伴们也试一下吧。";
+        </if>
+        wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function() {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function() {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareQQ({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function() {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        wx.onMenuShareWeibo({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: linkUrl, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function() {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function() {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+</script>

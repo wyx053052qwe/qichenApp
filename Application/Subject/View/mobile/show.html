@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <qscms:subject_show 列表名="info" 专题id="$_GET['id']" />
+        <include file="Mobile@public/meta" />
+        <link rel="stylesheet" href="{$tpl_public_dir}/css/subject.css">
+    </head>
+    <body>
+        <assign name="page_seo['header_title']" value="$info['title']"/>
+        <include file="Mobile@public/header"/>
+        <script>showAndroidTopBack();</script>
+        <div class="suj_con <if condition="$info['tpl'] eq 'default4'">sc1<elseif condition="$info['tpl'] eq 'default'"/>sc4<elseif condition="$info['tpl'] eq 'default2'"/>sc2<else />sc3</if>">
+            <div class="suj_tit">
+                <div class="sut_txt font16">专题介绍</div>
+                <div class="sut_con font12">
+                    {$info.content}
+                </div>
+            </div>
+            <qscms:subject_company 列表名="list" 专题公司id="$_GET['id']" />
+            <volist name="list['list']" id="vo">
+                <div class="suj_cell">
+                    <div class="tb1" onclick="window.location.href ='{$vo['company_url']}'">
+                        <img src="{$vo.logo}" alt="" class="logo">
+                        <div class="tx1">{$vo.companyname}</div>
+                        <div class="tx2 font12">联系人：{$vo.contact}</div>
+                        <div class="tx3 font12 substring">地   址：{$vo.address}</div>
+                    </div>
+                    <volist name="vo['jobs']" id="job" >
+                        <div class="tb_line font13">
+                            <a href="{$job['jobs_url']}"><div class="tbl">{$job.jobs_name}</div><div class="tbr">{$job.wage_cn}</div></a>
+                            <div class="clear"></div>
+                        </div>
+                    </volist>
+                    <div class="tb_bot font13"><a href="{$vo.company_url}" class="">共  {$vo.jobs_num} 个 在招职位 >></a></div>
+                </div>
+            </volist>    
+        <include file="Mobile@public/footer_min" />
+    </body>
+</html>
